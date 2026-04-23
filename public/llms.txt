@@ -1,0 +1,29 @@
+# MAHJ MAHJ
+
+> MAHJ MAHJ is a community platform for mahjong players in the United States.
+  It covers three major styles: Hong Kong Mahjong, Taiwanese Mahjong, and American Mahjong.
+  The platform helps players find local events, learn game rules and strategy, and connect
+  with other players in cities across the US including Los Angeles, New York, San Francisco,
+  Miami, Boston, and more.
+
+## Events
+- [Find Mahjong Events](https://mahjmahj.co/events): Browse upcoming mahjong events by city and style
+- [Los Angeles Events](https://mahjmahj.co/events/los-angeles): Mahjong events in Los Angeles
+- [New York Events](https://mahjmahj.co/events/new-york): Mahjong events in New York
+- [San Francisco Events](https://mahjmahj.co/events/san-francisco): Mahjong events in San Francisco
+
+## Mahjong Styles
+- [Hong Kong Mahjong](https://mahjmahj.co/styles/hong-kong-mahjong): Learn about Hong Kong Mahjong rules and strategy
+- [Taiwanese Mahjong](https://mahjmahj.co/styles/taiwanese-mahjong): Learn about Taiwanese Mahjong rules and strategy
+- [American Mahjong](https://mahjmahj.co/styles/american-mahjong): Learn about American Mahjong rules and strategy
+- [Compare Mahjong Styles](https://mahjmahj.co/compare/mahjong-styles): Side-by-side comparison of all three styles
+
+## Learn
+- [How to Play Mahjong](https://mahjmahj.co/learn/how-to-play-mahjong): Beginner-friendly guide to getting started
+- [Which Style Is Right for Me?](https://mahjmahj.co/learn/which-mahjong-style-is-right-for-me): Find the mahjong style that fits you
+
+## Community
+- [About MAHJ MAHJ](https://mahjmahj.co/about): Learn about the platform and the US mahjong community
+
+## App
+- [MAHJ MAHJ App](https://app.mahjmahj.co): Mobile app for finding events, saving favorites, and connecting with players
