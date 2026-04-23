@@ -34,105 +34,121 @@ export default async function HomePage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(webSiteSchema()) }}
       />
 
-      {/* Hero */}
-      <section className="py-24 text-center" style={{ background: 'var(--sand)' }}>
-        <div className="mx-auto max-w-3xl px-6">
-          <h1 className="font-[family-name:var(--font-heading)] text-4xl font-black leading-tight md:text-5xl" style={{ color: 'var(--espresso)' }}>
-            A Modern Guide to Mahjong
-          </h1>
-          <p className="mt-6 text-lg leading-relaxed" style={{ color: 'var(--walnut)' }}>
-            Learn Hong Kong, Taiwanese, and American Mahjong in one place. Tiles, rules, strategy, and community — all under one roof.
+      {/* Hero — full-bleed illustration background */}
+      <section className="hero">
+        <div className="hero-image-overlay" />
+        <div className="hero-content">
+          <div className="hero-spacer" />
+          <div className="hero-types">
+            <span className="hero-type">Find Your Game</span>
+            <span className="hero-type-sep" />
+            <span className="hero-type">Play in Your City</span>
+            <span className="hero-type-sep" />
+            <span className="hero-type">Join a Table</span>
+          </div>
+          <p className="hero-subtitle">
+            Hong Kong Mahjong, Taiwanese Mahjong, and American Mahjong — events, rules, and community across the US.
           </p>
-          <div className="mt-8 flex flex-wrap justify-center gap-4">
-            <Link
-              href="/learn/how-to-play-mahjong"
-              className="inline-block rounded-full px-8 py-3 text-sm font-semibold no-underline transition-colors"
-              style={{ background: 'var(--terra)', color: '#fff' }}
-            >
+          <div className="hero-actions">
+            <Link href="/learn/how-to-play-mahjong" className="btn-solid">
               Start Learning
             </Link>
-            <Link
-              href="/events"
-              className="inline-block rounded-full border-2 px-8 py-3 text-sm font-semibold no-underline transition-colors"
-              style={{ borderColor: 'var(--espresso)', color: 'var(--espresso)' }}
-            >
+            <Link href="/events" className="btn-ghost">
               Find Events
             </Link>
           </div>
         </div>
+        <div className="hero-scroll" aria-hidden="true">
+          <span>Scroll</span>
+          <div className="hero-scroll-line" />
+        </div>
       </section>
 
-      {/* Three Styles */}
-      <section className="py-20" style={{ background: 'var(--paper)' }}>
-        <div className="mx-auto max-w-6xl px-6">
-          <h2 className="mb-4 text-center font-[family-name:var(--font-heading)] text-2xl font-bold md:text-3xl">
-            Mahjong Is Not One Game
+      {/* Marquee stripe */}
+      <div className="marquee-stripe" aria-hidden="true">
+        <div className="marquee-track">
+          {['Hong Kong Mahjong','Taiwanese Mahjong','American Mahjong','Tile Recognition','Strategy & Play','Quick Drills','Local Events','Play Smarter',
+            'Hong Kong Mahjong','Taiwanese Mahjong','American Mahjong','Tile Recognition','Strategy & Play','Quick Drills','Local Events','Play Smarter'
+          ].map((item, i) => (
+            <span key={i} className="marquee-item">{item}</span>
+          ))}
+        </div>
+      </div>
+
+      {/* Intro Statement */}
+      <section className="intro-statement">
+        <div className="intro-inner">
+          <span className="label">Welcome to the Table</span>
+          <h2>
+            Not just one game — <strong>three traditions</strong>, three table cultures, three ways to play.
           </h2>
-          <p className="mx-auto mb-12 max-w-2xl text-center" style={{ color: 'var(--stone)' }}>
-            Three traditions, three table cultures, three ways to play. Find the one that fits you.
-          </p>
-          <div className="grid gap-6 md:grid-cols-3">
+          <p>Find the one that fits you.</p>
+        </div>
+      </section>
+
+      {/* Three Styles Triptych */}
+      <section className="types-section" style={{ background: 'var(--paper)', padding: '5rem 0' }}>
+        <div className="sec-inner">
+          <div className="types-triptych">
             {[
               { title: 'Hong Kong Mahjong', desc: 'Fast, strategic, built around a 13-tile hand and faan scoring. Clean and elegant.', href: '/styles/hong-kong-mahjong', bg: 'var(--terra-pale)' },
-              { title: 'Taiwanese Mahjong', desc: 'A 16-tile hand makes for a fuller, more kinetic game. Lively and social.', href: '/styles/taiwanese-mahjong', bg: 'var(--terra-pale)' },
-              { title: 'American Mahjong', desc: 'Jokers, the Charleston, and the annual NMJL card. Pattern-driven and communal.', href: '/styles/american-mahjong', bg: 'var(--terra-pale)' },
+              { title: 'Taiwanese Mahjong', desc: 'A 16-tile hand makes for a fuller, more kinetic game. Lively and social.', href: '/styles/taiwanese-mahjong', bg: 'var(--teal-pale)' },
+              { title: 'American Mahjong', desc: 'Jokers, the Charleston, and the annual NMJL card. Pattern-driven and communal.', href: '/styles/american-mahjong', bg: 'var(--olive-pale)' },
             ].map((s) => (
               <Link
                 key={s.href}
                 href={s.href}
-                className="group block rounded-2xl p-8 no-underline transition-shadow hover:shadow-lg"
+                className="type-card"
                 style={{ background: s.bg }}
               >
-                <h3 className="font-[family-name:var(--font-heading)] text-lg font-bold" style={{ color: 'var(--espresso)' }}>
-                  {s.title}
-                </h3>
-                <p className="mt-3 text-sm leading-relaxed" style={{ color: 'var(--walnut)' }}>
-                  {s.desc}
-                </p>
-                <span className="mt-4 inline-block text-sm font-semibold" style={{ color: 'var(--terra)' }}>
-                  Learn more &rarr;
+                <span className="label" style={{ color: 'var(--terra)' }}>
+                  {s.title === 'Hong Kong Mahjong' ? 'Hong Kong' : s.title === 'Taiwanese Mahjong' ? 'Taiwanese' : 'American'}
                 </span>
+                <h3>{s.title}</h3>
+                <p>{s.desc}</p>
+                <span className="type-card-cta">Learn more &rarr;</span>
               </Link>
             ))}
           </div>
-          <div className="mt-8 text-center">
-            <Link href="/compare/mahjong-styles" className="text-sm font-semibold" style={{ color: 'var(--terra)' }}>
-              Compare all three styles &rarr;
+          <div style={{ textAlign: 'center', marginTop: '2rem' }}>
+            <Link href="/compare/mahjong-styles" className="btn-solid" style={{ fontSize: '0.72rem' }}>
+              Compare All Three Styles
             </Link>
           </div>
         </div>
       </section>
 
       {/* Upcoming Events */}
-      <section className="py-20" style={{ background: 'var(--linen)' }}>
-        <div className="mx-auto max-w-6xl px-6">
-          <div className="mb-10 flex items-end justify-between">
-            <h2 className="font-[family-name:var(--font-heading)] text-2xl font-bold">Upcoming Events</h2>
-            <Link href="/events" className="text-sm font-semibold" style={{ color: 'var(--terra)' }}>
-              View all &rarr;
+      <section className="events-section" style={{ background: 'var(--linen)', padding: '5rem 0' }}>
+        <div className="sec-inner">
+          <div className="events-hdr">
+            <div>
+              <span className="label peri">Community</span>
+              <h2 style={{ fontFamily: "'Unbounded', sans-serif", fontWeight: 700, fontSize: 'clamp(1.4rem, 3vw, 2rem)', color: 'var(--espresso)', marginTop: '0.5rem' }}>
+                Upcoming Events
+              </h2>
+            </div>
+            <Link href="/events" className="btn-solid" style={{ fontSize: '0.72rem', alignSelf: 'flex-end' }}>
+              View All Events
             </Link>
           </div>
           {eventsData.events.length > 0 ? (
-            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="events-grid">
               {eventsData.events.map((evt) => (
-                <div key={evt.id} className="rounded-xl border p-5" style={{ background: 'var(--paper)', borderColor: 'var(--bone)' }}>
-                  <p className="mb-1 text-xs font-semibold uppercase tracking-wide" style={{ color: 'var(--terra)' }}>
+                <div key={evt.id} className="event-card">
+                  <p className="event-date">
                     {new Date(evt.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
                     {evt.time ? ` · ${evt.time}` : ''}
                   </p>
-                  <h3 className="font-[family-name:var(--font-heading)] text-sm font-bold leading-snug" style={{ color: 'var(--espresso)' }}>
-                    {evt.title}
-                  </h3>
-                  <p className="mt-1 text-xs" style={{ color: 'var(--stone)' }}>
+                  <h3 className="event-title">{evt.title}</h3>
+                  <p className="event-location">
                     {evt.venue ? `${evt.venue} · ` : ''}{evt.city}{evt.state ? `, ${evt.state}` : ''}
                   </p>
                   {evt.style && (
-                    <span className="mt-2 inline-block rounded-full px-2 py-0.5 text-xs" style={{ background: 'var(--teal-light)', color: 'var(--teal-deep)' }}>
-                      {evt.style}
-                    </span>
+                    <span className="event-style">{evt.style}</span>
                   )}
-                  <div className="mt-3">
-                    <Link href={`/events/${getCitySlug(evt.city)}`} className="text-xs font-semibold" style={{ color: 'var(--terra)' }}>
+                  <div style={{ marginTop: '0.75rem' }}>
+                    <Link href={`/events/${getCitySlug(evt.city)}`} className="event-link">
                       See {evt.city} events &rarr;
                     </Link>
                   </div>
@@ -147,30 +163,27 @@ export default async function HomePage() {
 
       {/* News */}
       {newsData.news.length > 0 && (
-        <section className="py-20" style={{ background: 'var(--terra-pale)' }}>
-          <div className="mx-auto max-w-6xl px-6">
-            <h2 className="mb-10 font-[family-name:var(--font-heading)] text-2xl font-bold">Mahjong News</h2>
-            <div className="grid gap-4 sm:grid-cols-2">
+        <section style={{ background: 'var(--warm-wash)', padding: '5rem 0' }}>
+          <div className="sec-inner">
+            <span className="label">Latest</span>
+            <h2 style={{ fontFamily: "'Unbounded', sans-serif", fontWeight: 700, fontSize: 'clamp(1.4rem, 3vw, 2rem)', color: 'var(--espresso)', marginTop: '0.5rem', marginBottom: '2.5rem' }}>
+              Mahjong News
+            </h2>
+            <div className="news-grid">
               {newsData.news.map((item) => (
-                <div key={item.id} className="rounded-xl border p-5" style={{ background: 'var(--paper)', borderColor: 'var(--bone)' }}>
-                  <p className="mb-1 text-xs" style={{ color: 'var(--dust)' }}>
-                    {item.category && <span className="font-semibold uppercase tracking-wide">{item.category}</span>}
+                <div key={item.id} className="news-card">
+                  <p className="news-meta">
+                    {item.category && <span style={{ fontWeight: 500, textTransform: 'uppercase', letterSpacing: '0.1em' }}>{item.category}</span>}
                     {item.category && item.date ? ' · ' : ''}
                     {item.date && new Date(item.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
                   </p>
-                  <h3 className="font-[family-name:var(--font-heading)] text-sm font-bold" style={{ color: 'var(--espresso)' }}>
+                  <h3 className="news-title">
                     {item.url ? (
-                      <a href={item.url} target="_blank" rel="noopener noreferrer" style={{ color: 'var(--espresso)' }}>
-                        {item.title}
-                      </a>
+                      <a href={item.url} target="_blank" rel="noopener noreferrer">{item.title}</a>
                     ) : item.title}
                   </h3>
-                  {item.summary && (
-                    <p className="mt-2 text-sm" style={{ color: 'var(--stone)' }}>{item.summary}</p>
-                  )}
-                  {item.source && (
-                    <p className="mt-2 text-xs" style={{ color: 'var(--dust)' }}>Source: {item.source}</p>
-                  )}
+                  {item.summary && <p className="news-summary">{item.summary}</p>}
+                  {item.source && <p className="news-source">Source: {item.source}</p>}
                 </div>
               ))}
             </div>
@@ -178,28 +191,21 @@ export default async function HomePage() {
         </section>
       )}
 
-      {/* CTA */}
-      <section className="py-20" style={{ background: 'var(--espresso)' }}>
-        <div className="mx-auto max-w-3xl px-6 text-center">
-          <h2 className="font-[family-name:var(--font-heading)] text-2xl font-bold md:text-3xl" style={{ color: 'var(--td1)' }}>
+      {/* CTA — dark strategy section */}
+      <section className="strategy-cta" style={{ background: 'var(--espresso)', padding: '6rem 0' }}>
+        <div className="sec-inner" style={{ textAlign: 'center' }}>
+          <span className="label-dark" style={{ color: 'var(--terra)' }}>Get Started</span>
+          <h2 style={{ fontFamily: "'Unbounded', sans-serif", fontWeight: 900, fontSize: 'clamp(1.6rem, 4vw, 2.6rem)', color: 'var(--td1)', marginTop: '0.8rem', lineHeight: 1.3 }}>
             Ready to Find Your Table?
           </h2>
-          <p className="mt-4" style={{ color: 'var(--td2)' }}>
+          <p style={{ color: 'var(--td2)', marginTop: '1rem', maxWidth: '440px', marginLeft: 'auto', marginRight: 'auto', fontSize: '0.96rem', lineHeight: 1.78, fontWeight: 300 }}>
             Whether you are brand new or switching styles, start here.
           </p>
-          <div className="mt-8 flex flex-wrap justify-center gap-4">
-            <Link
-              href="/learn/which-mahjong-style-is-right-for-me"
-              className="inline-block rounded-full px-8 py-3 text-sm font-semibold no-underline"
-              style={{ background: 'var(--terra)', color: '#fff' }}
-            >
+          <div style={{ marginTop: '2rem', display: 'flex', gap: '0.75rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+            <Link href="/learn/which-mahjong-style-is-right-for-me" className="btn-solid">
               Which Style Is Right for Me?
             </Link>
-            <Link
-              href="/events"
-              className="inline-block rounded-full border-2 px-8 py-3 text-sm font-semibold no-underline"
-              style={{ borderColor: 'var(--td2)', color: 'var(--td1)' }}
-            >
+            <Link href="/events" className="btn-ghost-dark">
               Browse Events
             </Link>
           </div>
