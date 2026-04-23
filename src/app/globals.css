@@ -1,0 +1,38 @@
+@import "tailwindcss";
+
+@theme {
+  /* MAHJ MAHJ Brand Colors */
+  --color-cream: #F0EADF;
+  --color-cream-light: #F5F2EB;
+  --color-cream-dark: #E8E0D4;
+  --color-sand: #D8CEBC;
+  --color-terracotta: #C85A3A;
+  --color-terracotta-light: #D86848;
+  --color-terracotta-dark: #8A3820;
+  --color-teal: #6A9E9C;
+  --color-teal-light: #92BAB8;
+  --color-teal-dark: #3E6E6C;
+  --color-teal-bg: #DDE8E6;
+  --color-gold: #C89E38;
+  --color-gold-light: #DCBE60;
+  --color-olive: #7A8460;
+  --color-olive-light: #98A280;
+  --color-brown-dark: #2A201A;
+  --color-brown: #4A3E34;
+  --color-brown-light: #787064;
+  --color-brown-muted: #9E9488;
+
+  /* Font families */
+  --font-heading: 'Unbounded', sans-serif;
+  --font-body: 'Poppins', sans-serif;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-cream);
+  color: var(--color-brown-dark);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+}
