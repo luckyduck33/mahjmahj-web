@@ -55,11 +55,12 @@ export async function fetchEvents(params?: {
   if (params?.status) searchParams.set('status', params.status);
   if (params?.limit) searchParams.set('limit', String(params.limit));
 
-  const url = \`\${API_BASE}/events\${searchParams.toString() ? '?' + searchParams.toString() : ''}\`;
+  const qs = searchParams.toString();
+  const url = API_BASE + '/events' + (qs ? '?' + qs : '');
 
   try {
     const res = await fetch(url, { next: { revalidate: 3600 } });
-    if (!res.ok) throw new Error(\`Events API error: \${res.status}\`);
+    if (!res.ok) throw new Error('Events API error: ' + res.status);
     return res.json();
   } catch (error) {
     console.error('Failed to fetch events:', error);
@@ -77,11 +78,12 @@ export async function fetchNews(params?: {
   if (params?.limit) searchParams.set('limit', String(params.limit));
   if (params?.category) searchParams.set('category', params.category);
 
-  const url = \`\${API_BASE}/news\${searchParams.toString() ? '?' + searchParams.toString() : ''}\`;
+  const qs = searchParams.toString();
+  const url = API_BASE + '/news' + (qs ? '?' + qs : '');
 
   try {
     const res = await fetch(url, { next: { revalidate: 3600 } });
-    if (!res.ok) throw new Error(\`News API error: \${res.status}\`);
+    if (!res.ok) throw new Error('News API error: ' + res.status);
     return res.json();
   } catch (error) {
     console.error('Failed to fetch news:', error);
@@ -96,7 +98,7 @@ export async function getEventCities(): Promise<string[]> {
 }
 
 export function cityToSlug(city: string): string {
-  return city.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+  return city.toLowerCase().replace(/\\s+/g, '-').replace(/[^a-z0-9-]/g, '');
 }
 
 export function slugToCity(slug: string): string {
