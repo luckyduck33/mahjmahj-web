@@ -1,36 +1,34 @@
-const API_BASE = 'https://api.mahjmahj.co/api';
+const API_BASE = 'https://api.mahjmahj.co';
 
 export interface MahjEvent {
   id: string;
   title: string;
-  date: string;
-  time: string;
   city: string;
-  neighborhood: string;
-  address: string;
-  host: string;
-  cost: string;
-  styles: string[];
-  eventType: string[];
-  skillLevel: string[];
-  recurring: string;
-  recurrencePattern: string;
-  registrationLink: string;
-  description: string;
-  status: string;
+  state?: string;
+  venue?: string;
+  date: string;
+  endDate?: string;
+  time?: string;
+  description?: string;
+  url?: string;
+  source?: string;
+  status?: string;
+  style?: string;
+  recurring?: boolean;
+  cost?: string;
+  organizer?: string;
 }
 
 export interface NewsItem {
   id: string;
   title: string;
-  summary: string;
-  category: string;
+  url?: string;
+  source?: string;
+  summary?: string;
+  category?: string;
   date: string;
-  source: string;
-  url: string;
-  imageUrl: string;
-  whyItMatters: string;
-  featured: boolean;
+  active?: boolean;
+  imageUrl?: string;
 }
 
 export interface EventsResponse {
@@ -45,7 +43,7 @@ export interface NewsResponse {
   lastUpdated: string;
 }
 
-export async function fetchEvents(params?: {
+export async function getEvents(params?: {
   city?: string;
   status?: string;
   limit?: number;
@@ -55,55 +53,42 @@ export async function fetchEvents(params?: {
   if (params?.status) searchParams.set('status', params.status);
   if (params?.limit) searchParams.set('limit', String(params.limit));
 
-  const qs = searchParams.toString();
-  const url = API_BASE + '/events' + (qs ? '?' + qs : '');
-
+  const url = `${API_BASE}/api/events${searchParams.toString() ? '?' + searchParams.toString() : ''}`;
   try {
     const res = await fetch(url, { next: { revalidate: 3600 } });
-    if (!res.ok) throw new Error('Events API error: ' + res.status);
+    if (!res.ok) {
+      return { events: [], total: 0, lastUpdated: new Date().toISOString() };
+    }
     return res.json();
-  } catch (error) {
-    console.error('Failed to fetch events:', error);
+  } catch {
     return { events: [], total: 0, lastUpdated: new Date().toISOString() };
   }
 }
 
-export async function fetchNews(params?: {
+export async function getNews(params?: {
   active?: boolean;
   limit?: number;
-  category?: string;
 }): Promise<NewsResponse> {
   const searchParams = new URLSearchParams();
   if (params?.active !== undefined) searchParams.set('active', String(params.active));
   if (params?.limit) searchParams.set('limit', String(params.limit));
-  if (params?.category) searchParams.set('category', params.category);
 
-  const qs = searchParams.toString();
-  const url = API_BASE + '/news' + (qs ? '?' + qs : '');
-
+  const url = `${API_BASE}/api/news${searchParams.toString() ? '?' + searchParams.toString() : ''}`;
   try {
     const res = await fetch(url, { next: { revalidate: 3600 } });
-    if (!res.ok) throw new Error('News API error: ' + res.status);
+    if (!res.ok) {
+      return { news: [], total: 0, lastUpdated: new Date().toISOString() };
+    }
     return res.json();
-  } catch (error) {
-    console.error('Failed to fetch news:', error);
+  } catch {
     return { news: [], total: 0, lastUpdated: new Date().toISOString() };
   }
 }
 
-export async function getEventCities(): Promise<string[]> {
-  const data = await fetchEvents({ status: 'all' });
-  const cities = [...new Set(data.events.map((e) => e.city).filter(Boolean))];
-  return cities;
+export function getCitySlug(city: string): string {
+  return city.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
 }
 
-export function cityToSlug(city: string): string {
-  return city.toLowerCase().replace(/\\s+/g, '-').replace(/[^a-z0-9-]/g, '');
-}
-
-export function slugToCity(slug: string): string {
-  return slug
-    .split('-')
-    .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
-    .join(' ');
+export function getCityFromSlug(slug: string): string {
+  return slug.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
 }

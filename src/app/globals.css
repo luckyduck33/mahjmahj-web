@@ -1,38 +1,144 @@
+@import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@400;700;900&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap');
 @import "tailwindcss";
 
-@theme {
-  /* MAHJ MAHJ Brand Colors */
-  --color-cream: #F0EADF;
-  --color-cream-light: #F5F2EB;
-  --color-cream-dark: #E8E0D4;
-  --color-sand: #D8CEBC;
-  --color-terracotta: #C85A3A;
-  --color-terracotta-light: #D86848;
-  --color-terracotta-dark: #8A3820;
-  --color-teal: #6A9E9C;
-  --color-teal-light: #92BAB8;
-  --color-teal-dark: #3E6E6C;
-  --color-teal-bg: #DDE8E6;
-  --color-gold: #C89E38;
-  --color-gold-light: #DCBE60;
-  --color-olive: #7A8460;
-  --color-olive-light: #98A280;
-  --color-brown-dark: #2A201A;
-  --color-brown: #4A3E34;
-  --color-brown-light: #787064;
-  --color-brown-muted: #9E9488;
+:root {
+  --sand: #E8E0D4;
+  --linen: #F0EADF;
+  --paper: #F5F2EB;
+  --clay: #D8CEBC;
+  --teal-wash: #E6EDEC;
+  --warm-wash: #F0E8DC;
+  --terra-pale: #EDE0D4;
+  --teal-pale: #DDE8E6;
+  --olive-pale: #E4E8D8;
+  --espresso: #2A201A;
+  --walnut: #4A3E34;
+  --stone: #787064;
+  --dust: #9E9488;
+  --bone: #D4CCC0;
+  --terra: #C85A3A;
+  --terra-mid: #D86848;
+  --terra-pale2: #E8C0B0;
+  --terra-deep: #8A3820;
+  --teal: #6A9E9C;
+  --teal-soft: #92BAB8;
+  --teal-light: #C8DCD8;
+  --teal-deep: #3E6E6C;
+  --mustard: #C89E38;
+  --mustard-soft: #DCBE60;
+  --mustard-pale: #EDE4C8;
+  --olive: #7A8460;
+  --olive-soft: #98A280;
+  --olive-pale2: #D4DAC4;
+  --td1: #F5F4EF;
+  --td2: #A89E94;
+  --td3: #6A6054;
+}
 
-  /* Font families */
+@theme inline {
+  --color-sand: var(--sand);
+  --color-linen: var(--linen);
+  --color-paper: var(--paper);
+  --color-espresso: var(--espresso);
+  --color-walnut: var(--walnut);
+  --color-stone: var(--stone);
+  --color-dust: var(--dust);
+  --color-bone: var(--bone);
+  --color-terra: var(--terra);
+  --color-terra-mid: var(--terra-mid);
+  --color-terra-deep: var(--terra-deep);
+  --color-teal: var(--teal);
+  --color-teal-soft: var(--teal-soft);
+  --color-teal-deep: var(--teal-deep);
+  --color-teal-wash: var(--teal-wash);
+  --color-mustard: var(--mustard);
+  --color-olive: var(--olive);
+  --color-td1: var(--td1);
+  --color-td2: var(--td2);
+  --color-td3: var(--td3);
+  --color-warm-wash: var(--warm-wash);
+  --color-terra-pale: var(--terra-pale);
+  --color-teal-pale: var(--teal-pale);
+  --color-olive-pale: var(--olive-pale);
   --font-heading: 'Unbounded', sans-serif;
   --font-body: 'Poppins', sans-serif;
 }
 
 body {
-  font-family: var(--font-body);
-  background-color: var(--color-cream);
-  color: var(--color-brown-dark);
+  background: var(--linen);
+  color: var(--walnut);
+  font-family: 'Poppins', sans-serif;
+  line-height: 1.7;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-heading);
+  font-family: 'Unbounded', sans-serif;
+  color: var(--espresso);
+  line-height: 1.2;
+}
+
+/* Content article styles */
+.content-article h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+}
+.content-article h3 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+}
+.content-article p {
+  margin-bottom: 1rem;
+}
+.content-article ul, .content-article ol {
+  margin-bottom: 1rem;
+  padding-left: 1.5rem;
+}
+.content-article li {
+  margin-bottom: 0.35rem;
+}
+.content-article ul li {
+  list-style-type: disc;
+}
+.content-article ol li {
+  list-style-type: decimal;
+}
+.content-article table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  font-size: 0.95rem;
+}
+.content-article th {
+  background: var(--sand);
+  font-weight: 600;
+  text-align: left;
+  padding: 0.75rem 1rem;
+  border-bottom: 2px solid var(--bone);
+  font-family: 'Unbounded', sans-serif;
+  font-size: 0.85rem;
+  color: var(--espresso);
+}
+.content-article td {
+  padding: 0.65rem 1rem;
+  border-bottom: 1px solid var(--bone);
+  vertical-align: top;
+}
+.content-article tr:last-child td {
+  border-bottom: none;
+}
+.content-article strong {
+  color: var(--espresso);
+  font-weight: 600;
+}
+.content-article a {
+  color: var(--terra);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.content-article a:hover {
+  color: var(--terra-mid);
 }

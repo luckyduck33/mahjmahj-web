@@ -2,57 +2,43 @@ import Link from 'next/link';
 
 export default function Footer() {
   return (
-    <footer className="bg-brown-dark text-cream/80">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          {/* Brand */}
+    <footer className="mt-auto" style={{ background: 'var(--espresso)', color: 'var(--td2)' }}>
+      <div className="mx-auto max-w-6xl px-6 py-16">
+        <div className="mb-10">
+          <p className="font-[family-name:var(--font-heading)] text-2xl font-bold" style={{ color: 'var(--td1)' }}>
+            MAHJ MAHJ
+          </p>
+          <p className="mt-3 max-w-md text-sm leading-relaxed" style={{ color: 'var(--td2)' }}>
+            A modern guide to Mahjong. Learn Hong Kong, Taiwanese, and American Mahjong in one place. Tiles, rules, strategy, and community — all under one roof.
+          </p>
+        </div>
+        <div className="grid grid-cols-2 gap-8 text-sm md:grid-cols-4">
           <div>
-            <span className="font-heading text-2xl font-bold text-cream">mahj mahj</span>
-            <p className="mt-3 text-sm leading-relaxed">
-              A modern guide to mahjong. Find events, learn the game, and connect
-              with players across the United States.
-            </p>
-          </div>
-
-          {/* Styles */}
-          <div>
-            <h3 className="font-heading text-sm font-semibold text-cream uppercase tracking-wider mb-4">
-              Mahjong Styles
-            </h3>
-            <ul className="space-y-2 text-sm">
-              <li><Link href="/styles/hong-kong-mahjong" className="hover:text-cream transition-colors">Hong Kong Mahjong</Link></li>
-              <li><Link href="/styles/taiwanese-mahjong" className="hover:text-cream transition-colors">Taiwanese Mahjong</Link></li>
-              <li><Link href="/styles/american-mahjong" className="hover:text-cream transition-colors">American Mahjong</Link></li>
-              <li><Link href="/compare/mahjong-styles" className="hover:text-cream transition-colors">Compare Styles</Link></li>
+            <p className="mb-3 font-[family-name:var(--font-heading)] text-xs font-bold uppercase tracking-wider" style={{ color: 'var(--td1)' }}>Learn</p>
+            <ul className="space-y-2">
+              <li><Link href="/styles/hong-kong-mahjong" className="no-underline transition-colors hover:text-[var(--td1)]" style={{ color: 'var(--td2)' }}>Hong Kong Mahjong</Link></li>
+              <li><Link href="/styles/taiwanese-mahjong" className="no-underline transition-colors hover:text-[var(--td1)]" style={{ color: 'var(--td2)' }}>Taiwanese Mahjong</Link></li>
+              <li><Link href="/styles/american-mahjong" className="no-underline transition-colors hover:text-[var(--td1)]" style={{ color: 'var(--td2)' }}>American Mahjong</Link></li>
             </ul>
           </div>
-
-          {/* Learn */}
           <div>
-            <h3 className="font-heading text-sm font-semibold text-cream uppercase tracking-wider mb-4">
-              Learn
-            </h3>
-            <ul className="space-y-2 text-sm">
-              <li><Link href="/learn/how-to-play-mahjong" className="hover:text-cream transition-colors">How to Play Mahjong</Link></li>
-              <li><Link href="/learn/which-mahjong-style-is-right-for-me" className="hover:text-cream transition-colors">Find Your Style</Link></li>
-              <li><Link href="/events" className="hover:text-cream transition-colors">Find Events</Link></li>
+            <p className="mb-3 font-[family-name:var(--font-heading)] text-xs font-bold uppercase tracking-wider" style={{ color: 'var(--td1)' }}>Guides</p>
+            <ul className="space-y-2">
+              <li><Link href="/learn/how-to-play-mahjong" className="no-underline transition-colors hover:text-[var(--td1)]" style={{ color: 'var(--td2)' }}>How to Play</Link></li>
+              <li><Link href="/compare/mahjong-styles" className="no-underline transition-colors hover:text-[var(--td1)]" style={{ color: 'var(--td2)' }}>Compare Styles</Link></li>
+              <li><Link href="/learn/which-mahjong-style-is-right-for-me" className="no-underline transition-colors hover:text-[var(--td1)]" style={{ color: 'var(--td2)' }}>Which Style?</Link></li>
             </ul>
           </div>
-
-          {/* About */}
           <div>
-            <h3 className="font-heading text-sm font-semibold text-cream uppercase tracking-wider mb-4">
-              Community
-            </h3>
-            <ul className="space-y-2 text-sm">
-              <li><Link href="/about" className="hover:text-cream transition-colors">About MAHJ MAHJ</Link></li>
-              <li><a href="https://app.mahjmahj.co" className="hover:text-cream transition-colors">Get the App</a></li>
+            <p className="mb-3 font-[family-name:var(--font-heading)] text-xs font-bold uppercase tracking-wider" style={{ color: 'var(--td1)' }}>Community</p>
+            <ul className="space-y-2">
+              <li><Link href="/events" className="no-underline transition-colors hover:text-[var(--td1)]" style={{ color: 'var(--td2)' }}>Events</Link></li>
+              <li><Link href="/about" className="no-underline transition-colors hover:text-[var(--td1)]" style={{ color: 'var(--td2)' }}>About</Link></li>
             </ul>
           </div>
         </div>
-
-        <div className="mt-12 pt-8 border-t border-cream/10 text-sm text-cream/50 text-center">
-          <p>&copy; {new Date().getFullYear()} MAHJ MAHJ. All rights reserved.</p>
+        <div className="mt-12 border-t pt-6 text-xs" style={{ borderColor: 'var(--td3)', color: 'var(--td3)' }}>
+          &copy; {new Date().getFullYear()} Mahj Mahj. All rights reserved.
         </div>
       </div>
     </footer>

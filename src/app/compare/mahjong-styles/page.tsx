@@ -3,14 +3,14 @@ import Link from 'next/link';
 import { faqSchema } from '@/lib/schema';
 
 export const metadata: Metadata = {
-  title: 'Mahjong Styles Comparison â Hong Kong vs Taiwanese vs American',
+  title: 'Mahjong Styles Comparison — Hong Kong vs Taiwanese vs American',
   description:
     'Compare Hong Kong Mahjong, Taiwanese Mahjong, and American Mahjong side by side. Hand size, scoring, jokers, pace, and which style is right for you.',
   alternates: {
     canonical: 'https://mahjmahj.co/compare/mahjong-styles',
   },
   openGraph: {
-    title: 'Mahjong Styles Comparison â Hong Kong vs Taiwanese vs American',
+    title: 'Mahjong Styles Comparison — Hong Kong vs Taiwanese vs American',
     description:
       'Compare Hong Kong Mahjong, Taiwanese Mahjong, and American Mahjong side by side. Hand size, scoring, jokers, pace, and which style is right for you.',
     url: 'https://mahjmahj.co/compare/mahjong-styles',
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Mahjong Styles Comparison â Hong Kong vs Taiwanese vs American',
+    title: 'Mahjong Styles Comparison — Hong Kong vs Taiwanese vs American',
     description:
       'Compare Hong Kong Mahjong, Taiwanese Mahjong, and American Mahjong side by side.',
   },
@@ -39,7 +39,7 @@ const faqs = [
   {
     question: 'Which Mahjong style is easiest for beginners?',
     answer:
-      'It depends on the player. Hong Kong Mahjong is often recommended for its clean structure â build four sets and a pair â and no annual card to memorize. American Mahjong has a structured card that tells you exactly which hands count, which some beginners find helpful. Taiwanese Mahjong has a larger hand and more dynamic play that can feel overwhelming at first. The best starting style is usually whatever your local community plays, because you will have people to learn with.',
+      'It depends on the player. Hong Kong Mahjong is often recommended for its clean structure — build four sets and a pair — and no annual card to memorize. American Mahjong has a structured card that tells you exactly which hands count, which some beginners find helpful. Taiwanese Mahjong has a larger hand and more dynamic play that can feel overwhelming at first. The best starting style is usually whatever your local community plays, because you will have people to learn with.',
   },
   {
     question: 'Is American Mahjong the same as Hong Kong Mahjong?',
@@ -54,12 +54,12 @@ const faqs = [
   {
     question: 'Do all Mahjong styles use jokers?',
     answer:
-      'No. Only American Mahjong uses jokers as standard wild tiles â they are central to how hands are built and exchanged. Hong Kong Mahjong and Taiwanese Mahjong do not use jokers at all. The presence or absence of jokers significantly changes how the game feels and how hands are constructed.',
+      'No. Only American Mahjong uses jokers as standard wild tiles — they are central to how hands are built and exchanged. Hong Kong Mahjong and Taiwanese Mahjong do not use jokers at all. The presence or absence of jokers significantly changes how the game feels and how hands are constructed.',
   },
   {
     question: 'Do you need a card for every style?',
     answer:
-      'No. Only American Mahjong requires an annual card â the National Mah Jongg League card, which lists the valid winning hands for that year and must be purchased annually. Hong Kong Mahjong and Taiwanese Mahjong have consistent hand structures that do not change year to year, so no annual card is needed.',
+      'No. Only American Mahjong requires an annual card — the National Mah Jongg League card, which lists the valid winning hands for that year and must be purchased annually. Hong Kong Mahjong and Taiwanese Mahjong have consistent hand structures that do not change year to year, so no annual card is needed.',
   },
   {
     question: 'Which Mahjong style is most popular in the US?',
@@ -97,7 +97,7 @@ export default function MahjongStylesComparePage() {
             Mahjong Styles Compared
           </h1>
           <p style={{ color: 'var(--td2)' }} className="text-lg md:text-xl leading-relaxed max-w-2xl mx-auto">
-            Hong Kong, Taiwanese, and American Mahjong all use the same tiles â but they play like different games. Here is what sets each one apart.
+            Hong Kong, Taiwanese, and American Mahjong all use the same tiles — but they play like different games. Here is what sets each one apart.
           </p>
         </div>
       </section>
@@ -109,10 +109,10 @@ export default function MahjongStylesComparePage() {
           {/* Intro */}
           <section className="mb-16">
             <p style={{ color: 'var(--walnut)' }} className="text-lg leading-relaxed mb-4">
-              Mahjong is not one game â it is a family of games. Three styles dominate the US landscape: <strong>Hong Kong Mahjong</strong>, <strong>Taiwanese Mahjong</strong>, and <strong>American Mahjong</strong>. They share a tile set and a basic goal, but they differ in hand size, scoring philosophy, pace, and the role jokers play at the table.
+              Mahjong is not one game — it is a family of games. Three styles dominate the US landscape: <strong>Hong Kong Mahjong</strong>, <strong>Taiwanese Mahjong</strong>, and <strong>American Mahjong</strong>. They share a tile set and a basic goal, but they differ in hand size, scoring philosophy, pace, and the role jokers play at the table.
             </p>
             <p style={{ color: 'var(--walnut)' }} className="text-lg leading-relaxed mb-4">
-              Hong Kong Mahjong is clean and strategic â a compact 13-tile hand, faan-based scoring, and no card required. Taiwanese Mahjong is fuller and more kinetic â a 16-tile hand that creates a bigger, louder game with more tiles in play at once. American Mahjong is social and pattern-driven â jokers are central, and each year a new NMJL card defines which hands are valid.
+              Hong Kong Mahjong is clean and strategic — a compact 13-tile hand, faan-based scoring, and no card required. Taiwanese Mahjong is fuller and more kinetic — a 16-tile hand that creates a bigger, louder game with more tiles in play at once. American Mahjong is social and pattern-driven — jokers are central, and each year a new NMJL card defines which hands are valid.
             </p>
             <p style={{ color: 'var(--walnut)' }} className="text-lg leading-relaxed">
               Understanding these differences will help you choose a starting style, understand what your group is playing, and make sense of why mahjong can look so different from table to table.
@@ -134,21 +134,21 @@ export default function MahjongStylesComparePage() {
                   color: 'var(--terra)',
                   href: '/styles/hong-kong-mahjong',
                   desc: 'Thirteen tiles, faan scoring, no jokers, no annual card. The most widely played traditional style. Clean structure, fast pace, and deep strategic layers once you know the basics.',
-                  tag: 'Strategic Â· Fast Â· Elegant',
+                  tag: 'Strategic · Fast · Elegant',
                 },
                 {
                   title: 'Taiwanese Mahjong',
                   color: 'var(--teal)',
                   href: '/styles/taiwanese-mahjong',
-                  desc: 'Sixteen tiles, a fuller hand, livelier rounds. No jokers, no card required. More tiles in play means more possibilities â and more energy at the table.',
-                  tag: 'Warm Â· Lively Â· Expansive',
+                  desc: 'Sixteen tiles, a fuller hand, livelier rounds. No jokers, no card required. More tiles in play means more possibilities — and more energy at the table.',
+                  tag: 'Warm · Lively · Expansive',
                 },
                 {
                   title: 'American Mahjong',
                   color: 'var(--mustard)',
                   href: '/styles/american-mahjong',
                   desc: 'Pattern-based play against an annual NMJL card. Jokers are wild and central to building hands. Strong club culture in the US with a distinct social energy.',
-                  tag: 'Social Â· Clubby Â· Pattern-driven',
+                  tag: 'Social · Clubby · Pattern-driven',
                 },
               ].map((style) => (
                 <div
@@ -173,7 +173,7 @@ export default function MahjongStylesComparePage() {
                     style={{ color: style.color, fontSize: '0.85rem', fontWeight: 600 }}
                     className="hover:underline"
                   >
-                    Full guide â
+                    Full guide →
                   </Link>
                 </div>
               ))}
@@ -238,12 +238,12 @@ export default function MahjongStylesComparePage() {
             </p>
             <ul className="space-y-3">
               {[
-                'A tile set of 136â144 tiles divided into suits, honors, and bonus tiles',
+                'A tile set of 136–144 tiles divided into suits, honors, and bonus tiles',
                 'Four players seated around a table',
                 'A turn structure of drawing and discarding tiles',
                 'A goal of building a complete hand from sets and a pair',
                 'A shared culture of watching the table, reading discards, and making decisions',
-                'A social dimension â mahjong is almost always played with people you know',
+                'A social dimension — mahjong is almost always played with people you know',
               ].map((item) => (
                 <li key={item} className="flex items-start gap-3">
                   <span style={{ color: 'var(--terra)', marginTop: '0.25rem' }}>&#9642;</span>
@@ -341,7 +341,7 @@ export default function MahjongStylesComparePage() {
                 },
                 {
                   title: 'Scoring system',
-                  body: 'Hong Kong uses faan â you score points based on specific features of your winning hand. Taiwanese uses a points-based system with different conventions. American Mahjong scores based entirely on whether your completed hand matches a pattern on the annual card. These are fundamentally different scoring philosophies.',
+                  body: 'Hong Kong uses faan — you score points based on specific features of your winning hand. Taiwanese uses a points-based system with different conventions. American Mahjong scores based entirely on whether your completed hand matches a pattern on the annual card. These are fundamentally different scoring philosophies.',
                 },
                 {
                   title: 'Jokers',
@@ -349,11 +349,11 @@ export default function MahjongStylesComparePage() {
                 },
                 {
                   title: 'Annual card required',
-                  body: 'American Mahjong players must purchase the NMJL card each year, which defines the valid winning hands for that season. Without the card, you cannot play. Hong Kong and Taiwanese Mahjong require no annual purchase â the rules are stable.',
+                  body: 'American Mahjong players must purchase the NMJL card each year, which defines the valid winning hands for that season. Without the card, you cannot play. Hong Kong and Taiwanese Mahjong require no annual purchase — the rules are stable.',
                 },
                 {
                   title: 'Table feel',
-                  body: 'American Mahjong often has a warm, social club atmosphere â groups of four who play regularly together. Hong Kong Mahjong tends to feel sharper and more strategic. Taiwanese Mahjong has a lively, energetic quality because there are more tiles, more decisions, and often more noise.',
+                  body: 'American Mahjong often has a warm, social club atmosphere — groups of four who play regularly together. Hong Kong Mahjong tends to feel sharper and more strategic. Taiwanese Mahjong has a lively, energetic quality because there are more tiles, more decisions, and often more noise.',
                 },
               ].map((item) => (
                 <div key={item.title} style={{ borderBottom: '1px solid var(--bone)' }} className="pb-6">
@@ -405,7 +405,7 @@ export default function MahjongStylesComparePage() {
             </p>
             <ul className="space-y-3 mb-6">
               {[
-                'Start with what your community plays â learning alongside others is the fastest path',
+                'Start with what your community plays — learning alongside others is the fastest path',
                 'If you are choosing on your own, Hong Kong Mahjong offers the clearest structure and the fastest rounds',
                 'If you enjoy pattern-based games and want to join existing clubs, American Mahjong has infrastructure to support beginners',
                 'If your social circle plays Taiwanese Mahjong, the larger hand is worth learning for the shared experience',
@@ -417,7 +417,7 @@ export default function MahjongStylesComparePage() {
               ))}
             </ul>
             <p style={{ color: 'var(--walnut)' }} className="leading-relaxed">
-              All three styles have a learning curve. The goal is to start playing as soon as possible â you learn mahjong at the table, not from a page.
+              All three styles have a learning curve. The goal is to start playing as soon as possible — you learn mahjong at the table, not from a page.
             </p>
           </section>
 
@@ -463,11 +463,11 @@ export default function MahjongStylesComparePage() {
             </h2>
             <div className="grid md:grid-cols-2 gap-4">
               {[
-                { label: 'How to play Mahjong â beginner guide', href: '/learn/how-to-play-mahjong' },
+                { label: 'How to play Mahjong — beginner guide', href: '/learn/how-to-play-mahjong' },
                 { label: 'Which style is right for me?', href: '/learn/which-mahjong-style-is-right-for-me' },
-                { label: 'Hong Kong Mahjong â full guide', href: '/styles/hong-kong-mahjong' },
-                { label: 'Taiwanese Mahjong â full guide', href: '/styles/taiwanese-mahjong' },
-                { label: 'American Mahjong â full guide', href: '/styles/american-mahjong' },
+                { label: 'Hong Kong Mahjong — full guide', href: '/styles/hong-kong-mahjong' },
+                { label: 'Taiwanese Mahjong — full guide', href: '/styles/taiwanese-mahjong' },
+                { label: 'American Mahjong — full guide', href: '/styles/american-mahjong' },
                 { label: 'Find mahjong events near you', href: '/events' },
               ].map((link) => (
                 <Link

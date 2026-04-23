@@ -1,13 +1,13 @@
 import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
-  distDir: '.next',
+  turbopack: {
+    root: process.cwd(),
+  },
   images: {
     remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'api.mahjmahj.co',
-      },
+      { protocol: 'https', hostname: 'mahjmahj.co' },
+      { protocol: 'https', hostname: 'api.mahjmahj.co' },
     ],
   },
 };

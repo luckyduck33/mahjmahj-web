@@ -112,7 +112,7 @@ export default function AboutPage() {
                 Find events
               </Link>
               <span style={{ color: 'var(--stone)', fontSize: '1.05rem' }}>
-                {' '}â Discover mahjong events near you
+                {' '}— Discover mahjong events near you
               </span>
             </li>
             <li>
@@ -128,7 +128,7 @@ export default function AboutPage() {
                 Learn the game
               </Link>
               <span style={{ color: 'var(--stone)', fontSize: '1.05rem' }}>
-                {' '}â Guides for beginners and returning players
+                {' '}— Guides for beginners and returning players
               </span>
             </li>
             <li>
@@ -144,7 +144,7 @@ export default function AboutPage() {
                 Compare styles
               </Link>
               <span style={{ color: 'var(--stone)', fontSize: '1.05rem' }}>
-                {' '}â Understand what makes each style unique
+                {' '}— Understand what makes each style unique
               </span>
             </li>
             <li>
@@ -152,7 +152,7 @@ export default function AboutPage() {
                 Build community
               </span>
               <span style={{ color: 'var(--stone)', fontSize: '1.05rem' }}>
-                {' '}â Connect players across the country
+                {' '}— Connect players across the country
               </span>
             </li>
           </ul>

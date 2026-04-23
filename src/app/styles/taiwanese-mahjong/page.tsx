@@ -3,12 +3,12 @@ import Link from 'next/link';
 import { faqSchema, articleSchema } from '@/lib/schema';
 
 export const metadata: Metadata = {
-  title: 'Taiwanese Mahjong â Rules, Strategy, and the 16-Tile Hand',
+  title: 'Taiwanese Mahjong — Rules, Strategy, and the 16-Tile Hand',
   description:
     'A complete guide to Taiwanese Mahjong: the 16-tile hand structure, tai scoring, gameplay flow, strategy basics, and how it compares to Hong Kong and American Mahjong.',
   alternates: { canonical: 'https://mahjmahj.co/styles/taiwanese-mahjong' },
   openGraph: {
-    title: 'Taiwanese Mahjong â Rules, Strategy, and the 16-Tile Hand',
+    title: 'Taiwanese Mahjong — Rules, Strategy, and the 16-Tile Hand',
     description:
       'A complete guide to Taiwanese Mahjong: the 16-tile hand structure, tai scoring, gameplay flow, strategy basics, and how it compares to Hong Kong and American Mahjong.',
     url: 'https://mahjmahj.co/styles/taiwanese-mahjong',
@@ -18,9 +18,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Taiwanese Mahjong â Rules, Strategy, and the 16-Tile Hand',
+    title: 'Taiwanese Mahjong — Rules, Strategy, and the 16-Tile Hand',
     description:
-      'Learn the rules, scoring, strategy, and feel of Taiwanese Mahjong â including what makes the 16-tile hand so distinctive.',
+      'Learn the rules, scoring, strategy, and feel of Taiwanese Mahjong — including what makes the 16-tile hand so distinctive.',
   },
 };
 
@@ -28,7 +28,7 @@ const faqs = [
   {
     question: 'What is the main difference in Taiwanese Mahjong?',
     answer:
-      'The most famous difference is the 16-tile hand structure. Where Hong Kong Mahjong uses 13 tiles, Taiwanese Mahjong builds the hand around 16. That extra material changes the pace and feel of every round â players hold more combinations, hands develop more fully from the start, and the table has a richer, more layered rhythm.',
+      'The most famous difference is the 16-tile hand structure. Where Hong Kong Mahjong uses 13 tiles, Taiwanese Mahjong builds the hand around 16. That extra material changes the pace and feel of every round — players hold more combinations, hands develop more fully from the start, and the table has a richer, more layered rhythm.',
   },
   {
     question: 'Is Taiwanese Mahjong harder than Hong Kong Mahjong?',
@@ -63,102 +63,7 @@ const faqs = [
 ];
 
 const article = {
-  headline: 'Taiwanese Mahjong â Rules, Strategy, and the 16-Tile Hand',
-  description:
-    'A complete guide to Taiwanese Mahjong: the 16-tile hand structure, tai scoring, gameplay flow, strategy basics, and how it compares to Hong Kong and American Mahjong.',
-  url: 'https://mahjmahj.co/styles/taiwanese-mahjong',
-  datePublished: '2026-04-22',
-};
-
-export default function TaiwaneseMainjongPage() {
-  return (
-    <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema(faqs)) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema(article)) }}
-      />
-
-      {/* Hero */}
-      <section className="py-24 text-center" style={{ background: 'var(--sand)' }}>
-        <div className="mx-auto max-w-3xl px-6">
-          <p className="mb-4 text-xs font-semibold uppercase tracking-widest" style={{ color: 'var(--teal-deep)' }}>
-            Style Guide
-          </p>
-          <h1
-            className="font-[family-name:var(--font-heading)] text-4xl font-black leading-tight md:text-5xl"
-            style={{ color: 'var(--espresso)' }}
-          >
-            Taiwanese Mahjong
-          </h1>import type { Metadata } from 'next';
-import Link from 'next/link';
-import { faqSchema, articleSchema } from '@/lib/schema';
-
-export const metadata: Metadata = {
-  title: 'Taiwanese Mahjong â Rules, Strategy, and the 16-Tile Hand',
-  description:
-    'A complete guide to Taiwanese Mahjong: the 16-tile hand structure, tai scoring, gameplay flow, strategy basics, and how it compares to Hong Kong and American Mahjong.',
-  alternates: { canonical: 'https://mahjmahj.co/styles/taiwanese-mahjong' },
-  openGraph: {
-    title: 'Taiwanese Mahjong â Rules, Strategy, and the 16-Tile Hand',
-    description:
-      'A complete guide to Taiwanese Mahjong: the 16-tile hand structure, tai scoring, gameplay flow, strategy basics, and how it compares to Hong Kong and American Mahjong.',
-    url: 'https://mahjmahj.co/styles/taiwanese-mahjong',
-    type: 'article',
-    siteName: 'MAHJ MAHJ',
-    locale: 'en_US',
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Taiwanese Mahjong â Rules, Strategy, and the 16-Tile Hand',
-    description:
-      'Learn the rules, scoring, strategy, and feel of Taiwanese Mahjong â including what makes the 16-tile hand so distinctive.',
-  },
-};
-
-const faqs = [
-  {
-    question: 'What is the main difference in Taiwanese Mahjong?',
-    answer:
-      'The most famous difference is the 16-tile hand structure. Where Hong Kong Mahjong uses 13 tiles, Taiwanese Mahjong builds the hand around 16. That extra material changes the pace and feel of every round â players hold more combinations, hands develop more fully from the start, and the table has a richer, more layered rhythm.',
-  },
-  {
-    question: 'Is Taiwanese Mahjong harder than Hong Kong Mahjong?',
-    answer:
-      'Not necessarily. The larger hand gives players more to work with, which can feel complex at first, but many people find that the extra tiles make hands easier to read and develop. The challenge shifts from precision under constraint to managing more possibilities at once. Both styles reward practice.',
-  },
-  {
-    question: 'How many tiles do you hold in Taiwanese Mahjong?',
-    answer:
-      'Usually 16 tiles, compared to 13 in Hong Kong Mahjong. This is the defining structural feature of the style. Some house rule variations exist, but 16 is the standard.',
-  },
-  {
-    question: 'Does Taiwanese Mahjong use jokers?',
-    answer:
-      'Not in the way American Mahjong does. Taiwanese Mahjong does not rely on joker tiles as wild cards. Bonus tiles such as flowers and seasons may appear depending on house rules, but the core hand is built from suit tiles and honor tiles without joker substitution.',
-  },
-  {
-    question: 'Is Taiwanese Mahjong fast?',
-    answer:
-      'Yes, often. The 16-tile hand means players enter each round with more developed starting material, which can accelerate the game. Combined with a social, expressive table culture, Taiwanese Mahjong sessions tend to feel lively and kinetic.',
-  },
-  {
-    question: 'Do you need a card to play Taiwanese Mahjong?',
-    answer:
-      'No. Unlike American Mahjong, which uses an annual card published by the National Mah Jongg League, Taiwanese Mahjong does not require an external card. The winning hand structures come from the tiles themselves and from the scoring system your group agrees on.',
-  },
-  {
-    question: 'Should a beginner start with Taiwanese Mahjong?',
-    answer:
-      'Yes, especially if that is the style played in your local community. The best style to start with is the one where you have people to play with and learn from. Taiwanese Mahjong is welcoming and social, and many find the larger hand gives them more room to experiment while learning.',
-  },
-];
-
-const article = {
-  headline: 'Taiwanese Mahjong â Rules, Strategy, and the 16-Tile Hand',
+  headline: 'Taiwanese Mahjong — Rules, Strategy, and the 16-Tile Hand',
   description:
     'A complete guide to Taiwanese Mahjong: the 16-tile hand structure, tai scoring, gameplay flow, strategy basics, and how it compares to Hong Kong and American Mahjong.',
   url: 'https://mahjmahj.co/styles/taiwanese-mahjong',
@@ -193,7 +98,7 @@ export default function TaiwaneseMainjongPage() {
             Rules, Strategy, and the 16-Tile Hand
           </p>
           <p className="mt-4 text-base leading-relaxed" style={{ color: 'var(--stone)' }}>
-            Lively, social, and wonderfully kinetic â Taiwanese Mahjong builds every round around a fuller hand and a faster table rhythm.
+            Lively, social, and wonderfully kinetic — Taiwanese Mahjong builds every round around a fuller hand and a faster table rhythm.
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <Link
@@ -215,7 +120,7 @@ export default function TaiwaneseMainjongPage() {
       </section>
 
       {/* At a Glance Panel */}
-      <section className="py-10" style={{ background: 'var(--teal-pale)' }}>
+      <section className="py-10" style={{ background: 'var(--terra-pale)' }}>
         <div className="mx-auto max-w-5xl px-6">
           <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6">
             {[
@@ -253,7 +158,7 @@ export default function TaiwaneseMainjongPage() {
               Taiwanese Mahjong is lively, social, and wonderfully kinetic. It is often played with four people, uses a 16-tile hand structure, and creates a table rhythm that feels fuller and faster than styles built around 13 tiles. If Hong Kong Mahjong feels elegant and streamlined, Taiwanese Mahjong often feels expansive and energetic.
             </p>
             <p>
-              That extra hand size changes a lot. Players hold more information, hands can grow in more directions, and the flow of the game can feel more layered from the start. A round of Taiwanese Mahjong is rarely quiet â there is almost always something happening, someone considering a call, someone watching the table with intent.
+              That extra hand size changes a lot. Players hold more information, hands can grow in more directions, and the flow of the game can feel more layered from the start. A round of Taiwanese Mahjong is rarely quiet — there is almost always something happening, someone considering a call, someone watching the table with intent.
             </p>
             <p>
               If you are comparing styles, this guide will help you understand what makes Taiwanese Mahjong distinct. You can also visit the{' '}
@@ -275,7 +180,7 @@ export default function TaiwaneseMainjongPage() {
               The style is known for several things: the 16-tile hand, four-player gameplay, a fuller and more kinetic feel than Hong Kong Mahjong, tai-based scoring, and a table culture that is expressive and social. Players new to the game often find Taiwanese Mahjong welcoming precisely because the larger hand gives them more to work with as they learn.
             </p>
             <p>
-              At its best, a game of Taiwanese Mahjong feels like a living conversation â each draw and discard shifting the balance at the table, each completed hand a small satisfaction earned through attention and planning.
+              At its best, a game of Taiwanese Mahjong feels like a living conversation — each draw and discard shifting the balance at the table, each completed hand a small satisfaction earned through attention and planning.
             </p>
 
             {/* What you need */}
@@ -285,12 +190,12 @@ export default function TaiwaneseMainjongPage() {
             </p>
             <ul>
               <li>A full mahjong tile set (144 tiles in the standard configuration)</li>
-              <li>A set of dice â typically two or three</li>
+              <li>A set of dice — typically two or three</li>
               <li>Four players seated at the four sides of the table</li>
               <li>A table with enough space for the walls, your hand, and the discard area in front of each player</li>
             </ul>
             <p>
-              Some groups use a mahjong table with built-in wells for discards and scoring chips. Others play on any flat surface. The tiles are the essential element â the rest is comfortable but not required.
+              Some groups use a mahjong table with built-in wells for discards and scoring chips. Others play on any flat surface. The tiles are the essential element — the rest is comfortable but not required.
             </p>
             <p>
               No annual card is required, unlike American Mahjong. The winning hand structures come from the tiles themselves and from the scoring system your group agrees on.
@@ -321,25 +226,25 @@ export default function TaiwaneseMainjongPage() {
             </p>
             <ol>
               <li><strong>Shuffle tiles.</strong> All tiles are placed face-down and mixed thoroughly on the table.</li>
-              <li><strong>Build walls.</strong> Each player builds a wall of tiles in front of them â two tiles high, typically 18 or 19 tiles wide. The four walls are pushed together to form a square.</li>
+              <li><strong>Build walls.</strong> Each player builds a wall of tiles in front of them — two tiles high, typically 18 or 19 tiles wide. The four walls are pushed together to form a square.</li>
               <li><strong>Determine seating and dealer.</strong> Dice are rolled to determine the East seat, which acts as the dealer for the first round. Seating rotates through East, South, West, and North positions.</li>
               <li><strong>Break the wall.</strong> The dealer rolls dice to determine where the wall is broken. Tiles are drawn from this break point to start the deal.</li>
               <li><strong>Deal tiles.</strong> This is where Taiwanese Mahjong diverges most clearly from Hong Kong Mahjong. Each player receives 16 tiles instead of 13. The dealer begins with an extra tile and takes the first turn, discarding to start play.</li>
             </ol>
             <p>
-              The additional tiles in the deal mean every player enters the first turn with a more developed hand â more combinations visible, more directions possible, more information to process from the very beginning.
+              The additional tiles in the deal mean every player enters the first turn with a more developed hand — more combinations visible, more directions possible, more information to process from the very beginning.
             </p>
 
             {/* The goal */}
             <h2>The Goal of the Game</h2>
             <p>
-              The goal of Taiwanese Mahjong is to complete a legal winning hand â called winning, going out, or declaring mahjong â before any other player at the table.
+              The goal of Taiwanese Mahjong is to complete a legal winning hand — called winning, going out, or declaring mahjong — before any other player at the table.
             </p>
             <p>
               A legal winning hand in Taiwanese Mahjong is built around the larger 16-tile structure. The exact winning conditions depend on the house rules in play, but the core idea is consistent: assemble your tiles into a complete and valid arrangement of sets and a pair. A standard winning hand includes four sets (melds) plus one pair, using the 16 tiles available.
             </p>
             <p>
-              Some hands carry higher scoring value based on their structure, concealment, or composition. Knowing which patterns score well â and building toward them while staying flexible â is the strategic heart of the game.
+              Some hands carry higher scoring value based on their structure, concealment, or composition. Knowing which patterns score well — and building toward them while staying flexible — is the strategic heart of the game.
             </p>
 
             {/* How gameplay works */}
@@ -348,7 +253,7 @@ export default function TaiwaneseMainjongPage() {
               Play proceeds clockwise around the table. On each turn, a player draws a tile from the wall, evaluates their hand, and discards one tile face-up in their discard area.
             </p>
             <p>
-              Other players may call the discarded tile to complete a meld â a chow (sequence of three consecutive tiles in the same suit), a pung (three identical tiles), or a kong (four identical tiles). Calling a tile interrupts the normal drawing order and brings the tile into the calling player's hand. After forming the meld, the calling player discards.
+              Other players may call the discarded tile to complete a meld — a chow (sequence of three consecutive tiles in the same suit), a pung (three identical tiles), or a kong (four identical tiles). Calling a tile interrupts the normal drawing order and brings the tile into the calling player's hand. After forming the meld, the calling player discards.
             </p>
             <p>
               Any player may also call a discard to win if it completes their hand. This declaration is the moment the round ends.
@@ -363,13 +268,13 @@ export default function TaiwaneseMainjongPage() {
               This is the defining feature of Taiwanese Mahjong and the thing that most clearly distinguishes it from Hong Kong Mahjong.
             </p>
             <p>
-              In Hong Kong Mahjong, players hold 13 tiles. In Taiwanese Mahjong, players hold 16. That difference of three tiles is not minor â it fundamentally changes the feel and strategy of the game.
+              In Hong Kong Mahjong, players hold 13 tiles. In Taiwanese Mahjong, players hold 16. That difference of three tiles is not minor — it fundamentally changes the feel and strategy of the game.
             </p>
             <p>
-              With 16 tiles, players begin with more material. Hands are more developed from the first draw. There is more room for decisions â more combinations to evaluate, more partial sets to compare, more directions the hand can go. Players have more momentum built in from the start.
+              With 16 tiles, players begin with more material. Hands are more developed from the first draw. There is more room for decisions — more combinations to evaluate, more partial sets to compare, more directions the hand can go. Players have more momentum built in from the start.
             </p>
             <p>
-              This also means that tracking what other players are building is more complex. Each player is holding more information, and the interaction between hands is richer. A well-developed hand in Taiwanese Mahjong often feels earned in a particular way â not just because you assembled it, but because you managed the complexity of having more to work with.
+              This also means that tracking what other players are building is more complex. Each player is holding more information, and the interaction between hands is richer. A well-developed hand in Taiwanese Mahjong often feels earned in a particular way — not just because you assembled it, but because you managed the complexity of having more to work with.
             </p>
             <p>
               For new players, the 16-tile hand can actually feel more forgiving. With more tiles in hand, it is easier to see patterns forming and to understand what you are building toward. The extra tiles provide more context for learning.
@@ -388,7 +293,7 @@ export default function TaiwaneseMainjongPage() {
               <li><strong>Self-draw:</strong> Completing your hand by drawing the winning tile yourself (rather than taking an opponent's discard) adds tai value.</li>
               <li><strong>Honor sets:</strong> Pungs or kongs of dragon tiles or seat-wind tiles contribute tai.</li>
               <li><strong>Flowers and seasons:</strong> Bonus tiles add tai, often with bonuses for collecting a complete set of four.</li>
-              <li><strong>Specific hand types:</strong> Certain special hand patterns â all in one suit, all terminals and honors, and others â carry fixed tai values.</li>
+              <li><strong>Specific hand types:</strong> Certain special hand patterns — all in one suit, all terminals and honors, and others — carry fixed tai values.</li>
             </ul>
             <p>
               The minimum hand value required to win (the minimum tai threshold) is set by house rules and varies from group to group. Some groups play with a minimum of one tai; others require three or more. Understanding your group's minimum is essential before you sit down.
@@ -435,7 +340,7 @@ export default function TaiwaneseMainjongPage() {
                   <tr>
                     <td><strong>One-Suit Lean</strong></td>
                     <td>Hand built primarily in one suit with some honors</td>
-                    <td>+1â2 tai</td>
+                    <td>+1–2 tai</td>
                   </tr>
                   <tr>
                     <td><strong>Bonus Tile Advantage</strong></td>
@@ -503,7 +408,7 @@ export default function TaiwaneseMainjongPage() {
               </table>
             </div>
             <p>
-              Both styles are rewarding in different ways. Hong Kong Mahjong rewards precision and economy of action. Taiwanese Mahjong rewards breadth of thinking and adaptability. If you play one, learning the other is very accessible â the shared foundation makes the differences feel like variations on a familiar theme rather than an entirely new game.
+              Both styles are rewarding in different ways. Hong Kong Mahjong rewards precision and economy of action. Taiwanese Mahjong rewards breadth of thinking and adaptability. If you play one, learning the other is very accessible — the shared foundation makes the differences feel like variations on a familiar theme rather than an entirely new game.
             </p>
             <p>
               See the full <Link href="/compare/mahjong-styles">Mahjong Styles Comparison</Link> for a side-by-side breakdown of all three styles.
@@ -521,7 +426,7 @@ export default function TaiwaneseMainjongPage() {
               <li><strong>Different social rhythm:</strong> Both styles are social, but in different ways. American Mahjong has a particular community culture built around the annual card release and formal clubs. Taiwanese Mahjong's social culture is more embedded in family and informal play.</li>
             </ul>
             <p>
-              If you are coming from American Mahjong, Taiwanese Mahjong will feel like a significant shift â but the underlying love of tile play, social atmosphere, and strategic depth will feel immediately familiar.
+              If you are coming from American Mahjong, Taiwanese Mahjong will feel like a significant shift — but the underlying love of tile play, social atmosphere, and strategic depth will feel immediately familiar.
             </p>
 
             {/* Strategy */}
@@ -537,7 +442,7 @@ export default function TaiwaneseMainjongPage() {
                 <strong>Build around strong shape.</strong> Look for tiles that are already close to forming sets. The more your starting hand leans toward specific combinations, the more efficiently you can discard toward a clear goal.
               </li>
               <li>
-                <strong>Watch the table.</strong> What other players are discarding tells you what they are not building â and what is safe to discard yourself. Tracking discards is as important as managing your own hand.
+                <strong>Watch the table.</strong> What other players are discarding tells you what they are not building — and what is safe to discard yourself. Tracking discards is as important as managing your own hand.
               </li>
               <li>
                 <strong>Learn your group's scoring rules.</strong> Taiwanese Mahjong scoring varies by group. Know the minimum tai threshold and which hand types score highest in your specific game. Building a hand worth enough to win is a strategy in itself.
@@ -555,9 +460,9 @@ export default function TaiwaneseMainjongPage() {
             <ul>
               <li><strong>Clarify house rules before you start.</strong> Scoring rules and tile handling conventions vary. A brief conversation before the first deal saves confusion and keeps the game enjoyable.</li>
               <li><strong>Be clear and prompt with calls.</strong> When you want to call a discard, say so clearly and immediately. Delaying or calling after you have seen other tiles creates problems.</li>
-              <li><strong>Keep your discards neat.</strong> Place discards in front of you in a legible arrangement. Other players track your discards as part of their strategy â a disorganized discard area is a disadvantage for everyone.</li>
+              <li><strong>Keep your discards neat.</strong> Place discards in front of you in a legible arrangement. Other players track your discards as part of their strategy — a disorganized discard area is a disadvantage for everyone.</li>
               <li><strong>Respect the pace of the table.</strong> If someone is slower to make decisions, be patient rather than pressuring. If you are the slower player, try to think ahead so your turn moves smoothly.</li>
-              <li><strong>Help newer players enjoy the game.</strong> Taiwanese Mahjong is often learned in family or community settings. Patience with beginners is part of the culture â and newer players who feel welcomed come back and make the table richer.</li>
+              <li><strong>Help newer players enjoy the game.</strong> Taiwanese Mahjong is often learned in family or community settings. Patience with beginners is part of the culture — and newer players who feel welcomed come back and make the table richer.</li>
             </ul>
 
             {/* Why people love it */}
@@ -566,13 +471,13 @@ export default function TaiwaneseMainjongPage() {
               Players who fall in love with Taiwanese Mahjong often describe it in similar terms: it is alive. The table moves, the hands develop with visible momentum, and the social energy feels central to the experience rather than incidental to it.
             </p>
             <p>
-              The 16-tile hand means every round offers a lot of material to think through â but that complexity feels generative rather than burdensome. There is always something to discover in your hand, always a direction worth considering. Hands rarely feel stuck.
+              The 16-tile hand means every round offers a lot of material to think through — but that complexity feels generative rather than burdensome. There is always something to discover in your hand, always a direction worth considering. Hands rarely feel stuck.
             </p>
             <p>
-              The scoring system rewards players who build thoughtfully. A well-constructed hand â concealed, self-drawn, rich in honors â is genuinely satisfying to complete. And because the game moves quickly, the table cycles through rounds at a pace that keeps energy high.
+              The scoring system rewards players who build thoughtfully. A well-constructed hand — concealed, self-drawn, rich in honors — is genuinely satisfying to complete. And because the game moves quickly, the table cycles through rounds at a pace that keeps energy high.
             </p>
             <p>
-              Many players also describe the social texture of Taiwanese Mahjong as distinctive. It is a game meant to be played with people you enjoy spending time with â and it creates exactly the right conditions for that. Conversation flows naturally, attention to the table is rewarded, and the rhythm of the game gives everyone something to engage with at all times.
+              Many players also describe the social texture of Taiwanese Mahjong as distinctive. It is a game meant to be played with people you enjoy spending time with — and it creates exactly the right conditions for that. Conversation flows naturally, attention to the table is rewarded, and the rhythm of the game gives everyone something to engage with at all times.
             </p>
           </div>
         </div>
@@ -664,81 +569,6 @@ export default function TaiwaneseMainjongPage() {
                 </span>
               </Link>
             ))}
-          </div>
-        </div>
-      </section>
-    </>
-  );
-}
-import { JsonLd, faqSchema } from '@/components/JsonLd';
-import { createMetadata } from '@/lib/metadata';
-import Link from 'next/link';
-
-export const metadata = createMetadata({
-  title: 'Taiwanese Mahjong',
-  description: 'Learn about Taiwanese Mahjong â a dynamic 16-tile variant with unique scoring and strategy. Rules, gameplay, and where to play in the US.',
-  path: '/styles/taiwanese-mahjong',
-});
-
-const faqs = [
-  {
-    question: 'What is Taiwanese Mahjong?',
-    answer: 'Taiwanese Mahjong is one of the three major styles of mahjong played in the United States. Content coming soon.',
-  },
-  {
-    question: 'Where can I play Taiwanese Mahjong?',
-    answer: 'Check our events page to find Taiwanese Mahjong events near you across major US cities.',
-  },
-  {
-    question: 'How is Taiwanese Mahjong different from other styles?',
-    answer: 'Each mahjong style has unique rules, scoring systems, and traditions. Visit our comparison page for a detailed breakdown.',
-  },
-];
-
-export default function TaiwaneseMahjongPage() {
-  return (
-    <>
-      <JsonLd data={faqSchema(faqs)} />
-      <section className="py-16 px-4 bg-cream">
-        <div className="max-w-4xl mx-auto">
-          <nav className="text-sm text-brown-muted mb-6">
-            <Link href="/" className="hover:text-terracotta transition-colors">Home</Link>
-            <span className="mx-2">/</span>
-            <span className="text-brown-dark">Taiwanese Mahjong</span>
-          </nav>
-          <h1 className="font-heading text-4xl sm:text-5xl font-bold text-brown-dark">
-            Taiwanese Mahjong
-          </h1>
-          <div className="mt-8 prose prose-lg max-w-none text-brown">
-            <p className="text-xl text-brown-light italic">
-              Learn about Taiwanese Mahjong â a dynamic 16-tile variant with unique scoring and strategy. Rules, gameplay, and where to play in the US.
-            </p>
-            <div className="mt-12 p-8 bg-cream-light rounded-xl border border-sand/50 text-center">
-              <p className="text-brown-light">
-                Detailed content for this page is being prepared and will be published soon.
-              </p>
-              <p className="mt-4">
-                <Link href="/events" className="text-terracotta hover:text-terracotta-light font-medium transition-colors">
-                  Browse Taiwanese Mahjong events &rarr;
-                </Link>
-              </p>
-            </div>
-          </div>
-
-          <div className="mt-16">
-            <h2 className="font-heading text-2xl font-bold text-brown-dark mb-6">
-              Frequently Asked Questions
-            </h2>
-            <div className="space-y-4">
-              {faqs.map((faq, i) => (
-                <details key={i} className="group bg-cream-light rounded-lg border border-sand/50">
-                  <summary className="p-4 cursor-pointer font-medium text-brown-dark hover:text-terracotta transition-colors">
-                    {faq.question}
-                  </summary>
-                  <div className="px-4 pb-4 text-brown-light">{faq.answer}</div>
-                </details>
-              ))}
-            </div>
           </div>
         </div>
       </section>

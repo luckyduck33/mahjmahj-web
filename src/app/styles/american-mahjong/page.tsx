@@ -3,14 +3,14 @@ import Link from 'next/link';
 import { faqSchema, articleSchema } from '@/lib/schema';
 
 export const metadata: Metadata = {
-  title: 'American Mahjong â Rules, Jokers, and the NMJL Card',
+  title: 'American Mahjong — Rules, Jokers, and the NMJL Card',
   description:
     'Learn American Mahjong: how the NMJL card works, the role of jokers, the Charleston tile exchange, gameplay flow, winning hands, and how it compares to other styles.',
   alternates: {
     canonical: 'https://mahjmahj.co/styles/american-mahjong',
   },
   openGraph: {
-    title: 'American Mahjong â Rules, Jokers, and the NMJL Card',
+    title: 'American Mahjong — Rules, Jokers, and the NMJL Card',
     description:
       'Learn American Mahjong: how the NMJL card works, the role of jokers, the Charleston tile exchange, gameplay flow, winning hands, and how it compares to other styles.',
     url: 'https://mahjmahj.co/styles/american-mahjong',
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'American Mahjong â Rules, Jokers, and the NMJL Card',
+    title: 'American Mahjong — Rules, Jokers, and the NMJL Card',
     description:
       'Learn American Mahjong: how the NMJL card works, the role of jokers, the Charleston tile exchange, gameplay flow, winning hands, and how it compares to other styles.',
   },
@@ -39,12 +39,12 @@ const faqs = [
   {
     question: 'Is American Mahjong easier than Hong Kong Mahjong?',
     answer:
-      'It depends on your style of thinking. American Mahjong relies heavily on pattern recognition against a fixed card, which some players find accessible. Hong Kong Mahjong has more fluid hand construction but no jokers or annual card. Neither is objectively easier â they reward different skills.',
+      'It depends on your style of thinking. American Mahjong relies heavily on pattern recognition against a fixed card, which some players find accessible. Hong Kong Mahjong has more fluid hand construction but no jokers or annual card. Neither is objectively easier — they reward different skills.',
   },
   {
     question: 'What is the Charleston in American Mahjong?',
     answer:
-      'The Charleston is a pregame tile exchange that helps players shape their starting hand. Before play begins, players pass unwanted tiles to neighbors in a structured sequence â left, across, right â and may do a second Charleston if all players agree. It is unique to American Mahjong and is a key strategic phase.',
+      'The Charleston is a pregame tile exchange that helps players shape their starting hand. Before play begins, players pass unwanted tiles to neighbors in a structured sequence — left, across, right — and may do a second Charleston if all players agree. It is unique to American Mahjong and is a key strategic phase.',
   },
   {
     question: 'Can beginners learn American Mahjong?',
@@ -54,17 +54,17 @@ const faqs = [
   {
     question: 'Where do I buy the American Mahjong card?',
     answer:
-      'The annual card is available directly from the National Mah Jongg League. It is published each year and must be purchased â it is not freely distributed. Many local clubs and game stores that carry American sets also stock the card.',
+      'The annual card is available directly from the National Mah Jongg League. It is published each year and must be purchased — it is not freely distributed. Many local clubs and game stores that carry American sets also stock the card.',
   },
   {
     question: 'How is American Mahjong different from other styles?',
     answer:
-      'The biggest differences are the annual card, jokers, and the Charleston. American Mahjong uses an official hand list that changes yearly, jokers as core substitution tiles, and a structured pregame tile pass. Hong Kong and Taiwanese styles have no jokers and no annual card â hand selection is more open-ended and rule sets are fixed.',
+      'The biggest differences are the annual card, jokers, and the Charleston. American Mahjong uses an official hand list that changes yearly, jokers as core substitution tiles, and a structured pregame tile pass. Hong Kong and Taiwanese styles have no jokers and no annual card — hand selection is more open-ended and rule sets are fixed.',
   },
 ];
 
 const articleData = {
-  headline: 'American Mahjong â Rules, Jokers, and the NMJL Card',
+  headline: 'American Mahjong — Rules, Jokers, and the NMJL Card',
   description:
     'Learn American Mahjong: how the NMJL card works, the role of jokers, the Charleston tile exchange, gameplay flow, winning hands, and how it compares to other styles.',
   url: 'https://mahjmahj.co/styles/american-mahjong',
@@ -129,7 +129,7 @@ export default function AmericanMahjongPage() {
 
       {/* Quick nav */}
       <section
-        style={{ background: 'var(--olive-pale)' }}
+        style={{ background: 'var(--terra-pale)' }}
         className="px-6 py-6 border-b"
         aria-label="Quick links"
       >
@@ -213,14 +213,14 @@ export default function AmericanMahjongPage() {
             American Mahjong is a variant of mahjong developed and popularized in the United
             States, formalized largely through the National Mah Jongg League (NMJL) since the
             1930s. It sits at the intersection of strategy, pattern recognition, and social
-            ritual â played at kitchen tables, in retirement communities, in Jewish community
+            ritual — played at kitchen tables, in retirement communities, in Jewish community
             centers, and at dedicated mahjong clubs from coast to coast.
           </p>
           <p>
             Known for: annual official hand card, jokers as core gameplay, the Charleston,
             pattern-matching strategy, and a strong US club tradition. If you have seen a
             group of four women sitting around a folding table with racks and pushers, calling
-            tiles and laughing â that is almost certainly American Mahjong.
+            tiles and laughing — that is almost certainly American Mahjong.
           </p>
 
           {/* What you need */}
@@ -231,30 +231,30 @@ export default function AmericanMahjongPage() {
           </p>
           <ul>
             <li>
-              <strong>Suit tiles</strong> â Dots (Circles), Bamboo (Bams), and Characters
-              (Craks), numbered 1â9, four of each. 108 suit tiles total.
+              <strong>Suit tiles</strong> — Dots (Circles), Bamboo (Bams), and Characters
+              (Craks), numbered 1–9, four of each. 108 suit tiles total.
             </li>
             <li>
-              <strong>Winds</strong> â East, South, West, North, four of each. 16 tiles.
+              <strong>Winds</strong> — East, South, West, North, four of each. 16 tiles.
             </li>
             <li>
-              <strong>Dragons</strong> â Red, Green, White (Soap), four of each. 12 tiles.
+              <strong>Dragons</strong> — Red, Green, White (Soap), four of each. 12 tiles.
             </li>
             <li>
-              <strong>Flowers</strong> â Typically 8 flower tiles.
+              <strong>Flowers</strong> — Typically 8 flower tiles.
             </li>
             <li>
-              <strong>Jokers</strong> â 8 joker tiles. Unique to the American game.
+              <strong>Jokers</strong> — 8 joker tiles. Unique to the American game.
             </li>
             <li>
-              <strong>Racks and pushers</strong> â Players hold tiles upright on racks. Most
+              <strong>Racks and pushers</strong> — Players hold tiles upright on racks. Most
               American sets include four racks and a pusher tool.
             </li>
             <li>
-              <strong>Dice</strong> â Used to determine wall build order and deal.
+              <strong>Dice</strong> — Used to determine wall build order and deal.
             </li>
             <li>
-              <strong>Current NMJL card</strong> â The annual hand card. Without it, you
+              <strong>Current NMJL card</strong> — The annual hand card. Without it, you
               do not know which hands are legal that year.
             </li>
           </ul>
@@ -264,7 +264,7 @@ export default function AmericanMahjongPage() {
           <p>
             The NMJL card is the defining feature of American Mahjong. Published each spring
             by the National Mah Jongg League, it lists every legal winning hand for that
-            year. Hands are organized into categories â often with names like Consecutive
+            year. Hands are organized into categories — often with names like Consecutive
             Run, Like Numbers, Quints, Winds and Dragons, Singles and Pairs, and others.
           </p>
           <p>
@@ -276,7 +276,7 @@ export default function AmericanMahjongPage() {
           <p>
             Because the card changes every year, experienced players buy the new card each
             spring and spend time studying the new hands before the season's play begins.
-            This annual refresh is part of what keeps the game feeling alive year after year â
+            This annual refresh is part of what keeps the game feeling alive year after year —
             there is always something new to learn.
           </p>
 
@@ -288,32 +288,32 @@ export default function AmericanMahjongPage() {
           </p>
           <ul>
             <li>
-              <strong>Dots (Circles)</strong> â Round symbols numbered 1â9, four copies
+              <strong>Dots (Circles)</strong> — Round symbols numbered 1–9, four copies
               each.
             </li>
             <li>
-              <strong>Bamboo (Bams)</strong> â Bamboo stalk imagery numbered 1â9. The 1-Bam
+              <strong>Bamboo (Bams)</strong> — Bamboo stalk imagery numbered 1–9. The 1-Bam
               often depicts a bird.
             </li>
             <li>
-              <strong>Characters (Craks)</strong> â Chinese character for the number plus a
-              red character meaning "ten thousand." Numbered 1â9.
+              <strong>Characters (Craks)</strong> — Chinese character for the number plus a
+              red character meaning "ten thousand." Numbered 1–9.
             </li>
             <li>
-              <strong>Winds</strong> â East, South, West, North. Used in many hand patterns
+              <strong>Winds</strong> — East, South, West, North. Used in many hand patterns
               on the card.
             </li>
             <li>
-              <strong>Dragons</strong> â Red Dragon (Chun), Green Dragon (Fah), White Dragon
+              <strong>Dragons</strong> — Red Dragon (Chun), Green Dragon (Fah), White Dragon
               (Soap/Bak). All three appear frequently on the NMJL card.
             </li>
             <li>
-              <strong>Flowers</strong> â Eight flower tiles. They are collected but not
-              played into hands â instead, when drawn, a flower is displayed, and the player
+              <strong>Flowers</strong> — Eight flower tiles. They are collected but not
+              played into hands — instead, when drawn, a flower is displayed, and the player
               draws a replacement tile.
             </li>
             <li>
-              <strong>Jokers</strong> â Eight wild tiles. They can substitute for any suit
+              <strong>Jokers</strong> — Eight wild tiles. They can substitute for any suit
               tile, wind, or dragon in an exposed set of three or more identical tiles (a
               pung or kong). Jokers cannot be used in pairs.
             </li>
@@ -324,7 +324,7 @@ export default function AmericanMahjongPage() {
           <p>
             Jokers are the heart of what makes American Mahjong feel different from other
             styles. In Hong Kong or Taiwanese Mahjong, you build your hand from the tiles
-            you draw and claim â there is no substitution. In American Mahjong, jokers let
+            you draw and claim — there is no substitution. In American Mahjong, jokers let
             you hold a position and pivot.
           </p>
           <p>
@@ -338,14 +338,14 @@ export default function AmericanMahjongPage() {
             <li>
               If a joker sits in an opponent's exposed set, and you have the real tile it is
               substituting, you may exchange your tile for the joker on your turn. This is
-              called joker redemption â and it is a major strategic element.
+              called joker redemption — and it is a major strategic element.
             </li>
             <li>
               Jokers make hands more achievable, but also make defense harder: you cannot
               always be sure what an opponent's exposed set truly contains.
             </li>
             <li>
-              Some hands on the NMJL card specify "no jokers" â these hands are typically
+              Some hands on the NMJL card specify "no jokers" — these hands are typically
               worth more points because they are harder to achieve.
             </li>
           </ul>
@@ -363,7 +363,7 @@ export default function AmericanMahjongPage() {
           </p>
           <ol>
             <li>
-              <strong>Assign seats.</strong> Typically done by randomization â drawing a wind
+              <strong>Assign seats.</strong> Typically done by randomization — drawing a wind
               tile, rolling dice, or by agreement.
             </li>
             <li>
@@ -387,7 +387,7 @@ export default function AmericanMahjongPage() {
           {/* The Charleston */}
           <h2>The Charleston</h2>
           <p>
-            The Charleston is one of American Mahjong's most distinctive features â a
+            The Charleston is one of American Mahjong's most distinctive features — a
             structured tile exchange that happens before gameplay begins. It gives every
             player the opportunity to shed tiles that do not fit their hand and pick up
             tiles that might.
@@ -412,14 +412,14 @@ export default function AmericanMahjongPage() {
           <p>
             After the First Charleston, players may agree to a Second Charleston (left,
             across, right again). In the last pass of the Second Charleston, players may
-            "steal" from the courtesy â meaning they can keep some of what was passed to
+            "steal" from the courtesy — meaning they can keep some of what was passed to
             them and substitute tiles of their own choosing. At the very end, players may
-            optionally do a Courtesy pass, trading 1â3 tiles with any one opponent if both
+            optionally do a Courtesy pass, trading 1–3 tiles with any one opponent if both
             agree.
           </p>
           <p>
-            The Charleston is where strategy begins. Knowing what to pass â tiles that do
-            not fit your card direction â and what to hold requires reading the card quickly
+            The Charleston is where strategy begins. Knowing what to pass — tiles that do
+            not fit your card direction — and what to hold requires reading the card quickly
             and committing to a path early.
           </p>
 
@@ -435,8 +435,8 @@ export default function AmericanMahjongPage() {
               a discarded tile if they can complete an exposed set or win).
             </li>
             <li>
-              <strong>Claiming discards.</strong> Any player â not just the next in sequence
-              â may call a discard to complete an exposed pung or kong, or to win (mahj).
+              <strong>Claiming discards.</strong> Any player — not just the next in sequence
+              — may call a discard to complete an exposed pung or kong, or to win (mahj).
               The claim must happen before the next discard is played.
             </li>
             <li>
@@ -455,7 +455,7 @@ export default function AmericanMahjongPage() {
           </ol>
           <p>
             The core strategy is different from other styles. You are not just building
-            toward any valid hand â you are pattern-matching against the current NMJL card,
+            toward any valid hand — you are pattern-matching against the current NMJL card,
             committing to a specific hand, and deciding how to position every tile around
             that commitment. More pattern recognition, more card-reading, more commitment
             decisions.
@@ -466,19 +466,19 @@ export default function AmericanMahjongPage() {
           <p>
             A player wins by completing a legal hand from the current NMJL card. When a
             player is ready to declare a win, they call "Mahj!" and expose all tiles. The
-            hand must exactly match one of the hands on the card â tile for tile, set for
+            hand must exactly match one of the hands on the card — tile for tile, set for
             set, including any joker restrictions.
           </p>
           <p>
             Unlike some other styles, there is no partial credit. If your hand does not
-            precisely match a card hand, it is dead â meaning you cannot win with it and
+            precisely match a card hand, it is dead — meaning you cannot win with it and
             may owe a penalty. Players who declare a dead hand (inadvertently revealing
             they cannot win) typically owe each opponent the value of the highest hand on
             the card.
           </p>
           <p>
             Point values vary by hand. Hands that require no jokers are typically worth
-            more. Payment is collected from all three opponents when you win â or just from
+            more. Payment is collected from all three opponents when you win — or just from
             the player who discarded the winning tile in some house rule variants.
           </p>
 
@@ -491,7 +491,7 @@ export default function AmericanMahjongPage() {
           <ul>
             <li>
               <strong>Annual card vs. fixed rules.</strong> American Mahjong uses the NMJL
-              card â a changing annual hand list. Hong Kong Mahjong uses fixed hand
+              card — a changing annual hand list. Hong Kong Mahjong uses fixed hand
               categories that do not change year to year.
             </li>
             <li>
@@ -504,7 +504,7 @@ export default function AmericanMahjongPage() {
             </li>
             <li>
               <strong>Hand flexibility.</strong> Hong Kong Mahjong allows more open-ended
-              hand construction â any combination of valid sets and a pair can win (subject
+              hand construction — any combination of valid sets and a pair can win (subject
               to point minimums). American Mahjong requires an exact card match.
             </li>
             <li>
@@ -538,13 +538,13 @@ export default function AmericanMahjongPage() {
           <p>
             The annual card is published each spring by the National Mah Jongg League and
             is available for purchase directly from their website. It is not freely
-            distributed â it must be bought. Cards are available in standard and large-print
+            distributed — it must be bought. Cards are available in standard and large-print
             formats.
           </p>
           <p>
             Many local game stores that carry American mahjong sets also stock the current
             card. Some mahjong clubs purchase cards in bulk for their members. If you are
-            joining a local group, ask the organizer â they often have extras or can point
+            joining a local group, ask the organizer — they often have extras or can point
             you to a source.
           </p>
 
@@ -557,16 +557,16 @@ export default function AmericanMahjongPage() {
             <li>
               <strong>Learn the card categories.</strong> Do not try to memorize every hand
               at once. Focus on one or two card categories you find intuitive. Consecutive
-              runs, like numbers, and winds/dragons each have different feels â find yours.
+              runs, like numbers, and winds/dragons each have different feels — find yours.
             </li>
             <li>
               <strong>Pick a direction early but stay flexible.</strong> During the
-              Charleston you should have 2â3 potential hand directions. By the end of the
+              Charleston you should have 2–3 potential hand directions. By the end of the
               Charleston, commit to one or two and pass away tiles that do not serve them.
             </li>
             <li>
               <strong>Use Charleston wisely.</strong> The Charleston is not just about
-              getting rid of bad tiles â it is about shaping your hand toward a specific
+              getting rid of bad tiles — it is about shaping your hand toward a specific
               card target. Think about what you are building, not just what you do not want.
             </li>
             <li>
@@ -594,7 +594,7 @@ export default function AmericanMahjongPage() {
             </li>
             <li>
               <strong>Announce calls cleanly.</strong> Say "Mahj" clearly and promptly. Do
-              not hover or delay calls â be decisive.
+              not hover or delay calls — be decisive.
             </li>
             <li>
               <strong>Keep the card readable.</strong> Your NMJL card should be visible to
@@ -604,12 +604,12 @@ export default function AmericanMahjongPage() {
             <li>
               <strong>Be patient with new players.</strong> American Mahjong has a long
               teaching tradition. Experienced players routinely bring in newcomers. If
-              someone at your table is learning, slow down and explain â it is part of the
+              someone at your table is learning, slow down and explain — it is part of the
               culture.
             </li>
             <li>
               <strong>Clarify house rules before you start.</strong> Some groups play with
-              minor variations â on courtesies, joker redemption timing, or what counts as
+              minor variations — on courtesies, joker redemption timing, or what counts as
               a dead hand. Get alignment before the first Charleston.
             </li>
             <li>
@@ -623,7 +623,7 @@ export default function AmericanMahjongPage() {
           <h2>Why people love American Mahjong</h2>
           <p>
             American Mahjong is many things at once. It is a strategy game demanding real
-            pattern recognition and card-reading. It is a social ritual â the Charleston,
+            pattern recognition and card-reading. It is a social ritual — the Charleston,
             the tile shuffle, the click of tiles on racks. It is a tactile experience with
             beautiful sets and the physical pleasure of heavy tiles. And it refreshes every
             year with a new card, so the game never fully stagnates.
@@ -681,22 +681,22 @@ export default function AmericanMahjongPage() {
               <Link href="/compare/mahjong-styles">
                 Compare all mahjong styles side by side
               </Link>{' '}
-              â American, Hong Kong, Taiwanese, and more in one chart.
+              — American, Hong Kong, Taiwanese, and more in one chart.
             </li>
             <li>
-              <Link href="/styles/hong-kong-mahjong">Hong Kong Mahjong</Link> â the
+              <Link href="/styles/hong-kong-mahjong">Hong Kong Mahjong</Link> — the
               classic Cantonese style with fluid hand-building and points multipliers.
             </li>
             <li>
-              <Link href="/styles/taiwanese-mahjong">Taiwanese Mahjong</Link> â 16-tile
+              <Link href="/styles/taiwanese-mahjong">Taiwanese Mahjong</Link> — 16-tile
               hands, zimo bonuses, and a different strategic flavor.
             </li>
             <li>
-              <Link href="/learn/how-to-play-mahjong">How to Play Mahjong</Link> â start
+              <Link href="/learn/how-to-play-mahjong">How to Play Mahjong</Link> — start
               here if you are brand new to the game.
             </li>
             <li>
-              <Link href="/events">Browse mahjong events</Link> â find American Mahjong
+              <Link href="/events">Browse mahjong events</Link> — find American Mahjong
               groups, tournaments, and clubs near you.
             </li>
           </ul>
