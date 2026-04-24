@@ -1,8 +1,24 @@
 import type { Metadata } from 'next';
 import Script from 'next/script';
+import { Poppins, Unbounded } from 'next/font/google';
 import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
 import './globals.css';
+
+const poppins = Poppins({
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '600'],
+  style: ['normal', 'italic'],
+  display: 'swap',
+  variable: '--font-poppins',
+});
+
+const unbounded = Unbounded({
+  subsets: ['latin'],
+  weight: ['400', '700', '900'],
+  display: 'swap',
+  variable: '--font-unbounded',
+});
 
 export const metadata: Metadata = {
   title: {
@@ -32,7 +48,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="h-full antialiased">
+    <html lang="en" className={`h-full antialiased ${poppins.variable} ${unbounded.variable}`}>
       <head>
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-W1TBW9XH3N"
@@ -47,7 +63,7 @@ export default function RootLayout({
           `}
         </Script>
       </head>
-      <body className="flex min-h-full flex-col" style={{ fontFamily: "'Poppins', sans-serif" }}>
+      <body className={`flex min-h-full flex-col ${poppins.className}`}>
         <Nav />
         <main className="flex-1">{children}</main>
         <Footer />
