@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { getEvents, getNews, getCitySlug } from '@/lib/api';
+import Drills from '@/components/Drills';
 import { organizationSchema, webSiteSchema } from '@/lib/schema';
 import type { Metadata } from 'next';
 
