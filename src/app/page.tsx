@@ -164,7 +164,7 @@ export default async function HomePage() {
 
       {/* News */}
       {newsData.news.length > 0 && (
-        <section style={{ background: 'var(--warm-wash)', padding: '5rem 0' }}>
+        <section id="news" style={{ background: 'var(--warm-wash)', padding: '5rem 0' }}>
           <div className="sec-inner">
             <span className="label">Latest</span>
             <h2 style={{ fontFamily: "'Unbounded', sans-serif", fontWeight: 700, fontSize: 'clamp(1.4rem, 3vw, 2rem)', color: 'var(--espresso)', marginTop: '0.5rem', marginBottom: '2.5rem' }}>

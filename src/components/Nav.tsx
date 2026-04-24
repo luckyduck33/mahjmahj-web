@@ -44,6 +44,7 @@ export default function Nav() {
         <li><Link href="/events" onClick={() => setMenuOpen(false)}>Events</Link></li>
         <li><Link href="/learn/how-to-play-mahjong" onClick={() => setMenuOpen(false)}>Learn</Link></li>
         <li><Link href="/#drills" onClick={() => setMenuOpen(false)}>Drills</Link></li>
+        <li><Link href="/#news" onClick={() => setMenuOpen(false)}>News</Link></li>
         <li className="nav-dropdown" ref={dropdownRef}>
           <button
             className="nav-dropdown-trigger"
