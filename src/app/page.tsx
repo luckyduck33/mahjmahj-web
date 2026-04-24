@@ -190,6 +190,8 @@ export default async function HomePage() {
         </section>
       )}
 
+      <Drills />
+
       {/* CTA — dark strategy section */}
       <section className="strategy-cta" style={{ background: 'var(--espresso)', padding: '6rem 0' }}>
         <div className="sec-inner" style={{ textAlign: 'center' }}>
