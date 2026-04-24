@@ -50,11 +50,11 @@ export default async function HomePage() {
             Hong Kong Mahjong, Taiwanese Mahjong, and American Mahjong — events, rules, and community across the US.
           </p>
           <div className="hero-actions">
-            <Link href="/learn/how-to-play-mahjong" className="btn-solid">
-              Start Learning
-            </Link>
-            <Link href="/events" className="btn-ghost">
+            <Link href="/events" className="btn-solid">
               Find Events
+            </Link>
+            <Link href="/learn/how-to-play-mahjong" className="btn-ghost">
+              Start Learning
             </Link>
           </div>
         </div>

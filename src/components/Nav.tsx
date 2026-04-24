@@ -1,17 +1,25 @@
 'use client';
 import { useState, useEffect } from 'react';
+import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
 
 export default function Nav() {
-  const [scrolled, setScrolled] = useState(false);
+  const pathname = usePathname();
+  const isHome = pathname === '/';
+  const [scrolled, setScrolled] = useState(!isHome);
   const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
+    if (!isHome) {
+      setScrolled(true);
+      return;
+    }
     const onScroll = () => setScrolled(window.scrollY > 60);
+    onScroll(); // check initial position
     window.addEventListener('scroll', onScroll);
     return () => window.removeEventListener('scroll', onScroll);
-  }, []);
+  }, [isHome]);
 
   return (
     <nav
