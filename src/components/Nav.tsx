@@ -11,7 +11,7 @@ export default function Nav() {
   const [scrolled, setScrolled] = useState(!isHome);
   const [menuOpen, setMenuOpen] = useState(false);
   const [stylesOpen, setStylesOpen] = useState(false);
-  const dropdownRef = useRef<HTMLDivElement>(null);
+  const dropdownRef = useRef<HTMLLIElement>(null);
 
   useEffect(() => {
     if (!isHome) {
