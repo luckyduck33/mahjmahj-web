@@ -19,7 +19,7 @@ export const revalidate = 3600;
 
 export default async function HomePage() {
   const [eventsData, newsData] = await Promise.all([
-    getEvents({ status: 'upcoming', limit: 6 }),
+    getEvents({ status: 'Upcoming', limit: 6 }),
     getNews({ active: true, limit: 4 }),
   ]);
 

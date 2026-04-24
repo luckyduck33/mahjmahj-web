@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 export const revalidate = 3600;
 
 export default async function EventsPage() {
-  const data = await getEvents({ status: 'upcoming' });
+  const data = await getEvents({ status: 'Upcoming' });
 
   const cities = [...new Set(data.events.map((e) => e.city))].sort();
   const schemaItems = cities.map((city, i) => ({
