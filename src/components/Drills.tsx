@@ -1,5 +1,5 @@
 'use client';
-import { useState, useCallback, useMemo } from 'react';
+import { useState, useCallback, useMemo, useEffect } from 'react';
 
 /* ── Quiz Data ──────────────────────────── */
 const decks: Record<string, Array<{ q: string; choices: string[]; correct: number; expl: string }>> = {
@@ -72,6 +72,8 @@ function priorityShuffle(mastery: MasteryData, deckName: string): number[] {
 }
 
 export default function Drills() {
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => { setMounted(true); }, []);
   const [mastery, setMastery] = useState<MasteryData>(defaultMastery);
   const [currentDeck, setCurrentDeck] = useState('american');
   const [deckOrder, setDeckOrder] = useState<number[]>(() => priorityShuffle(defaultMastery(), 'american'));
@@ -158,6 +160,14 @@ export default function Drills() {
     for (let i = 0; i < 8; i++) counts[m[i].state as keyof typeof counts]++;
     return counts;
   }, [deckComplete, mastery, currentDeck]);
+
+  if (!mounted) {
+    return (
+      <section id="drills" className="drills-section grain">
+        <div className="fc-layout sec-inner" style={{ minHeight: '400px' }} />
+      </section>
+    );
+  }
 
   return (
     <section id="drills" className="drills-section grain">
