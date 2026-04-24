@@ -20,7 +20,7 @@ export const revalidate = 3600;
 
 export default async function HomePage() {
   const [eventsData, newsData] = await Promise.all([
-    getEvents({ status: 'Upcoming', limit: 6 }),
+    getEvents({ limit: 6 }),
     getNews({ active: true, limit: 4 }),
   ]);
 
@@ -136,7 +136,9 @@ export default async function HomePage() {
               {eventsData.events.map((evt) => (
                 <div key={evt.id} className="event-card">
                   <p className="event-date">
-                    {new Date(evt.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
+                    {evt.date
+                      ? new Date(evt.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })
+                      : (evt.recurring || 'Recurring')}
                     {evt.time ? ` · ${evt.time}` : ''}
                   </p>
                   <h3 className="event-title">{evt.title}</h3>

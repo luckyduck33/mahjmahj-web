@@ -13,7 +13,7 @@ const decks: Record<string, Array<{ q: string; choices: string[]; correct: numbe
     { q: "When two players could declare Mahjong from the same discard, who wins?", choices: ["The player whose turn it is next; the discarder pays double", "The first player to verbally call Mahjong wins", "The player seated closest to the discarder wins"], correct: 0, expl: "Only one player can win from each discarded tile. Priority goes to the player next in turn order. The discarder typically pays double." },
     { q: "What is a 'wall game' in American Mahjong?", choices: ["All tiles are drawn with no winner — the hand is a push and replayed", "A winning hand built entirely from self-drawn tiles with no claims", "A penalty round triggered when a player makes an illegal discard"], correct: 0, expl: "When the wall runs out without anyone winning, no money changes hands. The hand is simply redealt." },
   ],
-  chinese: [
+  hongkong: [
     { q: "How many tiles are in a standard Hong Kong Mahjong set (without flowers)?", choices: ["136 tiles", "144 tiles", "152 tiles"], correct: 0, expl: "36 Bamboo + 36 Characters + 36 Dots + 16 Winds + 12 Dragons = 136. Many sets include 8 Flower/Season bonus tiles, bringing the total to 144." },
     { q: "What is a Chow?", choices: ["A set of 3 consecutive numbered tiles in the same suit", "A set of 3 identical tiles claimed from any player", "Any 3 honor tiles grouped as a set"], correct: 0, expl: "Example: 3-4-5 Bamboo. Chows must be in the same suit and consecutive. Chows can only be claimed from the player to your left." },
     { q: "What is a Pung?", choices: ["A set of 3 identical tiles — can be claimed from any player's discard", "A set of 3 consecutive tiles — can only be claimed from the player to your left", "A set of 4 identical tiles that earns an immediate bonus draw"], correct: 0, expl: "You call Pung to claim any discarded tile that completes your triplet, from any player. The Pung becomes an exposed set." },
@@ -24,7 +24,7 @@ const decks: Record<string, Array<{ q: string; choices: string[]; correct: numbe
     { q: "What are Flower tiles in Hong Kong Mahjong?", choices: ["Bonus tiles: drawn and immediately set aside; you draw a replacement", "Wild tiles that can substitute for any numbered suit tile", "Honor tiles representing the four seasons that must be held until winning"], correct: 0, expl: "When you draw a Flower or Season tile, you reveal it, set it aside, and draw a replacement. Flowers score bonus points but don't contribute to hand structure." },
   ],
   taiwanese: [
-    { q: "How many tiles does each player hold in Taiwanese Mahjong?", choices: ["16 tiles", "13 tiles", "14 tiles"], correct: 0, expl: "Taiwanese Mahjong is played with 16-tile hands, compared to 13 in Chinese. The extra tiles create more flexible hands and longer play." },
+    { q: "How many tiles does each player hold in Taiwanese Mahjong?", choices: ["16 tiles", "13 tiles", "14 tiles"], correct: 0, expl: "Taiwanese Mahjong is played with 16-tile hands, compared to 13 in Hong Kong Mahjong. The extra tiles create more flexible hands and longer play." },
     { q: "What is tenpai?", choices: ["Being exactly one tile away from a complete winning hand", "Formally announcing your intention to win before drawing", "Reaching the last round of tile draws without having won yet"], correct: 0, expl: "In Taiwanese rules, players who reach tenpai receive a payment from non-tenpai players at round end — even if someone else wins first." },
     { q: "What is fang pao in Taiwanese Mahjong?", choices: ["Dealing into an opponent's win — the discarder alone pays the full amount", "Drawing the winning tile from the wall — earns a double payout", "Swapping a Joker out of an exposed set during your turn"], correct: 0, expl: "In Taiwanese Mahjong the discarder typically covers the full winning payment alone — making every discard consequential." },
     { q: "How many tiles are in a standard Taiwanese Mahjong set?", choices: ["144 tiles", "136 tiles", "152 tiles"], correct: 0, expl: "Taiwanese sets include 136 base tiles plus 8 Flower and Season bonus tiles for 144 total." },
@@ -37,7 +37,7 @@ const decks: Record<string, Array<{ q: string; choices: string[]; correct: numbe
 
 const DECK_META: Record<string, { icon: string; label: string }> = {
   american:  { icon: '\uD83C\uDC04', label: 'American' },
-  chinese:   { icon: '\uD83C\uDC07', label: 'Chinese' },
+  hongkong:  { icon: '\uD83C\uDC07', label: 'Hong Kong' },
   taiwanese: { icon: '\uD83C\uDC19', label: 'Taiwanese' },
 };
 
@@ -47,7 +47,7 @@ type MasteryData = Record<string, Record<number, MasteryEntry>>;
 
 function defaultMastery(): MasteryData {
   const m: MasteryData = {};
-  ['american', 'chinese', 'taiwanese'].forEach(deck => {
+  ['american', 'hongkong', 'taiwanese'].forEach(deck => {
     m[deck] = {};
     for (let i = 0; i < 8; i++) m[deck][i] = { correct: 0, attempts: 0, state: 'new' };
   });

@@ -70,7 +70,9 @@ export default async function EventsPage() {
               {data.events.map((evt) => (
                 <div key={evt.id} className="rounded-xl border p-5" style={{ background: 'var(--paper)', borderColor: 'var(--bone)' }}>
                   <p className="mb-1 text-xs font-semibold uppercase tracking-wide" style={{ color: 'var(--terra)' }}>
-                    {new Date(evt.date).toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' })}
+                    {evt.date
+                      ? new Date(evt.date).toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' })
+                      : (evt.recurring || 'Recurring')}
                     {evt.time ? ` · ${evt.time}` : ''}
                   </p>
                   <h2 className="font-[family-name:var(--font-heading)] text-sm font-bold leading-snug" style={{ color: 'var(--espresso)' }}>
