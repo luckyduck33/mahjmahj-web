@@ -65,11 +65,10 @@
   --color-terra-pale: var(--terra-pale);
   --color-teal-pale: var(--teal-pale);
   --color-olive-pale: var(--olive-pale);
-  --font-heading: 'Unbounded', sans-serif;
-  --font-body: 'Poppins', sans-serif;
+  --font-heading: var(--font-unbounded), 'Unbounded', sans-serif;
+  --font-body: var(--font-poppins), 'Poppins', sans-serif;
 }
 
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; font-size: 16px; }
 
 body {
@@ -675,3 +674,10 @@ h1, h2, h3, h4, h5, h6 {
 .content-article strong { color: var(--espresso); font-weight: 600; }
 .content-article a { color: var(--terra); text-decoration: underline; text-underline-offset: 2px; }
 .content-article a:hover { color: var(--terra-mid); }
+
+/* ════════════════════════════════════════
+   CONTENT PAGE NAV OFFSET
+════════════════════════════════════════ */
+.page-content {
+  padding-top: 5rem; /* Clear fixed nav */
+}
