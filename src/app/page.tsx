@@ -37,6 +37,7 @@ export default async function HomePage() {
       {/* Hero — full-bleed illustration background */}
       <section className="hero">
         <div className="hero-image-overlay" />
+        <p className="hero-eyebrow">A Modern Guide to Mahjong</p>
         <div className="hero-content">
           <div className="hero-spacer" />
           <div className="hero-types">
@@ -76,7 +77,7 @@ export default async function HomePage() {
       </div>
 
       {/* Intro Statement */}
-      <section className="intro-statement">
+      <section className="intro-statement grain">
         <div className="intro-inner">
           <span className="label">Welcome to the Table</span>
           <h2>
