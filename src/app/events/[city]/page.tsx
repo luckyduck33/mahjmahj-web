@@ -33,7 +33,11 @@ export async function generateStaticParams() {
 export default async function CityEventsPage({ params }: Props) {
   const { city: slug } = await params;
   const cityName = getCityFromSlug(slug);
-  const data = await getEvents({ city: cityName });
+  const [data, allData] = await Promise.all([
+    getEvents({ city: cityName }),
+    getEvents({ status: 'Upcoming' }),
+  ]);
+  const allCities = [...new Set(allData.events.map((e) => e.city))].sort();
 
   const schemas = data.events.map((evt) =>
     eventSchema({
@@ -70,6 +74,35 @@ export default async function CityEventsPage({ params }: Props) {
           </p>
         </div>
       </section>
+
+      {/* City filter */}
+      {allCities.length > 0 && (
+        <section className="border-b py-6" style={{ background: 'var(--paper)', borderColor: 'var(--bone)' }}>
+          <div className="mx-auto flex max-w-6xl flex-wrap gap-3 px-6">
+            <Link
+              href="/events"
+              className="rounded-full border px-4 py-1.5 text-sm font-medium no-underline transition-colors"
+              style={{ borderColor: 'var(--bone)', color: 'var(--walnut)' }}
+            >
+              All Cities
+            </Link>
+            {allCities.map((city) => (
+              <Link
+                key={city}
+                href={`/events/${getCitySlug(city)}`}
+                className="rounded-full border px-4 py-1.5 text-sm font-medium no-underline transition-colors"
+                style={{
+                  borderColor: getCitySlug(city) === slug ? 'var(--terra)' : 'var(--bone)',
+                  background: getCitySlug(city) === slug ? 'var(--terra)' : 'transparent',
+                  color: getCitySlug(city) === slug ? '#fff' : 'var(--walnut)',
+                }}
+              >
+                {city}
+              </Link>
+            ))}
+          </div>
+        </section>
+      )}
 
       <section className="py-16" style={{ background: 'var(--linen)' }}>
         <div className="mx-auto max-w-6xl px-6">
