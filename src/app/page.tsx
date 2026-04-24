@@ -47,9 +47,6 @@ export default async function HomePage() {
             <span className="hero-type-sep" />
             <span className="hero-type">Join a Table</span>
           </div>
-          <p className="hero-subtitle">
-            Hong Kong Mahjong, Taiwanese Mahjong, and American Mahjong — events, rules, and community across the US.
-          </p>
           <div className="hero-actions">
             <Link href="/events" className="btn-solid">
               Find Events
