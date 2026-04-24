@@ -63,7 +63,7 @@ export default function RootLayout({
           `}
         </Script>
       </head>
-      <body className={`flex min-h-full flex-col ${poppins.className}`}>
+      <body className="flex min-h-full flex-col">
         <Nav />
         <main className="flex-1">{children}</main>
         <Footer />
