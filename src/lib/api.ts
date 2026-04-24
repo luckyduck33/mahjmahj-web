@@ -15,6 +15,8 @@ export interface MahjEvent {
   status?: string;
   style?: string;
   recurring?: boolean;
+  registrationLink?: string;
+  instagramHandle?: string;
   cost?: string;
   organizer?: string;
 }

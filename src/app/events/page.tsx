@@ -67,11 +67,24 @@ export default async function EventsPage() {
         <div className="mx-auto max-w-6xl px-6">
           {data.events.length > 0 ? (
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              {data.events.map((evt) => (
-                <div key={evt.id} className="rounded-xl border p-5" style={{ background: 'var(--paper)', borderColor: 'var(--bone)' }}>
+              {data.events.map((evt) => {
+                const hasDate = !!evt.date;
+                const dateObj = hasDate ? new Date(evt.date) : null;
+                const monthAbbr = dateObj ? dateObj.toLocaleDateString('en-US', { month: 'short' }).toUpperCase() : '';
+                const dayNum = dateObj ? dateObj.getDate() : '';
+                return (
+                <div key={evt.id} className={`event-card${hasDate ? ' has-date-badge' : ''}`}>
+                  {hasDate && (
+                    <div className="ev-date-badge">
+                      <div className="ev-date-badge-inner">
+                        <span className="ev-date-month">{monthAbbr}</span>
+                        <span className="ev-date-day">{dayNum}</span>
+                      </div>
+                    </div>
+                  )}
                   <p className="mb-1 text-xs font-semibold uppercase tracking-wide" style={{ color: 'var(--terra)' }}>
-                    {evt.date
-                      ? new Date(evt.date).toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' })
+                    {hasDate
+                      ? dateObj!.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' })
                       : (evt.recurring || 'Recurring')}
                     {evt.time ? ` · ${evt.time}` : ''}
                   </p>
@@ -96,13 +109,20 @@ export default async function EventsPage() {
                       <span className="text-xs" style={{ color: 'var(--dust)' }}>{evt.cost}</span>
                     )}
                   </div>
-                  {evt.url && (
-                    <a href={evt.url} target="_blank" rel="noopener noreferrer" className="mt-3 inline-block text-xs font-semibold" style={{ color: 'var(--terra)' }}>
-                      Event details &rarr;
+                  {evt.registrationLink ? (
+                    <a href={evt.registrationLink} target="_blank" rel="noopener noreferrer" className="event-cta">
+                      View Details &rarr;
                     </a>
+                  ) : evt.instagramHandle ? (
+                    <a href={`https://instagram.com/${evt.instagramHandle.replace('@', '')}`} target="_blank" rel="noopener noreferrer" className="event-cta">
+                      See on Instagram &rarr;
+                    </a>
+                  ) : (
+                    <span className="event-cta" style={{ color: 'var(--stone)' }}>Check organizer</span>
                   )}
                 </div>
-              ))}
+                );
+              })}
             </div>
           ) : (
             <p style={{ color: 'var(--stone)' }}>No upcoming events found. Check back soon.</p>

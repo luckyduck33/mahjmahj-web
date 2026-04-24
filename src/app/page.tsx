@@ -133,11 +133,24 @@ export default async function HomePage() {
           </div>
           {eventsData.events.length > 0 ? (
             <div className="events-grid">
-              {eventsData.events.map((evt) => (
-                <div key={evt.id} className="event-card">
+              {eventsData.events.map((evt) => {
+                const hasDate = !!evt.date;
+                const dateObj = hasDate ? new Date(evt.date) : null;
+                const monthAbbr = dateObj ? dateObj.toLocaleDateString('en-US', { month: 'short' }).toUpperCase() : '';
+                const dayNum = dateObj ? dateObj.getDate() : '';
+                return (
+                <div key={evt.id} className={`event-card${hasDate ? ' has-date-badge' : ''}`}>
+                  {hasDate && (
+                    <div className="ev-date-badge">
+                      <div className="ev-date-badge-inner">
+                        <span className="ev-date-month">{monthAbbr}</span>
+                        <span className="ev-date-day">{dayNum}</span>
+                      </div>
+                    </div>
+                  )}
                   <p className="event-date">
-                    {evt.date
-                      ? new Date(evt.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })
+                    {hasDate
+                      ? dateObj!.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' })
                       : (evt.recurring || 'Recurring')}
                     {evt.time ? ` · ${evt.time}` : ''}
                   </p>
@@ -148,13 +161,25 @@ export default async function HomePage() {
                   {evt.style && (
                     <span className="event-style">{evt.style}</span>
                   )}
-                  <div style={{ marginTop: '0.75rem' }}>
+                  <div style={{ marginTop: '0.75rem', display: 'flex', gap: '0.75rem', alignItems: 'center', flexWrap: 'wrap' }}>
+                    {evt.registrationLink ? (
+                      <a href={evt.registrationLink} target="_blank" rel="noopener noreferrer" className="event-cta">
+                        View Details &rarr;
+                      </a>
+                    ) : evt.instagramHandle ? (
+                      <a href={`https://instagram.com/${evt.instagramHandle.replace('@', '')}`} target="_blank" rel="noopener noreferrer" className="event-cta">
+                        See on Instagram &rarr;
+                      </a>
+                    ) : (
+                      <span className="event-cta" style={{ color: 'var(--stone)' }}>Check organizer</span>
+                    )}
                     <Link href={`/events/${getCitySlug(evt.city)}`} className="event-link">
                       See {evt.city} events &rarr;
                     </Link>
                   </div>
                 </div>
-              ))}
+                );
+              })}
             </div>
           ) : (
             <p style={{ color: 'var(--stone)' }}>Events are loading. Check back soon.</p>
