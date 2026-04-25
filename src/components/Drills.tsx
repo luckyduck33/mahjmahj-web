@@ -73,15 +73,19 @@ function priorityShuffle(mastery: MasteryData, deckName: string): number[] {
 
 export default function Drills() {
   const [mounted, setMounted] = useState(false);
-  useEffect(() => { setMounted(true); }, []);
+  useEffect(() => {
+    setMounted(true);
+    setDeckOrder(priorityShuffle(defaultMastery(), 'american'));
+    setDisplayMap(shuffle([0, 1, 2]));
+  }, []);
   const [mastery, setMastery] = useState<MasteryData>(defaultMastery);
   const [currentDeck, setCurrentDeck] = useState('american');
-  const [deckOrder, setDeckOrder] = useState<number[]>(() => priorityShuffle(defaultMastery(), 'american'));
+  const [deckOrder, setDeckOrder] = useState<number[]>([0, 1, 2, 3, 4, 5, 6, 7]);
   const [currentIdx, setCurrentIdx] = useState(0);
   const [correct, setCorrect] = useState(0);
   const [seen, setSeen] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
-  const [displayMap, setDisplayMap] = useState<number[]>(() => shuffle([0, 1, 2]));
+  const [displayMap, setDisplayMap] = useState<number[]>([0, 1, 2]);
   const [deckComplete, setDeckComplete] = useState(false);
 
   const card = decks[currentDeck][deckOrder[currentIdx]] || decks[currentDeck][0];
