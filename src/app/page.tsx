@@ -24,6 +24,18 @@ export default async function HomePage() {
     getNews({ active: true, limit: 4 }),
   ]);
 
+  // Filter out past events client-side as extra safety
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  const filteredEvents = eventsData.events
+    .filter((e) => {
+      if (!e.date) return true;
+      const d = new Date(e.date);
+      d.setHours(0, 0, 0, 0);
+      return d >= today;
+    })
+    .slice(0, 6);
+
   return (
     <>
       <script
@@ -131,20 +143,9 @@ export default async function HomePage() {
               View All Events
             </Link>
           </div>
-          {(() => {
-            const today = new Date();
-            today.setHours(0, 0, 0, 0);
-            const upcomingEvents = eventsData.events
-              .filter((e) => {
-                if (!e.date) return true; // Keep ongoing/recurring events
-                const eventDate = new Date(e.date);
-                eventDate.setHours(0, 0, 0, 0);
-                return eventDate >= today;
-              })
-              .slice(0, 6);
-            return upcomingEvents.length > 0 ? (
+          {filteredEvents.length > 0 ? (
             <div className="events-grid">
-              {upcomingEvents.map((evt) => {
+              {filteredEvents.map((evt) => {
                 const hasDate = !!evt.date;
                 const dateObj = hasDate ? new Date(evt.date) : null;
                 const monthAbbr = dateObj ? dateObj.toLocaleDateString('en-US', { month: 'short' }).toUpperCase() : '';
