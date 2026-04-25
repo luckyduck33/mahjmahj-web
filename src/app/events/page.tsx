@@ -26,6 +26,10 @@ export default async function EventsPage() {
     position: i + 1,
   }));
 
+  /* Split events: dated (upcoming) vs ongoing (no date / recurring) */
+  const datedEvents = data.events.filter((e) => !!e.date);
+  const ongoingEvents = data.events.filter((e) => !e.date);
+
   return (
     <>
       <script
@@ -33,99 +37,116 @@ export default async function EventsPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListSchema(schemaItems)) }}
       />
 
-      <section className="py-16" style={{ background: 'var(--sand)' }}>
-        <div className="mx-auto max-w-6xl px-6">
-          <h1 className="font-[family-name:var(--font-heading)] text-3xl font-black md:text-4xl">
-            Mahjong Events
-          </h1>
-          <p className="mt-4 max-w-2xl" style={{ color: 'var(--stone)' }}>
-            Find upcoming mahjong events across the United States. Filter by city to find games near you.
+      {/* Hero */}
+      <section className="content-hero">
+        <div className="content-hero-inner">
+          <p className="content-hero-label">Community</p>
+          <h1>Mahjong Events</h1>
+          <p className="content-hero-subtitle">
+            Find upcoming mahjong events across the United States
           </p>
+          <div className="content-hero-divider" />
         </div>
       </section>
 
-      {/* City index */}
+      {/* City filter pills */}
       {cities.length > 0 && (
-        <section className="border-b py-6" style={{ background: 'var(--paper)', borderColor: 'var(--bone)' }}>
-          <div className="mx-auto flex max-w-6xl flex-wrap gap-3 px-6">
-            {cities.map((city) => (
-              <Link
-                key={city}
-                href={`/events/${getCitySlug(city)}`}
-                className="rounded-full border px-4 py-1.5 text-sm font-medium no-underline transition-colors"
-                style={{ borderColor: 'var(--bone)', color: 'var(--walnut)' }}
-              >
-                {city}
-              </Link>
-            ))}
+        <section style={{ background: 'var(--paper)', borderBottom: '1px solid var(--bone)', padding: '1.25rem 0' }}>
+          <div className="mx-auto max-w-6xl px-6">
+            <div className="city-filter">
+              {cities.map((city) => (
+                <Link
+                  key={city}
+                  href={`/events/${getCitySlug(city)}`}
+                  className="city-pill"
+                >
+                  {city}
+                </Link>
+              ))}
+            </div>
           </div>
         </section>
       )}
 
-      {/* All events */}
-      <section className="py-16" style={{ background: 'var(--linen)' }}>
+      {/* Dated events */}
+      <section style={{ background: 'var(--linen)', padding: '3rem 0 2rem' }}>
         <div className="mx-auto max-w-6xl px-6">
-          {data.events.length > 0 ? (
-            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              {data.events.map((evt) => {
-                const hasDate = !!evt.date;
-                const dateObj = hasDate ? new Date(evt.date) : null;
-                const monthAbbr = dateObj ? dateObj.toLocaleDateString('en-US', { month: 'short' }).toUpperCase() : '';
-                const dayNum = dateObj ? dateObj.getDate() : '';
+          {datedEvents.length > 0 ? (
+            <div className="events-grid">
+              {datedEvents.map((evt) => {
+                const dateObj = new Date(evt.date);
+                const monthAbbr = dateObj.toLocaleDateString('en-US', { month: 'short' }).toUpperCase();
+                const dayNum = dateObj.getDate();
                 return (
-                <div key={evt.id} className={`event-card${hasDate ? ' has-date-badge' : ''}`}>
-                  {hasDate && (
-                    <div className="ev-date-badge">
-                      <div className="ev-date-badge-inner">
-                        <span className="ev-date-month">{monthAbbr}</span>
-                        <span className="ev-date-day">{dayNum}</span>
-                      </div>
+                <div key={evt.id} className="event-card has-date-badge">
+                  <div className="ev-date-badge">
+                    <div className="ev-date-badge-inner">
+                      <span className="ev-date-month">{monthAbbr}</span>
+                      <span className="ev-date-day">{dayNum}</span>
                     </div>
+                  </div>
+                  <p className="event-date-big">{monthAbbr} {dayNum}</p>
+                  {evt.time && (
+                    <p className="event-date-sub">{dateObj.toLocaleDateString('en-US', { weekday: 'long' })} · {evt.time}</p>
                   )}
-                  <p className="mb-1 text-xs font-semibold uppercase tracking-wide" style={{ color: 'var(--terra)' }}>
-                    {hasDate
-                      ? dateObj!.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' })
-                      : (evt.recurring || 'Recurring')}
-                    {evt.time ? ` · ${evt.time}` : ''}
-                  </p>
-                  <h2 className="font-[family-name:var(--font-heading)] text-sm font-bold leading-snug" style={{ color: 'var(--espresso)' }}>
-                    {evt.title}
-                  </h2>
-                  <p className="mt-1 text-xs" style={{ color: 'var(--stone)' }}>
-                    {evt.venue ? `${evt.venue} · ` : ''}{evt.city}{evt.state ? `, ${evt.state}` : ''}
-                  </p>
-                  {evt.description && (
-                    <p className="mt-2 text-sm leading-relaxed" style={{ color: 'var(--walnut)' }}>
-                      {evt.description.length > 120 ? evt.description.slice(0, 120) + '...' : evt.description}
-                    </p>
+                  <p className="event-city">{evt.city}{evt.state ? `, ${evt.state}` : ''}</p>
+                  <h2 className="event-title">{evt.title}</h2>
+                  {evt.venue && <p className="event-location">{evt.venue}</p>}
+                  {evt.style && (
+                    <span className="event-style" data-style={evt.style}>{evt.style}</span>
                   )}
-                  <div className="mt-3 flex items-center gap-3">
-                    {evt.style && (
-                      <span className="rounded-full px-2 py-0.5 text-xs" style={{ background: 'var(--teal-light)', color: 'var(--teal-deep)' }}>
-                        {evt.style}
-                      </span>
-                    )}
-                    {evt.cost && (
-                      <span className="text-xs" style={{ color: 'var(--dust)' }}>{evt.cost}</span>
+                  <div style={{ marginTop: '0.75rem', display: 'flex', gap: '0.5rem', alignItems: 'center', flexWrap: 'wrap' }}>
+                    {evt.registrationLink ? (
+                      <a href={evt.registrationLink} target="_blank" rel="noopener noreferrer" className="event-cta">
+                        View Details
+                      </a>
+                    ) : evt.instagramHandle ? (
+                      <a href={`https://instagram.com/${evt.instagramHandle.replace('@', '')}`} target="_blank" rel="noopener noreferrer" className="event-cta event-cta--secondary">
+                        Instagram
+                      </a>
+                    ) : (
+                      <span className="event-cta event-cta--muted">Check organizer</span>
                     )}
                   </div>
-                  {evt.registrationLink ? (
-                    <a href={evt.registrationLink} target="_blank" rel="noopener noreferrer" className="event-cta">
-                      View Details &rarr;
-                    </a>
-                  ) : evt.instagramHandle ? (
-                    <a href={`https://instagram.com/${evt.instagramHandle.replace('@', '')}`} target="_blank" rel="noopener noreferrer" className="event-cta">
-                      See on Instagram &rarr;
-                    </a>
-                  ) : (
-                    <span className="event-cta" style={{ color: 'var(--stone)' }}>Check organizer</span>
-                  )}
                 </div>
                 );
               })}
             </div>
           ) : (
-            <p style={{ color: 'var(--stone)' }}>No upcoming events found. Check back soon.</p>
+            <p style={{ color: 'var(--stone)' }}>No upcoming dated events right now.</p>
+          )}
+
+          {/* Ongoing series */}
+          {ongoingEvents.length > 0 && (
+            <>
+              <h3 className="ongoing-section-label">Ongoing Series</h3>
+              <div className="events-grid">
+                {ongoingEvents.map((evt) => (
+                  <div key={evt.id} className="event-card">
+                    <p className="event-date-sub" style={{ color: 'var(--terra)' }}>{evt.recurring || 'Recurring'}</p>
+                    <p className="event-city">{evt.city}{evt.state ? `, ${evt.state}` : ''}</p>
+                    <h2 className="event-title">{evt.title}</h2>
+                    {evt.venue && <p className="event-location">{evt.venue}</p>}
+                    {evt.style && (
+                      <span className="event-style" data-style={evt.style}>{evt.style}</span>
+                    )}
+                    <div style={{ marginTop: '0.75rem', display: 'flex', gap: '0.5rem', alignItems: 'center', flexWrap: 'wrap' }}>
+                      {evt.registrationLink ? (
+                        <a href={evt.registrationLink} target="_blank" rel="noopener noreferrer" className="event-cta">
+                          View Details
+                        </a>
+                      ) : evt.instagramHandle ? (
+                        <a href={`https://instagram.com/${evt.instagramHandle.replace('@', '')}`} target="_blank" rel="noopener noreferrer" className="event-cta event-cta--secondary">
+                          Instagram
+                        </a>
+                      ) : (
+                        <span className="event-cta event-cta--muted">Check organizer</span>
+                      )}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </>
           )}
         </div>
       </section>

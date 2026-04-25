@@ -640,14 +640,42 @@ h1, h2, h3, h4, h5, h6 {
   grid-template-columns: repeat(3, 1fr);
   gap: 1rem;
 }
+/* ── Event card ── */
 .event-card {
   background: var(--paper);
   border: 1px solid var(--bone);
   border-radius: 1rem;
   padding: 1.5rem;
-  transition: box-shadow 0.2s;
+  position: relative;
+  overflow: hidden;
+  transition: box-shadow 0.25s, transform 0.25s;
 }
-.event-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.06); }
+.event-card:hover {
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+  transform: translateY(-3px);
+}
+
+/* ── Prominent date display ── */
+.event-date-big {
+  font-family: var(--font-unbounded), 'Unbounded', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--terra);
+  line-height: 1.1;
+  margin-bottom: 0.3rem;
+  letter-spacing: 0.02em;
+}
+.event-date-sub {
+  font-family: var(--font-poppins), 'Poppins', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: var(--stone);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.6rem;
+}
+
+/* fallback for old .event-date class */
 .event-date {
   font-size: 0.7rem;
   font-weight: 600;
@@ -656,6 +684,16 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--terra);
   margin-bottom: 0.3rem;
 }
+
+/* ── City name ── */
+.event-city {
+  font-family: var(--font-poppins), 'Poppins', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--walnut);
+  margin-bottom: 0.35rem;
+}
+
 .event-title {
   font-family: var(--font-unbounded), 'Unbounded', sans-serif;
   font-size: 0.88rem;
@@ -664,19 +702,31 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1.4;
 }
 .event-location {
-  font-size: 0.78rem;
+  font-size: 0.75rem;
   color: var(--stone);
-  margin-top: 0.3rem;
+  margin-top: 0.25rem;
 }
+
+/* ── Style badge pills ── */
 .event-style {
   display: inline-block;
   margin-top: 0.5rem;
-  padding: 0.15rem 0.6rem;
+  padding: 0.2rem 0.65rem;
   border-radius: 100px;
-  font-size: 0.68rem;
-  background: var(--teal-light);
-  color: var(--teal-deep);
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.03em;
 }
+/* Default style colors */
+.event-style { background: var(--teal-light); color: var(--teal-deep); }
+.event-style[data-style="Hong Kong"] { background: var(--terra-pale2); color: var(--terra-deep); }
+.event-style[data-style="Taiwanese"] { background: var(--teal-pale); color: var(--teal-deep); }
+.event-style[data-style="American"] { background: var(--olive-pale2); color: var(--olive); }
+.event-style[data-style="Riichi"],
+.event-style[data-style="Japanese"] { background: var(--mustard-pale); color: #8A7020; }
+.event-style[data-style*="Mixed"],
+.event-style[data-style*="Open"] { background: var(--clay); color: var(--walnut); }
+
 .event-link {
   font-size: 0.72rem;
   font-weight: 500;
@@ -685,8 +735,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 .event-link:hover { color: var(--terra-mid); }
 
-/* ── Event card corner date badge ── */
-.event-card { position: relative; overflow: hidden; }
+/* ── Corner date badge (kept for visual accent) ── */
 .ev-date-badge {
   position: absolute;
   top: 0; left: 0;
@@ -736,12 +785,87 @@ h1, h2, h3, h4, h5, h6 {
 .event-cta {
   display: inline-block;
   margin-top: 0.75rem;
-  font-size: 0.72rem;
+  padding: 0.45rem 1rem;
+  border-radius: 100px;
+  font-size: 0.7rem;
   font-weight: 600;
-  color: var(--terra);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  background: var(--terra);
+  color: #fff;
   text-decoration: none;
+  transition: background 0.2s, transform 0.15s;
 }
-.event-cta:hover { color: var(--terra-mid); }
+.event-cta:hover {
+  background: var(--terra-mid);
+  transform: translateY(-1px);
+}
+.event-cta--secondary {
+  background: transparent;
+  color: var(--terra);
+  border: 1px solid var(--terra);
+}
+.event-cta--secondary:hover {
+  background: var(--terra);
+  color: #fff;
+}
+.event-cta--muted {
+  background: transparent;
+  color: var(--stone);
+  border: 1px solid var(--bone);
+  cursor: default;
+}
+.event-cta--muted:hover {
+  background: transparent;
+  color: var(--stone);
+  transform: none;
+}
+
+/* ── Ongoing series section ── */
+.ongoing-section-label {
+  font-family: var(--font-unbounded), 'Unbounded', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--espresso);
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--bone);
+}
+
+/* ── City filter pills ── */
+.city-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+}
+.city-pill {
+  display: inline-block;
+  padding: 0.4rem 1rem;
+  border-radius: 100px;
+  font-size: 0.78rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+  border: 1px solid var(--bone);
+  background: transparent;
+  color: var(--walnut);
+}
+.city-pill:hover {
+  border-color: var(--terra);
+  color: var(--terra);
+}
+.city-pill--active {
+  background: var(--terra);
+  color: #fff;
+  border-color: var(--terra);
+}
+.city-pill--active:hover {
+  background: var(--terra-mid);
+  border-color: var(--terra-mid);
+  color: #fff;
+}
 
 @media (max-width: 768px) {
   .ev-date-badge { width: 4.4rem; height: 4.4rem; }
@@ -750,6 +874,7 @@ h1, h2, h3, h4, h5, h6 {
   .ev-date-month { font-size: 0.46rem; }
   .ev-date-day { font-size: 1.05rem; }
   .event-card.has-date-badge { padding-left: 3.8rem; }
+  .event-date-big { font-size: 1.2rem; }
 }
 
 @media (max-width: 768px) {
