@@ -88,46 +88,31 @@ export default function HongKongMahjongPage() {
       />
 
       {/* Hero */}
-      <section
-        style={{ backgroundColor: 'var(--sand)' }}
-        className="px-6 py-20 md:py-28"
-      >
-        <div className="mx-auto max-w-3xl">
+      <section className="content-hero">
+        <div className="content-hero-inner">
           <p
-            className="mb-4 text-sm font-semibold uppercase tracking-widest"
-            style={{ color: 'var(--terra)', fontFamily: 'var(--font-heading)' }}
+            className="content-hero-label"
           >
             Mahjong Styles
           </p>
           <h1
-            className="mb-6 text-4xl font-black leading-tight md:text-5xl"
-            style={{
-              fontFamily: 'var(--font-heading)',
-              color: 'var(--espresso)',
-            }}
+            className="mb-6"
           >
             Hong Kong Mahjong
           </h1>
           <p
-            className="text-xl leading-relaxed md:text-2xl"
-            style={{ color: 'var(--walnut)' }}
+            className="content-hero-subtitle"
           >
             Rules, Strategy, and Scoring
           </p>
-          <div
-            className="mt-6 h-1 w-16 rounded"
-            style={{ backgroundColor: 'var(--terra)' }}
-          />
+          <div className="content-hero-divider" />
         </div>
       </section>
 
       {/* Main content */}
-      <section
-        style={{ backgroundColor: 'var(--linen)' }}
-        className="px-6 py-16"
-      >
-        <div className="mx-auto max-w-3xl">
-          <div className="content-article" style={{ color: 'var(--espresso)' }}>
+      <section className="content-body">
+        <div className="content-body-inner">
+          <div className="content-article">
 
             {/* Intro */}
             <p>
@@ -151,9 +136,7 @@ export default function HongKongMahjongPage() {
             </p>
 
             {/* What is HK Mahjong */}
-            <h2
-              style={{ fontFamily: 'var(--font-heading)', color: 'var(--espresso)' }}
-            >
+            <h2>
               What is Hong Kong Mahjong?
             </h2>
             <p>Hong Kong Mahjong is a four-player mahjong style known for:</p>
@@ -171,9 +154,7 @@ export default function HongKongMahjongPage() {
             </p>
 
             {/* What you need */}
-            <h2
-              style={{ fontFamily: 'var(--font-heading)', color: 'var(--espresso)' }}
-            >
+            <h2>
               What you need to play
             </h2>
             <p>A standard Hong Kong Mahjong setup usually includes:</p>
@@ -196,13 +177,11 @@ export default function HongKongMahjongPage() {
             </p>
 
             {/* Tiles at a glance */}
-            <h2
-              style={{ fontFamily: 'var(--font-heading)', color: 'var(--espresso)' }}
-            >
+            <h2>
               The tiles at a glance
             </h2>
 
-            <h3 style={{ fontFamily: 'var(--font-heading)', color: 'var(--espresso)' }}>
+            <h3>
               Suit tiles
             </h3>
             <p>
@@ -211,14 +190,14 @@ export default function HongKongMahjongPage() {
               tile.
             </p>
 
-            <h3 style={{ fontFamily: 'var(--font-heading)', color: 'var(--espresso)' }}>
+            <h3>
               Honor tiles
             </h3>
             <p>
               These are: East, South, West, North; Red, Green, and White dragons.
             </p>
 
-            <h3 style={{ fontFamily: 'var(--font-heading)', color: 'var(--espresso)' }}>
+            <h3>
               Bonus tiles
             </h3>
             <p>
@@ -227,9 +206,7 @@ export default function HongKongMahjongPage() {
             </p>
 
             {/* Setup */}
-            <h2
-              style={{ fontFamily: 'var(--font-heading)', color: 'var(--espresso)' }}
-            >
+            <h2>
               Setup
             </h2>
             <ol>
@@ -246,9 +223,7 @@ export default function HongKongMahjongPage() {
             </p>
 
             {/* Goal */}
-            <h2
-              style={{ fontFamily: 'var(--font-heading)', color: 'var(--espresso)' }}
-            >
+            <h2>
               The goal of the game
             </h2>
             <p>
@@ -273,9 +248,7 @@ export default function HongKongMahjongPage() {
             </ul>
 
             {/* Gameplay */}
-            <h2
-              style={{ fontFamily: 'var(--font-heading)', color: 'var(--espresso)' }}
-            >
+            <h2>
               How gameplay works
             </h2>
             <p>Gameplay moves clockwise. On your turn:</p>
@@ -285,7 +258,7 @@ export default function HongKongMahjongPage() {
               <li>Discard one tile.</li>
             </ol>
 
-            <h3 style={{ fontFamily: 'var(--font-heading)', color: 'var(--espresso)' }}>
+            <h3>
               Calling tiles
             </h3>
             <p>Players may call certain discarded tiles to complete sets.</p>
@@ -304,9 +277,7 @@ export default function HongKongMahjongPage() {
             </ul>
 
             {/* Winning */}
-            <h2
-              style={{ fontFamily: 'var(--font-heading)', color: 'var(--espresso)' }}
-            >
+            <h2>
               Winning
             </h2>
             <p>
@@ -317,9 +288,7 @@ export default function HongKongMahjongPage() {
             </p>
 
             {/* Faan scoring */}
-            <h2
-              style={{ fontFamily: 'var(--font-heading)', color: 'var(--espresso)' }}
-            >
+            <h2>
               How faan scoring works
             </h2>
             <p>
@@ -342,9 +311,7 @@ export default function HongKongMahjongPage() {
             </p>
 
             {/* Scoring table */}
-            <h2
-              style={{ fontFamily: 'var(--font-heading)', color: 'var(--espresso)' }}
-            >
+            <h2>
               Common winning hands and scoring patterns
             </h2>
             <div style={{ overflowX: 'auto' }}>
@@ -412,9 +379,7 @@ export default function HongKongMahjongPage() {
             </div>
 
             {/* Strategy */}
-            <h2
-              style={{ fontFamily: 'var(--font-heading)', color: 'var(--espresso)' }}
-            >
+            <h2>
               Strategy basics
             </h2>
             <ol>
@@ -446,9 +411,7 @@ export default function HongKongMahjongPage() {
             </ol>
 
             {/* Etiquette */}
-            <h2
-              style={{ fontFamily: 'var(--font-heading)', color: 'var(--espresso)' }}
-            >
+            <h2>
               Etiquette at the table
             </h2>
             <ul>
@@ -484,9 +447,7 @@ export default function HongKongMahjongPage() {
             </ul>
 
             {/* Why people love it */}
-            <h2
-              style={{ fontFamily: 'var(--font-heading)', color: 'var(--espresso)' }}
-            >
+            <h2>
               Why people love Hong Kong Mahjong
             </h2>
             <ul>
@@ -522,9 +483,7 @@ export default function HongKongMahjongPage() {
             </ul>
 
             {/* FAQ */}
-            <h2
-              style={{ fontFamily: 'var(--font-heading)', color: 'var(--espresso)' }}
-            >
+            <h2>
               Frequently asked questions
             </h2>
 
@@ -556,9 +515,7 @@ export default function HongKongMahjongPage() {
             </div>
 
             {/* Keep exploring */}
-            <h2
-              style={{ fontFamily: 'var(--font-heading)', color: 'var(--espresso)' }}
-            >
+            <h2>
               Keep exploring
             </h2>
             <p>
@@ -592,7 +549,7 @@ export default function HongKongMahjongPage() {
         <div className="mx-auto max-w-3xl">
           <h2
             className="mb-8 text-2xl font-black"
-            style={{ fontFamily: 'var(--font-heading)', color: 'var(--espresso)' }}
+           
           >
             Explore other styles
           </h2>
@@ -610,7 +567,7 @@ export default function HongKongMahjongPage() {
               </p>
               <h3
                 className="text-lg font-black"
-                style={{ fontFamily: 'var(--font-heading)', color: 'var(--espresso)' }}
+               
               >
                 Taiwanese Mahjong
               </h3>
@@ -632,7 +589,7 @@ export default function HongKongMahjongPage() {
               </p>
               <h3
                 className="text-lg font-black"
-                style={{ fontFamily: 'var(--font-heading)', color: 'var(--espresso)' }}
+               
               >
                 American Mahjong
               </h3>
