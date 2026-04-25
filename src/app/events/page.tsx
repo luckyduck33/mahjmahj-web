@@ -27,7 +27,14 @@ export default async function EventsPage() {
   }));
 
   /* Split events: dated (upcoming) vs ongoing (no date / recurring) */
-  const datedEvents = data.events.filter((e) => !!e.date);
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  const datedEvents = data.events.filter((e) => {
+    if (!e.date) return false;
+    const d = new Date(e.date);
+    d.setHours(0, 0, 0, 0);
+    return d >= today;
+  });
   const ongoingEvents = data.events.filter((e) => !e.date);
 
   return (
