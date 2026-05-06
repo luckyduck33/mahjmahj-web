@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { getEvents, getCitySlug } from '@/lib/api';
-import { itemListSchema, eventSchema } from '@/lib/schema';
+import { itemListSchema, eventSchema, breadcrumbSchema } from '@/lib/schema';
+import { JsonLd } from '@/components/JsonLd';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -50,22 +51,21 @@ export default async function EventsPage() {
       venue: evt.venue,
       description: evt.description,
       url: evt.url,
+      organizer: evt.organizer,
+      registrationLink: evt.registrationLink,
+      cost: evt.cost,
     })
   );
 
+  const breadcrumbs = breadcrumbSchema([
+    { name: 'Home', url: 'https://mahjmahj.co' },
+    { name: 'Events', url: 'https://mahjmahj.co/events' },
+  ]);
+
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListSchema(schemaItems)) }}
-      />
-      {eventSchemas.map((s, i) => (
-        <script
-          key={i}
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(s) }}
-        />
-      ))}
+      <JsonLd data={[breadcrumbs, itemListSchema(schemaItems), ...eventSchemas]} />
+
 
       {/* Hero */}
       <section className="content-hero">

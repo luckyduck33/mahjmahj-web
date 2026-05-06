@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { getEvents, getCitySlug, getCityFromSlug } from '@/lib/api';
-import { eventSchema } from '@/lib/schema';
+import { eventSchema, breadcrumbSchema } from '@/lib/schema';
+import { JsonLd } from '@/components/JsonLd';
 import type { Metadata } from 'next';
 
 interface Props {
@@ -39,18 +40,31 @@ export default async function CityEventsPage({ params }: Props) {
   ]);
   const allCities = [...new Set(allData.events.map((e) => e.city))].sort();
 
-  const schemas = data.events.map((evt) =>
-    eventSchema({
-      title: evt.title,
-      city: evt.city,
-      state: evt.state,
-      date: evt.date,
-      endDate: evt.endDate,
-      venue: evt.venue,
-      description: evt.description,
-      url: evt.url,
-    })
-  );
+  // Only emit Event schema for events with a startDate — Google rejects Event
+  // schema without one, and ongoing/recurring entries don't qualify.
+  const schemas = data.events
+    .filter((evt) => !!evt.date)
+    .map((evt) =>
+      eventSchema({
+        title: evt.title,
+        city: evt.city,
+        state: evt.state,
+        date: evt.date,
+        endDate: evt.endDate,
+        venue: evt.venue,
+        description: evt.description,
+        url: evt.url,
+        organizer: evt.organizer,
+        registrationLink: evt.registrationLink,
+        cost: evt.cost,
+      })
+    );
+
+  const breadcrumbs = breadcrumbSchema([
+    { name: 'Home', url: 'https://mahjmahj.co' },
+    { name: 'Events', url: 'https://mahjmahj.co/events' },
+    { name: cityName, url: `https://mahjmahj.co/events/${slug}` },
+  ]);
 
   /* Split events: dated vs ongoing */
   const today = new Date();
@@ -65,13 +79,8 @@ export default async function CityEventsPage({ params }: Props) {
 
   return (
     <>
-      {schemas.map((s, i) => (
-        <script
-          key={i}
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(s) }}
-        />
-      ))}
+      <JsonLd data={[breadcrumbs, ...schemas]} />
+
 
       {/* Hero */}
       <section className="content-hero">

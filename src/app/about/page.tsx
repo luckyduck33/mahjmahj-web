@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { organizationSchema } from '@/lib/schema';
 
 export const metadata: Metadata = {
   title: 'About MAHJ MAHJ',
@@ -14,11 +13,6 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema()) }}
-      />
-
       {/* Hero */}
       <section style={{ backgroundColor: 'var(--sand)', padding: '4rem 1.5rem' }}>
         <div style={{ maxWidth: '800px', margin: '0 auto', textAlign: 'center' }}>

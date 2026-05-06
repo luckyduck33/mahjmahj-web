@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import { getEvents, getNews, getCitySlug } from '@/lib/api';
 import Drills from '@/components/Drills';
-import { organizationSchema, webSiteSchema } from '@/lib/schema';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -38,15 +37,6 @@ export default async function HomePage() {
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema()) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(webSiteSchema()) }}
-      />
-
       {/* Hero — full-bleed illustration background */}
       <section className="hero">
         <div className="hero-image-overlay" />

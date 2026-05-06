@@ -3,6 +3,8 @@ import Script from 'next/script';
 import { Poppins, Unbounded } from 'next/font/google';
 import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
+import { JsonLd } from '@/components/JsonLd';
+import { organizationSchema, webSiteSchema } from '@/lib/schema';
 import './globals.css';
 
 const poppins = Poppins({
@@ -64,6 +66,7 @@ export default function RootLayout({
         </Script>
       </head>
       <body className="flex min-h-full flex-col">
+        <JsonLd data={[organizationSchema(), webSiteSchema()]} />
         <Nav />
         <main className="flex-1">{children}</main>
         <Footer />
