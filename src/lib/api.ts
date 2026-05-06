@@ -91,6 +91,11 @@ export function getCitySlug(city: string): string {
   return city.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
 }
 
+const SLUG_ABBREVIATIONS: Record<string, string> = { dc: 'DC' };
+
 export function getCityFromSlug(slug: string): string {
-  return slug.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+  return slug
+    .split('-')
+    .map(w => SLUG_ABBREVIATIONS[w] ?? w.charAt(0).toUpperCase() + w.slice(1))
+    .join(' ');
 }
