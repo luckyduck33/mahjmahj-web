@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { getEvents, getCitySlug } from '@/lib/api';
-import { itemListSchema } from '@/lib/schema';
+import { itemListSchema, eventSchema } from '@/lib/schema';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -37,12 +37,35 @@ export default async function EventsPage() {
   });
   const ongoingEvents = data.events.filter((e) => !e.date);
 
+  /* Per-event Event schema for the hub page so Google can show event rich results
+     directly off /events, not just /events/[city]. Only dated upcoming events
+     qualify — ongoing series have no startDate and would fail validation. */
+  const eventSchemas = datedEvents.map((evt) =>
+    eventSchema({
+      title: evt.title,
+      city: evt.city,
+      state: evt.state,
+      date: evt.date,
+      endDate: evt.endDate,
+      venue: evt.venue,
+      description: evt.description,
+      url: evt.url,
+    })
+  );
+
   return (
     <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListSchema(schemaItems)) }}
       />
+      {eventSchemas.map((s, i) => (
+        <script
+          key={i}
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(s) }}
+        />
+      ))}
 
       {/* Hero */}
       <section className="content-hero">

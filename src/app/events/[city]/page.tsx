@@ -43,6 +43,7 @@ export default async function CityEventsPage({ params }: Props) {
     eventSchema({
       title: evt.title,
       city: evt.city,
+      state: evt.state,
       date: evt.date,
       endDate: evt.endDate,
       venue: evt.venue,

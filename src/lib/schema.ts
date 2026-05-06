@@ -9,6 +9,9 @@ export function organizationSchema() {
   };
 }
 
+// Alias used in some pages
+export const orgSchema = organizationSchema;
+
 export function webSiteSchema() {
   return {
     '@context': 'https://schema.org',
@@ -19,6 +22,9 @@ export function webSiteSchema() {
   };
 }
 
+// Alias
+export const websiteSchema = webSiteSchema;
+
 export function eventSchema(event: {
   title: string;
   city: string;
@@ -27,29 +33,49 @@ export function eventSchema(event: {
   venue?: string;
   description?: string;
   url?: string;
+  state?: string;
+  organizer?: string;
+  registrationLink?: string;
+  cost?: string;
 }) {
-  return {
+  const eventUrl = event.url || event.registrationLink;
+  const schema: Record<string, unknown> = {
     '@context': 'https://schema.org',
     '@type': 'Event',
     name: event.title,
     startDate: event.date,
     ...(event.endDate && { endDate: event.endDate }),
+    eventStatus: 'https://schema.org/EventScheduled',
+    eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
     location: {
       '@type': 'Place',
       name: event.venue || event.city,
       address: {
         '@type': 'PostalAddress',
         addressLocality: event.city,
+        ...(event.state && { addressRegion: event.state }),
+        addressCountry: 'US',
       },
     },
     ...(event.description && { description: event.description }),
-    ...(event.url && { url: event.url }),
+    ...(eventUrl && { url: eventUrl }),
     organizer: {
       '@type': 'Organization',
-      name: 'MAHJ MAHJ',
+      name: event.organizer || 'MAHJ MAHJ',
       url: 'https://mahjmahj.co',
     },
   };
+  if (event.cost) {
+    const price = event.cost.replace(/[^0-9.]/g, '') || '0';
+    schema.offers = {
+      '@type': 'Offer',
+      price,
+      priceCurrency: 'USD',
+      availability: 'https://schema.org/InStock',
+      ...(event.registrationLink && { url: event.registrationLink }),
+    };
+  }
+  return schema;
 }
 
 export function itemListSchema(items: Array<{ name: string; url: string; position: number }>) {
@@ -123,6 +149,21 @@ export function howToSchema(howTo: {
       position: i + 1,
       name: step.name,
       text: step.text,
+    })),
+  };
+}
+
+export function breadcrumbSchema(
+  trail: Array<{ name: string; url: string }>
+) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: trail.map((item, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      name: item.name,
+      item: item.url,
     })),
   };
 }
