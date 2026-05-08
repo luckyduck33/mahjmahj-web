@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "postinstall": "git config core.hooksPath .githooks 2>/dev/null || true"
   },
   "dependencies": {
     "next": "16.2.4",

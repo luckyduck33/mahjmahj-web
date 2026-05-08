@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# Lucky Media Corp preflight pre-push hook.
+# Runs scripts/preflight.js — blocks push on cross-brand or routing errors.
+# Bypass with --no-verify (not recommended).
+set -e
+cd "$(git rev-parse --show-toplevel)"
+if [ -f scripts/preflight.js ]; then
+  /opt/homebrew/bin/node scripts/preflight.js || exit $?
+else
+  echo "[pre-push] no scripts/preflight.js — skipping" >&2
+fi
