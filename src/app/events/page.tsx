@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { getEvents, getCitySlug } from '@/lib/api';
 import { itemListSchema, eventSchema, breadcrumbSchema } from '@/lib/schema';
 import { JsonLd } from '@/components/JsonLd';
+import { cities as manifestCities } from '@/data/cities';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -20,10 +21,33 @@ export const revalidate = 3600;
 export default async function EventsPage() {
   const data = await getEvents({ status: 'Upcoming' });
 
-  const cities = [...new Set(data.events.map((e) => e.city))].sort();
-  const schemaItems = cities.map((city, i) => ({
-    name: `Mahjong events in ${city}`,
-    url: `https://mahjmahj.co/events/${getCitySlug(city)}`,
+  // Event counts per city, used by the city tile section.
+  const countsBySlug = new Map<string, number>();
+  for (const e of data.events) {
+    const s = getCitySlug(e.city);
+    countsBySlug.set(s, (countsBySlug.get(s) ?? 0) + 1);
+  }
+  // Surface every manifest city in the tile section, plus any historical
+  // event-only cities not yet in the manifest.
+  const eventOnlyCities = [...new Set(data.events.map((e) => e.city))]
+    .filter((c) => !manifestCities.some((m) => m.slug === getCitySlug(c)));
+  const tileCities = [
+    ...manifestCities.map((m) => ({
+      slug: m.slug,
+      name: m.name,
+      tier: m.tier,
+      count: countsBySlug.get(m.slug) ?? 0,
+    })),
+    ...eventOnlyCities.map((name) => ({
+      slug: getCitySlug(name),
+      name,
+      tier: 0 as 0,
+      count: countsBySlug.get(getCitySlug(name)) ?? 0,
+    })),
+  ].sort((a, b) => a.name.localeCompare(b.name));
+  const schemaItems = tileCities.map((c, i) => ({
+    name: `Mahjong events in ${c.name}`,
+    url: `https://mahjmahj.co/events/${c.slug}`,
     position: i + 1,
   }));
 
@@ -79,18 +103,24 @@ export default async function EventsPage() {
         </div>
       </section>
 
-      {/* City filter pills */}
-      {cities.length > 0 && (
+      {/* City filter pills — every manifest city + any event-only historical city */}
+      {tileCities.length > 0 && (
         <section style={{ background: 'var(--paper)', borderBottom: '1px solid var(--bone)', padding: '1.25rem 0' }}>
           <div className="mx-auto max-w-6xl px-6">
             <div className="city-filter">
-              {cities.map((city) => (
+              {tileCities.map((c) => (
                 <Link
-                  key={city}
-                  href={`/events/${getCitySlug(city)}`}
+                  key={c.slug}
+                  href={`/events/${c.slug}`}
                   className="city-pill"
+                  title={c.count === 0 ? `${c.name} — no events scraped yet` : `${c.count} event${c.count !== 1 ? 's' : ''} in ${c.name}`}
                 >
-                  {city}
+                  {c.name}
+                  {c.count > 0 && (
+                    <span style={{ marginLeft: '0.4rem', opacity: 0.7, fontSize: '0.75rem' }}>
+                      {c.count}
+                    </span>
+                  )}
                 </Link>
               ))}
             </div>

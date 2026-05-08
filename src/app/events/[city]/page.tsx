@@ -1,7 +1,9 @@
 import Link from 'next/link';
+import { notFound } from 'next/navigation';
 import { getEvents, getCitySlug, getCityFromSlug } from '@/lib/api';
-import { eventSchema, breadcrumbSchema } from '@/lib/schema';
+import { eventSchema, breadcrumbSchema, faqSchema } from '@/lib/schema';
 import { JsonLd } from '@/components/JsonLd';
+import { cities, getCityBySlug } from '@/data/cities';
 import type { Metadata } from 'next';
 
 interface Props {
@@ -10,14 +12,18 @@ interface Props {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { city: slug } = await params;
-  const cityName = getCityFromSlug(slug);
+  const entry = getCityBySlug(slug);
+  const cityName = entry?.name ?? getCityFromSlug(slug);
+  const description = entry
+    ? `Find upcoming mahjong events in ${cityName}. ${entry.intro.split('.')[0]}.`
+    : `Find upcoming mahjong events in ${cityName}. Hong Kong Mahjong, Taiwanese Mahjong, and American Mahjong games and meetups.`;
   return {
     title: `Mahjong Events in ${cityName}`,
-    description: `Find upcoming mahjong events in ${cityName}. Hong Kong Mahjong, Taiwanese Mahjong, and American Mahjong games and meetups.`,
+    description,
     alternates: { canonical: `https://mahjmahj.co/events/${slug}` },
     openGraph: {
       title: `Mahjong Events in ${cityName} | MAHJ MAHJ`,
-      description: `Find upcoming mahjong events in ${cityName}.`,
+      description,
       url: `https://mahjmahj.co/events/${slug}`,
     },
   };
@@ -26,19 +32,44 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export const revalidate = 3600;
 
 export async function generateStaticParams() {
-  const data = await getEvents();
-  const cities = [...new Set(data.events.map((e) => e.city))];
-  return cities.map((city) => ({ city: getCitySlug(city) }));
+  // Use the city manifest as the source of truth — every listed city gets a
+  // page, even if no events have been scraped for it yet. Falls back to
+  // event-derived cities for any historical slug not yet in the manifest.
+  const manifestSlugs = cities.map((c) => c.slug);
+  let eventCities: string[] = [];
+  try {
+    const data = await getEvents();
+    eventCities = [...new Set(data.events.map((e) => getCitySlug(e.city)))];
+  } catch {}
+  const all = new Set([...manifestSlugs, ...eventCities]);
+  return [...all].map((city) => ({ city }));
 }
 
 export default async function CityEventsPage({ params }: Props) {
   const { city: slug } = await params;
-  const cityName = getCityFromSlug(slug);
+  const entry = getCityBySlug(slug);
+  const cityName = entry?.name ?? getCityFromSlug(slug);
+
+  // Reject obvious junk slugs that aren't in the manifest and don't have events.
+  if (!entry) {
+    try {
+      const probe = await getEvents({ city: cityName });
+      if (probe.events.length === 0) notFound();
+    } catch {
+      notFound();
+    }
+  }
+
   const [data, allData] = await Promise.all([
     getEvents({ city: cityName }),
     getEvents({ status: 'Upcoming' }),
   ]);
-  const allCities = [...new Set(allData.events.map((e) => e.city))].sort();
+  // Surface every manifest city in the filter pills, plus any event-only
+  // historical cities, deduped + sorted.
+  const allCities = [...new Set([
+    ...cities.map((c) => c.name),
+    ...allData.events.map((e) => e.city),
+  ])].sort();
 
   // Only emit Event schema for events with a startDate — Google rejects Event
   // schema without one, and ongoing/recurring entries don't qualify.
@@ -66,6 +97,8 @@ export default async function CityEventsPage({ params }: Props) {
     { name: cityName, url: `https://mahjmahj.co/events/${slug}` },
   ]);
 
+  const faqJsonLd = entry?.faqs?.length ? faqSchema(entry.faqs) : null;
+
   /* Split events: dated vs ongoing */
   const today = new Date();
   today.setHours(0, 0, 0, 0);
@@ -79,7 +112,7 @@ export default async function CityEventsPage({ params }: Props) {
 
   return (
     <>
-      <JsonLd data={[breadcrumbs, ...schemas]} />
+      <JsonLd data={[breadcrumbs, ...schemas, ...(faqJsonLd ? [faqJsonLd] : [])]} />
 
 
       {/* Hero */}
@@ -96,6 +129,17 @@ export default async function CityEventsPage({ params }: Props) {
           <div className="content-hero-divider" />
         </div>
       </section>
+
+      {/* City intro — always render when manifest entry exists, regardless of event count */}
+      {entry?.intro && (
+        <section style={{ background: 'var(--paper)', padding: '2rem 0', borderBottom: '1px solid var(--bone)' }}>
+          <div className="mx-auto max-w-3xl px-6">
+            <p style={{ fontSize: '1rem', lineHeight: 1.7, color: 'var(--walnut)', margin: 0 }}>
+              {entry.intro}
+            </p>
+          </div>
+        </section>
+      )}
 
       {/* City filter pills */}
       {allCities.length > 0 && (
@@ -172,9 +216,38 @@ export default async function CityEventsPage({ params }: Props) {
             </div>
           ) : (
             !ongoingEvents.length && (
-              <p style={{ color: 'var(--stone)' }}>No events found in {cityName} right now. Check back soon or <Link href="/events" style={{ color: 'var(--terra)' }}>browse all events</Link>.</p>
+              <div style={{ background: 'var(--paper)', border: '1px solid var(--bone)', borderRadius: '8px', padding: '2rem', textAlign: 'center' }}>
+                <p style={{ color: 'var(--walnut)', fontSize: '1rem', marginBottom: '0.75rem' }}>
+                  We&apos;re still building out the {cityName} events calendar.
+                </p>
+                <p style={{ color: 'var(--stone)', fontSize: '0.9rem', marginBottom: '1.25rem' }}>
+                  Know about a recurring mahjong game, club night, or tournament in {cityName}? Help us put it on the map.
+                </p>
+                <Link href="/events" className="event-cta">Browse all cities</Link>
+              </div>
             )
           )}
+
+          {/* City FAQ — bottom of page so users get the events first */}
+          {entry?.faqs?.length ? (
+            <section style={{ marginTop: '3rem', paddingTop: '2.5rem', borderTop: '1px solid var(--bone)' }}>
+              <h2 style={{ fontSize: '1.4rem', color: 'var(--walnut)', marginBottom: '1.5rem' }}>
+                Mahjong in {cityName} — FAQ
+              </h2>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+                {entry.faqs.map((f, i) => (
+                  <div key={i}>
+                    <h3 style={{ fontSize: '1rem', color: 'var(--walnut)', fontWeight: 600, marginBottom: '0.5rem' }}>
+                      {f.question}
+                    </h3>
+                    <p style={{ fontSize: '0.95rem', color: 'var(--walnut)', lineHeight: 1.65, margin: 0 }}>
+                      {f.answer}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </section>
+          ) : null}
 
           {/* Ongoing series */}
           {ongoingEvents.length > 0 && (

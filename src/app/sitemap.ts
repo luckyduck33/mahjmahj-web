@@ -1,5 +1,6 @@
 import type { MetadataRoute } from 'next';
 import { getEvents, getCitySlug } from '@/lib/api';
+import { cities } from '@/data/cities';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const now = new Date();
@@ -15,19 +16,30 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: 'https://mahjmahj.co/about', lastModified: now, changeFrequency: 'monthly', priority: 0.5 },
   ];
 
-  let cityRoutes: MetadataRoute.Sitemap = [];
+  // Manifest cities — every listed city gets a sitemap entry, even before
+  // scrapers populate events. Tier 1 (existing community) gets higher
+  // priority than tier 2/3 (newly seeded markets) to reflect inventory depth.
+  const manifestRoutes: MetadataRoute.Sitemap = cities.map((c) => ({
+    url: `https://mahjmahj.co/events/${c.slug}`,
+    lastModified: now,
+    changeFrequency: 'weekly' as const,
+    priority: c.tier === 1 ? 0.7 : 0.6,
+  }));
+
+  // Any historical event-only cities not in the manifest still get listed.
+  let extraRoutes: MetadataRoute.Sitemap = [];
   try {
     const data = await getEvents();
-    // Find latest event update date if API exposes one; otherwise fall back to now.
-    const cityLastMod = data.lastUpdated ? new Date(data.lastUpdated) : now;
-    const cities = [...new Set(data.events.map((e) => e.city))];
-    cityRoutes = cities.map((city) => ({
-      url: `https://mahjmahj.co/events/${getCitySlug(city)}`,
-      lastModified: cityLastMod,
+    const manifestSlugs = new Set(cities.map((c) => c.slug));
+    const eventSlugs = new Set(data.events.map((e) => getCitySlug(e.city)));
+    const extras = [...eventSlugs].filter((s) => !manifestSlugs.has(s));
+    extraRoutes = extras.map((slug) => ({
+      url: `https://mahjmahj.co/events/${slug}`,
+      lastModified: now,
       changeFrequency: 'weekly' as const,
-      priority: 0.7,
+      priority: 0.6,
     }));
   } catch {}
 
-  return [...staticRoutes, ...cityRoutes];
+  return [...staticRoutes, ...manifestRoutes, ...extraRoutes];
 }
