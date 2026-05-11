@@ -82,6 +82,7 @@ export default async function CityEventsPage({ params }: Props) {
         state: evt.state,
         date: evt.date,
         endDate: evt.endDate,
+        time: evt.time,
         venue: evt.venue,
         description: evt.description,
         url: evt.url,
