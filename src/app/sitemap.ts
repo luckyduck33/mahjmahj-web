@@ -12,6 +12,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: 'https://mahjmahj.co/styles/american-mahjong', lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
     { url: 'https://mahjmahj.co/learn/how-to-play-mahjong', lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
     { url: 'https://mahjmahj.co/learn/which-mahjong-style-is-right-for-me', lastModified: now, changeFrequency: 'monthly', priority: 0.7 },
+    { url: 'https://mahjmahj.co/learn/la-hong-kong-mahjong-scene', lastModified: now, changeFrequency: 'weekly', priority: 0.7 },
+    { url: 'https://mahjmahj.co/learn/la-mahjong-clubs', lastModified: now, changeFrequency: 'weekly', priority: 0.7 },
+    { url: 'https://mahjmahj.co/learn/first-la-mahjong-night', lastModified: now, changeFrequency: 'monthly', priority: 0.7 },
     { url: 'https://mahjmahj.co/compare/mahjong-styles', lastModified: now, changeFrequency: 'monthly', priority: 0.7 },
     { url: 'https://mahjmahj.co/about', lastModified: now, changeFrequency: 'monthly', priority: 0.5 },
   ];
