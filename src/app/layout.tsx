@@ -7,11 +7,19 @@ import { JsonLd } from '@/components/JsonLd';
 import { organizationSchema, webSiteSchema } from '@/lib/schema';
 import './globals.css';
 
+// preload:false — the homepage LCP is the full-bleed /hero.jpg background
+// image, not text. next/font otherwise emits a <link rel=preload> for every
+// declared weight/style (9 woff2 files) that contends with the hero image
+// on the early-bandwidth budget and pushes LCP past 5s. display:'swap'
+// (and CLS is already 0) means text still paints immediately in the
+// fallback and swaps in with no layout shift, so dropping the font
+// preloads is a pure LCP win.
 const poppins = Poppins({
   subsets: ['latin'],
   weight: ['300', '400', '500', '600'],
   style: ['normal', 'italic'],
   display: 'swap',
+  preload: false,
   variable: '--font-poppins',
 });
 
@@ -19,6 +27,7 @@ const unbounded = Unbounded({
   subsets: ['latin'],
   weight: ['400', '700', '900'],
   display: 'swap',
+  preload: false,
   variable: '--font-unbounded',
 });
 
