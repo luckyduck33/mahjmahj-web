@@ -1,0 +1,44 @@
+name: Post-deploy verification
+
+# Smoke-tests the live site right after every production deploy: homepage
+# 200, sitemap reachable + URL count not collapsed (>10% drop vs last
+# deploy), 3 sampled pages 200 (no stray redirects), canonical matches,
+# JSON-LD parses. A failure is recorded as a Command Center Inbox item AND
+# fails this check run so the commit is visibly flagged.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: post-deploy-verify-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      # Give Vercel time to finish the production deploy before we test the
+      # live site.
+      - name: Wait for Vercel production deploy
+        run: sleep 90
+      - name: Trigger post-deploy verification
+        env:
+          DASHBOARD_URL: ${{ secrets.DASHBOARD_URL }}
+          INGEST_TOKEN: ${{ secrets.INGEST_TOKEN }}
+        run: |
+          set -euo pipefail
+          code=$(curl -sS -o /tmp/dv.json -w '%{http_code}' \
+            -X POST "$DASHBOARD_URL/api/deploy-verify" \
+            -H 'content-type: application/json' \
+            -H "x-ingest-token: $INGEST_TOKEN" \
+            -d '{"site":"MAHJ"}')
+          echo "HTTP $code"
+          cat /tmp/dv.json; echo
+          test "$code" = "200" || { echo "::error::deploy-verify endpoint returned $code"; exit 1; }
+          if [ "$(jq -r '.ok' /tmp/dv.json)" = "false" ]; then
+            echo "::error::Deploy verification FAILED: $(jq -r '(.failures // []) | join("; ")' /tmp/dv.json)"
+            exit 1
+          fi
+          echo "Deploy verification passed (or skipped if site disabled)."
