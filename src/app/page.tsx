@@ -37,6 +37,13 @@ export default async function HomePage() {
 
   return (
     <>
+      {/* The hero is a CSS background-image (.hero in globals.css). CSS
+          backgrounds are invisible to the preload scanner — the browser
+          can't discover /hero.jpg until it has downloaded and parsed the
+          CSS, serializing HTML → CSS → LCP image. This preload (hoisted to
+          <head> by the App Router, homepage-only so no waste elsewhere)
+          starts the LCP image in parallel with the stylesheet. */}
+      <link rel="preload" as="image" href="/hero.jpg" fetchPriority="high" />
       {/* Hero — full-bleed illustration background */}
       <section className="hero">
         <div className="hero-image-overlay" />
