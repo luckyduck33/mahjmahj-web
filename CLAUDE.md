@@ -51,7 +51,7 @@ Public-facing MAHJ MAHJ website. Pulls events + news from `https://api.mahjmahj.
 
 ## Hard rules
 
-- Always say **"Hong Kong Mahjong"** — never "Chinese Mahjong" — in any copy, schema, or page metadata.
+- The website auto-sanitizes "Chinese Mahjong" → "Hong Kong Mahjong" at the API rendering layer (`src/lib/api.ts` getEvents/getNews response handlers). Use contextually appropriate mahjong terminology in copy; the runtime sanitizer enforces brand consistency across event titles, descriptions, organizer, venue, and summary fields.
 - The city manifest at `src/data/cities.ts` is the source of truth for which `/events/[city]` pages exist. Scraped events populate them but don't define them.
 - Do not touch `app.mahjmahj.co` from this repo — that's the Capacitor app, separate codebase, separate brand surface area.
 
@@ -65,7 +65,6 @@ Public-facing MAHJ MAHJ website. Pulls events + news from `https://api.mahjmahj.
 - `src/lib/schema.ts` — JSON-LD builders (event, faq, breadcrumb, etc.).
 
 ## DO NOT
-- Do NOT use "Chinese Mahjong" — always "Hong Kong Mahjong". (Enforced by a PreToolUse hook.)
 - Do NOT touch `app.mahjmahj.co` from this repo — that's `mahj-mahj`.
 - Do NOT remove a city from `src/data/cities.ts` without verifying nothing links to it.
 - Do NOT commit `.env*` files or API keys.
