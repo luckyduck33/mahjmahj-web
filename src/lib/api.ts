@@ -1,5 +1,26 @@
 const API_BASE = 'https://api.mahjmahj.co';
 
+// Brand-rule sanitization: scraped event data occasionally carries
+// "Chinese Mahjong" (literal substring) in titles/descriptions. The
+// website MUST render "Hong Kong Mahjong" instead, including inside the
+// Event JSON-LD schema (the Capacitor app already does this at its own
+// rendering layer; the website did not until 2026-05-19, P1 trust audit).
+// Last-line defense — keep even after the api repo is fixed, so a future
+// scrape regression cannot leak through.
+const SANITIZE_FIELDS = ['title', 'description', 'organizer', 'venue', 'summary'] as const;
+const CHINESE_MJ = /\bchinese[\s-]+mahjong\b/gi;
+
+function sanitizeMahjong<T extends Record<string, unknown>>(obj: T): T {
+  const out: Record<string, unknown> = { ...obj };
+  for (const f of SANITIZE_FIELDS) {
+    const v = out[f];
+    if (typeof v === 'string' && CHINESE_MJ.test(v)) {
+      out[f] = v.replace(CHINESE_MJ, 'Hong Kong Mahjong');
+    }
+  }
+  return out as T;
+}
+
 export interface MahjEvent {
   id: string;
   title: string;
@@ -61,7 +82,10 @@ export async function getEvents(params?: {
     if (!res.ok) {
       return { events: [], total: 0, lastUpdated: new Date().toISOString() };
     }
-    return res.json();
+    const data = (await res.json()) as EventsResponse;
+    // Sanitize "Chinese Mahjong" → "Hong Kong Mahjong" across every event
+    // before any consumer (page render or JSON-LD builder) sees them.
+    return { ...data, events: (data.events || []).map((e) => sanitizeMahjong(e)) };
   } catch {
     return { events: [], total: 0, lastUpdated: new Date().toISOString() };
   }
@@ -81,7 +105,10 @@ export async function getNews(params?: {
     if (!res.ok) {
       return { news: [], total: 0, lastUpdated: new Date().toISOString() };
     }
-    return res.json();
+    const data = (await res.json()) as NewsResponse;
+    // News items can also carry the term in title/summary — sanitize on
+    // the way out, same as events.
+    return { ...data, news: (data.news || []).map((n) => sanitizeMahjong(n)) };
   } catch {
     return { news: [], total: 0, lastUpdated: new Date().toISOString() };
   }
