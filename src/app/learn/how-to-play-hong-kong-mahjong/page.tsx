@@ -60,11 +60,10 @@ export default function HowToPlayHongKongMahjongPage() {
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(articleSchema({
             url: URL,
-            title: TITLE,
+            headline: TITLE,
             description: DESCRIPTION,
             datePublished: '2026-05-20',
             dateModified: '2026-05-20',
-            authorName: 'MAHJ MAHJ Team',
           })),
         }}
       />

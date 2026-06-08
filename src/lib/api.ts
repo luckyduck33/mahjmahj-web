@@ -10,12 +10,16 @@ const API_BASE = 'https://api.mahjmahj.co';
 const SANITIZE_FIELDS = ['title', 'description', 'organizer', 'venue', 'summary'] as const;
 const CHINESE_MJ = /\bchinese[\s-]+mahjong\b/gi;
 
-function sanitizeMahjong<T extends Record<string, unknown>>(obj: T): T {
-  const out: Record<string, unknown> = { ...obj };
+function sanitizeMahjong<T extends object>(obj: T): T {
+  const out = { ...obj } as Record<string, unknown>;
   for (const f of SANITIZE_FIELDS) {
     const v = out[f];
-    if (typeof v === 'string' && CHINESE_MJ.test(v)) {
-      out[f] = v.replace(CHINESE_MJ, 'Hong Kong Mahjong');
+    if (typeof v === 'string') {
+      // Always replace (idempotent) rather than test()-then-replace: CHINESE_MJ
+      // is a /g regex, so .test() advances lastIndex and would skip matches in
+      // the next field. replace() resets lastIndex, so this is safe per field.
+      const replaced = v.replace(CHINESE_MJ, 'Hong Kong Mahjong');
+      if (replaced !== v) out[f] = replaced;
     }
   }
   return out as T;
