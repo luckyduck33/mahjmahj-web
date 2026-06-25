@@ -93,3 +93,25 @@ node ~/Desktop/CLAUDE/Operations/log-to-command-center.js \
 Add `--requires-review true` if Nidhi needs to look at it. Add `--monetization-related true` for affiliate/revenue/email work. Add `--seo-geo-related true` for indexing/schema/LLM-citation work. Run with `--help` for the full flag list.
 
 The Command Center is the source of truth for what Code, ChatGPT, Cowork, and Opus have shipped. Skip the log only for: typo fixes, README tweaks, work-in-progress commits that you'll roll up into a single later log.
+
+<!-- LUCKY:no-default-aesthetic v1 -->
+## Design: No Default Aesthetic
+
+The problem with the default AI look is **recognizability, not ugliness.** If a result could be identified as "made by an AI on the first try," it's not done. Distinctiveness is the deliverable. Full rule: `Operations/no-default-aesthetic.md`.
+
+**Don't default to these (both clusters — avoiding one by sliding into the other is not a fix):**
+- Purple/indigo gradients, gradient headline text, `from-X to-Y` buttons
+- `rounded-2xl` cards + soft shadows + three-up feature grid; Lucide icons in tinted squares
+- Inter doing every job; emoji section headers; glassmorphism; Tailwind default palette
+- Cream + serif + terracotta accent / near-black + one acid accent / broadsheet hairline rules
+- `01 / 02 / 03` numbering on content that isn't an actual sequence
+
+**Do this instead:**
+1. **Constraints before pixels** — lock palette (exact hex), type pairing, hard rules *before* generating. If a brief specifies a direction, follow it exactly.
+2. **No brief? Pin one** — name the subject, audience, and the page's single job; state it in one line before building.
+3. **Derive from the subject** — pull choices from this venture's own world. Ventures should not look like siblings.
+4. **Spend boldness in one place** — one signature element; keep everything around it quiet.
+5. **Self-check** — "would I produce this same result for an unrelated brief?" If yes, it's a default. Revise.
+
+**Escape hatch:** the recognizable look is fine *only when explicitly requested* (or for fast throwaways). Never default to it silently on client/venture work.
+<!-- /LUCKY:no-default-aesthetic v1 -->
