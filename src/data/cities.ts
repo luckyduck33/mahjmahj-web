@@ -812,6 +812,453 @@ export const cities: CityEntry[] = [
     ],
   },
 
+  // ─── Tier 2: July 2026 US expansion ───────────────────────────────────────
+  // Added 2026-07-01. Every city below showed live mahjong events on
+  // Eventbrite's public search at add time; intros describe what the scrape
+  // actually surfaced — no invented scene claims.
+  {
+    slug: 'cleveland',
+    name: 'Cleveland',
+    state: 'OH',
+    country: 'US',
+    tier: 2,
+    intro:
+      'Cleveland has one of the busiest emerging mahjong calendars in the Midwest — guided American Mahjong play and beginner lessons run at wine bars, coffee shops, and restaurants across the metro, from downtown to the East Side suburbs. Expect a mix of Mahjong 101 nights, open play with a glass of wine, and social mixers.',
+    faqs: [
+      {
+        question: 'Where can I play mahjong in Cleveland?',
+        answer:
+          'Wine bars, coffee shops, and restaurants across the Cleveland metro host guided play and open-play nights — recent listings include venues downtown and in the eastern suburbs like Beachwood and Shaker Heights. Check the events list above for current sessions.',
+      },
+      {
+        question: 'Are there beginner-friendly mahjong events in Cleveland?',
+        answer:
+          'Yes — Mahjong 101 lessons and "martinis and mahjong" style beginner nights appear regularly on the Cleveland calendar. Filter for Class / Lesson event types in the list above.',
+      },
+      {
+        question: 'What style of mahjong is played in Cleveland?',
+        answer:
+          'Most public events in Cleveland play American Mahjong (National Mah Jongg League card). Hong Kong Mahjong games exist but are more likely to be private or community-organized — if you host one, submit it to the events list.',
+      },
+    ],
+  },
+  {
+    slug: 'providence',
+    name: 'Providence',
+    state: 'RI',
+    country: 'US',
+    tier: 2,
+    intro:
+      'Providence punches far above its size for mahjong — bookshops, wine bars, and taverns across Rhode Island host learn-to-play sessions, guided play, and open-play meetups on a steady rotation. American Mahjong dominates the public calendar.',
+    faqs: [
+      {
+        question: 'Where can I play mahjong in Providence?',
+        answer:
+          'Recent listings cluster at bookshops, wine bars, and taverns in and around Providence, with events reaching Cranston, Warwick, and the East Bay. Check the events list above for current sessions.',
+      },
+      {
+        question: 'Are there beginner mahjong lessons in Providence?',
+        answer:
+          'Yes — learn-to-play and guided-play sessions are a staple of the Providence calendar. Filter for Class / Lesson event types above.',
+      },
+      {
+        question: 'What style of mahjong is played in Providence?',
+        answer:
+          'American Mahjong (NMJL card) is the style at most public Rhode Island events. If you run a Hong Kong, Taiwanese, or Riichi game locally, submit it to the events list.',
+      },
+    ],
+  },
+  {
+    slug: 'hartford',
+    name: 'Hartford',
+    state: 'CT',
+    country: 'US',
+    tier: 2,
+    intro:
+      'Greater Hartford has an active American Mah Jongg scene centered on West Hartford — bookshops run open-studio sessions and multi-week beginner and intermediate courses, with restaurant meetups and occasional tournaments rounding out the calendar.',
+    faqs: [
+      {
+        question: 'Where can I play mahjong in Hartford?',
+        answer:
+          'West Hartford is the hub — a local bookshop runs recurring Mah Jongg open studio sessions and structured courses, and restaurant meetups appear across the metro. Check the events list above for current sessions.',
+      },
+      {
+        question: 'Are there structured mahjong courses in Hartford?',
+        answer:
+          'Yes — Greater Hartford is one of the few metros where multi-level courses (101 beginner, 102 intermediate) run on a regular schedule. Filter for Class / Lesson event types above.',
+      },
+      {
+        question: 'What style of mahjong is played in Hartford?',
+        answer:
+          'American Mah Jongg (NMJL card) dominates the public calendar in Connecticut. Other styles are likely played privately — submit your game to the events list if you host one.',
+      },
+    ],
+  },
+  {
+    slug: 'milwaukee',
+    name: 'Milwaukee',
+    state: 'WI',
+    country: 'US',
+    tier: 2,
+    intro:
+      'Milwaukee has a fast-growing guided-play scene — local mahjong instructors run 101 classes and guided sessions at markets, boutiques, and cafés around the metro. Most public events are beginner-welcoming American Mahjong.',
+    faqs: [
+      {
+        question: 'Where can I play mahjong in Milwaukee?',
+        answer:
+          'Markets, boutiques, and cafés around Milwaukee host recurring classes and guided play, often organized by dedicated local mahjong instructors. Check the events list above for current sessions.',
+      },
+      {
+        question: 'Are there beginner mahjong classes in Milwaukee?',
+        answer:
+          'Yes — Mahjong 101 classes are the backbone of the Milwaukee calendar. Filter for Class / Lesson event types above.',
+      },
+      {
+        question: 'What style of mahjong is played in Milwaukee?',
+        answer:
+          'American Mahjong (NMJL card) is the style at most public Milwaukee events. Submit other-style games to the events list if you host them.',
+      },
+    ],
+  },
+  {
+    slug: 'richmond-va',
+    name: 'Richmond VA',
+    state: 'VA',
+    country: 'US',
+    tier: 2,
+    intro:
+      'Richmond and central Virginia have a lively social mahjong circuit — breweries, wineries, and event spaces host Mahjong 101 nights and guided play, with dedicated local organizers running sessions from Short Pump to the countryside wineries.',
+    faqs: [
+      {
+        question: 'Where can I play mahjong in Richmond?',
+        answer:
+          'Breweries, wineries, and event spaces across the Richmond area host recurring guided play and beginner nights — recent listings run from Glen Allen and Short Pump out to Virginia wine country. Check the events list above.',
+      },
+      {
+        question: 'Are there beginner mahjong lessons in Richmond?',
+        answer:
+          'Yes — Mahjong 101 sessions led by local organizers appear regularly. Filter for Class / Lesson event types above.',
+      },
+      {
+        question: 'What style of mahjong is played in Richmond?',
+        answer:
+          'American Mahjong (NMJL card) is the style at most public central-Virginia events. If you host Hong Kong, Taiwanese, or Riichi games, submit them to the events list.',
+      },
+    ],
+  },
+  {
+    slug: 'fort-lauderdale',
+    name: 'Fort Lauderdale',
+    state: 'FL',
+    country: 'US',
+    tier: 2,
+    intro:
+      "Broward County sits in the middle of South Florida's dense mahjong corridor — food halls, art centers, and restaurants from Hollywood up to Boca host themed mahjong nights, beginner tables, and open play, often run by dedicated local mahjong hosts.",
+    faqs: [
+      {
+        question: 'Where can I play mahjong in Fort Lauderdale?',
+        answer:
+          'Food halls, art centers, and restaurants across Broward host recurring mahjong nights — recent listings span Hollywood, Fort Lauderdale, and the Boca Raton edge of the county. Check the events list above for current sessions.',
+      },
+      {
+        question: 'Are there beginner-friendly mahjong events in Fort Lauderdale?',
+        answer:
+          'Yes — several venues run dedicated beginner tables alongside open play, and local hosts offer guided sessions. Filter for Class / Lesson or Open Play event types above.',
+      },
+      {
+        question: 'What style of mahjong is played in Fort Lauderdale?',
+        answer:
+          "American Mahjong (NMJL card) dominates South Florida's public calendar, consistent with the region's deep Mah Jongg tradition. Other styles are played privately — submit yours to the events list.",
+      },
+    ],
+  },
+  {
+    slug: 'cincinnati',
+    name: 'Cincinnati',
+    state: 'OH',
+    country: 'US',
+    tier: 2,
+    intro:
+      "Cincinnati's mahjong calendar runs through its neighborhood boutiques, breweries, and restaurants — local instructors teach free and paid 101/201 classes and host guided play from downtown Loveland to Mason. A beginner-friendly, social-first scene.",
+    faqs: [
+      {
+        question: 'Where can I play mahjong in Cincinnati?',
+        answer:
+          'Boutiques, breweries, and restaurants across the metro — including Loveland, Mason, and the northern suburbs — host recurring classes and guided play. Check the events list above for current sessions.',
+      },
+      {
+        question: 'Are there free mahjong classes in Cincinnati?',
+        answer:
+          'Free Mahjong 101 classes have appeared at local breweries, alongside paid guided-play sessions with local instructors. Filter for Class / Lesson event types above.',
+      },
+      {
+        question: 'What style of mahjong is played in Cincinnati?',
+        answer:
+          'American Mahjong (NMJL card) is the style at most public Cincinnati events. Submit other-style games to the events list if you host them.',
+      },
+    ],
+  },
+  {
+    slug: 'orlando',
+    name: 'Orlando',
+    state: 'FL',
+    country: 'US',
+    tier: 2,
+    intro:
+      "Orlando's mahjong scene lives in its wine markets, boutiques, and cafés — \"Mahj Mondays\" style recurring open play and wine-and-tiles evenings run across the metro from Winter Park to the tourist corridor.",
+    faqs: [
+      {
+        question: 'Where can I play mahjong in Orlando?',
+        answer:
+          'Wine markets, boutiques, and cafés across Orlando and Winter Park host recurring open play and social evenings. Check the events list above for current sessions.',
+      },
+      {
+        question: 'Are there beginner-friendly mahjong events in Orlando?',
+        answer:
+          'Yes — open-play evenings are generally beginner-welcoming, and guided sessions appear regularly. Filter for Class / Lesson or Open Play event types above.',
+      },
+      {
+        question: 'What style of mahjong is played in Orlando?',
+        answer:
+          'American Mahjong (NMJL card) is the style at most public Orlando events. If you host Hong Kong, Taiwanese, or Riichi games, submit them to the events list.',
+      },
+    ],
+  },
+  {
+    slug: 'tampa',
+    name: 'Tampa',
+    state: 'FL',
+    country: 'US',
+    tier: 2,
+    intro:
+      "Tampa Bay's mahjong calendar spans both sides of the bay — open play with local instructors at landmark venues like Oxford Exchange, plus winery sessions in Clearwater and social nights across St. Petersburg.",
+    faqs: [
+      {
+        question: 'Where can I play mahjong in Tampa?',
+        answer:
+          'Recent listings include open play at Tampa venues and winery sessions in Clearwater, with events on both sides of the bay. Check the events list above for current sessions.',
+      },
+      {
+        question: 'Are there beginner-friendly mahjong events in Tampa?',
+        answer:
+          'Yes — instructor-led open play is common and beginner-welcoming. Filter for Class / Lesson or Open Play event types above.',
+      },
+      {
+        question: 'What style of mahjong is played in Tampa?',
+        answer:
+          'American Mahjong (NMJL card) is the style at most public Tampa Bay events. Submit other-style games to the events list if you host them.',
+      },
+    ],
+  },
+  {
+    slug: 'kansas-city',
+    name: 'Kansas City',
+    state: 'MO',
+    country: 'US',
+    tier: 2,
+    intro:
+      "Kansas City's mahjong scene mixes social play with philanthropy — tiles-and-tea afternoons at event spaces, Mahjong 101 and 102 classes at local wineries, and charity tournaments anchor the calendar on both sides of the state line.",
+    faqs: [
+      {
+        question: 'Where can I play mahjong in Kansas City?',
+        answer:
+          'Event spaces, wineries, and social venues across the metro — including Overland Park and the Kansas-side suburbs — host classes and social play. Check the events list above for current sessions.',
+      },
+      {
+        question: 'Are there mahjong classes in Kansas City?',
+        answer:
+          'Yes — structured 101 and 102 classes run at local venues. Filter for Class / Lesson event types above.',
+      },
+      {
+        question: 'What style of mahjong is played in Kansas City?',
+        answer:
+          'American Mahjong (NMJL card) is the style at most public Kansas City events, including the charity tournament circuit. Submit other-style games to the events list.',
+      },
+    ],
+  },
+  {
+    slug: 'baltimore',
+    name: 'Baltimore',
+    state: 'MD',
+    country: 'US',
+    tier: 2,
+    intro:
+      "Baltimore's mahjong calendar runs from hotel social nights to game-café meetups, with a strong charity-tournament tradition and a deep-rooted Mah Jongg community in Pikesville and Owings Mills.",
+    faqs: [
+      {
+        question: 'Where can I play mahjong in Baltimore?',
+        answer:
+          'Hotels, game cafés, and community venues across the metro host recurring meetups — recent listings include weekly game-café sessions and hotel mahjong nights. Check the events list above.',
+      },
+      {
+        question: 'Are there mahjong tournaments in Baltimore?',
+        answer:
+          "Yes — charity Mah Jongg tournaments are a Baltimore tradition, often benefiting causes like Alzheimer's research. Watch the events list for tournament dates.",
+      },
+      {
+        question: 'What style of mahjong is played in Baltimore?',
+        answer:
+          "American Mah Jongg (NMJL card) dominates, reflecting the metro's long-standing Mah Jongg tradition in the Jewish community. Submit other-style games to the events list if you host them.",
+      },
+    ],
+  },
+  {
+    slug: 'buffalo',
+    name: 'Buffalo',
+    state: 'NY',
+    country: 'US',
+    tier: 2,
+    intro:
+      "Buffalo has a small but real mahjong presence — learn-to-play sessions at wine bars and open-play meetups downtown, with the bonus of Toronto's large mahjong scene about 100 miles up the QEW for players willing to travel.",
+    faqs: [
+      {
+        question: 'Where can I play mahjong in Buffalo?',
+        answer:
+          'Wine bars and community venues in and around Buffalo host learn-to-play and open-play sessions. Check the events list above for current dates.',
+      },
+      {
+        question: 'Are there beginner mahjong lessons in Buffalo?',
+        answer:
+          'Yes — learn-to-play sessions appear regularly at local venues. Filter for Class / Lesson event types above.',
+      },
+      {
+        question: 'What style of mahjong is played in Buffalo?',
+        answer:
+          'American Mahjong (NMJL card) is the style at most public Buffalo events. Toronto, within day-trip range, adds Hong Kong and Riichi options for the committed.',
+      },
+    ],
+  },
+  {
+    slug: 'fort-worth',
+    name: 'Fort Worth',
+    state: 'TX',
+    country: 'US',
+    tier: 2,
+    intro:
+      "Fort Worth has its own growing mahjong-and-mingle circuit — hotel socials, vineyard tasting-room sessions, and boutique events on the west side of the DFW metroplex, distinct from (but connected to) Dallas's larger scene.",
+    faqs: [
+      {
+        question: 'Where can I play mahjong in Fort Worth?',
+        answer:
+          'Hotels, tasting rooms, and boutique venues on the western side of DFW host mahjong socials. Dallas-side events are listed separately on our Dallas page. Check the events list above.',
+      },
+      {
+        question: 'Are there beginner-friendly mahjong events in Fort Worth?',
+        answer:
+          'Yes — mingle-style socials are generally beginner-tolerant, and guided sessions appear periodically. Filter for Class / Lesson event types above.',
+      },
+      {
+        question: 'What style of mahjong is played in Fort Worth?',
+        answer:
+          'American Mahjong (NMJL card) is the style at most public Fort Worth events. Submit other-style games to the events list if you host them.',
+      },
+    ],
+  },
+  {
+    slug: 'louisville',
+    name: 'Louisville',
+    state: 'KY',
+    country: 'US',
+    tier: 2,
+    intro:
+      "Louisville's mahjong events surface at boutiques and private clubs — think tiki-and-tiles socials and boutique open play — a small calendar, but a real one, and growing.",
+    faqs: [
+      {
+        question: 'Where can I play mahjong in Louisville?',
+        answer:
+          'Boutiques and social clubs around Louisville host mahjong events — recent listings include boutique open play and themed socials. Check the events list above.',
+      },
+      {
+        question: 'Are there beginner-friendly mahjong events in Louisville?',
+        answer:
+          'Social-format events are usually beginner-tolerant; dedicated lessons appear less often. Filter for Class / Lesson event types above when they surface.',
+      },
+      {
+        question: 'What style of mahjong is played in Louisville?',
+        answer:
+          'American Mahjong (NMJL card) is the style at most public Louisville events. Submit other-style games to the events list if you host them.',
+      },
+    ],
+  },
+  {
+    slug: 'san-antonio',
+    name: 'San Antonio',
+    state: 'TX',
+    country: 'US',
+    tier: 2,
+    intro:
+      "San Antonio's public mahjong calendar is early-stage — Mahjong 101 events appear at professional and social venues around the city, and the scene is growing alongside the statewide Texas mahjong boom.",
+    faqs: [
+      {
+        question: 'Where can I play mahjong in San Antonio?',
+        answer:
+          "Mahjong 101 sessions and social events appear at venues around the city — the calendar is smaller than Austin's or Dallas's but active. Check the events list above.",
+      },
+      {
+        question: 'Are there beginner mahjong classes in San Antonio?',
+        answer:
+          'Yes — 101-style intro events are the most common listing type here. Filter for Class / Lesson event types above.',
+      },
+      {
+        question: 'What style of mahjong is played in San Antonio?',
+        answer:
+          'American Mahjong (NMJL card) is the style at most public San Antonio events. Submit other-style games to the events list if you host them.',
+      },
+    ],
+  },
+  {
+    slug: 'virginia-beach',
+    name: 'Virginia Beach',
+    state: 'VA',
+    country: 'US',
+    tier: 2,
+    intro:
+      "Hampton Roads — Virginia Beach, Norfolk, and Chesapeake — has an emerging mahjong calendar anchored by arts venues and community fundraisers, with the region's military and retiree communities a natural fit for American Mah Jongg.",
+    faqs: [
+      {
+        question: 'Where can I play mahjong in Virginia Beach?',
+        answer:
+          'Arts centers and community venues across Hampton Roads — including Norfolk — host mahjong socials and fundraiser events. Check the events list above for current dates.',
+      },
+      {
+        question: 'Are there beginner-friendly mahjong events in Virginia Beach?',
+        answer:
+          'Social and fundraiser formats are usually beginner-tolerant; dedicated lessons appear periodically. Filter for Class / Lesson event types above.',
+      },
+      {
+        question: 'What style of mahjong is played in Virginia Beach?',
+        answer:
+          'American Mah Jongg (NMJL card) is the style at most public Hampton Roads events. Submit other-style games to the events list if you host them.',
+      },
+    ],
+  },
+  {
+    slug: 'oklahoma-city',
+    name: 'Oklahoma City',
+    state: 'OK',
+    country: 'US',
+    tier: 2,
+    intro:
+      "Oklahoma City's mahjong scene is young but organized — social play series and summer leagues run at sports bars and social venues, giving OKC a recurring calendar rather than one-off events.",
+    faqs: [
+      {
+        question: 'Where can I play mahjong in Oklahoma City?',
+        answer:
+          'Sports bars and social venues host recurring play series — recent listings include a summer social-play league. Check the events list above for current sessions.',
+      },
+      {
+        question: 'Are there beginner-friendly mahjong events in Oklahoma City?',
+        answer:
+          'League and social formats here are built for regulars and newcomers alike. Filter for Class / Lesson event types above when lessons surface.',
+      },
+      {
+        question: 'What style of mahjong is played in Oklahoma City?',
+        answer:
+          'American Mahjong (NMJL card) is the style at most public OKC events. Submit other-style games to the events list if you host them.',
+      },
+    ],
+  },
+
   // ─── Tier 3: International beachhead ──────────────────────────────────────
   {
     slug: 'london',
@@ -836,6 +1283,113 @@ export const cities: CityEntry[] = [
         question: 'Are there mahjong tournaments in London?',
         answer:
           "Yes — the British Mahjong Association runs Riichi tournaments, and Hong Kong Mahjong tournaments happen a few times a year through Chinese cultural associations. American Mahjong tournaments are rarer but occasionally happen at JCC events.",
+      },
+    ],
+  },
+  // Added 2026-07-01 (Fable run): Paris (mandated pilot), Toronto, Sydney,
+  // Melbourne — each passed the evidence bar (recurring organizers + live
+  // event listings, documented in the run report).
+  {
+    slug: 'paris',
+    name: 'Paris',
+    state: 'FR',
+    country: 'FR',
+    tier: 3,
+    intro:
+      "Paris is the organized-club capital of European mahjong — the Fédération Française de Mahjong is headquartered here, and long-running associations like Magic Mahjong Social Pung (founded 2005) and Tri Nitro Tiles (France's first Riichi-only club) hold regular sessions and host tournaments on the European circuit. Competition rules (MCR) and Riichi dominate; casual social play is growing.",
+    faqs: [
+      {
+        question: 'Where can I play mahjong in Paris?',
+        answer:
+          'Established clubs run regular sessions — Magic Mahjong Social Pung plays MCR and Riichi, and Tri Nitro Tiles holds Riichi sessions at the Maison des Associations in the 8th arrondissement. The Fédération Française de Mahjong maintains a club directory covering the Île-de-France region.',
+      },
+      {
+        question: 'What style of mahjong is played in Paris?',
+        answer:
+          'French clubs mostly play MCR (Mahjong Competition Rules) and Riichi (Japanese) Mahjong — Paris hosts EMA-ranked tournaments in both. Hong Kong Mahjong is played socially in the Asian community; American Mah Jongg is rare.',
+      },
+      {
+        question: 'Are there mahjong tournaments in Paris?',
+        answer:
+          'Yes — Paris clubs organize recurring tournaments, including Riichi events on the European Mahjong Association calendar. Check the events list above and the FFMJ calendar for dates.',
+      },
+    ],
+  },
+  {
+    slug: 'toronto',
+    name: 'Toronto',
+    state: 'ON',
+    country: 'CA',
+    tier: 3,
+    intro:
+      "Toronto has one of North America's largest and most style-diverse mahjong scenes — a weekly downtown club night draws dozens of players to Spadina Avenue, the Toronto Riichi Club runs monthly in-person games across the GTA, and studios and cafés host game nights and tile-crafting workshops.",
+    faqs: [
+      {
+        question: 'Where can I play mahjong in Toronto?',
+        answer:
+          'A large weekly club night runs on Spadina Avenue downtown on a pay-what-you-can basis, the Toronto Riichi Club coordinates monthly in-person games across Toronto, Peel, and York, and Meetup groups play American Mah Jongg. Check the events list above for current sessions.',
+      },
+      {
+        question: 'What style of mahjong is played in Toronto?',
+        answer:
+          'All the major styles have a real presence: Hong Kong Mahjong in the Chinese community and at club nights, Riichi through a dedicated club, and American Mah Jongg through Meetup groups.',
+      },
+      {
+        question: 'Are there beginner-friendly mahjong events in Toronto?',
+        answer:
+          'Yes — the big weekly club night welcomes newcomers, and studios around the city run beginner game nights and workshops. Filter for Class / Lesson event types above.',
+      },
+    ],
+  },
+  {
+    slug: 'sydney',
+    name: 'Sydney',
+    state: 'NSW',
+    country: 'AU',
+    tier: 3,
+    intro:
+      'Sydney has a fast-growing social mahjong circuit — dedicated social clubs run recurring nights at bars and restaurants in the CBD and Haymarket, pubs host Mahjong Mondays, and Hong Kong-style sessions run monthly at city venues.',
+    faqs: [
+      {
+        question: 'Where can I play mahjong in Sydney?',
+        answer:
+          'Recurring social nights run at bars and dining rooms in the CBD and Haymarket, with pub sessions like Mahjong Mondays in the inner west. Check the events list above for current dates.',
+      },
+      {
+        question: 'What style of mahjong is played in Sydney?',
+        answer:
+          'Hong Kong Mahjong is the anchor style at Sydney social nights, and the city\'s Cantonese heritage community plays it widely. Riichi and other styles appear at board-game meetups.',
+      },
+      {
+        question: 'Are there beginner-friendly mahjong events in Sydney?',
+        answer:
+          'Yes — the social-club format is built around teaching newcomers, with hosted tables and included drinks at most ticketed nights. Filter for Class / Lesson event types above.',
+      },
+    ],
+  },
+  {
+    slug: 'melbourne',
+    name: 'Melbourne',
+    state: 'VIC',
+    country: 'AU',
+    tier: 3,
+    intro:
+      'Melbourne mixes grassroots and institutional mahjong like few cities — a long-running Meetup group plays Cantonese and Japanese styles at a dedicated mahjong space on Franklin Street, public libraries across the metro run free lessons and monthly meetups, and social clubs host bar nights in Ascot Vale and the CBD.',
+    faqs: [
+      {
+        question: 'Where can I play mahjong in Melbourne?',
+        answer:
+          'The Melbourne Mahjong Meetup Group plays regularly at a dedicated space on Franklin Street in the CBD, several public libraries run free lessons and monthly meetups, and social clubs host bar nights. Check the events list above for current sessions.',
+      },
+      {
+        question: 'Are there free mahjong lessons in Melbourne?',
+        answer:
+          'Yes — Melbourne is unusual in that public libraries across the metro run free mahjong lessons and learn-to-play sessions. Filter for Class / Lesson event types above.',
+      },
+      {
+        question: 'What style of mahjong is played in Melbourne?',
+        answer:
+          'Cantonese (Hong Kong) and Riichi (Japanese) styles are both played at the main Meetup group, and library sessions typically teach simplified or Hong Kong rules. All levels are welcome at most sessions.',
       },
     ],
   },
