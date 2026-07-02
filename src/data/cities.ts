@@ -823,7 +823,7 @@ export const cities: CityEntry[] = [
     country: 'US',
     tier: 2,
     intro:
-      'Cleveland has one of the busiest emerging mahjong calendars in the Midwest — guided American Mahjong play and beginner lessons run at wine bars, coffee shops, and restaurants across the metro, from downtown to the East Side suburbs. Expect a mix of Mahjong 101 nights, open play with a glass of wine, and social mixers.',
+      'Cleveland has one of the busiest public mahjong calendars we track in the Midwest — guided American Mahjong play and beginner lessons run at wine bars, coffee shops, and restaurants across the metro, from downtown to the East Side suburbs. Expect a mix of Mahjong 101 nights, open play with a glass of wine, and social mixers.',
     faqs: [
       {
         question: 'Where can I play mahjong in Cleveland?',
@@ -849,7 +849,7 @@ export const cities: CityEntry[] = [
     country: 'US',
     tier: 2,
     intro:
-      'Providence punches far above its size for mahjong — bookshops, wine bars, and taverns across Rhode Island host learn-to-play sessions, guided play, and open-play meetups on a steady rotation. American Mahjong dominates the public calendar.',
+      'Providence has an outsized public mahjong calendar for a city its size — bookshops, wine bars, and taverns across Rhode Island host learn-to-play sessions, guided play, and open-play meetups on a steady rotation. American Mahjong dominates the public calendar.',
     faqs: [
       {
         question: 'Where can I play mahjong in Providence?',
@@ -1031,7 +1031,7 @@ export const cities: CityEntry[] = [
     country: 'US',
     tier: 2,
     intro:
-      "Tampa Bay's mahjong calendar spans both sides of the bay — open play with local instructors at landmark venues like Oxford Exchange, plus winery sessions in Clearwater and social nights across St. Petersburg.",
+      "Tampa Bay's mahjong calendar spans both sides of the bay — recent listings have included instructor-led open play at venues like Oxford Exchange, winery sessions in Clearwater, and social nights across St. Petersburg.",
     faqs: [
       {
         question: 'Where can I play mahjong in Tampa?',
@@ -1057,7 +1057,7 @@ export const cities: CityEntry[] = [
     country: 'US',
     tier: 2,
     intro:
-      "Kansas City's mahjong scene mixes social play with philanthropy — tiles-and-tea afternoons at event spaces, Mahjong 101 and 102 classes at local wineries, and charity tournaments anchor the calendar on both sides of the state line.",
+      "Kansas City's recent mahjong listings mix social play with philanthropy — tiles-and-tea afternoons at event spaces, Mahjong 101 and 102 classes at local wineries, and charity tournaments on both sides of the state line.",
     faqs: [
       {
         question: 'Where can I play mahjong in Kansas City?',
@@ -1083,7 +1083,7 @@ export const cities: CityEntry[] = [
     country: 'US',
     tier: 2,
     intro:
-      "Baltimore's mahjong calendar runs from hotel social nights to game-café meetups, with a strong charity-tournament tradition and a deep-rooted Mah Jongg community in Pikesville and Owings Mills.",
+      "Baltimore's mahjong calendar runs from hotel social nights to game-café meetups, with recent listings including charity tournaments and community games around Pikesville and Owings Mills.",
     faqs: [
       {
         question: 'Where can I play mahjong in Baltimore?',
@@ -1093,12 +1093,12 @@ export const cities: CityEntry[] = [
       {
         question: 'Are there mahjong tournaments in Baltimore?',
         answer:
-          "Yes — charity Mah Jongg tournaments are a Baltimore tradition, often benefiting causes like Alzheimer's research. Watch the events list for tournament dates.",
+          "Yes — recent listings have included charity Mah Jongg tournaments, such as one benefiting Alzheimer's research. Watch the events list for tournament dates.",
       },
       {
         question: 'What style of mahjong is played in Baltimore?',
         answer:
-          "American Mah Jongg (NMJL card) dominates, reflecting the metro's long-standing Mah Jongg tradition in the Jewish community. Submit other-style games to the events list if you host them.",
+          "American Mah Jongg (NMJL card) dominates Baltimore's public listings. Submit other-style games to the events list if you host them.",
       },
     ],
   },
@@ -1161,7 +1161,7 @@ export const cities: CityEntry[] = [
     country: 'US',
     tier: 2,
     intro:
-      "Louisville's mahjong events surface at boutiques and private clubs — think tiki-and-tiles socials and boutique open play — a small calendar, but a real one, and growing.",
+      "Louisville's mahjong events surface at boutiques and private clubs — think tiki-and-tiles socials and boutique open play — a small calendar, but a real one.",
     faqs: [
       {
         question: 'Where can I play mahjong in Louisville?',
@@ -1239,7 +1239,7 @@ export const cities: CityEntry[] = [
     country: 'US',
     tier: 2,
     intro:
-      "Oklahoma City's mahjong scene is young but organized — social play series and summer leagues run at sports bars and social venues, giving OKC a recurring calendar rather than one-off events.",
+      "Oklahoma City's public mahjong calendar is young but structured — social play series and summer leagues run at sports bars and social venues, giving OKC a recurring calendar rather than one-off events.",
     faqs: [
       {
         question: 'Where can I play mahjong in Oklahoma City?',
@@ -1322,7 +1322,7 @@ export const cities: CityEntry[] = [
     country: 'CA',
     tier: 3,
     intro:
-      "Toronto has one of North America's largest and most style-diverse mahjong scenes — a weekly downtown club night draws dozens of players to Spadina Avenue, the Toronto Riichi Club runs monthly in-person games across the GTA, and studios and cafés host game nights and tile-crafting workshops.",
+      "Toronto has one of the larger and most style-diverse mahjong scenes we track — a weekly downtown club night draws dozens of players to Spadina Avenue, the Toronto Riichi Club runs monthly in-person games across the GTA, and studios and cafés host game nights and tile-crafting workshops.",
     faqs: [
       {
         question: 'Where can I play mahjong in Toronto?',
@@ -1348,7 +1348,7 @@ export const cities: CityEntry[] = [
     country: 'AU',
     tier: 3,
     intro:
-      'Sydney has a fast-growing social mahjong circuit — dedicated social clubs run recurring nights at bars and restaurants in the CBD and Haymarket, pubs host Mahjong Mondays, and Hong Kong-style sessions run monthly at city venues.',
+      'Sydney has a busy social mahjong circuit — dedicated social clubs run recurring nights at bars and restaurants in the CBD and Haymarket, pubs host Mahjong Mondays, and Hong Kong-style sessions run monthly at city venues.',
     faqs: [
       {
         question: 'Where can I play mahjong in Sydney?',
@@ -1374,7 +1374,7 @@ export const cities: CityEntry[] = [
     country: 'AU',
     tier: 3,
     intro:
-      'Melbourne mixes grassroots and institutional mahjong like few cities — a long-running Meetup group plays Cantonese and Japanese styles at a dedicated mahjong space on Franklin Street, public libraries across the metro run free lessons and monthly meetups, and social clubs host bar nights in Ascot Vale and the CBD.',
+      'Melbourne mixes grassroots and institutional mahjong in a way few of our cities do — a long-running Meetup group plays Cantonese and Japanese styles at a dedicated mahjong space on Franklin Street, public libraries across the metro run free lessons and monthly meetups, and social clubs host bar nights in Ascot Vale and the CBD.',
     faqs: [
       {
         question: 'Where can I play mahjong in Melbourne?',
