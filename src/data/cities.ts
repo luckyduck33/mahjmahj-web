@@ -1259,6 +1259,33 @@ export const cities: CityEntry[] = [
     ],
   },
 
+  {
+    slug: 'birmingham',
+    name: 'Birmingham',
+    state: 'AL',
+    country: 'US',
+    tier: 2,
+    intro:
+      "Birmingham's public mahjong calendar is just getting started — recent listings include social mahjong-and-mocktails events at local venues, and the city's active social scene is a natural fit for more.",
+    faqs: [
+      {
+        question: 'Where can I play mahjong in Birmingham?',
+        answer:
+          'Public listings are still sparse — recent ones include social events at local beverage venues. Check the events list above, and if you run a game in Birmingham, submit it so players can find you.',
+      },
+      {
+        question: 'Are there beginner-friendly mahjong events in Birmingham?',
+        answer:
+          'Social-format events are usually beginner-tolerant. Filter for Class / Lesson event types above when lessons surface.',
+      },
+      {
+        question: 'What style of mahjong is played in Birmingham?',
+        answer:
+          'Too few public listings to say definitively — American Mahjong (NMJL card) dominates the broader Southeast. If you host any style locally, submit it to the events list.',
+      },
+    ],
+  },
+
   // ─── Tier 3: International beachhead ──────────────────────────────────────
   {
     slug: 'london',
