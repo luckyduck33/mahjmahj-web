@@ -4,6 +4,7 @@ import { getEvents, getCitySlug, getCityFromSlug } from '@/lib/api';
 import { eventSchema, breadcrumbSchema, faqSchema } from '@/lib/schema';
 import { JsonLd } from '@/components/JsonLd';
 import { cities, getCityBySlug } from '@/data/cities';
+import { getRecurringGames } from '@/data/recurring-games';
 import type { Metadata } from 'next';
 
 interface Props {
@@ -227,6 +228,45 @@ export default async function CityEventsPage({ params }: Props) {
                 <Link href="/events" className="event-cta">Browse all cities</Link>
               </div>
             )
+          )}
+
+          {/* Recurring club games — the clubs' OWN published schedules, not
+              MAHJ MAHJ listings. Kept visually distinct from event cards
+              (quiet bordered rows, per-entry source + verified date) and
+              always labeled as club-published. Data: src/data/recurring-games.ts */}
+          {getRecurringGames(slug).length > 0 && (
+            <section style={{ marginTop: '3rem' }}>
+              <h3 className="club-section-label">
+                <span className="club-section-eyebrow">Club-published schedules</span>
+                Recurring Club Games
+              </h3>
+              <p style={{ fontSize: '0.85rem', color: 'var(--stone)', margin: '0.75rem 0 1.25rem', maxWidth: '48rem', lineHeight: 1.6 }}>
+                Standing sessions published by {cityName} clubs on their own sites — not MAHJ MAHJ
+                listings. Schedules change; confirm with the club before you go.
+              </p>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+                {getRecurringGames(slug).map((g, i) => (
+                  <div key={i} className="club-schedule-row">
+                    <div style={{ display: 'flex', justifyContent: 'space-between', gap: '1rem', flexWrap: 'wrap', alignItems: 'baseline' }}>
+                      <h4 style={{ fontSize: '1rem', color: 'var(--walnut)', fontWeight: 600, margin: 0 }}>{g.organizer}</h4>
+                      <span style={{ fontSize: '0.72rem', color: 'var(--dust)' }}>{g.style}</span>
+                    </div>
+                    <p style={{ fontSize: '0.9rem', color: 'var(--walnut)', margin: '0.35rem 0 0' }}>{g.schedule}</p>
+                    <p style={{ fontSize: '0.85rem', color: 'var(--stone)', margin: '0.2rem 0 0' }}>{g.venue}</p>
+                    {g.note && (
+                      <p style={{ fontSize: '0.8rem', color: 'var(--stone)', margin: '0.35rem 0 0' }}>{g.note}</p>
+                    )}
+                    <p style={{ fontSize: '0.72rem', color: 'var(--dust)', margin: '0.5rem 0 0' }}>
+                      From the club&apos;s published schedule (
+                      <a href={g.sourceUrl} target="_blank" rel="noopener noreferrer" style={{ color: 'var(--terra)' }}>
+                        source
+                      </a>
+                      ) · verified {g.lastVerified}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </section>
           )}
 
           {/* City FAQ — bottom of page so users get the events first */}

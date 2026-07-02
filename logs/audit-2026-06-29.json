@@ -1,0 +1,135 @@
+{
+  "project": "MAHJ MAHJ",
+  "site": "mahjmahj.co",
+  "generated": "2026-06-29 06:00 PT",
+  "totals": {
+    "cities": 31,
+    "total_events": 50,
+    "cities_no_intro": 26,
+    "cities_no_faqs": 0,
+    "cities_no_events": 12,
+    "short_intros": 0
+  },
+  "findings": {
+    "cities_no_intro": [
+      {
+        "slug": "boston"
+      },
+      {
+        "slug": "atlanta"
+      },
+      {
+        "slug": "seattle"
+      },
+      {
+        "slug": "washington-dc"
+      },
+      {
+        "slug": "denver"
+      },
+      {
+        "slug": "san-diego"
+      },
+      {
+        "slug": "miami"
+      },
+      {
+        "slug": "houston"
+      },
+      {
+        "slug": "portland"
+      },
+      {
+        "slug": "philadelphia"
+      },
+      {
+        "slug": "dallas"
+      },
+      {
+        "slug": "austin"
+      },
+      {
+        "slug": "nashville"
+      },
+      {
+        "slug": "minneapolis"
+      },
+      {
+        "slug": "las-vegas"
+      },
+      {
+        "slug": "phoenix"
+      },
+      {
+        "slug": "sacramento"
+      },
+      {
+        "slug": "honolulu"
+      },
+      {
+        "slug": "detroit"
+      },
+      {
+        "slug": "charlotte"
+      },
+      {
+        "slug": "raleigh"
+      },
+      {
+        "slug": "columbus"
+      },
+      {
+        "slug": "pittsburgh"
+      },
+      {
+        "slug": "st-louis"
+      },
+      {
+        "slug": "new-orleans"
+      },
+      {
+        "slug": "london"
+      }
+    ],
+    "cities_no_faqs": [],
+    "cities_no_events": [
+      {
+        "slug": "los-angeles"
+      },
+      {
+        "slug": "chicago"
+      },
+      {
+        "slug": "atlanta"
+      },
+      {
+        "slug": "seattle"
+      },
+      {
+        "slug": "portland"
+      },
+      {
+        "slug": "austin"
+      },
+      {
+        "slug": "minneapolis"
+      },
+      {
+        "slug": "las-vegas"
+      },
+      {
+        "slug": "honolulu"
+      },
+      {
+        "slug": "detroit"
+      },
+      {
+        "slug": "pittsburgh"
+      },
+      {
+        "slug": "london"
+      }
+    ],
+    "short_intros": []
+  }
+}

@@ -1254,3 +1254,35 @@ h1, h2, h3, h4, h5, h6 {
   .mode-btn-name { font-size: 0.5rem; }
   .quiz-card { padding: 1.5rem; }
 }
+
+/* ── Recurring Club Games (club-published schedules — NOT MAHJ listings) ──
+   Deliberately distinct from .event-card and .ongoing-section-label: these
+   render clubs' own published schedules, and the styling must signal the
+   different provenance (design-audit 2026-07-02). */
+.club-section-label {
+  font-family: var(--font-unbounded), 'Unbounded', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--stone);
+  margin-top: 3rem;
+  margin-bottom: 0.25rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px dashed var(--bone);
+}
+.club-section-eyebrow {
+  display: block;
+  font-family: var(--font-poppins), 'Poppins', sans-serif;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--terra);
+  margin-bottom: 0.35rem;
+}
+.club-schedule-row {
+  background: var(--paper);
+  border: 1px dashed var(--bone);
+  border-left: 3px solid var(--terra);
+  border-radius: 6px;
+  padding: 1rem 1.25rem;
+}
