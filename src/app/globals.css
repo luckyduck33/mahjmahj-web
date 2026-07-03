@@ -1286,3 +1286,142 @@ h1, h2, h3, h4, h5, h6 {
   border-radius: 6px;
   padding: 1rem 1.25rem;
 }
+
+/* ════════════════════════════════════════
+   CLAIM FLOW v1 — organizer "managed by organizer" state + claim form
+   TRUST: the badge is an authorship marker, NOT an endorsement. No tick /
+   shield iconography, no green "approved" color. Uses a quiet teal —
+   distinct from the terra accent used for MAHJ MAHJ's own CTAs.
+════════════════════════════════════════ */
+
+/* Managed-by-organizer badge (sits under the event title). */
+.claim-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin: 0.4rem 0 0.1rem;
+  padding: 0.2rem 0.6rem 0.2rem 0.5rem;
+  border-radius: 100px;
+  background: var(--teal-wash);
+  color: var(--teal-deep);
+  border: 1px solid var(--teal-light);
+  font-family: var(--font-poppins), 'Poppins', sans-serif;
+  font-size: 0.64rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  line-height: 1.2;
+  cursor: help;
+}
+.claim-badge svg { flex: none; opacity: 0.85; }
+
+/* Quiet "Are you the organizer?" link on unclaimed listings. Deliberately
+   low-emphasis so it doesn't compete with the event's real CTA. */
+.claim-cta-link {
+  display: inline-block;
+  margin-top: 0.6rem;
+  font-family: var(--font-poppins), 'Poppins', sans-serif;
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--stone);
+  text-decoration: none;
+  border-bottom: 1px dotted var(--dust);
+  padding-bottom: 1px;
+  transition: color 0.15s, border-color 0.15s;
+}
+.claim-cta-link:hover { color: var(--teal-deep); border-color: var(--teal-soft); }
+
+/* "How claiming works" panel above the form. */
+.claim-how {
+  background: var(--teal-wash);
+  border: 1px solid var(--teal-light);
+  border-left: 3px solid var(--teal);
+  border-radius: 8px;
+  padding: 1.1rem 1.3rem;
+  margin-bottom: 2rem;
+}
+.claim-how-eyebrow {
+  font-family: var(--font-poppins), 'Poppins', sans-serif;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--teal-deep);
+  margin: 0 0 0.4rem;
+}
+.claim-how p:last-child { font-size: 0.9rem; color: var(--walnut); margin: 0; line-height: 1.6; }
+
+/* Form layout. */
+.claim-form { display: flex; flex-direction: column; gap: 1.25rem; }
+.claim-field { display: flex; flex-direction: column; gap: 0.4rem; }
+.claim-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+@media (max-width: 560px) { .claim-row { grid-template-columns: 1fr; } }
+
+.claim-field label {
+  font-family: var(--font-poppins), 'Poppins', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--walnut);
+}
+.claim-field input,
+.claim-field select,
+.claim-field textarea {
+  font-family: var(--font-poppins), 'Poppins', sans-serif;
+  font-size: 0.92rem;
+  font-weight: 300;
+  color: var(--espresso);
+  background: var(--paper);
+  border: 1px solid var(--bone);
+  border-radius: 8px;
+  padding: 0.7rem 0.85rem;
+  width: 100%;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.claim-field textarea { resize: vertical; line-height: 1.55; }
+.claim-field input:focus,
+.claim-field select:focus,
+.claim-field textarea:focus {
+  outline: none;
+  border-color: var(--teal);
+  box-shadow: 0 0 0 3px var(--teal-wash);
+}
+.claim-field input::placeholder,
+.claim-field textarea::placeholder { color: var(--dust); }
+
+.claim-hint { font-size: 0.75rem; color: var(--stone); margin: 0.1rem 0 0; line-height: 1.5; }
+
+/* Keep the base .btn-solid border so the submit button matches every other primary CTA. */
+.claim-form .btn-solid { align-self: flex-start; }
+.claim-form .btn-solid:disabled { opacity: 0.6; cursor: default; transform: none; }
+
+.claim-error {
+  font-size: 0.85rem;
+  color: var(--terra-deep);
+  background: var(--terra-pale);
+  border: 1px solid var(--terra-pale2);
+  border-radius: 6px;
+  padding: 0.7rem 0.9rem;
+  margin: 0;
+}
+.claim-disclaimer { font-size: 0.72rem; color: var(--stone); margin: 0.25rem 0 0; line-height: 1.55; max-width: 42rem; }
+
+/* Honeypot — visually removed but present for bots. */
+.claim-hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+
+/* Success state after submit. */
+.claim-success {
+  background: var(--teal-wash);
+  border: 1px solid var(--teal-light);
+  border-radius: 10px;
+  padding: 2rem 1.75rem;
+  text-align: left;
+}
+.claim-success h2 {
+  font-family: var(--font-unbounded), 'Unbounded', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--teal-deep);
+  margin: 0 0 0.6rem;
+}
+.claim-success p { font-size: 0.95rem; color: var(--walnut); line-height: 1.65; margin: 0; }

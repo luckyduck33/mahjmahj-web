@@ -30,3 +30,6 @@ npm-debug.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Claim-flow v1 local ops-queue store (never commit claim requests)
+.data/
