@@ -1286,3 +1286,201 @@ h1, h2, h3, h4, h5, h6 {
   border-radius: 6px;
   padding: 1rem 1.25rem;
 }
+
+/* ════════════════════════════════════════
+   JOIN THE CLUB — conversion capture band
+   The site's primary funnel: newsletter capture (primary) + app link
+   (secondary). Warm band, terra top-rule + grain to echo the intro
+   statement, kept visually distinct from the dark closing CTA below it.
+════════════════════════════════════════ */
+.join-club {
+  background: var(--warm-wash);
+  border-top: 3px solid var(--terra);
+  padding: 5.5rem 2.5rem;
+  text-align: center;
+}
+@media (max-width: 768px) {
+  .join-club { padding: 4rem 1.25rem; }
+}
+.join-club-inner { max-width: 640px; margin: 0 auto; }
+.join-club h2 {
+  font-family: var(--font-unbounded), 'Unbounded', sans-serif;
+  font-weight: 700;
+  font-size: clamp(1.5rem, 3.4vw, 2.3rem);
+  line-height: 1.2;
+  color: var(--espresso);
+  margin: 0.7rem 0 0.9rem;
+}
+.join-club p.join-club-sub {
+  font-family: var(--font-poppins), 'Poppins', sans-serif;
+  font-weight: 300;
+  font-size: 0.98rem;
+  line-height: 1.7;
+  color: var(--walnut);
+  max-width: 460px;
+  margin: 0 auto 2rem;
+}
+.join-club-app {
+  margin-top: 1.6rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+.join-club-or {
+  font-family: var(--font-poppins), 'Poppins', sans-serif;
+  font-size: 0.62rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--dust);
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+}
+.join-club-or::before,
+.join-club-or::after {
+  content: '';
+  width: 34px;
+  height: 1px;
+  background: var(--bone);
+}
+/* Outline app button on a light background (btn-ghost is white-on-dark). */
+.btn-outline-terra {
+  font-family: var(--font-poppins), 'Poppins', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--terra);
+  background: transparent;
+  padding: 0.85rem 2rem;
+  border-radius: 100px;
+  text-decoration: none;
+  border: 1.5px solid var(--terra);
+  display: inline-block;
+  transition: background 0.2s, color 0.2s, transform 0.15s;
+}
+.btn-outline-terra:hover {
+  background: var(--terra);
+  color: #F5F4EF;
+  transform: translateY(-1px);
+}
+
+/* ── Signup form (shared by homepage band + footer) ────────────────────── */
+.signup-form { width: 100%; }
+.signup-fields {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  justify-content: center;
+}
+.signup-input {
+  font-family: var(--font-poppins), 'Poppins', sans-serif;
+  font-size: 0.95rem;
+  color: var(--espresso);
+  background: #FCFAF5;
+  padding: 0.85rem 1.2rem;
+  border: 1.5px solid var(--bone);
+  border-radius: 100px;
+  flex: 1 1 220px;
+  min-width: 0;
+  transition: border-color 0.2s;
+}
+/* --stone (not --dust) clears WCAG AA (~4.7:1) on the light #FCFAF5 field. */
+.signup-input::placeholder { color: var(--stone); }
+.signup-input:focus {
+  outline: none;
+  border-color: var(--terra);
+}
+.signup-form .btn-solid { flex: 0 0 auto; cursor: pointer; border: 1.5px solid var(--terra); }
+.signup-form .btn-solid:disabled { opacity: 0.6; cursor: default; }
+/* Screen-reader-only labels (inputs use placeholders visually). */
+.signup-sr {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0, 0, 0, 0);
+  white-space: nowrap; border: 0;
+}
+/* Honeypot — visually removed, still in the DOM for bots. */
+.signup-hp {
+  position: absolute;
+  left: -9999px;
+  width: 1px; height: 1px;
+  overflow: hidden;
+}
+.signup-error {
+  font-family: var(--font-poppins), 'Poppins', sans-serif;
+  font-size: 0.82rem;
+  color: var(--terra-deep);
+  margin-top: 0.8rem;
+}
+.signup-success {
+  text-align: center;
+  padding: 1rem 0;
+}
+.signup-success-head {
+  font-family: var(--font-unbounded), 'Unbounded', sans-serif;
+  font-weight: 700;
+  font-size: 1.15rem;
+  color: var(--espresso);
+  margin-bottom: 0.4rem;
+}
+.signup-success-body {
+  font-family: var(--font-poppins), 'Poppins', sans-serif;
+  font-weight: 300;
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: var(--walnut);
+  max-width: 380px;
+  margin: 0 auto;
+}
+
+/* ── Footer variant — compact, on the dark footer ──────────────────────── */
+.footer-signup h5 {
+  font-family: var(--font-poppins), 'Poppins', sans-serif;
+  font-size: 0.58rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--terra);
+  opacity: 0.6;
+  margin-bottom: 1.2rem;
+}
+.signup-form--footer .signup-fields {
+  flex-wrap: nowrap;
+  gap: 0.5rem;
+  justify-content: flex-start;
+  max-width: 320px;
+}
+.signup-form--footer .signup-input {
+  background: rgba(245, 244, 239, 0.06);
+  border-color: rgba(245, 244, 239, 0.22);
+  color: var(--td1);
+  font-size: 0.85rem;
+  padding: 0.7rem 1rem;
+  flex: 1 1 auto;
+}
+.signup-form--footer .signup-input::placeholder { color: var(--td2); }
+.signup-form--footer .signup-input:focus { border-color: var(--terra); }
+.signup-submit-footer {
+  font-family: var(--font-poppins), 'Poppins', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #F5F4EF;
+  background: var(--terra);
+  padding: 0.7rem 1.2rem;
+  border: 1.5px solid var(--terra);
+  border-radius: 100px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.2s, transform 0.15s;
+}
+.signup-submit-footer:hover { background: var(--terra-mid); transform: translateY(-1px); }
+.signup-submit-footer:disabled { opacity: 0.6; cursor: default; }
+.signup-success--footer { text-align: left; padding: 0; max-width: 320px; }
+.signup-success--footer .signup-success-head { font-size: 0.95rem; color: var(--td1); }
+.signup-success--footer .signup-success-body { font-size: 0.8rem; color: var(--td3); margin: 0; }

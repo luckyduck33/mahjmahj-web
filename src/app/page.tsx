@@ -1,6 +1,8 @@
 import Link from 'next/link';
 import { getEvents, getNews, getCitySlug } from '@/lib/api';
 import Drills from '@/components/Drills';
+import EmailSignup from '@/components/EmailSignup';
+import { SUBSCRIBE_COPY } from '@/lib/subscribe';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -227,6 +229,22 @@ export default async function HomePage() {
       )}
 
       <Drills />
+
+      {/* Join the Club — conversion capture (newsletter primary, app secondary) */}
+      <section className="join-club grain">
+        <div className="join-club-inner">
+          <span className="label">{SUBSCRIBE_COPY.eyebrow}</span>
+          <h2>{SUBSCRIBE_COPY.heading}</h2>
+          <p className="join-club-sub">{SUBSCRIBE_COPY.body}</p>
+          <EmailSignup variant="homepage" />
+          <div className="join-club-app">
+            <span className="join-club-or">or</span>
+            <a href="https://app.mahjmahj.co" className="btn-outline-terra">
+              Get the App
+            </a>
+          </div>
+        </div>
+      </section>
 
       {/* CTA — dark strategy section */}
       <section className="strategy-cta" style={{ background: 'var(--espresso)', padding: '6rem 0' }}>
