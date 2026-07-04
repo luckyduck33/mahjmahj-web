@@ -5,6 +5,9 @@ import { eventSchema, breadcrumbSchema, faqSchema } from '@/lib/schema';
 import { JsonLd } from '@/components/JsonLd';
 import { cities, getCityBySlug } from '@/data/cities';
 import { getRecurringGames } from '@/data/recurring-games';
+import { getOrganizerForListing } from '@/data/organizers';
+import { ClaimBadge } from '@/components/ClaimBadge';
+import { CLAIM_COPY } from '@/lib/claim';
 import type { Metadata } from 'next';
 
 interface Props {
@@ -174,6 +177,7 @@ export default async function CityEventsPage({ params }: Props) {
                 const dateObj = new Date(evt.date);
                 const monthAbbr = dateObj.toLocaleDateString('en-US', { month: 'short' }).toUpperCase();
                 const dayNum = dateObj.getDate();
+                const managingOrganizer = getOrganizerForListing(evt.id);
                 return (
                 <div key={evt.id} className="event-card has-date-badge">
                   <div className="ev-date-badge">
@@ -187,6 +191,7 @@ export default async function CityEventsPage({ params }: Props) {
                     <p className="event-date-sub">{dateObj.toLocaleDateString('en-US', { weekday: 'long' })} · {evt.time}</p>
                   )}
                   <h2 className="event-title">{evt.title}</h2>
+                  {managingOrganizer && <ClaimBadge />}
                   {evt.venue && <p className="event-location">{evt.venue}</p>}
                   {evt.description && (
                     <p style={{ fontSize: '0.85rem', color: 'var(--walnut)', marginTop: '0.5rem', lineHeight: 1.6 }}>
@@ -212,6 +217,14 @@ export default async function CityEventsPage({ params }: Props) {
                       <span className="event-cta event-cta--muted">Check organizer</span>
                     )}
                   </div>
+                  {!managingOrganizer && (
+                    <Link
+                      href={`/claim?listing=${encodeURIComponent(evt.id)}&organizer=${encodeURIComponent(evt.organizer ?? evt.title)}&city=${encodeURIComponent(evt.city)}`}
+                      className="claim-cta-link"
+                    >
+                      {CLAIM_COPY.claimCta}
+                    </Link>
+                  )}
                 </div>
                 );
               })}
@@ -295,10 +308,13 @@ export default async function CityEventsPage({ params }: Props) {
             <>
               <h3 className="ongoing-section-label">Ongoing Series</h3>
               <div className="events-grid">
-                {ongoingEvents.map((evt) => (
+                {ongoingEvents.map((evt) => {
+                  const managingOrganizer = getOrganizerForListing(evt.id);
+                  return (
                   <div key={evt.id} className="event-card">
                     <p className="event-date-sub" style={{ color: 'var(--terra)' }}>{evt.recurring || 'Recurring'}</p>
                     <h2 className="event-title">{evt.title}</h2>
+                    {managingOrganizer && <ClaimBadge />}
                     {evt.venue && <p className="event-location">{evt.venue}</p>}
                     {evt.description && (
                       <p style={{ fontSize: '0.85rem', color: 'var(--walnut)', marginTop: '0.5rem', lineHeight: 1.6 }}>
@@ -321,8 +337,17 @@ export default async function CityEventsPage({ params }: Props) {
                         <span className="event-cta event-cta--muted">Check organizer</span>
                       )}
                     </div>
+                    {!managingOrganizer && (
+                      <Link
+                        href={`/claim?listing=${encodeURIComponent(evt.id)}&organizer=${encodeURIComponent(evt.organizer ?? evt.title)}&city=${encodeURIComponent(evt.city)}`}
+                        className="claim-cta-link"
+                      >
+                        {CLAIM_COPY.claimCta}
+                      </Link>
+                    )}
                   </div>
-                ))}
+                  );
+                })}
               </div>
             </>
           )}
