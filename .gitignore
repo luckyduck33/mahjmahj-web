@@ -18,6 +18,9 @@
 .DS_Store
 *.pem
 
+# local dev sinks (subscribe/claim NDJSON fallback stores)
+/.data/
+
 # debug
 npm-debug.log*
 

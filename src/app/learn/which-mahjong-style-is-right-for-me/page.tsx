@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { faqSchema } from '@/lib/schema';
+import { faqSchema, articleSchema } from '@/lib/schema';
+import { JsonLd } from '@/components/JsonLd';
 
 export const metadata: Metadata = {
   title: 'Which Mahjong Style Is Right for Me?',
@@ -58,15 +59,20 @@ const faqs = [
   },
 ];
 
-const schema = faqSchema(faqs);
+const schema = [
+  articleSchema({
+    headline: 'Which Mahjong Style Is Right for Me?',
+    description:
+      'A guide to choosing between Hong Kong, Taiwanese, and American Mahjong based on your community, personality, and goals.',
+    url: 'https://mahjmahj.co/learn/which-mahjong-style-is-right-for-me',
+  }),
+  faqSchema(faqs),
+];
 
 export default function WhichStylePage() {
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
-      />
+      <JsonLd data={schema} />
 
       {/* Hero */}
       <section
