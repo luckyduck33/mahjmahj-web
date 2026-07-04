@@ -33,6 +33,9 @@ export async function GET() {
 
 ## Comparison Pages
 - [Mahjong Styles Comparison — Hong Kong vs Taiwanese vs American](https://mahjmahj.co/compare/mahjong-styles): Compare Hong Kong Mahjong, Taiwanese Mahjong, and American Mahjong side by side. Hand size, scoring, jokers, pace, and which style is right for you.
+
+## Research & Data
+- [The State of American Mahjong 2026 — A Listings Census](https://mahjmahj.co/research/state-of-american-mahjong-2026): A structured, dated count of publicly-listed in-person mahjong events across US cities, with a transparent methodology, top-cities table, organizer ecosystem, and a downloadable CC BY 4.0 dataset. A listings census — not an estimate of all US mahjong activity.
 `;
 
   return new Response(content, {

@@ -18,6 +18,9 @@
 .DS_Store
 *.pem
 
+# local dev sinks (subscribe/claim NDJSON fallback stores)
+/.data/
+
 # debug
 npm-debug.log*
 
@@ -31,5 +34,5 @@ npm-debug.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# Claim-flow v1 local ops-queue store (never commit claim requests)
-.data/
+# local dev sinks (subscribe/claim NDJSON fallback stores)
+/.data/

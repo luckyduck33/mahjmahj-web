@@ -1,0 +1,343 @@
+{
+  "meta": {
+    "title": "The State of American Mahjong 2026",
+    "kind": "listings census",
+    "snapshotDate": "2026-07-02",
+    "lastVerified": "2026-07-02",
+    "generatedFrom": "src/data/census-source/baseline-2026-07-02-postdedupe.json + organizer-counts.json",
+    "note": "Counts what MAHJ MAHJ tracked as of the snapshot date — not an estimate of all US mahjong activity. Biased toward events with a public online listing (Eventbrite/Meetup/club sites). No extrapolation."
+  },
+  "headline": {
+    "totalListings": 747,
+    "cities": 49,
+    "organizers": 466
+  },
+  "byStatus": {
+    "upcoming": 286,
+    "ongoing": 39,
+    "past": 422
+  },
+  "sourceDiversity": {
+    "distinctSources": 41,
+    "eventbriteListings": 699,
+    "eventbriteSharePct": 93.6,
+    "nonEventbriteListings": 48,
+    "nonEventbriteSources": 35
+  },
+  "organizerEcosystem": {
+    "total": 466,
+    "listedOnMahj": 218,
+    "activeWithContact": 210,
+    "activeContactUnknown": 38,
+    "recoveredFromEventPages": 164
+  },
+  "cities": [
+    {
+      "name": "St. Louis",
+      "listings": 66,
+      "slug": "st-louis"
+    },
+    {
+      "name": "Dallas",
+      "listings": 48,
+      "slug": "dallas"
+    },
+    {
+      "name": "New York",
+      "listings": 47,
+      "slug": "new-york"
+    },
+    {
+      "name": "Los Angeles",
+      "listings": 44,
+      "slug": "los-angeles"
+    },
+    {
+      "name": "Washington DC",
+      "listings": 44,
+      "slug": "washington-dc"
+    },
+    {
+      "name": "San Francisco",
+      "listings": 42,
+      "slug": "san-francisco"
+    },
+    {
+      "name": "Nashville",
+      "listings": 38,
+      "slug": "nashville"
+    },
+    {
+      "name": "Boston",
+      "listings": 36,
+      "slug": "boston"
+    },
+    {
+      "name": "Columbus",
+      "listings": 34,
+      "slug": "columbus"
+    },
+    {
+      "name": "Bay Area",
+      "listings": 29,
+      "slug": "bay-area"
+    },
+    {
+      "name": "Chicago",
+      "listings": 26,
+      "slug": "chicago"
+    },
+    {
+      "name": "Miami",
+      "listings": 26,
+      "slug": "miami"
+    },
+    {
+      "name": "Raleigh",
+      "listings": 20,
+      "slug": "raleigh"
+    },
+    {
+      "name": "Charlotte",
+      "listings": 18,
+      "slug": "charlotte"
+    },
+    {
+      "name": "Cleveland",
+      "listings": 17,
+      "slug": "cleveland"
+    },
+    {
+      "name": "Houston",
+      "listings": 15,
+      "slug": "houston"
+    },
+    {
+      "name": "Sacramento",
+      "listings": 15,
+      "slug": "sacramento"
+    },
+    {
+      "name": "London",
+      "listings": 14,
+      "slug": "london"
+    },
+    {
+      "name": "Denver",
+      "listings": 13,
+      "slug": "denver"
+    },
+    {
+      "name": "New Orleans",
+      "listings": 13,
+      "slug": "new-orleans"
+    },
+    {
+      "name": "Phoenix",
+      "listings": 12,
+      "slug": "phoenix"
+    },
+    {
+      "name": "Providence",
+      "listings": 12,
+      "slug": "providence"
+    },
+    {
+      "name": "San Diego",
+      "listings": 12,
+      "slug": "san-diego"
+    },
+    {
+      "name": "Sydney",
+      "listings": 10,
+      "slug": "sydney"
+    },
+    {
+      "name": "Atlanta",
+      "listings": 9,
+      "slug": "atlanta"
+    },
+    {
+      "name": "Hartford",
+      "listings": 9,
+      "slug": "hartford"
+    },
+    {
+      "name": "Philadelphia",
+      "listings": 9,
+      "slug": "philadelphia"
+    },
+    {
+      "name": "Austin",
+      "listings": 8,
+      "slug": "austin"
+    },
+    {
+      "name": "Cincinnati",
+      "listings": 5,
+      "slug": "cincinnati"
+    },
+    {
+      "name": "Milwaukee",
+      "listings": 5,
+      "slug": "milwaukee"
+    },
+    {
+      "name": "Orlando",
+      "listings": 5,
+      "slug": "orlando"
+    },
+    {
+      "name": "Fort Lauderdale",
+      "listings": 4,
+      "slug": "fort-lauderdale"
+    },
+    {
+      "name": "Kansas City",
+      "listings": 4,
+      "slug": "kansas-city"
+    },
+    {
+      "name": "Melbourne",
+      "listings": 4,
+      "slug": "melbourne"
+    },
+    {
+      "name": "Portland",
+      "listings": 4,
+      "slug": "portland"
+    },
+    {
+      "name": "Seattle",
+      "listings": 4,
+      "slug": "seattle"
+    },
+    {
+      "name": "Toronto",
+      "listings": 4,
+      "slug": "toronto"
+    },
+    {
+      "name": "Baltimore",
+      "listings": 3,
+      "slug": "baltimore"
+    },
+    {
+      "name": "Minneapolis",
+      "listings": 3,
+      "slug": "minneapolis"
+    },
+    {
+      "name": "Tampa",
+      "listings": 3,
+      "slug": "tampa"
+    },
+    {
+      "name": "Buffalo",
+      "listings": 2,
+      "slug": "buffalo"
+    },
+    {
+      "name": "Detroit",
+      "listings": 2,
+      "slug": "detroit"
+    },
+    {
+      "name": "Louisville",
+      "listings": 2,
+      "slug": "louisville"
+    },
+    {
+      "name": "Pittsburgh",
+      "listings": 2,
+      "slug": "pittsburgh"
+    },
+    {
+      "name": "Fort Worth",
+      "listings": 1,
+      "slug": "fort-worth"
+    },
+    {
+      "name": "Oklahoma City",
+      "listings": 1,
+      "slug": "oklahoma-city"
+    },
+    {
+      "name": "Richmond VA",
+      "listings": 1,
+      "slug": "richmond-va"
+    },
+    {
+      "name": "San Antonio",
+      "listings": 1,
+      "slug": "san-antonio"
+    },
+    {
+      "name": "Virginia Beach",
+      "listings": 1,
+      "slug": "virginia-beach"
+    }
+  ],
+  "topCities": [
+    {
+      "name": "St. Louis",
+      "listings": 66,
+      "slug": "st-louis"
+    },
+    {
+      "name": "Dallas",
+      "listings": 48,
+      "slug": "dallas"
+    },
+    {
+      "name": "New York",
+      "listings": 47,
+      "slug": "new-york"
+    },
+    {
+      "name": "Los Angeles",
+      "listings": 44,
+      "slug": "los-angeles"
+    },
+    {
+      "name": "Washington DC",
+      "listings": 44,
+      "slug": "washington-dc"
+    },
+    {
+      "name": "San Francisco",
+      "listings": 42,
+      "slug": "san-francisco"
+    },
+    {
+      "name": "Nashville",
+      "listings": 38,
+      "slug": "nashville"
+    },
+    {
+      "name": "Boston",
+      "listings": 36,
+      "slug": "boston"
+    },
+    {
+      "name": "Columbus",
+      "listings": 34,
+      "slug": "columbus"
+    },
+    {
+      "name": "Bay Area",
+      "listings": 29,
+      "slug": "bay-area"
+    },
+    {
+      "name": "Chicago",
+      "listings": 26,
+      "slug": "chicago"
+    },
+    {
+      "name": "Miami",
+      "listings": 26,
+      "slug": "miami"
+    }
+  ]
+}

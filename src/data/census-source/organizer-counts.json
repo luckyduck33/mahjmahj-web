@@ -1,0 +1,12 @@
+{
+  "generated": "2026-07-01",
+  "generatedBy": "Fable autonomous run (research agents + events-DB extraction + Eventbrite organizer enrichment)",
+  "schemaNote": "warmthTier: 1 = organizer already has events in the MAHJ events DB (claim-your-listing targets); 2 = active with findable contact; 3 = active, contact unknown. contact.inferred=true means the channel was deduced, not published — verify before use. eventbrite-organizer type = extracted from live event detail pages, organizer not independently researched yet.",
+  "counts": {
+    "total": 466,
+    "tier1": 218,
+    "tier2": 210,
+    "tier3": 38,
+    "fromEnrichmentOnly": 164
+  }
+}

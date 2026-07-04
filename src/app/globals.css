@@ -38,6 +38,7 @@
   --td1: #F5F4EF;
   --td2: #A89E94;
   --td3: #6A6054;
+  --paper-lift: #FCFAF5;
 }
 
 @theme inline {
@@ -468,6 +469,7 @@ h1, h2, h3, h4, h5, h6 {
 .label.peri { color: var(--teal); }
 .label.pool { color: var(--olive); }
 .label.dark { color: var(--stone); }
+.label.teal { color: var(--teal-deep); }
 .label-dark {
   font-family: var(--font-poppins), 'Poppins', sans-serif;
   font-size: 0.63rem;
@@ -1286,6 +1288,428 @@ h1, h2, h3, h4, h5, h6 {
   border-radius: 6px;
   padding: 1rem 1.25rem;
 }
+
+/* ════════════════════════════════════════
+   RESEARCH / CENSUS — editorial teal mode
+   Distinct from the playful terracotta marketing pages: this is the
+   data-report surface. Teal-deep hero, quiet cream body, one accent.
+════════════════════════════════════════ */
+.census-hero {
+  background: var(--teal-deep);
+  padding: 6rem 0 4.5rem;
+}
+.census-h1 {
+  font-family: var(--font-unbounded), 'Unbounded', sans-serif;
+  font-weight: 900;
+  font-size: clamp(2rem, 5vw, 3.4rem);
+  line-height: 1.08;
+  color: var(--td1);
+  margin: 0.9rem 0 1.2rem;
+  max-width: 16ch;
+}
+.census-lede {
+  font-family: var(--font-poppins), 'Poppins', sans-serif;
+  font-weight: 300;
+  font-size: clamp(1rem, 1.8vw, 1.18rem);
+  line-height: 1.7;
+  color: rgba(245, 244, 239, 0.9);
+  max-width: 60ch;
+}
+.census-verified {
+  margin-top: 1.8rem;
+  font-family: var(--font-poppins), 'Poppins', sans-serif;
+  font-size: 0.82rem;
+  letter-spacing: 0.02em;
+  color: rgba(245, 244, 239, 0.72);
+}
+/* Body links sit on cream — teal-deep clears WCAG AA (~4.7:1). */
+.census-inline-link {
+  color: var(--teal-deep);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.census-inline-link:hover { color: var(--terra-deep); }
+/* Hero links sit on teal-deep — off-white clears AA (~4.9:1); mustard on hover
+   keeps the warm accent without failing contrast at rest. */
+.census-hero .census-inline-link { color: var(--td1); }
+.census-hero .census-inline-link:hover { color: var(--mustard-soft); }
+
+.census-main { background: var(--paper); padding: 4.5rem 0 6rem; }
+.census-body { max-width: 780px; }
+.census-section { margin-bottom: 3.5rem; }
+.census-h2 {
+  font-family: var(--font-unbounded), 'Unbounded', sans-serif;
+  font-weight: 700;
+  font-size: clamp(1.35rem, 3vw, 1.9rem);
+  color: var(--espresso);
+  margin: 0.5rem 0 1.1rem;
+}
+.census-body p {
+  font-family: var(--font-poppins), 'Poppins', sans-serif;
+  font-weight: 300;
+  font-size: 1rem;
+  line-height: 1.78;
+  color: var(--walnut);
+  margin-bottom: 1rem;
+}
+.census-body p strong { font-weight: 600; color: var(--espresso); }
+.census-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  margin-top: 0.5rem;
+}
+.census-list li {
+  font-family: var(--font-poppins), 'Poppins', sans-serif;
+  font-weight: 300;
+  font-size: 0.96rem;
+  line-height: 1.7;
+  color: var(--walnut);
+  padding-left: 1.1rem;
+  border-left: 2px solid var(--teal-light);
+}
+.census-list li strong { font-weight: 600; color: var(--teal-deep); }
+
+/* Stat blocks */
+.census-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin: 1.5rem 0 1rem;
+}
+@media (max-width: 640px) {
+  .census-stats { grid-template-columns: repeat(2, 1fr); }
+}
+.census-stat {
+  background: var(--paper-lift);
+  border: 1px solid var(--bone);
+  border-top: 3px solid var(--teal-deep);
+  border-radius: 8px;
+  padding: 1.3rem 1rem;
+  text-align: center;
+}
+.census-stat-num {
+  display: block;
+  font-family: var(--font-unbounded), 'Unbounded', sans-serif;
+  font-weight: 900;
+  font-size: clamp(1.6rem, 4vw, 2.3rem);
+  color: var(--teal-deep);
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+.census-stat-label {
+  display: block;
+  margin-top: 0.5rem;
+  font-family: var(--font-poppins), 'Poppins', sans-serif;
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--stone);
+}
+.census-caption {
+  font-size: 0.88rem !important;
+  color: var(--stone) !important;
+  margin-top: 0.8rem;
+}
+
+/* Table */
+.census-table-wrap { overflow-x: auto; margin-top: 0.5rem; }
+.census-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--font-poppins), 'Poppins', sans-serif;
+}
+.census-table th {
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--stone);
+  text-align: left;
+  padding: 0.6rem 0.8rem;
+  border-bottom: 2px solid var(--teal-deep);
+}
+.census-table td {
+  padding: 0.7rem 0.8rem;
+  border-bottom: 1px solid var(--bone);
+  font-size: 0.95rem;
+  color: var(--walnut);
+}
+.census-rank {
+  font-family: var(--font-unbounded), 'Unbounded', sans-serif;
+  font-weight: 700;
+  color: var(--teal-deep);
+  font-variant-numeric: tabular-nums;
+}
+.census-city-link { color: var(--espresso); text-decoration: none; font-weight: 500; }
+.census-city-link:hover { color: var(--teal-deep); text-decoration: underline; }
+
+/* FAQ */
+.census-faq { display: flex; flex-direction: column; gap: 0.6rem; margin-top: 0.5rem; }
+.census-faq-item {
+  background: var(--paper-lift);
+  border: 1px solid var(--bone);
+  border-radius: 8px;
+  padding: 0.2rem 1.1rem;
+}
+.census-faq-item summary {
+  font-family: var(--font-poppins), 'Poppins', sans-serif;
+  font-weight: 500;
+  font-size: 0.96rem;
+  color: var(--espresso);
+  cursor: pointer;
+  padding: 0.9rem 0;
+  list-style: none;
+}
+.census-faq-item summary::-webkit-details-marker { display: none; }
+.census-faq-item summary::before {
+  content: '+';
+  color: var(--teal-deep);
+  font-weight: 700;
+  margin-right: 0.6rem;
+}
+.census-faq-item[open] summary::before { content: '\2013'; }
+.census-faq-item p {
+  margin: 0 0 1rem !important;
+  font-size: 0.94rem !important;
+  color: var(--walnut) !important;
+}
+
+/* Provenance */
+.census-provenance {
+  border-top: 2px dashed var(--bone);
+  padding-top: 2rem;
+  margin-top: 1rem;
+}
+.census-provenance p { font-size: 0.9rem !important; }
+.census-provenance code {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 0.82em;
+  background: var(--linen);
+  padding: 0.1rem 0.4rem;
+  border-radius: 4px;
+  color: var(--teal-deep);
+}
+.census-cta-row {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  margin-top: 1.5rem;
+}
+.census-cta-link { font-family: var(--font-poppins), 'Poppins', sans-serif; font-size: 0.9rem; }
+/* Re-skin the shared .btn-solid pill to editorial teal so the report doesn't
+   close on the marketing-mode terracotta pill (keeps this page's single accent).
+   Dedicated class (not a `.census-cta-row .btn-solid` descendant override, which
+   the Tailwind v4 / Lightning CSS pipeline drops). */
+.census-download-btn {
+  background: var(--teal-deep);
+  border-color: var(--teal-deep);
+}
+.census-download-btn:hover {
+  background: var(--teal);
+  border-color: var(--teal);
+}
+
+/* ════════════════════════════════════════
+   JOIN THE CLUB — conversion capture band
+   The site's primary funnel: newsletter capture (primary) + app link
+   (secondary). Warm band, terra top-rule + grain to echo the intro
+   statement, kept visually distinct from the dark closing CTA below it.
+════════════════════════════════════════ */
+.join-club {
+  background: var(--warm-wash);
+  border-top: 3px solid var(--terra);
+  padding: 5.5rem 2.5rem;
+  text-align: center;
+}
+@media (max-width: 768px) {
+  .join-club { padding: 4rem 1.25rem; }
+}
+.join-club-inner { max-width: 640px; margin: 0 auto; }
+.join-club h2 {
+  font-family: var(--font-unbounded), 'Unbounded', sans-serif;
+  font-weight: 700;
+  font-size: clamp(1.5rem, 3.4vw, 2.3rem);
+  line-height: 1.2;
+  color: var(--espresso);
+  margin: 0.7rem 0 0.9rem;
+}
+.join-club p.join-club-sub {
+  font-family: var(--font-poppins), 'Poppins', sans-serif;
+  font-weight: 300;
+  font-size: 0.98rem;
+  line-height: 1.7;
+  color: var(--walnut);
+  max-width: 460px;
+  margin: 0 auto 2rem;
+}
+.join-club-app {
+  margin-top: 1.6rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+.join-club-or {
+  font-family: var(--font-poppins), 'Poppins', sans-serif;
+  font-size: 0.62rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--dust);
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+}
+.join-club-or::before,
+.join-club-or::after {
+  content: '';
+  width: 34px;
+  height: 1px;
+  background: var(--bone);
+}
+/* Outline app button on a light background (btn-ghost is white-on-dark). */
+.btn-outline-terra {
+  font-family: var(--font-poppins), 'Poppins', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--terra);
+  background: transparent;
+  padding: 0.85rem 2rem;
+  border-radius: 100px;
+  text-decoration: none;
+  border: 1.5px solid var(--terra);
+  display: inline-block;
+  transition: background 0.2s, color 0.2s, transform 0.15s;
+}
+.btn-outline-terra:hover {
+  background: var(--terra);
+  color: #F5F4EF;
+  transform: translateY(-1px);
+}
+
+/* ── Signup form (shared by homepage band + footer) ────────────────────── */
+.signup-form { width: 100%; }
+.signup-fields {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  justify-content: center;
+}
+.signup-input {
+  font-family: var(--font-poppins), 'Poppins', sans-serif;
+  font-size: 0.95rem;
+  color: var(--espresso);
+  background: #FCFAF5;
+  padding: 0.85rem 1.2rem;
+  border: 1.5px solid var(--bone);
+  border-radius: 100px;
+  flex: 1 1 220px;
+  min-width: 0;
+  transition: border-color 0.2s;
+}
+/* --stone (not --dust) clears WCAG AA (~4.7:1) on the light #FCFAF5 field. */
+.signup-input::placeholder { color: var(--stone); }
+.signup-input:focus {
+  outline: none;
+  border-color: var(--terra);
+}
+.signup-form .btn-solid { flex: 0 0 auto; cursor: pointer; border: 1.5px solid var(--terra); }
+.signup-form .btn-solid:disabled { opacity: 0.6; cursor: default; }
+/* Screen-reader-only labels (inputs use placeholders visually). */
+.signup-sr {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0, 0, 0, 0);
+  white-space: nowrap; border: 0;
+}
+/* Honeypot — visually removed, still in the DOM for bots. */
+.signup-hp {
+  position: absolute;
+  left: -9999px;
+  width: 1px; height: 1px;
+  overflow: hidden;
+}
+.signup-error {
+  font-family: var(--font-poppins), 'Poppins', sans-serif;
+  font-size: 0.82rem;
+  color: var(--terra-deep);
+  margin-top: 0.8rem;
+}
+.signup-success {
+  text-align: center;
+  padding: 1rem 0;
+}
+.signup-success-head {
+  font-family: var(--font-unbounded), 'Unbounded', sans-serif;
+  font-weight: 700;
+  font-size: 1.15rem;
+  color: var(--espresso);
+  margin-bottom: 0.4rem;
+}
+.signup-success-body {
+  font-family: var(--font-poppins), 'Poppins', sans-serif;
+  font-weight: 300;
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: var(--walnut);
+  max-width: 380px;
+  margin: 0 auto;
+}
+
+/* ── Footer variant — compact, on the dark footer ──────────────────────── */
+.footer-signup h5 {
+  font-family: var(--font-poppins), 'Poppins', sans-serif;
+  font-size: 0.58rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--terra);
+  opacity: 0.6;
+  margin-bottom: 1.2rem;
+}
+.signup-form--footer .signup-fields {
+  flex-wrap: nowrap;
+  gap: 0.5rem;
+  justify-content: flex-start;
+  max-width: 320px;
+}
+.signup-form--footer .signup-input {
+  background: rgba(245, 244, 239, 0.06);
+  border-color: rgba(245, 244, 239, 0.22);
+  color: var(--td1);
+  font-size: 0.85rem;
+  padding: 0.7rem 1rem;
+  flex: 1 1 auto;
+}
+.signup-form--footer .signup-input::placeholder { color: var(--td2); }
+.signup-form--footer .signup-input:focus { border-color: var(--terra); }
+.signup-submit-footer {
+  font-family: var(--font-poppins), 'Poppins', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #F5F4EF;
+  background: var(--terra);
+  padding: 0.7rem 1.2rem;
+  border: 1.5px solid var(--terra);
+  border-radius: 100px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.2s, transform 0.15s;
+}
+.signup-submit-footer:hover { background: var(--terra-mid); transform: translateY(-1px); }
+.signup-submit-footer:disabled { opacity: 0.6; cursor: default; }
+.signup-success--footer { text-align: left; padding: 0; max-width: 320px; }
+.signup-success--footer .signup-success-head { font-size: 0.95rem; color: var(--td1); }
+.signup-success--footer .signup-success-body { font-size: 0.8rem; color: var(--td3); margin: 0; }
 
 /* ════════════════════════════════════════
    CLAIM FLOW v1 — organizer "managed by organizer" state + claim form
