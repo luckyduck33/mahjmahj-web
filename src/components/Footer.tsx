@@ -1,5 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
+import EmailSignup from '@/components/EmailSignup';
+import { SUBSCRIBE_COPY } from '@/lib/subscribe';
 
 export default function Footer() {
   return (
@@ -10,6 +12,10 @@ export default function Footer() {
             <Image src="/logo-footer.png" alt="mahj mahj" width={120} height={98} className="footer-logo-img" />
             <span className="footer-tagline">A modern guide to Mahjong.</span>
             <span className="footer-desc">Learn Hong Kong, Taiwanese, and American Mahjong in one place. Tiles, rules, strategy, and community — all under one roof.</span>
+            <div className="footer-signup">
+              <h5>{SUBSCRIBE_COPY.footerHeading}</h5>
+              <EmailSignup variant="footer" />
+            </div>
           </div>
           <div className="footer-col">
             <h5>Learn</h5>
@@ -35,6 +41,7 @@ export default function Footer() {
             <ul>
               <li><Link href="/events">Events</Link></li>
               <li><Link href="/about">About</Link></li>
+              <li><a href="https://app.mahjmahj.co">Get the App</a></li>
             </ul>
           </div>
         </div>

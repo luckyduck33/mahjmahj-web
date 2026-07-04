@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { faqSchema, howToSchema } from '@/lib/schema';
+import { faqSchema, howToSchema, articleSchema } from '@/lib/schema';
 
 export const metadata: Metadata = {
   title: 'How to Play Mahjong — A Beginner\'s Guide',
@@ -105,7 +105,13 @@ const howTo = howToSchema({
 });
 
 const faqSchemaData = faqSchema(faqs);
-const combinedSchema = [faqSchemaData, howTo];
+const article = articleSchema({
+  headline: "How to Play Mahjong — A Beginner's Guide",
+  description:
+    'A beginner-friendly guide to mahjong: tiles, hand structure, how a round works, the three main styles, and common first mistakes.',
+  url: 'https://mahjmahj.co/learn/how-to-play-mahjong',
+});
+const combinedSchema = [article, faqSchemaData, howTo];
 
 export default function HowToPlayMahjongPage() {
   return (

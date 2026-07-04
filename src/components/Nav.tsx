@@ -63,7 +63,15 @@ export default function Nav() {
           )}
         </li>
         <li><Link href="/about" onClick={() => setMenuOpen(false)}>About</Link></li>
-        <li><Link href="/events" className="nav-cta" onClick={() => setMenuOpen(false)}>Submit an Event</Link></li>
+        <li>
+          <a
+            href="https://app.mahjmahj.co"
+            className="nav-cta"
+            onClick={() => setMenuOpen(false)}
+          >
+            Get the App
+          </a>
+        </li>
       </ul>
 
       <div className="hamburger" onClick={() => setMenuOpen(!menuOpen)}>
