@@ -177,6 +177,42 @@ export function articleSchema(article: {
   };
 }
 
+export function datasetSchema(dataset: {
+  name: string;
+  description: string;
+  url: string;
+  dateModified?: string;
+  temporalCoverage?: string;
+  downloadUrl?: string;
+  keywords?: string[];
+}) {
+  const schema: Record<string, unknown> = {
+    '@context': 'https://schema.org',
+    '@type': 'Dataset',
+    name: dataset.name,
+    description: dataset.description,
+    url: dataset.url,
+    creator: {
+      '@type': 'Organization',
+      name: 'MAHJ MAHJ',
+      url: 'https://mahjmahj.co',
+    },
+    isAccessibleForFree: true,
+    license: 'https://creativecommons.org/licenses/by/4.0/',
+    ...(dataset.dateModified && { dateModified: dataset.dateModified }),
+    ...(dataset.temporalCoverage && { temporalCoverage: dataset.temporalCoverage }),
+    ...(dataset.keywords && { keywords: dataset.keywords }),
+  };
+  if (dataset.downloadUrl) {
+    schema.distribution = {
+      '@type': 'DataDownload',
+      encodingFormat: 'text/csv',
+      contentUrl: dataset.downloadUrl,
+    };
+  }
+  return schema;
+}
+
 export function howToSchema(howTo: {
   name: string;
   description: string;
