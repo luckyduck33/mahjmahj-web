@@ -61,7 +61,10 @@ export interface NewsItem {
 export interface EventsResponse {
   events: MahjEvent[];
   total: number;
-  lastUpdated: string;
+  /** ISO timestamp from the live API. Null on fetch failure — never fabricate
+   *  a freshness date locally (Source-of-Truth Gate: the visible "Event data
+   *  updated" line must reflect a real fetch, or not render at all). */
+  lastUpdated: string | null;
 }
 
 export interface NewsResponse {
@@ -84,14 +87,14 @@ export async function getEvents(params?: {
   try {
     const res = await fetch(url, { next: { revalidate: 3600 } });
     if (!res.ok) {
-      return { events: [], total: 0, lastUpdated: new Date().toISOString() };
+      return { events: [], total: 0, lastUpdated: null };
     }
     const data = (await res.json()) as EventsResponse;
     // Sanitize "Chinese Mahjong" → "Hong Kong Mahjong" across every event
     // before any consumer (page render or JSON-LD builder) sees them.
     return { ...data, events: (data.events || []).map((e) => sanitizeMahjong(e)) };
   } catch {
-    return { events: [], total: 0, lastUpdated: new Date().toISOString() };
+    return { events: [], total: 0, lastUpdated: null };
   }
 }
 
