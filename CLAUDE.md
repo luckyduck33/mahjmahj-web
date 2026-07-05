@@ -115,3 +115,14 @@ The problem with the default AI look is **recognizability, not ugliness.** If a 
 
 **Escape hatch:** the recognizable look is fine *only when explicitly requested* (or for fast throwaways). Never default to it silently on client/venture work.
 <!-- /LUCKY:no-default-aesthetic v1 -->
+
+## Answer-capsule standard (GEO)
+
+Question-targeting pages in this repo follow the answer-capsule structural standard — canonical doc: `~/Desktop/CLAUDE/Operations/answer-capsule-standard.md` (Nidhi-authorized, 2026-07-05 GEO strategy brief §4). In short:
+
+- Question-form H2s matching tracked-query phrasing (queries live in `engine.queries`, local `visibleos` Postgres), each followed **immediately** by a self-contained 120–150-character answer capsule (plain sentence, standalone-quotable, no marketing fluff).
+- ≥3 FAQPage JSON-LD nodes on pages targeting question queries; visible FAQ text **byte-identical** to schema text (render both from one array).
+- Key facts and the core claim in the first 30% of the page; TL;DR block near top where the format allows.
+- Every stat passes the Source-of-Truth Gate; when touching any claim, verify the whole claim-class on the page.
+- Visible dated freshness line tied to **real** data dates — never a cosmetic timestamp.
+- Venture rule on top: Hong Kong Mahjong terminology (never "Chinese Mahjong" in editorial copy).

@@ -108,6 +108,22 @@ export default function MahjongStylesComparePage() {
 
           {/* Intro */}
           <section className="mb-16">
+            {/* Answer capsule (GEO standard): question H2 + 120-150 char standalone answer */}
+            <h2
+              style={{ fontFamily: 'var(--font-heading)', color: 'var(--espresso)' }}
+              className="text-2xl md:text-3xl font-bold mb-4"
+            >
+              American Mahjong vs Hong Kong vs Taiwanese — what&apos;s the difference?
+            </h2>
+            <p
+              style={{ color: 'var(--espresso)', background: 'var(--paper)', border: '1px solid var(--bone)', borderLeft: '3px solid var(--terra)' }}
+              className="text-lg leading-relaxed mb-2 rounded-lg p-5"
+            >
+              Hong Kong Mahjong plays a 13-tile hand with faan scoring, Taiwanese Mahjong plays 16 tiles, and American Mahjong uses jokers and an annual NMJL card.
+            </p>
+            <p style={{ color: 'var(--walnut)', fontSize: '0.8rem' }} className="mb-6">
+              Style guide reviewed July 2026.
+            </p>
             <p style={{ color: 'var(--walnut)' }} className="text-lg leading-relaxed mb-4">
               Mahjong is not one game — it is a family of games. Three styles dominate the US landscape: <strong>Hong Kong Mahjong</strong>, <strong>Taiwanese Mahjong</strong>, and <strong>American Mahjong</strong>. They share a tile set and a basic goal, but they differ in hand size, scoring philosophy, pace, and the role jokers play at the table.
             </p>

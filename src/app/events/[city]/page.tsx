@@ -131,6 +131,12 @@ export default async function CityEventsPage({ params }: Props) {
           <p className="content-hero-subtitle">
             {data.total} event{data.total !== 1 ? 's' : ''} found
           </p>
+          {data.lastUpdated && !Number.isNaN(Date.parse(data.lastUpdated)) && (
+            <p style={{ color: 'var(--walnut)', fontSize: '0.85rem', opacity: 0.8, marginTop: '0.25rem' }}>
+              Event data updated{' '}
+              {new Date(data.lastUpdated).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
+            </p>
+          )}
           <div className="content-hero-divider" />
         </div>
       </section>
@@ -139,6 +145,20 @@ export default async function CityEventsPage({ params }: Props) {
       {entry?.intro && (
         <section style={{ background: 'var(--paper)', padding: '2rem 0', borderBottom: '1px solid var(--bone)' }}>
           <div className="mx-auto max-w-3xl px-6">
+            {/* Answer capsule (GEO standard): question H2 + 120-150 char standalone answer */}
+            {entry.capsule && (
+              <>
+                <h2
+                  style={{ fontFamily: 'var(--font-heading)', color: 'var(--espresso)', fontSize: '1.1rem' }}
+                  className="font-bold mb-3"
+                >
+                  Where can I play mahjong in {cityName}?
+                </h2>
+                <p style={{ fontSize: '1rem', lineHeight: 1.7, color: 'var(--walnut)', margin: '0 0 1rem' }}>
+                  {entry.capsule}
+                </p>
+              </>
+            )}
             <p style={{ fontSize: '1rem', lineHeight: 1.7, color: 'var(--walnut)', margin: 0 }}>
               {entry.intro}
             </p>

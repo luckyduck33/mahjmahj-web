@@ -24,6 +24,10 @@ export interface CityEntry {
   country: string; // 'US' or other
   tier: 1 | 2 | 3;
   intro: string;
+  /** Answer capsule (GEO standard): 120-150 chars, self-contained answer to
+   *  "Where can I play mahjong in {city}?" — rendered directly under the
+   *  question H2 on the city page. Only for cities with tracked queries. */
+  capsule?: string;
   faqs: CityFAQ[];
 }
 
@@ -37,6 +41,8 @@ export const cities: CityEntry[] = [
     tier: 1,
     intro:
       'Los Angeles has one of the most active mahjong scenes in the country, anchored by Hong Kong Mahjong games in the San Gabriel Valley and a growing American Mahjong community across the Westside. Expect a mix of casual home games, club nights, and pop-up events at cafés and tea houses.',
+    capsule:
+      'You can play mahjong in Los Angeles at Hong Kong Mahjong games in the San Gabriel Valley and American Mahjong nights across the Westside.',
     faqs: [
       {
         question: 'Where can I play mahjong in Los Angeles?',
@@ -63,6 +69,8 @@ export const cities: CityEntry[] = [
     tier: 1,
     intro:
       'New York has a deep, multi-generational mahjong scene — Hong Kong Mahjong is widespread in Chinatown, Flushing, and Sunset Park, while American Mahjong has a strong club presence on the Upper East Side and across Long Island and Westchester. Manhattan, Brooklyn, and Queens each have distinct event calendars.',
+    capsule:
+      'You can play mahjong in New York at Hong Kong Mahjong games in Chinatown and Flushing, and American Mahjong clubs on the Upper East Side.',
     faqs: [
       {
         question: 'Where can I play mahjong in NYC?',
@@ -89,6 +97,8 @@ export const cities: CityEntry[] = [
     tier: 1,
     intro:
       'San Francisco has a long-established Hong Kong Mahjong scene rooted in Chinatown, Richmond District, and Sunset District tea houses and senior centers. American Mahjong has steady community games across the city, and the broader Bay Area has its own dense calendar — check the Bay Area page for events outside SF proper.',
+    capsule:
+      'You can play mahjong in San Francisco at Hong Kong Mahjong games in Chinatown, the Richmond, and the Sunset, plus American Mahjong community games.',
     faqs: [
       {
         question: 'Where can I play mahjong in San Francisco?',
@@ -141,6 +151,8 @@ export const cities: CityEntry[] = [
     tier: 1,
     intro:
       'Chicago has a steady mahjong community split between Chinatown Hong Kong Mahjong games and a strong North Shore American Mahjong club scene. The South Loop, Logan Square, and Lincoln Park have hosted pop-up beginner nights at cafés and bookstores in recent years.',
+    capsule:
+      'You can play mahjong in Chicago at Chinatown Hong Kong Mahjong games, North Shore American Mahjong clubs, and pop-up beginner nights at cafés.',
     faqs: [
       {
         question: 'Where can I play mahjong in Chicago?',
@@ -429,6 +441,8 @@ export const cities: CityEntry[] = [
     tier: 2,
     intro:
       "Dallas-Fort Worth has a growing mahjong community split between Hong Kong Mahjong games in Plano, Frisco, and Richardson's Asian neighborhoods and American Mahjong clubs in Preston Hollow, North Dallas, and the Park Cities. Suburban country clubs and synagogues anchor much of the regular play.",
+    capsule:
+      'You can play mahjong in Dallas–Fort Worth at Hong Kong Mahjong games in Plano, Frisco, and Richardson, and American Mahjong clubs across North Dallas.',
     faqs: [
       {
         question: 'Where can I play mahjong in Dallas?',
