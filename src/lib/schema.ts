@@ -4,7 +4,7 @@ export function organizationSchema() {
     '@type': 'Organization',
     name: 'MAHJ MAHJ',
     url: 'https://mahjmahj.co',
-    description: 'A community platform for mahjong players in the United States covering Hong Kong Mahjong, Taiwanese Mahjong, and American Mahjong.',
+    description: 'MAHJ MAHJ is a community platform for Hong Kong, Taiwanese, and American mahjong — city event listings, recurring club games, learning resources, and the Score My Hand scoring app.',
     // Canonical public profile only (Nidhi-confirmed 2026-07-03). @mahjmahj88 is
     // the API/login account and must never appear in public schema.
     sameAs: ['https://www.instagram.com/mahjmahj_la/'],

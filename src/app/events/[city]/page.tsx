@@ -29,6 +29,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: `Mahjong Events in ${cityName} | MAHJ MAHJ`,
       description,
       url: `https://mahjmahj.co/events/${slug}`,
+      siteName: 'MAHJ MAHJ',
     },
   };
 }

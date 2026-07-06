@@ -1,7 +1,7 @@
 export async function GET() {
   const content = `
 # MAHJ MAHJ
-> Hong Kong Mahjong companion app and learning resources — rules, scoring, and practice for the modern player.
+> MAHJ MAHJ is a community platform for Hong Kong, Taiwanese, and American mahjong — city event listings, recurring club games, learning resources, and the Score My Hand scoring app.
 
 ## Home
 - [Mahj Mahj — A Modern Guide to Mahjong](https://mahjmahj.co): MAHJ MAHJ is a community platform for mahjong players in the United States. Find local events, learn rules and strategy for Hong Kong Mahjong, Taiwanese Mahjong, and American Mahjong, and connect with players in cities across the US.

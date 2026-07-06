@@ -13,6 +13,7 @@ export const metadata: Metadata = {
     title: 'Claim Your Listing | MAHJ MAHJ',
     description: 'Organizers can claim and manage their listing details on MAHJ MAHJ.',
     url: 'https://mahjmahj.co/claim',
+    siteName: 'MAHJ MAHJ',
   },
 };
 

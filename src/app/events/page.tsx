@@ -13,6 +13,7 @@ export const metadata: Metadata = {
     title: 'Mahjong Events Near You | MAHJ MAHJ',
     description: 'Find upcoming mahjong events across the United States.',
     url: 'https://mahjmahj.co/events',
+    siteName: 'MAHJ MAHJ',
   },
 };
 

@@ -14,6 +14,9 @@ export const metadata: Metadata = {
     title: 'Mahj Mahj — A Modern Guide to Mahjong',
     description: 'Find mahjong events, learn rules and strategy, and connect with players across the United States.',
     url: 'https://mahjmahj.co/',
+    // Page-level openGraph replaces (not merges with) the root layout's, so
+    // siteName must be repeated here or og:site_name is dropped on this page.
+    siteName: 'MAHJ MAHJ',
   },
 };
 
