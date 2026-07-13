@@ -55,6 +55,7 @@ export function eventSchema(event: {
   endDate?: string;
   time?: string;
   venue?: string;
+  streetAddress?: string;
   description?: string;
   url?: string;
   state?: string;
@@ -76,11 +77,14 @@ export function eventSchema(event: {
       isPast = true;
     }
   } catch {}
-  const organizer = {
-    '@type': 'Organization',
-    name: event.organizer || 'MAHJ MAHJ',
-    url: 'https://mahjmahj.co',
-  };
+  // Only attach an organizer/performer when we actually know who runs the event
+  // (the API's `host`, mapped upstream). Never default to "MAHJ MAHJ": these are
+  // mostly third-party scraped events and asserting we organize them is a trust
+  // bug. Google treats organizer/performer as recommended, not required, so
+  // omitting them costs only a soft warning — far better than a false claim.
+  const organizer = event.organizer
+    ? { '@type': 'Organization', name: event.organizer }
+    : undefined;
   const schema: Record<string, unknown> = {
     '@context': 'https://schema.org',
     '@type': 'Event',
@@ -91,9 +95,12 @@ export function eventSchema(event: {
     eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
     location: {
       '@type': 'Place',
+      // Prefer the real venue name ("Falafel Palace"); fall back to city only
+      // when the venue is genuinely unknown.
       name: event.venue || event.city,
       address: {
         '@type': 'PostalAddress',
+        ...(event.streetAddress && { streetAddress: event.streetAddress }),
         addressLocality: event.city,
         ...(event.state && { addressRegion: event.state }),
         addressCountry: 'US',
@@ -102,10 +109,7 @@ export function eventSchema(event: {
     image: [image],
     ...(event.description && { description: event.description }),
     ...(eventUrl && { url: eventUrl }),
-    organizer,
-    // Default performer to organizer — Google flags missing performer as a
-    // warning, and we don't have a separate performer field on the source.
-    performer: organizer,
+    ...(organizer && { organizer, performer: organizer }),
   };
   if (event.cost) {
     const price = event.cost.replace(/[^0-9.]/g, '') || '0';

@@ -25,12 +25,82 @@ function sanitizeMahjong<T extends object>(obj: T): T {
   return out as T;
 }
 
+// Valid US state / territory + DC postal codes. Used to validate a parsed
+// address region so we emit a real region or nothing — never a guessed token.
+// Many scraped addresses carry freeform tails ("Various — check site.com",
+// "CA (various venues)"), so blind last-token extraction would leak junk into
+// schema. Trust rule: parse conservatively, omit when uncertain.
+const US_STATES = new Set([
+  'AL','AK','AZ','AR','CA','CO','CT','DE','FL','GA','HI','ID','IL','IN','IA',
+  'KS','KY','LA','ME','MD','MA','MI','MN','MS','MO','MT','NE','NV','NH','NJ',
+  'NM','NY','NC','ND','OH','OK','OR','PA','RI','SC','SD','TN','TX','UT','VT',
+  'VA','WA','WV','WI','WY','DC','PR',
+]);
+
+/**
+ * Parse the API `address` ("9255 Reseda Boulevard, Los Angeles, CA" or
+ * "..., NY 10022") into schema-ready parts.
+ *   - streetAddress: the leading street line, only when it looks like a real
+ *     street (starts with a number) — avoids echoing "Various — check ..." notes.
+ *   - state: the last comma segment that is a valid 2-letter US state (optionally
+ *     followed by a ZIP), validated against US_STATES.
+ * Returns {} for freeform/placeholder addresses so we omit rather than mislabel.
+ */
+function parseAddress(address?: string): { streetAddress?: string; state?: string } {
+  if (!address || typeof address !== 'string') return {};
+  const parts = address.split(',').map((p) => p.trim()).filter(Boolean);
+  if (parts.length === 0) return {};
+
+  let state: string | undefined;
+  for (let i = parts.length - 1; i >= 0; i--) {
+    // "CA", "CA 90012", "NY 10022-1234" → capture the 2-letter code.
+    const m = parts[i].match(/^([A-Z]{2})(?:\s+\d{5}(?:-\d{4})?)?$/);
+    if (m && US_STATES.has(m[1])) {
+      state = m[1];
+      break;
+    }
+  }
+
+  // streetAddress: first segment only when it starts with a house number.
+  const streetAddress = /^\d/.test(parts[0]) ? parts[0] : undefined;
+
+  return { streetAddress, state };
+}
+
+/**
+ * Map the live API's real field names onto the normalized MahjEvent fields the
+ * rest of the app reads. The API sends `neighborhood`/`address`/`styles[]`/`host`
+ * and does NOT send `venue`/`state`/`style`/`organizer` — without this, every
+ * event's location collapses to the bare city and organizer was hard-wired to
+ * "MAHJ MAHJ", misattributing third-party events to us (a trust bug). We only
+ * fill a normalized field when it isn't already set, so a future API that sends
+ * the clean names keeps working unchanged.
+ */
+function normalizeEventFields(e: MahjEvent): MahjEvent {
+  const out: MahjEvent = { ...e };
+  if (!out.venue && out.neighborhood) out.venue = out.neighborhood;
+  if (!out.style && Array.isArray(out.styles) && out.styles.length > 0) {
+    out.style = out.styles[0];
+  }
+  // Organizer: only when a real host exists. Never default to MAHJ MAHJ here —
+  // omitting is correct for scraped third-party events we don't run.
+  if (!out.organizer && typeof out.host === 'string' && out.host.trim()) {
+    out.organizer = out.host.trim();
+  }
+  const parsed = parseAddress(out.address);
+  if (!out.streetAddress && parsed.streetAddress) out.streetAddress = parsed.streetAddress;
+  if (!out.state && parsed.state) out.state = parsed.state;
+  return out;
+}
+
 export interface MahjEvent {
   id: string;
   title: string;
   city: string;
   state?: string;
   venue?: string;
+  /** Street line only ("9255 Reseda Boulevard"), parsed from the API `address`. */
+  streetAddress?: string;
   date: string;
   endDate?: string;
   time?: string;
@@ -44,6 +114,18 @@ export interface MahjEvent {
   instagramHandle?: string;
   cost?: string;
   organizer?: string;
+  // ── Raw fields as the live API (api.mahjmahj.co) actually sends them. The
+  // API does NOT populate venue/state/style/organizer; it sends these instead.
+  // normalizeEventFields() maps them onto the normalized fields above so every
+  // downstream consumer (page render + JSON-LD) sees a complete event.
+  /** Venue name, e.g. "Falafel Palace". Maps to `venue`. */
+  neighborhood?: string;
+  /** Full address, e.g. "9255 Reseda Boulevard, Los Angeles, CA". Source of streetAddress + state. */
+  address?: string;
+  /** Game styles, e.g. ["American"]. First entry maps to `style`. */
+  styles?: string[];
+  /** Organizer/host name. Maps to `organizer` only when non-empty. */
+  host?: string;
 }
 
 export interface NewsItem {
@@ -90,9 +172,14 @@ export async function getEvents(params?: {
       return { events: [], total: 0, lastUpdated: null };
     }
     const data = (await res.json()) as EventsResponse;
-    // Sanitize "Chinese Mahjong" → "Hong Kong Mahjong" across every event
-    // before any consumer (page render or JSON-LD builder) sees them.
-    return { ...data, events: (data.events || []).map((e) => sanitizeMahjong(e)) };
+    // First map the API's real field names (neighborhood/address/styles/host)
+    // onto the normalized fields the app reads, THEN sanitize — so the freshly
+    // populated venue/organizer also get "Chinese Mahjong" → "Hong Kong Mahjong"
+    // applied before any consumer (page render or JSON-LD builder) sees them.
+    return {
+      ...data,
+      events: (data.events || []).map((e) => sanitizeMahjong(normalizeEventFields(e))),
+    };
   } catch {
     return { events: [], total: 0, lastUpdated: null };
   }

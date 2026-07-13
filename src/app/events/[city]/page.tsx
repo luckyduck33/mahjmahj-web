@@ -89,6 +89,7 @@ export default async function CityEventsPage({ params }: Props) {
         endDate: evt.endDate,
         time: evt.time,
         venue: evt.venue,
+        streetAddress: evt.streetAddress,
         description: evt.description,
         url: evt.url,
         organizer: evt.organizer,
@@ -214,6 +215,11 @@ export default async function CityEventsPage({ params }: Props) {
                   <h2 className="event-title">{evt.title}</h2>
                   {managingOrganizer && <ClaimBadge />}
                   {evt.venue && <p className="event-location">{evt.venue}</p>}
+                  {evt.streetAddress && (
+                    <p className="event-address" style={{ fontSize: '0.8rem', color: 'var(--stone)', margin: '0.1rem 0 0' }}>
+                      {evt.streetAddress}, {evt.city}{evt.state ? `, ${evt.state}` : ''}
+                    </p>
+                  )}
                   {evt.description && (
                     <p style={{ fontSize: '0.85rem', color: 'var(--walnut)', marginTop: '0.5rem', lineHeight: 1.6 }}>
                       {evt.description.length > 150 ? evt.description.slice(0, 150) + '...' : evt.description}
@@ -337,6 +343,11 @@ export default async function CityEventsPage({ params }: Props) {
                     <h2 className="event-title">{evt.title}</h2>
                     {managingOrganizer && <ClaimBadge />}
                     {evt.venue && <p className="event-location">{evt.venue}</p>}
+                    {evt.streetAddress && (
+                      <p className="event-address" style={{ fontSize: '0.8rem', color: 'var(--stone)', margin: '0.1rem 0 0' }}>
+                        {evt.streetAddress}, {evt.city}{evt.state ? `, ${evt.state}` : ''}
+                      </p>
+                    )}
                     {evt.description && (
                       <p style={{ fontSize: '0.85rem', color: 'var(--walnut)', marginTop: '0.5rem', lineHeight: 1.6 }}>
                         {evt.description.length > 150 ? evt.description.slice(0, 150) + '...' : evt.description}

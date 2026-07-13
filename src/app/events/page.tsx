@@ -74,6 +74,7 @@ export default async function EventsPage() {
       date: evt.date,
       endDate: evt.endDate,
       venue: evt.venue,
+      streetAddress: evt.streetAddress,
       description: evt.description,
       url: evt.url,
       organizer: evt.organizer,
@@ -153,6 +154,11 @@ export default async function EventsPage() {
                   <p className="event-city">{evt.city}{evt.state ? `, ${evt.state}` : ''}</p>
                   <h2 className="event-title">{evt.title}</h2>
                   {evt.venue && <p className="event-location">{evt.venue}</p>}
+                  {evt.streetAddress && (
+                    <p className="event-address" style={{ fontSize: '0.8rem', color: 'var(--stone)', margin: '0.1rem 0 0' }}>
+                      {evt.streetAddress}
+                    </p>
+                  )}
                   {evt.style && (
                     <span className="event-style" data-style={evt.style}>{evt.style}</span>
                   )}
@@ -188,6 +194,11 @@ export default async function EventsPage() {
                     <p className="event-city">{evt.city}{evt.state ? `, ${evt.state}` : ''}</p>
                     <h2 className="event-title">{evt.title}</h2>
                     {evt.venue && <p className="event-location">{evt.venue}</p>}
+                    {evt.streetAddress && (
+                      <p className="event-address" style={{ fontSize: '0.8rem', color: 'var(--stone)', margin: '0.1rem 0 0' }}>
+                        {evt.streetAddress}
+                      </p>
+                    )}
                     {evt.style && (
                       <span className="event-style" data-style={evt.style}>{evt.style}</span>
                     )}
