@@ -8,7 +8,11 @@
 // Triggered by .github/workflows/indexnow.yml on every push to main, after
 // a delay long enough for the Vercel production deploy to go live.
 //
-// Run manually:  node scripts/submit-indexnow.mjs
+// Run manually (all sitemap URLs):  node scripts/submit-indexnow.mjs
+// Submit specific URLs (priority ping, skips the sitemap):
+//   node scripts/submit-indexnow.mjs https://mahjmahj.co/events/new-york https://mahjmahj.co/events/los-angeles
+//   Paths are also accepted and resolved against the host:
+//   node scripts/submit-indexnow.mjs /events/new-york /events/los-angeles
 // Override host: INDEXNOW_HOST=staging.mahjmahj.co node scripts/submit-indexnow.mjs
 
 const HOST = process.env.INDEXNOW_HOST || 'mahjmahj.co';
@@ -69,15 +73,31 @@ async function submitBatch(urls) {
   return { status: res.status, text };
 }
 
+// Explicit URLs passed as CLI args → priority submission (skip the sitemap).
+// Accepts full URLs or root-relative paths (resolved against HOST).
+function explicitUrls() {
+  const args = process.argv.slice(2).filter((a) => !a.startsWith('-'));
+  if (args.length === 0) return null;
+  return args.map((a) => {
+    if (/^https?:\/\//i.test(a)) return a;
+    return `https://${HOST}${a.startsWith('/') ? '' : '/'}${a}`;
+  });
+}
+
 async function main() {
   console.log(`[indexnow] host=${HOST} keyLocation=${KEY_LOCATION}`);
   await waitForKeyFile();
-  const urls = await readSitemapUrls();
+  const explicit = explicitUrls();
+  const urls = explicit ?? (await readSitemapUrls());
   if (urls.length === 0) {
-    console.error('[indexnow] sitemap returned zero URLs — aborting');
+    console.error('[indexnow] no URLs to submit — aborting');
     process.exit(1);
   }
-  console.log(`[indexnow] sitemap returned ${urls.length} URLs`);
+  console.log(
+    explicit
+      ? `[indexnow] priority submission of ${urls.length} explicit URL(s)`
+      : `[indexnow] sitemap returned ${urls.length} URLs`
+  );
   const batches = chunk(urls, BATCH_SIZE);
   let failures = 0;
   for (let i = 0; i < batches.length; i++) {
