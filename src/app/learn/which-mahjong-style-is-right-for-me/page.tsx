@@ -26,7 +26,18 @@ export const metadata: Metadata = {
   },
 };
 
+// Compound reasoning-path answer (style-choice × family context) — the OPEN
+// query from the 2026-07-13 whitespace sweep. Rendered both as a top callout
+// and (via this same object) in the FAQPage schema, so the visible text is
+// byte-identical to the schema text.
+const familyStyleFaq = {
+  question: 'Which mahjong style should I learn first if my family plays Taiwanese?',
+  answer:
+    'If your family plays Taiwanese Mahjong, learn Taiwanese first. You will have built-in teachers, a table to practice at, and the 16-tile hand and its scoring (tai) will start to feel natural much faster when you are playing with people who already know it. You can pick up Hong Kong (13-tile) or American Mahjong later — the tile set is the same, and most players say the second style clicks far faster than the first. Learning alongside your family beats any "best beginner style" ranking.',
+};
+
 const faqs = [
+  familyStyleFaq,
   {
     question: 'Which Mahjong should I learn first?',
     answer:
@@ -135,6 +146,33 @@ export default function WhichStylePage() {
             <p style={{ color: 'var(--walnut)' }} className="text-lg leading-relaxed">
               This guide is for everyone who gets to choose — or wants to understand what they are getting into before they sit down.
             </p>
+          </section>
+
+          {/* Compound reasoning-path answer capsule (style-choice × family
+              context). Same object as the FAQPage schema entry below, so the
+              visible text is byte-identical to the schema. */}
+          <section className="mb-16">
+            <div
+              style={{ background: 'var(--sand)', border: '1px solid var(--bone)', borderLeft: '4px solid var(--terra)' }}
+              className="rounded-lg p-7"
+            >
+              <h2
+                style={{ fontFamily: 'var(--font-heading)', color: 'var(--espresso)', fontSize: '1.15rem' }}
+                className="font-bold mb-3"
+              >
+                {familyStyleFaq.question}
+              </h2>
+              <p style={{ color: 'var(--walnut)' }} className="text-lg leading-relaxed mb-4">
+                {familyStyleFaq.answer}
+              </p>
+              <p style={{ color: 'var(--stone)', fontSize: '0.9rem' }} className="leading-relaxed">
+                <Link href="/styles/taiwanese-mahjong" style={{ color: 'var(--terra)' }}>Learn Taiwanese Mahjong</Link>
+                {' · '}
+                <Link href="/compare/mahjong-styles" style={{ color: 'var(--terra)' }}>Compare the three styles</Link>
+                {' · '}
+                <Link href="/events" style={{ color: 'var(--terra)' }}>Find a game near you</Link>
+              </p>
+            </div>
           </section>
 
           {/* Best style is one you can play */}

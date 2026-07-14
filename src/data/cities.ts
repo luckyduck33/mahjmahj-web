@@ -28,6 +28,13 @@ export interface CityEntry {
    *  "Where can I play mahjong in {city}?" — rendered directly under the
    *  question H2 on the city page. Only for cities with tracked queries. */
   capsule?: string;
+  /** Compound reasoning-path answer object (style × city × etiquette / beginner
+   *  intent — the OPEN reasoning-path queries from the 2026-07-13 whitespace
+   *  sweep). Rendered as a prominent question-H2 + answer capsule at the TOP of
+   *  the city page and added to the FAQPage schema (visible text byte-identical
+   *  to schema). Durable answer only — no invented venues; the page's live event
+   *  cards (post-P0: real venue/street/region) carry the current specifics. */
+  visitFaq?: CityFAQ;
   faqs: CityFAQ[];
 }
 
@@ -43,6 +50,12 @@ export const cities: CityEntry[] = [
       'Los Angeles has one of the most active mahjong scenes in the country, anchored by Hong Kong Mahjong games in the San Gabriel Valley and a growing American Mahjong community across the Westside. Expect a mix of casual home games, club nights, and pop-up events at cafés and tea houses.',
     capsule:
       'You can play mahjong in Los Angeles at Hong Kong Mahjong games in the San Gabriel Valley and American Mahjong nights across the Westside.',
+    visitFaq: {
+      question:
+        'I am new to LA and want a regular game — how do I find a beginner-friendly mahjong group?',
+      answer:
+        'If you are new to LA and want a regular game, start on the Westside and in Beverly Hills, where several American Mahjong groups run beginner nights with a teacher, then explore the San Gabriel Valley — Monterey Park, Alhambra, and Arcadia — for Hong Kong Mahjong once you know the basics. The fastest way in: pick a recurring session below labeled a lesson, beginner, or open-play night, show up a little early, and tell the organizer it is your first time — LA beginner nights are built for exactly that. Check the current LA games listed below for a session near you.',
+    },
     faqs: [
       {
         question: 'Where can I play mahjong in Los Angeles?',
@@ -71,6 +84,12 @@ export const cities: CityEntry[] = [
       'New York has a deep, multi-generational mahjong scene — Hong Kong Mahjong is widespread in Chinatown, Flushing, and Sunset Park, while American Mahjong has a strong club presence on the Upper East Side and across Long Island and Westchester. Manhattan, Brooklyn, and Queens each have distinct event calendars.',
     capsule:
       'You can play mahjong in New York at Hong Kong Mahjong games in Chinatown and Flushing, and American Mahjong clubs on the Upper East Side.',
+    visitFaq: {
+      question:
+        'I want a Hong Kong Mahjong game in New York, not American — where do locals play and what is the etiquette?',
+      answer:
+        'In New York, Hong Kong Mahjong is easiest to find in Manhattan Chinatown and in Flushing, Queens, where community associations and neighborhood parlors run games — that is where locals play HK-style, while American Mahjong clusters in Upper East Side clubs and the suburbs. Etiquette: Chinatown and Flushing games are usually cash, small-stakes, and quick, so arrive a little early, watch a hand first, bring your own small bills, and ask to join rather than taking a seat. See the current New York games listed below and confirm the style before you go.',
+    },
     faqs: [
       {
         question: 'Where can I play mahjong in NYC?',
@@ -153,6 +172,12 @@ export const cities: CityEntry[] = [
       'Chicago has a steady mahjong community split between Chinatown Hong Kong Mahjong games and a strong North Shore American Mahjong club scene. The South Loop, Logan Square, and Lincoln Park have hosted pop-up beginner nights at cafés and bookstores in recent years.',
     capsule:
       'You can play mahjong in Chicago at Chinatown Hong Kong Mahjong games, North Shore American Mahjong clubs, and pop-up beginner nights at cafés.',
+    visitFaq: {
+      question:
+        'I play Hong Kong Mahjong, not American — where can I play in Chicago, and what should I know before showing up?',
+      answer:
+        'For Hong Kong Mahjong in Chicago, head to Chinatown — community organizations and the Chinese American Service League run HK-style games, and it is where a visiting Hong Kong player will feel most at home (American Mahjong dominates the North Shore club scene instead). Before you go: Chinatown games are usually cash and small-stakes and move fast, so watch a round before sitting in, bring your own small bills, and ask to join rather than assuming a seat — most groups welcome a visitor who already knows the game. Check the current Chicago games listed below and confirm the style before you show up.',
+    },
     faqs: [
       {
         question: 'Where can I play mahjong in Chicago?',

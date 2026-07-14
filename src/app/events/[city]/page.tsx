@@ -104,7 +104,14 @@ export default async function CityEventsPage({ params }: Props) {
     { name: cityName, url: `https://mahjmahj.co/events/${slug}` },
   ]);
 
-  const faqJsonLd = entry?.faqs?.length ? faqSchema(entry.faqs) : null;
+  // Compound reasoning-path answer (visitFaq) leads the FAQPage schema when
+  // present, followed by the standard city FAQs. Visible capsule text below is
+  // rendered from the same objects, so schema text stays byte-identical.
+  const allFaqs = [
+    ...(entry?.visitFaq ? [entry.visitFaq] : []),
+    ...(entry?.faqs ?? []),
+  ];
+  const faqJsonLd = allFaqs.length ? faqSchema(allFaqs) : null;
 
   /* Split events: dated vs ongoing */
   const today = new Date();
@@ -142,6 +149,37 @@ export default async function CityEventsPage({ params }: Props) {
           <div className="content-hero-divider" />
         </div>
       </section>
+
+      {/* Compound reasoning-path answer capsule (style × city × etiquette /
+          beginner). Leads the page as the primary extractable answer object;
+          cross-links to the style/compare pages the compound intent also needs.
+          The durable answer points to the live event cards below for the real
+          venue/street/region specifics (post-P0). */}
+      {entry?.visitFaq && (
+        <section style={{ background: 'var(--sand)', borderBottom: '1px solid var(--bone)', padding: '2rem 0' }}>
+          <div className="mx-auto max-w-3xl px-6">
+            <div style={{ borderLeft: '4px solid var(--terra)', paddingLeft: '1.25rem' }}>
+              <h2 style={{ fontFamily: 'var(--font-heading)', color: 'var(--espresso)', fontSize: '1.15rem' }} className="font-bold mb-3">
+                {entry.visitFaq.question}
+              </h2>
+              <p style={{ fontSize: '1rem', lineHeight: 1.7, color: 'var(--walnut)', margin: '0 0 1rem' }}>
+                {entry.visitFaq.answer}
+              </p>
+              {data.total > 0 && (
+                <p style={{ fontSize: '0.9rem', color: 'var(--walnut)', margin: '0 0 0.75rem' }}>
+                  {data.total} {cityName} game{data.total !== 1 ? 's' : ''} currently listed below.
+                </p>
+              )}
+              <p style={{ fontSize: '0.85rem', color: 'var(--stone)', margin: 0 }}>
+                New to the styles?{' '}
+                <Link href="/compare/mahjong-styles" style={{ color: 'var(--terra)' }}>Compare Hong Kong, Taiwanese &amp; American</Link>
+                {' · '}
+                <Link href="/styles/hong-kong-mahjong" style={{ color: 'var(--terra)' }}>Hong Kong rules &amp; scoring</Link>
+              </p>
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* City intro — always render when manifest entry exists, regardless of event count */}
       {entry?.intro && (

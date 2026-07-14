@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { getEvents, getCitySlug } from '@/lib/api';
-import { itemListSchema, eventSchema, breadcrumbSchema } from '@/lib/schema';
+import { itemListSchema, eventSchema, breadcrumbSchema, faqSchema } from '@/lib/schema';
 import { JsonLd } from '@/components/JsonLd';
 import { cities as manifestCities } from '@/data/cities';
 import type { Metadata } from 'next';
@@ -88,9 +88,24 @@ export default async function EventsPage() {
     { name: 'Events', url: 'https://mahjmahj.co/events' },
   ]);
 
+  // Compound reasoning-path answer object (style × geography): the OPEN
+  // "I play Taiwanese — which US cities have an active enough scene?" query.
+  // Durable answer (heritage-style hubs) → FAQPage schema; the live "most games
+  // right now" line below is computed from real event counts, omitted at zero.
+  const activeNow = tileCities
+    .filter((c) => c.count > 0)
+    .sort((a, b) => b.count - a.count)
+    .slice(0, 6);
+  const sceneFaq = {
+    question:
+      'I play Taiwanese Mahjong — which US cities have an active enough scene to find a table?',
+    answer:
+      'Hong Kong and Taiwanese Mahjong concentrate in US cities with large Chinese and Taiwanese communities — Los Angeles (the San Gabriel Valley), New York (Flushing and Manhattan Chinatown), and the San Francisco Bay Area have the deepest heritage-style scenes, so they are the best bets for finding a Taiwanese or Hong Kong table. American Mahjong is active nationwide in clubs and senior centers. Pick a city below to see its current games, and start with the cities showing upcoming listings.',
+  };
+
   return (
     <>
-      <JsonLd data={[breadcrumbs, itemListSchema(schemaItems), ...eventSchemas]} />
+      <JsonLd data={[breadcrumbs, itemListSchema(schemaItems), faqSchema([sceneFaq]), ...eventSchemas]} />
 
 
       {/* Hero */}
@@ -102,6 +117,39 @@ export default async function EventsPage() {
             Find upcoming mahjong events across the United States
           </p>
           <div className="content-hero-divider" />
+        </div>
+      </section>
+
+      {/* Compound reasoning-path answer capsule (style × geography). Primary
+          extractable answer for the "which cities have an active scene" query;
+          cross-links to the style pages the compound intent also needs. */}
+      <section style={{ background: 'var(--sand)', borderBottom: '1px solid var(--bone)', padding: '2rem 0' }}>
+        <div className="mx-auto max-w-3xl px-6">
+          <div style={{ borderLeft: '4px solid var(--terra)', paddingLeft: '1.25rem' }}>
+            <h2 style={{ fontFamily: 'var(--font-heading)', color: 'var(--espresso)', fontSize: '1.15rem' }} className="font-bold mb-3">
+              {sceneFaq.question}
+            </h2>
+            <p style={{ fontSize: '1rem', lineHeight: 1.7, color: 'var(--walnut)', margin: '0 0 1rem' }}>
+              {sceneFaq.answer}
+            </p>
+            {activeNow.length > 0 && (
+              <p style={{ fontSize: '0.9rem', color: 'var(--walnut)', margin: '0 0 0.75rem' }}>
+                Most games listed right now:{' '}
+                {activeNow.map((c, i) => (
+                  <span key={c.slug}>
+                    <Link href={`/events/${c.slug}`} style={{ color: 'var(--terra)' }}>{c.name}</Link>
+                    {i < activeNow.length - 1 ? ', ' : '.'}
+                  </span>
+                ))}
+              </p>
+            )}
+            <p style={{ fontSize: '0.85rem', color: 'var(--stone)', margin: 0 }}>
+              Choosing a style?{' '}
+              <Link href="/styles/taiwanese-mahjong" style={{ color: 'var(--terra)' }}>Taiwanese Mahjong</Link>
+              {' · '}
+              <Link href="/compare/mahjong-styles" style={{ color: 'var(--terra)' }}>Compare all three styles</Link>
+            </p>
+          </div>
         </div>
       </section>
 
