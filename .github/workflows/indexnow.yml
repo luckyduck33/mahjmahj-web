@@ -1,8 +1,14 @@
-name: IndexNow ping on deploy
+name: IndexNow ping on deploy or data refresh
 
 on:
   push:
     branches: [main]
+  # Event pages are ISR (revalidate: 3600) fed by the Notion-backed API —
+  # event data changes with NO git push (weekly Sunday scraper + ongoing
+  # Cowork/Notion enrichment), so push-only pings never cover them.
+  # Weekly ping Mondays 18:00 UTC (~10/11am PT), the day after the scraper.
+  schedule:
+    - cron: '0 18 * * 1'
   workflow_dispatch:
 
 concurrency:
@@ -21,6 +27,7 @@ jobs:
       # itself polls the key-file URL for up to ~5 minutes before
       # submitting, so this is a soft delay rather than a hard one.
       - name: Wait for Vercel production deploy
+        if: github.event_name == 'push'
         run: sleep 60
       - name: Submit URLs to IndexNow
         run: node scripts/submit-indexnow.mjs
