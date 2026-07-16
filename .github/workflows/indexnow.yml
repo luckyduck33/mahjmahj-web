@@ -3,13 +3,24 @@ name: IndexNow ping on deploy or data refresh
 on:
   push:
     branches: [main]
-  # Event pages are ISR (revalidate: 3600) fed by the Notion-backed API —
-  # event data changes with NO git push (weekly Sunday scraper + ongoing
-  # Cowork/Notion enrichment), so push-only pings never cover them.
-  # Weekly ping Mondays 18:00 UTC (~10/11am PT), the day after the scraper.
   schedule:
+    # Event pages are ISR (revalidate: 3600) fed by the Notion-backed API —
+    # event data changes with NO git push (weekly Sunday scraper + ongoing
+    # Cowork/Notion enrichment), so push-only pings never cover them.
+    # Weekly ping Mondays 18:00 UTC (~10/11am PT), the day after the scraper.
+    # Diff-based like every other run: it picks up new/changed event URLs.
     - cron: '0 18 * * 1'
+    # Monthly full resubmit. Per-push runs submit only new/changed URLs (Bing
+    # Webmaster Tools flags full-sitemap batch resubmission as an
+    # indexing-delay risk), so a low-frequency full pass keeps Bing's picture
+    # of the whole site fresh and reseeds the diff state.
+    - cron: '0 9 1 * *'
   workflow_dispatch:
+    inputs:
+      full:
+        description: 'Resubmit the full sitemap (not just new/changed URLs)'
+        type: boolean
+        default: false
 
 concurrency:
   group: indexnow-${{ github.ref }}
@@ -23,11 +34,27 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
+      # Persist the last-seen sitemap snapshot between runs so the script can
+      # submit only new/changed URLs. run_id keys are never reused, so each
+      # run restores the most recent prior state (restore-keys prefix match)
+      # and saves its own updated copy when the job succeeds. On a cache miss
+      # the script submits the full sitemap once and reseeds.
+      - name: Restore IndexNow state
+        uses: actions/cache@v4
+        with:
+          path: .indexnow-state.json
+          key: indexnow-state-${{ github.run_id }}
+          restore-keys: |
+            indexnow-state-
       # Give Vercel a head start on the production deploy. The script
       # itself polls the key-file URL for up to ~5 minutes before
       # submitting, so this is a soft delay rather than a hard one.
       - name: Wait for Vercel production deploy
         if: github.event_name == 'push'
         run: sleep 60
-      - name: Submit URLs to IndexNow
+      - name: Submit new/changed URLs to IndexNow
+        if: github.event.schedule != '0 9 1 * *' && inputs.full != true
         run: node scripts/submit-indexnow.mjs
+      - name: Full sitemap resubmit (monthly / manual)
+        if: github.event.schedule == '0 9 1 * *' || inputs.full == true
+        run: node scripts/submit-indexnow.mjs --full
