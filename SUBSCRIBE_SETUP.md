@@ -1,27 +1,48 @@
 # Newsletter Signup — persistence setup
 
-The marketing-site newsletter capture (`/api/subscribe`) writes each signup to
-the first configured sink, checked in this order:
+**MAHJ MAHJ's chosen ESP is Beehiiv** — MAHJ is a genuine newsletter publication
+(browsable archive + referral mechanics), which is what Beehiiv is built for.
 
-1. **MailerLite** — if `MAILERLITE_API_KEY` is set (intended production sink).
-2. **Notion** — if `NOTION_TOKEN` is set (durable, ships working today).
-3. **Local file** — `.data/subscribers.ndjson` (dev fallback, no secrets needed).
+The marketing-site newsletter capture (`/api/subscribe`) sends to one ESP and
+keeps a first-party backup in Notion:
 
-You do **not** need MailerLite to go live: with `NOTION_TOKEN` set (the same
-token the claim flow already uses) signups land in the **"MAHJ MAHJ — Email
-Signups"** Notion DB. Add MailerLite later by setting one env var — no code change.
+1. **Beehiiv** (primary send) — if `BEEHIIV_API_KEY` + `BEEHIIV_PUBLICATION_ID`
+   are set. Owns delivery and the welcome flow.
+2. **MailerLite** (fallback ESP seam) — used only if no Beehiiv keys are set and
+   `MAILERLITE_API_KEY` is. Not provisioned for MAHJ; left in for portability.
+3. **Notion** (durable backup) — if `NOTION_TOKEN` is set, every signup is ALSO
+   mirrored to the **"MAHJ MAHJ — Email Signups"** DB, alongside the ESP above.
+   So a lost/rotated ESP key never means a lost subscriber.
+4. **Local file** — `.data/subscribers.ndjson` (dev fallback, no secrets needed).
 
 ## Environment variables (Vercel → `prj_iw55X8J0EHSnK2AMUsiDVdotkHGn`)
 
-| Variable              | Value                                                          | Required |
-| --------------------- | -------------------------------------------------------------- | -------- |
-| `MAILERLITE_API_KEY`  | MailerLite API token — activates the MailerLite sink           | Optional (preferred once available) |
-| `MAILERLITE_GROUP_ID` | MailerLite group to file subscribers into                      | Optional |
-| `NOTION_TOKEN`        | Notion internal-integration secret (`ntn_` / `secret_`)        | Required if not using MailerLite (already set for claim flow) |
-| `SIGNUPS_DB_ID`       | `a5ef6eaa-6e1d-4b5c-8e04-ddced6b0608c`                          | Optional (this id is the built-in default) |
+| Variable                     | Value                                                          | Required |
+| ---------------------------- | -------------------------------------------------------------- | -------- |
+| `BEEHIIV_API_KEY`            | Beehiiv API token (Dashboard → Settings → Integrations → API)  | **Yes (primary send)** |
+| `BEEHIIV_PUBLICATION_ID`     | Beehiiv publication id, prefixed `pub_`                        | **Yes (primary send)** |
+| `BEEHIIV_SEND_WELCOME_EMAIL` | `true` to have Beehiiv send its welcome email on signup        | Optional (default off) |
+| `NOTION_TOKEN`               | Notion internal-integration secret (`ntn_` / `secret_`)        | Recommended (durable backup; same token the claim flow uses) |
+| `SIGNUPS_DB_ID`              | `a5ef6eaa-6e1d-4b5c-8e04-ddced6b0608c`                          | Optional (this id is the built-in default) |
+| `MAILERLITE_API_KEY`         | Only if falling back to MailerLite instead of Beehiiv          | Optional (unused for MAHJ) |
+| `MAILERLITE_GROUP_ID`        | MailerLite group, if MailerLite fallback is used               | Optional |
 
 If none are set, the code logs a warning and appends to a local NDJSON file.
-Fine for local dev; in production, set a sink or signups will not persist.
+Fine for local dev; in production, set Beehiiv (and ideally Notion) or signups
+will not persist.
+
+## One-time Beehiiv step (REQUIRED for the Beehiiv sink)
+
+1. Create the MAHJ MAHJ publication in Beehiiv (free tier covers up to 2,500
+   subscribers, with automations + a hosted archive).
+2. Dashboard → **Settings → Integrations → API** → create an API key →
+   set `BEEHIIV_API_KEY`.
+3. Copy the publication id (starts with `pub_`) → set `BEEHIIV_PUBLICATION_ID`.
+4. Build a **Welcome automation** in Beehiiv (this replaces any code-side
+   confirmation email). Set `BEEHIIV_SEND_WELCOME_EMAIL=true` if you want
+   Beehiiv's built-in welcome email in addition to (or instead of) an automation.
+5. Authenticate the sending domain (mahjmahj.co) in Beehiiv so mail passes
+   SPF/DKIM and doesn't land in spam.
 
 ## One-time Notion step (REQUIRED for the Notion sink — writes 404 without it)
 
