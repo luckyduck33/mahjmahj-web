@@ -36,3 +36,6 @@ next-env.d.ts
 
 # local dev sinks (subscribe/claim NDJSON fallback stores)
 /.data/
+
+# IndexNow diff state (CI persists via actions/cache; local runs only)
+.indexnow-state.json
