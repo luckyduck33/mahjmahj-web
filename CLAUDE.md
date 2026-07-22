@@ -126,3 +126,11 @@ Question-targeting pages in this repo follow the answer-capsule structural stand
 - Every stat passes the Source-of-Truth Gate; when touching any claim, verify the whole claim-class on the page.
 - Visible dated freshness line tied to **real** data dates — never a cosmetic timestamp.
 - Venture rule on top: Hong Kong Mahjong terminology (never "Chinese Mahjong" in editorial copy).
+
+## Commit trailers — Task Board rows (added 2026-07-22)
+
+When a commit's work corresponds to a Notion Task Board row, end the commit message with a trailer:
+
+    Task: <the row id's LAST 12-hex segment>
+
+One `Task:` line per row if a commit covers several. Use the last segment because Notion row ids share time-based prefixes; the last segment is the unique part. `Operations/git-reconcile.mjs` uses these trailers for deterministic commit-to-row matching in the daily check-in; untrailed commits fall back to fuzzy matching and may be flagged as "🕳️ Unreconciled work." Also remember: the session that ships flips the row to Done (hash + deploy URL in Notes) in the same work block. Full protocol: `~/CLAUDE.nosync/Operations/code-session-protocol-2026-07-22-PROPOSAL.md`.
