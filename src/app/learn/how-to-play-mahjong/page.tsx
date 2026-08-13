@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { faqSchema, howToSchema, articleSchema } from '@/lib/schema';
+import EmailSignup from '@/components/EmailSignup';
+import KitCallout from '@/components/KitCallout';
 
 export const metadata: Metadata = {
   title: 'How to Play Mahjong — A Beginner\'s Guide',
@@ -440,6 +442,11 @@ export default function HowToPlayMahjongPage() {
             </ul>
           </section>
 
+          {/* Cross-link — hosting-relevant, kept clear of the EmailSignup near the end */}
+          <section className="mb-16">
+            <KitCallout />
+          </section>
+
           {/* Simplified first-game walkthrough */}
           <section className="mb-16">
             <h2
@@ -622,6 +629,14 @@ export default function HowToPlayMahjongPage() {
                 </div>
               ))}
             </div>
+          </section>
+
+          {/* Email signup — learning-track capture */}
+          <section
+            className="mb-16 rounded-lg p-8"
+            style={{ background: 'var(--sand)', border: '1px solid var(--bone)' }}
+          >
+            <EmailSignup variant="learn" source="learn:how-to-play-mahjong" />
           </section>
 
           {/* Welcome CTA */}

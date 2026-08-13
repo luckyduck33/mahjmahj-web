@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { articleSchema, faqSchema, breadcrumbSchema } from '@/lib/schema';
+import EmailSignup from '@/components/EmailSignup';
 
 const URL = 'https://mahjmahj.co/learn/la-mahjong-clubs';
 const TITLE = "Meet the Clubs: LA's Hong Kong Mahjong Community";
@@ -223,6 +224,14 @@ export default function LAMahjongClubsPage() {
                 </div>
               ))}
             </div>
+          </section>
+
+          {/* Email signup — learning-track capture */}
+          <section
+            className="mb-16 rounded-lg p-8"
+            style={{ background: 'var(--sand)', border: '1px solid var(--bone)' }}
+          >
+            <EmailSignup variant="learn" source="learn:la-mahjong-clubs" />
           </section>
 
           <section className="rounded-lg p-10 text-center" style={{ background: 'var(--espresso)' }}>

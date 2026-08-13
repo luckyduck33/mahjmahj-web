@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { faqSchema } from '@/lib/schema';
+import EmailSignup from '@/components/EmailSignup';
 
 export const metadata: Metadata = {
   title: 'Mahjong Styles Comparison — Hong Kong vs Taiwanese vs American',
@@ -464,6 +465,14 @@ export default function MahjongStylesComparePage() {
                 </div>
               ))}
             </div>
+          </section>
+
+          {/* Email signup — learning-track capture */}
+          <section
+            className="mb-16 rounded-lg p-8"
+            style={{ background: 'var(--sand)', border: '1px solid var(--bone)' }}
+          >
+            <EmailSignup variant="learn" source="compare" />
           </section>
 
           {/* Where to go next */}

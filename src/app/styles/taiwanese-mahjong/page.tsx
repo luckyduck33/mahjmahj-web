@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { faqSchema, articleSchema } from '@/lib/schema';
+import EmailSignup from '@/components/EmailSignup';
 
 export const metadata: Metadata = {
   title: 'Taiwanese Mahjong — Rules, Strategy, and the 16-Tile Hand',
@@ -510,6 +511,18 @@ export default function TaiwaneseMainjongPage() {
                 </p>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Email signup — learning-track capture */}
+      <section className="py-16" style={{ background: 'var(--linen)' }}>
+        <div className="mx-auto max-w-3xl px-6">
+          <div
+            className="rounded-2xl p-8"
+            style={{ background: 'var(--paper)', border: '1px solid var(--bone)' }}
+          >
+            <EmailSignup variant="learn" source="styles:taiwanese-mahjong" />
           </div>
         </div>
       </section>

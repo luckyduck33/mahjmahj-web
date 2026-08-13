@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { articleSchema, faqSchema, breadcrumbSchema } from '@/lib/schema';
+import EmailSignup from '@/components/EmailSignup';
+import KitCallout from '@/components/KitCallout';
 
 const URL = 'https://mahjmahj.co/learn/first-la-mahjong-night';
 const TITLE = 'Your First LA Mahjong Night: What to Expect';
@@ -145,7 +147,32 @@ export default function FirstLAMahjongNightPage() {
             </p>
           </section>
 
-          {sections.map((s) => (
+          {sections.slice(0, 2).map((s) => (
+            <section key={s.heading} className="mb-16">
+              <h2
+                style={{ fontFamily: 'var(--font-heading)', color: 'var(--espresso)' }}
+                className="text-2xl md:text-3xl font-bold mb-6"
+              >
+                {s.heading}
+              </h2>
+              {s.paras.map((p, i) => (
+                <p
+                  key={i}
+                  style={{ color: 'var(--walnut)' }}
+                  className={`text-lg leading-relaxed${i < s.paras.length - 1 ? ' mb-4' : ''}`}
+                >
+                  {p}
+                </p>
+              ))}
+            </section>
+          ))}
+
+          {/* Cross-link — hosting-relevant, kept clear of the EmailSignup near the end */}
+          <section className="mb-16">
+            <KitCallout />
+          </section>
+
+          {sections.slice(2).map((s) => (
             <section key={s.heading} className="mb-16">
               <h2
                 style={{ fontFamily: 'var(--font-heading)', color: 'var(--espresso)' }}
@@ -191,6 +218,14 @@ export default function FirstLAMahjongNightPage() {
                 </div>
               ))}
             </div>
+          </section>
+
+          {/* Email signup — learning-track capture */}
+          <section
+            className="mb-16 rounded-lg p-8"
+            style={{ background: 'var(--sand)', border: '1px solid var(--bone)' }}
+          >
+            <EmailSignup variant="learn" source="learn:first-la-mahjong-night" />
           </section>
 
           <section className="rounded-lg p-10 text-center" style={{ background: 'var(--espresso)' }}>

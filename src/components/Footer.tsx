@@ -30,6 +30,7 @@ export default function Footer() {
           <div className="footer-col">
             <h5>Guides</h5>
             <ul>
+              <li><Link href="/guides/mahjong-night">Mahjong Night Kit</Link></li>
               <li><Link href="/learn/which-mahjong-style-is-right-for-me">Which Style?</Link></li>
               <li><Link href="/learn/la-hong-kong-mahjong-scene">LA Mahjong Scene</Link></li>
               <li><Link href="/learn/la-mahjong-clubs">LA Mahjong Clubs</Link></li>

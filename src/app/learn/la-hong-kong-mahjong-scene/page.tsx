@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { articleSchema, faqSchema, breadcrumbSchema } from '@/lib/schema';
+import EmailSignup from '@/components/EmailSignup';
 
 const URL = 'https://mahjmahj.co/learn/la-hong-kong-mahjong-scene';
 const TITLE = 'The LA Hong Kong Mahjong Scene: Where to Find a Table This Week';
@@ -251,6 +252,14 @@ export default function LAHongKongMahjongScenePage() {
                 </div>
               ))}
             </div>
+          </section>
+
+          {/* Email signup — learning-track capture */}
+          <section
+            className="mb-16 rounded-lg p-8"
+            style={{ background: 'var(--sand)', border: '1px solid var(--bone)' }}
+          >
+            <EmailSignup variant="learn" source="learn:la-hong-kong-mahjong-scene" />
           </section>
 
           <section className="rounded-lg p-10 text-center" style={{ background: 'var(--espresso)' }}>

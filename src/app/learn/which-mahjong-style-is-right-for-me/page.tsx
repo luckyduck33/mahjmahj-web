@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { faqSchema, articleSchema } from '@/lib/schema';
 import { JsonLd } from '@/components/JsonLd';
+import EmailSignup from '@/components/EmailSignup';
 
 export const metadata: Metadata = {
   title: 'Which Mahjong Style Is Right for Me?',
@@ -664,6 +665,14 @@ export default function WhichStylePage() {
                 </div>
               ))}
             </div>
+          </section>
+
+          {/* Email signup — learning-track capture */}
+          <section
+            className="mb-16 rounded-lg p-8"
+            style={{ background: 'var(--sand)', border: '1px solid var(--bone)' }}
+          >
+            <EmailSignup variant="learn" source="learn:which-mahjong-style-is-right-for-me" />
           </section>
 
           {/* Events CTA */}

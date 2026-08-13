@@ -238,6 +238,39 @@ export function howToSchema(howTo: {
   };
 }
 
+// Only call this when the product is actually purchasable (a real payment
+// link exists) — publishing Offer schema for something that isn't for sale
+// yet is a Source-of-Truth violation. See /guides/mahjong-night for the
+// gated usage.
+export function productSchema(product: {
+  name: string;
+  description: string;
+  url: string;
+  price: string;
+  priceCurrency?: string;
+  image?: string;
+}) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name: product.name,
+    description: product.description,
+    url: product.url,
+    ...(product.image && { image: [product.image] }),
+    brand: {
+      '@type': 'Organization',
+      name: 'MAHJ MAHJ',
+    },
+    offers: {
+      '@type': 'Offer',
+      url: product.url,
+      price: product.price,
+      priceCurrency: product.priceCurrency || 'USD',
+      availability: 'https://schema.org/InStock',
+    },
+  };
+}
+
 export function breadcrumbSchema(
   trail: Array<{ name: string; url: string }>
 ) {

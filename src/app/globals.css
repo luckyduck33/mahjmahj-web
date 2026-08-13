@@ -1662,6 +1662,58 @@ h1, h2, h3, h4, h5, h6 {
   max-width: 380px;
   margin: 0 auto;
 }
+/* Download link revealed in the success state when EmailSignup receives a
+   `downloadUrl` prop (the /guides/mahjong-night free-preview capture). */
+.signup-download-link { margin-top: 1.1rem; }
+.signup-success--card .signup-download-link { margin-top: 1rem; }
+
+/* ── Contextual variants (city / learn) — inline capture on content pages ──
+   EmailSignup renders eyebrow/heading/body itself for these two variants (see
+   EmailSignup.tsx); each page supplies its own surrounding <section> chrome
+   (background/border/spacing) to match that page's local pattern. Text tokens
+   below reuse the same font/color variables as the homepage band above. */
+.signup-card { text-align: left; }
+.signup-card-eyebrow {
+  font-family: var(--font-poppins), 'Poppins', sans-serif;
+  font-size: 0.62rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--terra);
+  display: block;
+  margin-bottom: 0.6rem;
+}
+.signup-card-heading {
+  font-family: var(--font-unbounded), 'Unbounded', sans-serif;
+  font-weight: 700;
+  font-size: clamp(1.1rem, 2.2vw, 1.4rem);
+  line-height: 1.25;
+  color: var(--espresso);
+  margin: 0 0 0.6rem;
+}
+.signup-card-body {
+  font-family: var(--font-poppins), 'Poppins', sans-serif;
+  font-weight: 300;
+  font-size: 0.92rem;
+  line-height: 1.65;
+  color: var(--walnut);
+  max-width: 34rem;
+  margin: 0 0 1.4rem;
+}
+.signup-form--card .signup-fields { justify-content: flex-start; max-width: 30rem; }
+.signup-success--card { text-align: left; padding: 0; }
+.signup-success--card .signup-success-head { font-size: 1.05rem; }
+.signup-success--card .signup-success-body { margin: 0; max-width: 30rem; }
+
+/* Shared boxed wrapper for pages that don't already have a bespoke card
+   treatment nearby to reuse (e.g. the plain-prose styles/learn articles). */
+.signup-inline {
+  background: var(--paper);
+  border-left: 4px solid var(--terra);
+  border-radius: 0 8px 8px 0;
+  padding: 1.75rem 2rem;
+  margin: 2.5rem 0;
+}
 
 /* ── Footer variant — compact, on the dark footer ──────────────────────── */
 .footer-signup h5 {

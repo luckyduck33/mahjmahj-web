@@ -22,6 +22,9 @@
 - [How to Play Mahjong](https://mahjmahj.co/learn/how-to-play-mahjong): Beginner-friendly guide to getting started
 - [Which Style Is Right for Me?](https://mahjmahj.co/learn/which-mahjong-style-is-right-for-me): Find the mahjong style that fits you
 
+## Guides
+- [The Mahjong Night Kit](https://mahjmahj.co/guides/mahjong-night): A printable kit for hosting a beginner Hong Kong Mahjong night — a 20-minute crash course, a 3-hour run of night, and cheat sheets.
+
 ## Community
 - [About MAHJ MAHJ](https://mahjmahj.co/about): Learn about the platform and the US mahjong community
 

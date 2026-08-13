@@ -8,6 +8,7 @@ import { getRecurringGames } from '@/data/recurring-games';
 import { getOrganizerForListing } from '@/data/organizers';
 import { ClaimBadge } from '@/components/ClaimBadge';
 import { CLAIM_COPY } from '@/lib/claim';
+import EmailSignup from '@/components/EmailSignup';
 import type { Metadata } from 'next';
 
 interface Props {
@@ -307,6 +308,17 @@ export default async function CityEventsPage({ params }: Props) {
               </div>
             )
           )}
+
+          {/* Email capture — contextual to this city, sits right where the
+              highest-traffic page type on the site (see EmailSignup.tsx) has
+              actually earned attention: after the reader has seen what's on,
+              before the lower-priority recurring-games/FAQ sections. */}
+          <section
+            className="signup-inline"
+            style={{ marginTop: datedEvents.length > 0 || ongoingEvents.length > 0 ? '3rem' : '1.5rem' }}
+          >
+            <EmailSignup variant="city" cityName={cityName} source={`city:${slug}`} />
+          </section>
 
           {/* Recurring club games — the clubs' OWN published schedules, not
               MAHJ MAHJ listings. Kept visually distinct from event cards

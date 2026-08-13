@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { faqSchema, articleSchema } from '@/lib/schema';
+import EmailSignup from '@/components/EmailSignup';
 
 export const metadata: Metadata = {
   title: 'American Mahjong — Rules, Jokers, and the NMJL Card',
@@ -668,6 +669,11 @@ export default function AmericanMahjongPage() {
                 </p>
               </div>
             ))}
+          </div>
+
+          {/* Email signup — learning-track capture */}
+          <div className="signup-inline">
+            <EmailSignup variant="learn" source="styles:american-mahjong" />
           </div>
 
           {/* Keep exploring */}

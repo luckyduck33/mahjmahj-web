@@ -34,6 +34,9 @@ export async function GET() {
 ## Comparison Pages
 - [Mahjong Styles Comparison — Hong Kong vs Taiwanese vs American](https://mahjmahj.co/compare/mahjong-styles): Compare Hong Kong Mahjong, Taiwanese Mahjong, and American Mahjong side by side. Hand size, scoring, jokers, pace, and which style is right for you.
 
+## Guides
+- [The Mahjong Night Kit](https://mahjmahj.co/guides/mahjong-night): A printable kit for hosting a beginner Hong Kong Mahjong night — a 20-minute crash course, a 3-hour run of night, and cheat sheets.
+
 ## Research & Data
 - [The State of American Mahjong 2026 — A Listings Census](https://mahjmahj.co/research/state-of-american-mahjong-2026): A structured, dated count of publicly-listed in-person mahjong events across US cities, with a transparent methodology, top-cities table, organizer ecosystem, and a downloadable CC BY 4.0 dataset. A listings census — not an estimate of all US mahjong activity.
 `;

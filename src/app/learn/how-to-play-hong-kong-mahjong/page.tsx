@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { articleSchema, faqSchema, breadcrumbSchema } from '@/lib/schema';
+import EmailSignup from '@/components/EmailSignup';
 
 const URL = 'https://mahjmahj.co/learn/how-to-play-hong-kong-mahjong';
 const TITLE = 'How to Play Hong Kong Mahjong: A Beginner’s Guide';
@@ -330,6 +331,11 @@ export default function HowToPlayHongKongMahjongPage() {
               </div>
             ))}
           </dl>
+
+          {/* Email signup — learning-track capture */}
+          <div className="signup-inline">
+            <EmailSignup variant="learn" source="learn:how-to-play-hong-kong-mahjong" />
+          </div>
         </section>
       </article>
     </>
