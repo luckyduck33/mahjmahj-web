@@ -130,14 +130,14 @@ export default function HowToPlayMahjongPage() {
       >
         <div className="max-w-3xl mx-auto">
           <p
-            style={{ color: 'var(--teal)', fontFamily: 'var(--font-heading)', fontSize: '0.7rem', letterSpacing: '0.15em' }}
+            style={{ color: 'var(--teal)', fontFamily: 'var(--font-mono)', fontWeight: 500, fontSize: '0.7rem', letterSpacing: '0.14em' }}
             className="uppercase mb-4"
           >
             Beginner Guide
           </p>
           <h1
             style={{ color: 'var(--td1)', fontFamily: 'var(--font-heading)' }}
-            className="text-3xl md:text-5xl font-bold mb-6 leading-tight"
+            className="text-3xl md:text-5xl font-semibold mb-6 leading-tight"
           >
             How to Play Mahjong
           </h1>
@@ -155,7 +155,7 @@ export default function HowToPlayMahjongPage() {
           <section className="mb-16">
             <h2
               style={{ fontFamily: 'var(--font-heading)', color: 'var(--espresso)' }}
-              className="text-2xl md:text-3xl font-bold mb-6"
+              className="text-2xl md:text-3xl font-semibold mb-6"
             >
               What is Mahjong?
             </h2>
@@ -174,7 +174,7 @@ export default function HowToPlayMahjongPage() {
           <section className="mb-16">
             <h2
               style={{ fontFamily: 'var(--font-heading)', color: 'var(--espresso)' }}
-              className="text-2xl md:text-3xl font-bold mb-6"
+              className="text-2xl md:text-3xl font-semibold mb-6"
             >
               What all styles share
             </h2>
@@ -194,7 +194,7 @@ export default function HowToPlayMahjongPage() {
                 >
                   <span
                     style={{ color: 'var(--teal)', fontFamily: 'var(--font-heading)', fontSize: '0.75rem', minWidth: '2rem' }}
-                    className="font-bold pt-0.5"
+                    className="font-semibold pt-0.5"
                   >
                     {item.num}
                   </span>
@@ -208,7 +208,7 @@ export default function HowToPlayMahjongPage() {
           <section className="mb-16">
             <h2
               style={{ fontFamily: 'var(--font-heading)', color: 'var(--espresso)' }}
-              className="text-2xl md:text-3xl font-bold mb-6"
+              className="text-2xl md:text-3xl font-semibold mb-6"
             >
               The tiles
             </h2>
@@ -245,7 +245,7 @@ export default function HowToPlayMahjongPage() {
                 >
                   <h3
                     style={{ fontFamily: 'var(--font-heading)', color: 'var(--espresso)', fontSize: '0.85rem' }}
-                    className="font-bold mb-2"
+                    className="font-semibold mb-2"
                   >
                     {tile.title}
                   </h3>
@@ -259,7 +259,7 @@ export default function HowToPlayMahjongPage() {
           <section className="mb-16">
             <h2
               style={{ fontFamily: 'var(--font-heading)', color: 'var(--espresso)' }}
-              className="text-2xl md:text-3xl font-bold mb-6"
+              className="text-2xl md:text-3xl font-semibold mb-6"
             >
               The basic winning hand
             </h2>
@@ -296,7 +296,7 @@ export default function HowToPlayMahjongPage() {
                 >
                   <h3
                     style={{ fontFamily: 'var(--font-heading)', color: 'var(--espresso)', fontSize: '0.85rem' }}
-                    className="font-bold mb-2"
+                    className="font-semibold mb-2"
                   >
                     {set.title}
                   </h3>
@@ -313,7 +313,7 @@ export default function HowToPlayMahjongPage() {
           <section className="mb-16">
             <h2
               style={{ fontFamily: 'var(--font-heading)', color: 'var(--espresso)' }}
-              className="text-2xl md:text-3xl font-bold mb-8"
+              className="text-2xl md:text-3xl font-semibold mb-8"
             >
               How a round works
             </h2>
@@ -334,14 +334,14 @@ export default function HowToPlayMahjongPage() {
                 >
                   <div
                     style={{ background: 'var(--teal)', color: 'white', fontFamily: 'var(--font-heading)', minWidth: '2.25rem', height: '2.25rem', fontSize: '0.8rem' }}
-                    className="rounded-full flex items-center justify-center font-bold flex-shrink-0"
+                    className="rounded-full flex items-center justify-center font-semibold flex-shrink-0"
                   >
                     {item.step}
                   </div>
                   <div>
                     <h3
                       style={{ fontFamily: 'var(--font-heading)', color: 'var(--espresso)', fontSize: '0.9rem' }}
-                      className="font-bold mb-1"
+                      className="font-semibold mb-1"
                     >
                       {item.title}
                     </h3>
@@ -356,7 +356,7 @@ export default function HowToPlayMahjongPage() {
           <section className="mb-16">
             <h2
               style={{ fontFamily: 'var(--font-heading)', color: 'var(--espresso)' }}
-              className="text-2xl md:text-3xl font-bold mb-8"
+              className="text-2xl md:text-3xl font-semibold mb-8"
             >
               The three main styles in the US
             </h2>
@@ -390,7 +390,7 @@ export default function HowToPlayMahjongPage() {
                     <div className="flex-1">
                       <h3
                         style={{ fontFamily: 'var(--font-heading)', color: 'var(--espresso)', fontSize: '0.95rem' }}
-                        className="font-bold mb-2"
+                        className="font-semibold mb-2"
                       >
                         {style.title}
                       </h3>
@@ -422,7 +422,7 @@ export default function HowToPlayMahjongPage() {
           <section className="mb-16">
             <h2
               style={{ fontFamily: 'var(--font-heading)', color: 'var(--espresso)' }}
-              className="text-2xl md:text-3xl font-bold mb-6"
+              className="text-2xl md:text-3xl font-semibold mb-6"
             >
               What you need to start
             </h2>
@@ -451,7 +451,7 @@ export default function HowToPlayMahjongPage() {
           <section className="mb-16">
             <h2
               style={{ fontFamily: 'var(--font-heading)', color: 'var(--espresso)' }}
-              className="text-2xl md:text-3xl font-bold mb-4"
+              className="text-2xl md:text-3xl font-semibold mb-4"
             >
               Your first game: a simplified walkthrough
             </h2>
@@ -475,14 +475,14 @@ export default function HowToPlayMahjongPage() {
                 >
                   <div
                     style={{ background: 'var(--terra)', color: 'white', fontFamily: 'var(--font-heading)', minWidth: '2rem', height: '2rem', fontSize: '0.75rem' }}
-                    className="rounded-full flex items-center justify-center font-bold flex-shrink-0"
+                    className="rounded-full flex items-center justify-center font-semibold flex-shrink-0"
                   >
                     {i + 1}
                   </div>
                   <div>
                     <h3
                       style={{ fontFamily: 'var(--font-heading)', color: 'var(--espresso)', fontSize: '0.85rem' }}
-                      className="font-bold mb-1"
+                      className="font-semibold mb-1"
                     >
                       {step.name}
                     </h3>
@@ -499,7 +499,7 @@ export default function HowToPlayMahjongPage() {
               <div>
                 <h2
                   style={{ fontFamily: 'var(--font-heading)', color: 'var(--espresso)' }}
-                  className="text-xl md:text-2xl font-bold mb-4"
+                  className="text-xl md:text-2xl font-semibold mb-4"
                 >
                   Is Mahjong hard?
                 </h2>
@@ -524,7 +524,7 @@ export default function HowToPlayMahjongPage() {
                     className="rounded-lg px-5 py-4 flex items-center justify-between"
                   >
                     <span style={{ color: 'var(--stone)', fontSize: '0.85rem' }}>{stat.label}</span>
-                    <span style={{ color: 'var(--espresso)', fontFamily: 'var(--font-heading)', fontSize: '1rem' }} className="font-bold">{stat.value}</span>
+                    <span style={{ color: 'var(--espresso)', fontFamily: 'var(--font-heading)', fontSize: '1rem' }} className="font-semibold">{stat.value}</span>
                   </div>
                 ))}
               </div>
@@ -535,7 +535,7 @@ export default function HowToPlayMahjongPage() {
           <section className="mb-16">
             <h2
               style={{ fontFamily: 'var(--font-heading)', color: 'var(--espresso)' }}
-              className="text-2xl md:text-3xl font-bold mb-6"
+              className="text-2xl md:text-3xl font-semibold mb-6"
             >
               Common beginner mistakes
             </h2>
@@ -569,7 +569,7 @@ export default function HowToPlayMahjongPage() {
                 >
                   <h3
                     style={{ fontFamily: 'var(--font-heading)', color: 'var(--terra)', fontSize: '0.85rem' }}
-                    className="font-bold mb-2"
+                    className="font-semibold mb-2"
                   >
                     {item.mistake}
                   </h3>
@@ -583,7 +583,7 @@ export default function HowToPlayMahjongPage() {
           <section className="mb-16">
             <h2
               style={{ fontFamily: 'var(--font-heading)', color: 'var(--espresso)' }}
-              className="text-2xl md:text-3xl font-bold mb-6"
+              className="text-2xl md:text-3xl font-semibold mb-6"
             >
               How to choose your first style
             </h2>
@@ -606,7 +606,7 @@ export default function HowToPlayMahjongPage() {
           <section className="mb-16">
             <h2
               style={{ fontFamily: 'var(--font-heading)', color: 'var(--espresso)' }}
-              className="text-2xl md:text-3xl font-bold mb-8"
+              className="text-2xl md:text-3xl font-semibold mb-8"
             >
               Frequently asked questions
             </h2>
@@ -619,7 +619,7 @@ export default function HowToPlayMahjongPage() {
                 >
                   <h3
                     style={{ fontFamily: 'var(--font-heading)', color: 'var(--espresso)', fontSize: '0.9rem' }}
-                    className="font-bold mb-3"
+                    className="font-semibold mb-3"
                   >
                     {faq.question}
                   </h3>
@@ -646,7 +646,7 @@ export default function HowToPlayMahjongPage() {
           >
             <h2
               style={{ fontFamily: 'var(--font-heading)', color: 'var(--td1)', fontSize: '1.3rem' }}
-              className="font-bold mb-4"
+              className="font-semibold mb-4"
             >
               Welcome to the table
             </h2>
@@ -657,14 +657,14 @@ export default function HowToPlayMahjongPage() {
               <Link
                 href="/events"
                 style={{ background: 'var(--terra)', color: 'white', fontFamily: 'var(--font-heading)', fontSize: '0.8rem', letterSpacing: '0.05em' }}
-                className="inline-block px-8 py-3 rounded-lg font-bold hover:opacity-90 transition-opacity"
+                className="inline-block px-8 py-3 rounded-lg font-semibold hover:opacity-90 transition-opacity"
               >
                 Find events near you
               </Link>
               <Link
                 href="/compare/mahjong-styles"
                 style={{ background: 'rgba(255,255,255,0.08)', color: 'var(--td1)', fontFamily: 'var(--font-heading)', fontSize: '0.8rem', letterSpacing: '0.05em', border: '1px solid rgba(255,255,255,0.15)' }}
-                className="inline-block px-8 py-3 rounded-lg font-bold hover:opacity-90 transition-opacity"
+                className="inline-block px-8 py-3 rounded-lg font-semibold hover:opacity-90 transition-opacity"
               >
                 Compare the styles
               </Link>

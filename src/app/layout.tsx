@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import Script from 'next/script';
-import { Poppins, Unbounded } from 'next/font/google';
+import { Fraunces, Inter, JetBrains_Mono } from 'next/font/google';
 import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
 import { JsonLd } from '@/components/JsonLd';
@@ -14,21 +14,34 @@ import './globals.css';
 // (and CLS is already 0) means text still paints immediately in the
 // fallback and swaps in with no layout shift, so dropping the font
 // preloads is a pure LCP win.
-const poppins = Poppins({
+const inter = Inter({
   subsets: ['latin'],
-  weight: ['300', '400', '500', '600'],
+  weight: ['400', '500', '600', '700'],
   style: ['normal', 'italic'],
   display: 'swap',
   preload: false,
-  variable: '--font-poppins',
+  variable: '--font-inter',
 });
 
-const unbounded = Unbounded({
+// Variable weight (100-900) + the opsz axis (9..144) ships in the same
+// woff2 — Fraunces is optical-size responsive, so headings at small sizes
+// stay text-weight while display sizes pick up the fuller, more decorative
+// cut automatically (font-optical-sizing: auto is the browser default).
+const fraunces = Fraunces({
   subsets: ['latin'],
-  weight: ['400', '700', '900'],
+  weight: 'variable',
+  style: ['normal', 'italic'],
   display: 'swap',
   preload: false,
-  variable: '--font-unbounded',
+  variable: '--font-fraunces',
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ['latin'],
+  weight: ['400', '500'],
+  display: 'swap',
+  preload: false,
+  variable: '--font-jetbrains-mono',
 });
 
 export const metadata: Metadata = {
@@ -59,7 +72,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`h-full antialiased ${poppins.variable} ${unbounded.variable}`}>
+    <html
+      lang="en"
+      className={`h-full antialiased ${inter.variable} ${fraunces.variable} ${jetbrainsMono.variable}`}
+    >
       <head>
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-W1TBW9XH3N"

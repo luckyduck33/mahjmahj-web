@@ -118,14 +118,14 @@ export default function FirstLAMahjongNightPage() {
       >
         <div className="max-w-3xl mx-auto">
           <p
-            style={{ color: 'var(--teal)', fontFamily: 'var(--font-heading)', fontSize: '0.7rem', letterSpacing: '0.15em' }}
+            style={{ color: 'var(--teal)', fontFamily: 'var(--font-mono)', fontWeight: 500, fontSize: '0.7rem', letterSpacing: '0.14em' }}
             className="uppercase mb-4"
           >
             Los Angeles
           </p>
           <h1
             style={{ color: 'var(--td1)', fontFamily: 'var(--font-heading)' }}
-            className="text-3xl md:text-5xl font-bold mb-6 leading-tight"
+            className="text-3xl md:text-5xl font-semibold mb-6 leading-tight"
           >
             Your First LA Mahjong Night: What to Expect
           </h1>
@@ -151,7 +151,7 @@ export default function FirstLAMahjongNightPage() {
             <section key={s.heading} className="mb-16">
               <h2
                 style={{ fontFamily: 'var(--font-heading)', color: 'var(--espresso)' }}
-                className="text-2xl md:text-3xl font-bold mb-6"
+                className="text-2xl md:text-3xl font-semibold mb-6"
               >
                 {s.heading}
               </h2>
@@ -176,7 +176,7 @@ export default function FirstLAMahjongNightPage() {
             <section key={s.heading} className="mb-16">
               <h2
                 style={{ fontFamily: 'var(--font-heading)', color: 'var(--espresso)' }}
-                className="text-2xl md:text-3xl font-bold mb-6"
+                className="text-2xl md:text-3xl font-semibold mb-6"
               >
                 {s.heading}
               </h2>
@@ -195,7 +195,7 @@ export default function FirstLAMahjongNightPage() {
           <section className="mb-16">
             <h2
               style={{ fontFamily: 'var(--font-heading)', color: 'var(--espresso)' }}
-              className="text-2xl md:text-3xl font-bold mb-8"
+              className="text-2xl md:text-3xl font-semibold mb-8"
             >
               Frequently asked questions
             </h2>
@@ -208,7 +208,7 @@ export default function FirstLAMahjongNightPage() {
                 >
                   <h3
                     style={{ fontFamily: 'var(--font-heading)', color: 'var(--espresso)', fontSize: '0.9rem' }}
-                    className="font-bold mb-3"
+                    className="font-semibold mb-3"
                   >
                     {faq.question}
                   </h3>
@@ -231,7 +231,7 @@ export default function FirstLAMahjongNightPage() {
           <section className="rounded-lg p-10 text-center" style={{ background: 'var(--espresso)' }}>
             <h2
               style={{ fontFamily: 'var(--font-heading)', color: 'var(--td1)', fontSize: '1.3rem' }}
-              className="font-bold mb-4"
+              className="font-semibold mb-4"
             >
               Find your seat
             </h2>
@@ -242,14 +242,14 @@ export default function FirstLAMahjongNightPage() {
               <Link
                 href="/events/los-angeles"
                 style={{ background: 'var(--terra)', color: 'white', fontFamily: 'var(--font-heading)', fontSize: '0.8rem', letterSpacing: '0.05em' }}
-                className="inline-block px-8 py-3 rounded-lg font-bold hover:opacity-90 transition-opacity"
+                className="inline-block px-8 py-3 rounded-lg font-semibold hover:opacity-90 transition-opacity"
               >
                 See LA Mahjong events
               </Link>
               <Link
                 href="/learn/la-hong-kong-mahjong-scene"
                 style={{ background: 'rgba(255,255,255,0.08)', color: 'var(--td1)', fontFamily: 'var(--font-heading)', fontSize: '0.8rem', letterSpacing: '0.05em', border: '1px solid rgba(255,255,255,0.15)' }}
-                className="inline-block px-8 py-3 rounded-lg font-bold hover:opacity-90 transition-opacity"
+                className="inline-block px-8 py-3 rounded-lg font-semibold hover:opacity-90 transition-opacity"
               >
                 The LA Mahjong scene
               </Link>

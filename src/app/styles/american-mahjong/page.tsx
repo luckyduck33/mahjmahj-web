@@ -88,33 +88,18 @@ export default function AmericanMahjongPage() {
       />
 
       {/* Hero */}
-      <section
-        style={{ background: 'var(--sand)' }}
-        className="px-6 py-16 md:py-24"
-      >
-        <div className="max-w-3xl mx-auto">
-          <p
-            style={{ color: 'var(--stone)', fontFamily: 'var(--font-body)' }}
-            className="text-sm uppercase tracking-widest mb-4"
-          >
-            Mahjong Styles
-          </p>
-          <h1
-            style={{ fontFamily: 'var(--font-heading)', color: 'var(--espresso)' }}
-            className="text-4xl md:text-5xl font-black mb-6 leading-tight"
-          >
-            American Mahjong
-          </h1>
-          <p
-            style={{ color: 'var(--walnut)', fontFamily: 'var(--font-body)' }}
-            className="text-xl md:text-2xl leading-relaxed mb-8"
-          >
+      <section className="content-hero">
+        <div className="content-hero-inner">
+          <p className="content-hero-label">Mahjong Styles</p>
+          <h1 className="mb-6">American Mahjong</h1>
+          <p className="content-hero-subtitle">
             Social, distinctive, and wonderfully pattern-driven. American Mahjong is
             especially popular in clubs, community groups, and home games across the
             United States.
           </p>
+          <div className="content-hero-divider" />
           <p
-            style={{ color: 'var(--walnut)', fontFamily: 'var(--font-body)' }}
+            style={{ color: 'var(--walnut)', fontFamily: 'var(--font-body)', marginTop: '1.5rem' }}
             className="text-lg leading-relaxed"
           >
             Two biggest things to know:{' '}
@@ -202,11 +187,9 @@ export default function AmericanMahjongPage() {
       </section>
 
       {/* Main content */}
-      <main
-        style={{ background: 'var(--linen)' }}
-        className="px-6 py-14 md:py-20"
-      >
-        <div className="max-w-3xl mx-auto content-article">
+      <section className="content-body">
+        <div className="content-body-inner">
+        <div className="content-article">
 
           {/* What is American Mahjong */}
           <h2>What is American Mahjong?</h2>
@@ -651,7 +634,7 @@ export default function AmericanMahjongPage() {
                     fontFamily: 'var(--font-heading)',
                     color: 'var(--espresso)',
                     fontSize: '1rem',
-                    fontWeight: 700,
+                    fontWeight: 600,
                     marginTop: 0,
                     marginBottom: '0.75rem',
                   }}
@@ -707,7 +690,8 @@ export default function AmericanMahjongPage() {
             </li>
           </ul>
         </div>
-      </main>
+        </div>
+      </section>
     </>
   );
 }

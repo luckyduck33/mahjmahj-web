@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { getEvents, getNews, getCitySlug } from '@/lib/api';
 import Drills from '@/components/Drills';
 import EmailSignup from '@/components/EmailSignup';
@@ -42,38 +43,42 @@ export default async function HomePage() {
 
   return (
     <>
-      {/* The hero is a CSS background-image (.hero in globals.css). CSS
-          backgrounds are invisible to the preload scanner — the browser
-          can't discover /hero.jpg until it has downloaded and parsed the
-          CSS, serializing HTML → CSS → LCP image. This preload (hoisted to
-          <head> by the App Router, homepage-only so no waste elsewhere)
-          starts the LCP image in parallel with the stylesheet. */}
-      <link rel="preload" as="image" href="/hero.jpg" fetchPriority="high" />
-      {/* Hero — full-bleed illustration background */}
+      {/* Hero — felt-900 ground (DS ui_kit pattern) with the hero photo in a
+          shadowed rounded frame. next/image with `priority` handles the LCP
+          preload natively (unlike the old CSS background-image, which was
+          invisible to the preload scanner and needed a manual <link
+          rel=preload> workaround — removed, no longer needed). Copy is
+          unchanged from the previous hero — the eyebrow and headline are
+          the former hero-eyebrow/hero-types text, only redistributed across
+          the new eyebrow/headline/subtitle roles (the one structural
+          exception in this re-skin). */}
       <section className="hero">
-        <div className="hero-image-overlay" />
-        <p className="hero-eyebrow">A Modern Guide to Mahjong</p>
-        <div className="hero-content">
-          <div className="hero-spacer" />
-          <div className="hero-types">
-            <span className="hero-type">Find Your Game</span>
-            <span className="hero-type-sep" />
-            <span className="hero-type">Play in Your City</span>
-            <span className="hero-type-sep" />
-            <span className="hero-type">Join a Table</span>
+        <div className="hero-grid">
+          <div className="hero-copy">
+            <span className="hero-eyebrow">Find Your Game</span>
+            <h1 className="hero-headline">
+              A Modern Guide to <em>Mahjong</em>
+            </h1>
+            <p className="hero-subtitle">Play in your city. Join a table.</p>
+            <div className="hero-actions">
+              <Link href="/events" className="btn-solid">
+                Find Events
+              </Link>
+              <Link href="/learn/how-to-play-mahjong" className="btn-ghost">
+                Start Learning
+              </Link>
+            </div>
           </div>
-          <div className="hero-actions">
-            <Link href="/events" className="btn-solid">
-              Find Events
-            </Link>
-            <Link href="/learn/how-to-play-mahjong" className="btn-ghost">
-              Start Learning
-            </Link>
+          <div className="hero-media">
+            <Image
+              src="/hero.jpg"
+              alt="Players gathered around a mahjong table"
+              fill
+              sizes="(max-width: 900px) 90vw, 480px"
+              style={{ objectFit: 'cover' }}
+              priority
+            />
           </div>
-        </div>
-        <div className="hero-scroll" aria-hidden="true">
-          <span>Scroll</span>
-          <div className="hero-scroll-line" />
         </div>
       </section>
 
@@ -137,7 +142,7 @@ export default async function HomePage() {
           <div className="events-hdr">
             <div>
               <span className="label peri">Community</span>
-              <h2 style={{ fontFamily: "'Unbounded', sans-serif", fontWeight: 700, fontSize: 'clamp(1.4rem, 3vw, 2rem)', color: 'var(--espresso)', marginTop: '0.5rem' }}>
+              <h2 style={{ fontFamily: 'var(--font-heading)', fontWeight: 600, fontSize: 'clamp(1.4rem, 3vw, 2rem)', color: 'var(--espresso)', marginTop: '0.5rem' }}>
                 Upcoming Events
               </h2>
             </div>
@@ -206,7 +211,7 @@ export default async function HomePage() {
         <section id="news" style={{ background: 'var(--warm-wash)', padding: '5rem 0' }}>
           <div className="sec-inner">
             <span className="label">Latest</span>
-            <h2 style={{ fontFamily: "'Unbounded', sans-serif", fontWeight: 700, fontSize: 'clamp(1.4rem, 3vw, 2rem)', color: 'var(--espresso)', marginTop: '0.5rem', marginBottom: '2.5rem' }}>
+            <h2 style={{ fontFamily: 'var(--font-heading)', fontWeight: 600, fontSize: 'clamp(1.4rem, 3vw, 2rem)', color: 'var(--espresso)', marginTop: '0.5rem', marginBottom: '2.5rem' }}>
               Mahjong News
             </h2>
             <div className="news-grid">
@@ -253,7 +258,7 @@ export default async function HomePage() {
       <section className="strategy-cta" style={{ background: 'var(--espresso)', padding: '6rem 0' }}>
         <div className="sec-inner" style={{ textAlign: 'center' }}>
           <span className="label-dark" style={{ color: 'var(--terra)' }}>Get Started</span>
-          <h2 style={{ fontFamily: "'Unbounded', sans-serif", fontWeight: 900, fontSize: 'clamp(1.6rem, 4vw, 2.6rem)', color: 'var(--td1)', marginTop: '0.8rem', lineHeight: 1.3 }}>
+          <h2 style={{ fontFamily: 'var(--font-heading)', fontWeight: 600, fontSize: 'clamp(1.6rem, 4vw, 2.6rem)', color: 'var(--td1)', marginTop: '0.8rem', lineHeight: 1.3 }}>
             Ready to Find Your Table?
           </h2>
           <p style={{ color: 'var(--td2)', marginTop: '1rem', maxWidth: '440px', marginLeft: 'auto', marginRight: 'auto', fontSize: '0.96rem', lineHeight: 1.78, fontWeight: 300 }}>

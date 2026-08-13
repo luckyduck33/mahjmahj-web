@@ -148,14 +148,14 @@ export default function MahjongNightKitPage() {
             <TileTrio />
           </div>
           <p
-            style={{ color: 'var(--terra)', fontFamily: 'var(--font-heading)', fontSize: '0.7rem', letterSpacing: '0.15em' }}
+            style={{ color: 'var(--terra)', fontFamily: 'var(--font-mono)', fontWeight: 500, fontSize: '0.75rem', letterSpacing: '0.14em' }}
             className="uppercase mb-4"
           >
             The Mahjong Night Kit
           </p>
           <h1
             style={{ color: 'var(--td1)', fontFamily: 'var(--font-heading)' }}
-            className="text-3xl md:text-5xl font-bold mb-6 leading-tight"
+            className="text-3xl md:text-5xl font-semibold mb-6 leading-tight"
           >
             Host your first mahjong night without knowing how to play mahjong yet.
           </h1>
@@ -181,7 +181,7 @@ export default function MahjongNightKitPage() {
           <section className="mb-16">
             <h2
               style={{ fontFamily: 'var(--font-heading)', color: 'var(--espresso)' }}
-              className="text-2xl md:text-3xl font-bold mb-4"
+              className="text-2xl md:text-3xl font-semibold mb-4"
             >
               What is the Mahjong Night Kit?
             </h2>
@@ -197,7 +197,7 @@ export default function MahjongNightKitPage() {
           <section className="mb-16">
             <h2
               style={{ fontFamily: 'var(--font-heading)', color: 'var(--espresso)' }}
-              className="text-2xl md:text-3xl font-bold mb-8"
+              className="text-2xl md:text-3xl font-semibold mb-8"
             >
               What you get
             </h2>
@@ -210,7 +210,7 @@ export default function MahjongNightKitPage() {
                 >
                   <h3
                     style={{ fontFamily: 'var(--font-heading)', color: 'var(--espresso)', fontSize: '0.9rem' }}
-                    className="font-bold mb-3"
+                    className="font-semibold mb-3"
                   >
                     {item.title}
                   </h3>
@@ -224,7 +224,7 @@ export default function MahjongNightKitPage() {
           <section className="mb-16">
             <h2
               style={{ fontFamily: 'var(--font-heading)', color: 'var(--espresso)' }}
-              className="text-2xl md:text-3xl font-bold mb-8"
+              className="text-2xl md:text-3xl font-semibold mb-8"
             >
               What&rsquo;s inside
             </h2>
@@ -237,12 +237,12 @@ export default function MahjongNightKitPage() {
                 >
                   <span
                     style={{ color: 'var(--terra)', fontFamily: 'var(--font-heading)', fontSize: '0.75rem', minWidth: '1.5rem' }}
-                    className="font-bold flex-shrink-0"
+                    className="font-semibold flex-shrink-0"
                   >
                     {String(i + 1).padStart(2, '0')}
                   </span>
                   <p style={{ color: 'var(--walnut)', fontSize: '0.95rem' }} className="leading-relaxed">
-                    <strong style={{ fontFamily: 'var(--font-heading)', color: 'var(--espresso)', fontWeight: 700, fontSize: '0.85rem' }}>{item.title}</strong>
+                    <strong style={{ fontFamily: 'var(--font-heading)', color: 'var(--espresso)', fontWeight: 600, fontSize: '0.85rem' }}>{item.title}</strong>
                     {' — '}{item.desc}
                   </p>
                 </div>
@@ -254,7 +254,7 @@ export default function MahjongNightKitPage() {
           <section className="mb-16">
             <h2
               style={{ fontFamily: 'var(--font-heading)', color: 'var(--espresso)' }}
-              className="text-2xl md:text-3xl font-bold mb-6"
+              className="text-2xl md:text-3xl font-semibold mb-6"
             >
               Who it&rsquo;s for
             </h2>
@@ -289,7 +289,7 @@ export default function MahjongNightKitPage() {
           <section className="mb-16">
             <h2
               style={{ fontFamily: 'var(--font-heading)', color: 'var(--espresso)' }}
-              className="text-2xl md:text-3xl font-bold mb-3"
+              className="text-2xl md:text-3xl font-semibold mb-3"
             >
               Get your table started
             </h2>
@@ -305,14 +305,14 @@ export default function MahjongNightKitPage() {
                   className="rounded-lg p-5"
                 >
                   <p
-                    style={{ color: 'var(--teal-deep)', fontFamily: 'var(--font-heading)', fontSize: '0.62rem', letterSpacing: '0.14em' }}
+                    style={{ color: 'var(--teal-deep)', fontFamily: 'var(--font-mono)', fontWeight: 500, fontSize: '0.62rem', letterSpacing: '0.14em' }}
                     className="uppercase mb-2"
                   >
                     {item.category}
                   </p>
                   <h3
                     style={{ fontFamily: 'var(--font-heading)', color: 'var(--espresso)', fontSize: '0.88rem' }}
-                    className="font-bold mb-2 leading-snug"
+                    className="font-semibold mb-2 leading-snug"
                   >
                     {item.name}
                   </h3>
@@ -346,7 +346,7 @@ export default function MahjongNightKitPage() {
               <>
                 <h2
                   style={{ fontFamily: 'var(--font-heading)', color: 'var(--espresso)', fontSize: '1.3rem' }}
-                  className="font-bold mb-3"
+                  className="font-semibold mb-3"
                 >
                   Get the Kit &mdash; $19
                 </h2>
@@ -361,7 +361,7 @@ export default function MahjongNightKitPage() {
               <>
                 <h2
                   style={{ fontFamily: 'var(--font-heading)', color: 'var(--espresso)', fontSize: '1.3rem' }}
-                  className="font-bold mb-3"
+                  className="font-semibold mb-3"
                 >
                   Launching soon
                 </h2>
@@ -381,7 +381,7 @@ export default function MahjongNightKitPage() {
           <section className="mb-16">
             <h2
               style={{ fontFamily: 'var(--font-heading)', color: 'var(--espresso)' }}
-              className="text-2xl md:text-3xl font-bold mb-8"
+              className="text-2xl md:text-3xl font-semibold mb-8"
             >
               Frequently asked questions
             </h2>
@@ -394,7 +394,7 @@ export default function MahjongNightKitPage() {
                 >
                   <h3
                     style={{ fontFamily: 'var(--font-heading)', color: 'var(--espresso)', fontSize: '0.9rem' }}
-                    className="font-bold mb-3"
+                    className="font-semibold mb-3"
                   >
                     {faq.question}
                   </h3>
@@ -410,7 +410,7 @@ export default function MahjongNightKitPage() {
           <section className="rounded-lg p-8" style={{ background: 'var(--espresso)' }}>
             <h2
               style={{ fontFamily: 'var(--font-heading)', color: 'var(--td1)', fontSize: '1.1rem' }}
-              className="font-bold mb-6 text-center"
+              className="font-semibold mb-6 text-center"
             >
               Where to go next
             </h2>

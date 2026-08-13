@@ -93,14 +93,14 @@ export default function WhichStylePage() {
       >
         <div className="max-w-3xl mx-auto">
           <p
-            style={{ color: 'var(--teal)', fontFamily: 'var(--font-heading)', fontSize: '0.7rem', letterSpacing: '0.15em' }}
+            style={{ color: 'var(--teal)', fontFamily: 'var(--font-mono)', fontWeight: 500, fontSize: '0.7rem', letterSpacing: '0.14em' }}
             className="uppercase mb-4"
           >
             Style Finder
           </p>
           <h1
             style={{ color: 'var(--td1)', fontFamily: 'var(--font-heading)' }}
-            className="text-3xl md:text-5xl font-bold mb-6 leading-tight"
+            className="text-3xl md:text-5xl font-semibold mb-6 leading-tight"
           >
             Which Mahjong Style Is Right for Me?
           </h1>
@@ -122,7 +122,7 @@ export default function WhichStylePage() {
             >
               <h2
                 style={{ fontFamily: 'var(--font-heading)', color: 'var(--espresso)', fontSize: '1rem' }}
-                className="font-bold mb-3"
+                className="font-semibold mb-3"
               >
                 The short answer
               </h2>
@@ -159,7 +159,7 @@ export default function WhichStylePage() {
             >
               <h2
                 style={{ fontFamily: 'var(--font-heading)', color: 'var(--espresso)', fontSize: '1.15rem' }}
-                className="font-bold mb-3"
+                className="font-semibold mb-3"
               >
                 {familyStyleFaq.question}
               </h2>
@@ -180,7 +180,7 @@ export default function WhichStylePage() {
           <section className="mb-16">
             <h2
               style={{ fontFamily: 'var(--font-heading)', color: 'var(--espresso)' }}
-              className="text-2xl md:text-3xl font-bold mb-6"
+              className="text-2xl md:text-3xl font-semibold mb-6"
             >
               The best style is one you can actually play
             </h2>
@@ -199,7 +199,7 @@ export default function WhichStylePage() {
           <section className="mb-16">
             <h2
               style={{ fontFamily: 'var(--font-heading)', color: 'var(--espresso)' }}
-              className="text-2xl md:text-3xl font-bold mb-8"
+              className="text-2xl md:text-3xl font-semibold mb-8"
             >
               Three style personalities
             </h2>
@@ -211,11 +211,11 @@ export default function WhichStylePage() {
                   <div>
                     <h3
                       style={{ fontFamily: 'var(--font-heading)', color: 'var(--espresso)', fontSize: '1.05rem' }}
-                      className="font-bold mb-1"
+                      className="font-semibold mb-1"
                     >
                       Hong Kong Mahjong
                     </h3>
-                    <p style={{ color: 'var(--terra)', fontFamily: 'var(--font-heading)', fontSize: '0.7rem', letterSpacing: '0.1em' }}>
+                    <p style={{ color: 'var(--terra)', fontFamily: 'var(--font-mono)', fontWeight: 500, fontSize: '0.7rem', letterSpacing: '0.14em' }}>
                       SHARP · STRATEGIC · EFFICIENT · SATISFYING
                     </p>
                   </div>
@@ -231,7 +231,7 @@ export default function WhichStylePage() {
                   <div>
                     <h4
                       style={{ fontFamily: 'var(--font-heading)', color: 'var(--espresso)', fontSize: '0.8rem' }}
-                      className="font-bold mb-3 uppercase tracking-wide"
+                      className="font-semibold mb-3 uppercase tracking-wide"
                     >
                       May be right for you if
                     </h4>
@@ -253,7 +253,7 @@ export default function WhichStylePage() {
                   <div>
                     <h4
                       style={{ fontFamily: 'var(--font-heading)', color: 'var(--stone)', fontSize: '0.8rem' }}
-                      className="font-bold mb-3 uppercase tracking-wide"
+                      className="font-semibold mb-3 uppercase tracking-wide"
                     >
                       Less ideal if
                     </h4>
@@ -279,11 +279,11 @@ export default function WhichStylePage() {
                   <div>
                     <h3
                       style={{ fontFamily: 'var(--font-heading)', color: 'var(--espresso)', fontSize: '1.05rem' }}
-                      className="font-bold mb-1"
+                      className="font-semibold mb-1"
                     >
                       Taiwanese Mahjong
                     </h3>
-                    <p style={{ color: 'var(--teal)', fontFamily: 'var(--font-heading)', fontSize: '0.7rem', letterSpacing: '0.1em' }}>
+                    <p style={{ color: 'var(--teal)', fontFamily: 'var(--font-mono)', fontWeight: 500, fontSize: '0.7rem', letterSpacing: '0.14em' }}>
                       WARM · LIVELY · EXPANSIVE
                     </p>
                   </div>
@@ -299,7 +299,7 @@ export default function WhichStylePage() {
                   <div>
                     <h4
                       style={{ fontFamily: 'var(--font-heading)', color: 'var(--espresso)', fontSize: '0.8rem' }}
-                      className="font-bold mb-3 uppercase tracking-wide"
+                      className="font-semibold mb-3 uppercase tracking-wide"
                     >
                       May be right for you if
                     </h4>
@@ -321,7 +321,7 @@ export default function WhichStylePage() {
                   <div>
                     <h4
                       style={{ fontFamily: 'var(--font-heading)', color: 'var(--stone)', fontSize: '0.8rem' }}
-                      className="font-bold mb-3 uppercase tracking-wide"
+                      className="font-semibold mb-3 uppercase tracking-wide"
                     >
                       Less ideal if
                     </h4>
@@ -347,11 +347,11 @@ export default function WhichStylePage() {
                   <div>
                     <h3
                       style={{ fontFamily: 'var(--font-heading)', color: 'var(--espresso)', fontSize: '1.05rem' }}
-                      className="font-bold mb-1"
+                      className="font-semibold mb-1"
                     >
                       American Mahjong
                     </h3>
-                    <p style={{ color: 'var(--mustard)', fontFamily: 'var(--font-heading)', fontSize: '0.7rem', letterSpacing: '0.1em' }}>
+                    <p style={{ color: 'var(--mustard)', fontFamily: 'var(--font-mono)', fontWeight: 500, fontSize: '0.7rem', letterSpacing: '0.14em' }}>
                       SOCIAL · CLUBBY · PATTERN-DRIVEN
                     </p>
                   </div>
@@ -367,7 +367,7 @@ export default function WhichStylePage() {
                   <div>
                     <h4
                       style={{ fontFamily: 'var(--font-heading)', color: 'var(--espresso)', fontSize: '0.8rem' }}
-                      className="font-bold mb-3 uppercase tracking-wide"
+                      className="font-semibold mb-3 uppercase tracking-wide"
                     >
                       May be right for you if
                     </h4>
@@ -389,7 +389,7 @@ export default function WhichStylePage() {
                   <div>
                     <h4
                       style={{ fontFamily: 'var(--font-heading)', color: 'var(--stone)', fontSize: '0.8rem' }}
-                      className="font-bold mb-3 uppercase tracking-wide"
+                      className="font-semibold mb-3 uppercase tracking-wide"
                     >
                       Less ideal if
                     </h4>
@@ -416,7 +416,7 @@ export default function WhichStylePage() {
           <section className="mb-16">
             <h2
               style={{ fontFamily: 'var(--font-heading)', color: 'var(--espresso)' }}
-              className="text-2xl md:text-3xl font-bold mb-8"
+              className="text-2xl md:text-3xl font-semibold mb-8"
             >
               Quick-pick guide
             </h2>
@@ -456,7 +456,7 @@ export default function WhichStylePage() {
           <section className="mb-16">
             <h2
               style={{ fontFamily: 'var(--font-heading)', color: 'var(--espresso)' }}
-              className="text-2xl md:text-3xl font-bold mb-8"
+              className="text-2xl md:text-3xl font-semibold mb-8"
             >
               Decision factors worth thinking through
             </h2>
@@ -486,7 +486,7 @@ export default function WhichStylePage() {
                 <div key={item.factor} style={{ borderBottom: '1px solid var(--bone)' }} className="pb-6">
                   <h3
                     style={{ fontFamily: 'var(--font-heading)', color: 'var(--espresso)', fontSize: '0.95rem' }}
-                    className="font-bold mb-2"
+                    className="font-semibold mb-2"
                   >
                     {item.factor}
                   </h3>
@@ -503,7 +503,7 @@ export default function WhichStylePage() {
           >
             <h2
               style={{ fontFamily: 'var(--font-heading)', color: 'var(--espresso)', fontSize: '1.1rem' }}
-              className="font-bold mb-4"
+              className="font-semibold mb-4"
             >
               If you are still torn
             </h2>
@@ -519,7 +519,7 @@ export default function WhichStylePage() {
           <section className="mb-16">
             <h2
               style={{ fontFamily: 'var(--font-heading)', color: 'var(--espresso)' }}
-              className="text-2xl md:text-3xl font-bold mb-6"
+              className="text-2xl md:text-3xl font-semibold mb-6"
             >
               Best Mahjong style for beginners
             </h2>
@@ -556,14 +556,14 @@ export default function WhichStylePage() {
                 >
                   <div
                     style={{ background: 'var(--teal)', color: 'white', fontFamily: 'var(--font-heading)', minWidth: '2rem', height: '2rem', fontSize: '0.8rem' }}
-                    className="rounded-full flex items-center justify-center font-bold flex-shrink-0"
+                    className="rounded-full flex items-center justify-center font-semibold flex-shrink-0"
                   >
                     {item.num}
                   </div>
                   <div>
                     <h3
                       style={{ fontFamily: 'var(--font-heading)', color: 'var(--espresso)', fontSize: '0.9rem' }}
-                      className="font-bold mb-1"
+                      className="font-semibold mb-1"
                     >
                       {item.title}
                     </h3>
@@ -578,7 +578,7 @@ export default function WhichStylePage() {
           <section className="mb-16">
             <h2
               style={{ fontFamily: 'var(--font-heading)', color: 'var(--espresso)' }}
-              className="text-2xl md:text-3xl font-bold mb-8"
+              className="text-2xl md:text-3xl font-semibold mb-8"
             >
               Start here by style
             </h2>
@@ -616,7 +616,7 @@ export default function WhichStylePage() {
                 >
                   <h3
                     style={{ fontFamily: 'var(--font-heading)', color: 'var(--espresso)', fontSize: '0.9rem' }}
-                    className="font-bold mb-4"
+                    className="font-semibold mb-4"
                   >
                     {style.title}
                   </h3>
@@ -642,7 +642,7 @@ export default function WhichStylePage() {
           <section className="mb-16">
             <h2
               style={{ fontFamily: 'var(--font-heading)', color: 'var(--espresso)' }}
-              className="text-2xl md:text-3xl font-bold mb-8"
+              className="text-2xl md:text-3xl font-semibold mb-8"
             >
               Frequently asked questions
             </h2>
@@ -655,7 +655,7 @@ export default function WhichStylePage() {
                 >
                   <h3
                     style={{ fontFamily: 'var(--font-heading)', color: 'var(--espresso)', fontSize: '0.9rem' }}
-                    className="font-bold mb-3"
+                    className="font-semibold mb-3"
                   >
                     {faq.question}
                   </h3>
@@ -682,7 +682,7 @@ export default function WhichStylePage() {
           >
             <h2
               style={{ fontFamily: 'var(--font-heading)', color: 'var(--td1)', fontSize: '1.3rem' }}
-              className="font-bold mb-4"
+              className="font-semibold mb-4"
             >
               Still not sure? Come to an event.
             </h2>
@@ -693,14 +693,14 @@ export default function WhichStylePage() {
               <Link
                 href="/events"
                 style={{ background: 'var(--terra)', color: 'white', fontFamily: 'var(--font-heading)', fontSize: '0.8rem', letterSpacing: '0.05em' }}
-                className="inline-block px-8 py-3 rounded-lg font-bold hover:opacity-90 transition-opacity"
+                className="inline-block px-8 py-3 rounded-lg font-semibold hover:opacity-90 transition-opacity"
               >
                 Find events near you
               </Link>
               <Link
                 href="/learn/how-to-play-mahjong"
                 style={{ background: 'rgba(255,255,255,0.08)', color: 'var(--td1)', fontFamily: 'var(--font-heading)', fontSize: '0.8rem', letterSpacing: '0.05em', border: '1px solid rgba(255,255,255,0.15)' }}
-                className="inline-block px-8 py-3 rounded-lg font-bold hover:opacity-90 transition-opacity"
+                className="inline-block px-8 py-3 rounded-lg font-semibold hover:opacity-90 transition-opacity"
               >
                 How to play mahjong
               </Link>

@@ -86,14 +86,14 @@ export default function MahjongStylesComparePage() {
       >
         <div className="max-w-3xl mx-auto">
           <p
-            style={{ color: 'var(--terra)', fontFamily: 'var(--font-heading)', fontSize: '0.7rem', letterSpacing: '0.15em' }}
+            style={{ color: 'var(--terra)', fontFamily: 'var(--font-mono)', fontWeight: 500, fontSize: '0.7rem', letterSpacing: '0.14em' }}
             className="uppercase mb-4"
           >
             Style Guide
           </p>
           <h1
             style={{ color: 'var(--td1)', fontFamily: 'var(--font-heading)' }}
-            className="text-3xl md:text-5xl font-bold mb-6 leading-tight"
+            className="text-3xl md:text-5xl font-semibold mb-6 leading-tight"
           >
             Mahjong Styles Compared
           </h1>
@@ -112,7 +112,7 @@ export default function MahjongStylesComparePage() {
             {/* Answer capsule (GEO standard): question H2 + 120-150 char standalone answer */}
             <h2
               style={{ fontFamily: 'var(--font-heading)', color: 'var(--espresso)' }}
-              className="text-2xl md:text-3xl font-bold mb-4"
+              className="text-2xl md:text-3xl font-semibold mb-4"
             >
               American Mahjong vs Hong Kong vs Taiwanese — what&apos;s the difference?
             </h2>
@@ -140,7 +140,7 @@ export default function MahjongStylesComparePage() {
           <section className="mb-16">
             <h2
               style={{ fontFamily: 'var(--font-heading)', color: 'var(--espresso)' }}
-              className="text-2xl md:text-3xl font-bold mb-8"
+              className="text-2xl md:text-3xl font-semibold mb-8"
             >
               Three main styles at a glance
             </h2>
@@ -175,7 +175,7 @@ export default function MahjongStylesComparePage() {
                 >
                   <h3
                     style={{ fontFamily: 'var(--font-heading)', color: 'var(--espresso)', fontSize: '0.9rem' }}
-                    className="font-bold mb-3"
+                    className="font-semibold mb-3"
                   >
                     {style.title}
                   </h3>
@@ -201,7 +201,7 @@ export default function MahjongStylesComparePage() {
           <section className="mb-16">
             <h2
               style={{ fontFamily: 'var(--font-heading)', color: 'var(--espresso)' }}
-              className="text-2xl md:text-3xl font-bold mb-8"
+              className="text-2xl md:text-3xl font-semibold mb-8"
             >
               Side-by-side comparison
             </h2>
@@ -246,7 +246,7 @@ export default function MahjongStylesComparePage() {
           <section className="mb-16">
             <h2
               style={{ fontFamily: 'var(--font-heading)', color: 'var(--espresso)' }}
-              className="text-2xl md:text-3xl font-bold mb-6"
+              className="text-2xl md:text-3xl font-semibold mb-6"
             >
               What all styles share
             </h2>
@@ -274,14 +274,14 @@ export default function MahjongStylesComparePage() {
           <section className="mb-16">
             <h2
               style={{ fontFamily: 'var(--font-heading)', color: 'var(--espresso)' }}
-              className="text-2xl md:text-3xl font-bold mb-8"
+              className="text-2xl md:text-3xl font-semibold mb-8"
             >
               Who each style is for
             </h2>
 
             <div className="space-y-10">
               <div style={{ background: 'var(--paper)', border: '1px solid var(--bone)', borderLeft: '4px solid var(--terra)' }} className="rounded-lg p-7">
-                <h3 style={{ fontFamily: 'var(--font-heading)', color: 'var(--espresso)', fontSize: '1rem' }} className="font-bold mb-4">
+                <h3 style={{ fontFamily: 'var(--font-heading)', color: 'var(--espresso)', fontSize: '1rem' }} className="font-semibold mb-4">
                   Hong Kong Mahjong: who it is for
                 </h3>
                 <ul className="space-y-2">
@@ -301,7 +301,7 @@ export default function MahjongStylesComparePage() {
               </div>
 
               <div style={{ background: 'var(--paper)', border: '1px solid var(--bone)', borderLeft: '4px solid var(--teal)' }} className="rounded-lg p-7">
-                <h3 style={{ fontFamily: 'var(--font-heading)', color: 'var(--espresso)', fontSize: '1rem' }} className="font-bold mb-4">
+                <h3 style={{ fontFamily: 'var(--font-heading)', color: 'var(--espresso)', fontSize: '1rem' }} className="font-semibold mb-4">
                   Taiwanese Mahjong: who it is for
                 </h3>
                 <ul className="space-y-2">
@@ -321,7 +321,7 @@ export default function MahjongStylesComparePage() {
               </div>
 
               <div style={{ background: 'var(--paper)', border: '1px solid var(--bone)', borderLeft: '4px solid var(--mustard)' }} className="rounded-lg p-7">
-                <h3 style={{ fontFamily: 'var(--font-heading)', color: 'var(--espresso)', fontSize: '1rem' }} className="font-bold mb-4">
+                <h3 style={{ fontFamily: 'var(--font-heading)', color: 'var(--espresso)', fontSize: '1rem' }} className="font-semibold mb-4">
                   American Mahjong: who it is for
                 </h3>
                 <ul className="space-y-2">
@@ -346,7 +346,7 @@ export default function MahjongStylesComparePage() {
           <section className="mb-16">
             <h2
               style={{ fontFamily: 'var(--font-heading)', color: 'var(--espresso)' }}
-              className="text-2xl md:text-3xl font-bold mb-8"
+              className="text-2xl md:text-3xl font-semibold mb-8"
             >
               Key differences that matter most
             </h2>
@@ -376,7 +376,7 @@ export default function MahjongStylesComparePage() {
                 <div key={item.title} style={{ borderBottom: '1px solid var(--bone)' }} className="pb-6">
                   <h3
                     style={{ fontFamily: 'var(--font-heading)', color: 'var(--espresso)', fontSize: '0.95rem' }}
-                    className="font-bold mb-2"
+                    className="font-semibold mb-2"
                   >
                     {item.title}
                   </h3>
@@ -393,7 +393,7 @@ export default function MahjongStylesComparePage() {
           >
             <h2
               style={{ fontFamily: 'var(--font-heading)', color: 'var(--espresso)', fontSize: '1.1rem' }}
-              className="font-bold mb-3"
+              className="font-semibold mb-3"
             >
               Which style is right for me?
             </h2>
@@ -403,7 +403,7 @@ export default function MahjongStylesComparePage() {
             <Link
               href="/learn/which-mahjong-style-is-right-for-me"
               style={{ background: 'var(--terra)', color: 'white', fontFamily: 'var(--font-heading)', fontSize: '0.8rem', letterSpacing: '0.05em' }}
-              className="inline-block px-8 py-3 rounded-lg font-bold hover:opacity-90 transition-opacity"
+              className="inline-block px-8 py-3 rounded-lg font-semibold hover:opacity-90 transition-opacity"
             >
               Find your style &#8594;
             </Link>
@@ -413,7 +413,7 @@ export default function MahjongStylesComparePage() {
           <section className="mb-16">
             <h2
               style={{ fontFamily: 'var(--font-heading)', color: 'var(--espresso)' }}
-              className="text-2xl md:text-3xl font-bold mb-6"
+              className="text-2xl md:text-3xl font-semibold mb-6"
             >
               Best Mahjong style for beginners
             </h2>
@@ -442,7 +442,7 @@ export default function MahjongStylesComparePage() {
           <section className="mb-16">
             <h2
               style={{ fontFamily: 'var(--font-heading)', color: 'var(--espresso)' }}
-              className="text-2xl md:text-3xl font-bold mb-8"
+              className="text-2xl md:text-3xl font-semibold mb-8"
             >
               Frequently asked questions
             </h2>
@@ -455,7 +455,7 @@ export default function MahjongStylesComparePage() {
                 >
                   <h3
                     style={{ fontFamily: 'var(--font-heading)', color: 'var(--espresso)', fontSize: '0.9rem' }}
-                    className="font-bold mb-3"
+                    className="font-semibold mb-3"
                   >
                     {faq.question}
                   </h3>
@@ -482,7 +482,7 @@ export default function MahjongStylesComparePage() {
           >
             <h2
               style={{ fontFamily: 'var(--font-heading)', color: 'var(--td1)', fontSize: '1.1rem' }}
-              className="font-bold mb-6 text-center"
+              className="font-semibold mb-6 text-center"
             >
               Where to go next
             </h2>

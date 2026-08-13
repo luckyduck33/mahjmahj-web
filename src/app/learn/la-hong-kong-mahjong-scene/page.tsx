@@ -109,14 +109,14 @@ export default function LAHongKongMahjongScenePage() {
       >
         <div className="max-w-3xl mx-auto">
           <p
-            style={{ color: 'var(--teal)', fontFamily: 'var(--font-heading)', fontSize: '0.7rem', letterSpacing: '0.15em' }}
+            style={{ color: 'var(--teal)', fontFamily: 'var(--font-mono)', fontWeight: 500, fontSize: '0.7rem', letterSpacing: '0.14em' }}
             className="uppercase mb-4"
           >
             Los Angeles
           </p>
           <h1
             style={{ color: 'var(--td1)', fontFamily: 'var(--font-heading)' }}
-            className="text-3xl md:text-5xl font-bold mb-6 leading-tight"
+            className="text-3xl md:text-5xl font-semibold mb-6 leading-tight"
           >
             The LA Hong Kong Mahjong Scene: Where to Find a Table This Week
           </h1>
@@ -145,7 +145,7 @@ export default function LAHongKongMahjongScenePage() {
           <section className="mb-16">
             <h2
               style={{ fontFamily: 'var(--font-heading)', color: 'var(--espresso)' }}
-              className="text-2xl md:text-3xl font-bold mb-6"
+              className="text-2xl md:text-3xl font-semibold mb-6"
             >
               Start With the LA Events Page
             </h2>
@@ -169,7 +169,7 @@ export default function LAHongKongMahjongScenePage() {
           <section className="mb-16">
             <h2
               style={{ fontFamily: 'var(--font-heading)', color: 'var(--espresso)' }}
-              className="text-2xl md:text-3xl font-bold mb-8"
+              className="text-2xl md:text-3xl font-semibold mb-8"
             >
               What Kinds of Tables You&rsquo;ll Find
             </h2>
@@ -182,7 +182,7 @@ export default function LAHongKongMahjongScenePage() {
                 >
                   <h3
                     style={{ fontFamily: 'var(--font-heading)', color: 'var(--espresso)', fontSize: '1rem' }}
-                    className="font-bold mb-2"
+                    className="font-semibold mb-2"
                   >
                     {t.title}
                   </h3>
@@ -195,7 +195,7 @@ export default function LAHongKongMahjongScenePage() {
           <section className="mb-16">
             <h2
               style={{ fontFamily: 'var(--font-heading)', color: 'var(--espresso)' }}
-              className="text-2xl md:text-3xl font-bold mb-6"
+              className="text-2xl md:text-3xl font-semibold mb-6"
             >
               LA Neighborhood Energy
             </h2>
@@ -207,7 +207,7 @@ export default function LAHongKongMahjongScenePage() {
           <section className="mb-16">
             <h2
               style={{ fontFamily: 'var(--font-heading)', color: 'var(--espresso)' }}
-              className="text-2xl md:text-3xl font-bold mb-6"
+              className="text-2xl md:text-3xl font-semibold mb-6"
             >
               Tips for Finding the Right Table
             </h2>
@@ -229,7 +229,7 @@ export default function LAHongKongMahjongScenePage() {
           <section className="mb-16">
             <h2
               style={{ fontFamily: 'var(--font-heading)', color: 'var(--espresso)' }}
-              className="text-2xl md:text-3xl font-bold mb-8"
+              className="text-2xl md:text-3xl font-semibold mb-8"
             >
               Frequently asked questions
             </h2>
@@ -242,7 +242,7 @@ export default function LAHongKongMahjongScenePage() {
                 >
                   <h3
                     style={{ fontFamily: 'var(--font-heading)', color: 'var(--espresso)', fontSize: '0.9rem' }}
-                    className="font-bold mb-3"
+                    className="font-semibold mb-3"
                   >
                     {faq.question}
                   </h3>
@@ -265,7 +265,7 @@ export default function LAHongKongMahjongScenePage() {
           <section className="rounded-lg p-10 text-center" style={{ background: 'var(--espresso)' }}>
             <h2
               style={{ fontFamily: 'var(--font-heading)', color: 'var(--td1)', fontSize: '1.3rem' }}
-              className="font-bold mb-4"
+              className="font-semibold mb-4"
             >
               Find a table this week
             </h2>
@@ -276,14 +276,14 @@ export default function LAHongKongMahjongScenePage() {
               <Link
                 href="/events/los-angeles"
                 style={{ background: 'var(--terra)', color: 'white', fontFamily: 'var(--font-heading)', fontSize: '0.8rem', letterSpacing: '0.05em' }}
-                className="inline-block px-8 py-3 rounded-lg font-bold hover:opacity-90 transition-opacity"
+                className="inline-block px-8 py-3 rounded-lg font-semibold hover:opacity-90 transition-opacity"
               >
                 See LA Mahjong events
               </Link>
               <Link
                 href="/learn/la-mahjong-clubs"
                 style={{ background: 'rgba(255,255,255,0.08)', color: 'var(--td1)', fontFamily: 'var(--font-heading)', fontSize: '0.8rem', letterSpacing: '0.05em', border: '1px solid rgba(255,255,255,0.15)' }}
-                className="inline-block px-8 py-3 rounded-lg font-bold hover:opacity-90 transition-opacity"
+                className="inline-block px-8 py-3 rounded-lg font-semibold hover:opacity-90 transition-opacity"
               >
                 Meet the LA clubs
               </Link>

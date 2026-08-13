@@ -84,24 +84,21 @@ export default function TaiwaneseMainjongPage() {
       />
 
       {/* Hero */}
-      <section className="py-24 text-center" style={{ background: 'var(--sand)' }}>
-        <div className="mx-auto max-w-3xl px-6">
-          <p className="mb-4 text-xs font-semibold uppercase tracking-widest" style={{ color: 'var(--teal-deep)' }}>
-            Style Guide
-          </p>
-          <h1
-            className="font-[family-name:var(--font-heading)] text-4xl font-black leading-tight md:text-5xl"
-            style={{ color: 'var(--espresso)' }}
-          >
-            Taiwanese Mahjong
-          </h1>
-          <p className="mt-6 text-xl font-medium leading-relaxed" style={{ color: 'var(--walnut)' }}>
+      <section className="content-hero">
+        <div className="content-hero-inner">
+          <p className="content-hero-label">Style Guide</p>
+          <h1 className="mb-6">Taiwanese Mahjong</h1>
+          <p className="content-hero-subtitle">
             Rules, Strategy, and the 16-Tile Hand
           </p>
-          <p className="mt-4 text-base leading-relaxed" style={{ color: 'var(--stone)' }}>
+          <div className="content-hero-divider" />
+          <p
+            style={{ color: 'var(--walnut)', fontFamily: 'var(--font-body)', marginTop: '1.5rem' }}
+            className="text-base leading-relaxed"
+          >
             Lively, social, and wonderfully kinetic — Taiwanese Mahjong builds every round around a fuller hand and a faster table rhythm.
           </p>
-          <div className="mt-8 flex flex-wrap justify-center gap-4">
+          <div className="mt-8 flex flex-wrap gap-4">
             <Link
               href="/learn/how-to-play-mahjong"
               className="inline-block rounded-full px-8 py-3 text-sm font-semibold no-underline transition-colors"
@@ -140,7 +137,7 @@ export default function TaiwaneseMainjongPage() {
                 <p className="text-xs font-semibold uppercase tracking-wide" style={{ color: 'var(--teal-deep)' }}>
                   {item.label}
                 </p>
-                <p className="mt-1 font-[family-name:var(--font-heading)] text-sm font-bold" style={{ color: 'var(--espresso)' }}>
+                <p className="mt-1 font-[family-name:var(--font-heading)] text-sm font-semibold" style={{ color: 'var(--espresso)' }}>
                   {item.value}
                 </p>
               </div>
@@ -150,8 +147,8 @@ export default function TaiwaneseMainjongPage() {
       </section>
 
       {/* Main Article */}
-      <section className="py-20" style={{ background: 'var(--linen)' }}>
-        <div className="mx-auto max-w-3xl px-6">
+      <section className="content-body">
+        <div className="content-body-inner">
           <div className="content-article">
 
             {/* Intro */}
@@ -488,7 +485,7 @@ export default function TaiwaneseMainjongPage() {
       <section className="py-20" style={{ background: 'var(--sand)' }}>
         <div className="mx-auto max-w-3xl px-6">
           <h2
-            className="mb-12 font-[family-name:var(--font-heading)] text-2xl font-bold md:text-3xl"
+            className="mb-12 font-[family-name:var(--font-heading)] text-2xl font-semibold md:text-3xl"
             style={{ color: 'var(--espresso)' }}
           >
             Frequently Asked Questions
@@ -501,7 +498,7 @@ export default function TaiwaneseMainjongPage() {
                 style={{ background: 'var(--paper)', border: '1px solid var(--bone)' }}
               >
                 <h3
-                  className="font-[family-name:var(--font-heading)] text-sm font-bold leading-snug md:text-base"
+                  className="font-[family-name:var(--font-heading)] text-sm font-semibold leading-snug md:text-base"
                   style={{ color: 'var(--espresso)' }}
                 >
                   {faq.question}
@@ -531,7 +528,7 @@ export default function TaiwaneseMainjongPage() {
       <section className="py-20" style={{ background: 'var(--espresso)' }}>
         <div className="mx-auto max-w-5xl px-6">
           <h2
-            className="mb-4 text-center font-[family-name:var(--font-heading)] text-2xl font-bold md:text-3xl"
+            className="mb-4 text-center font-[family-name:var(--font-heading)] text-2xl font-semibold md:text-3xl"
             style={{ color: 'var(--td1)' }}
           >
             Keep Exploring
@@ -569,7 +566,7 @@ export default function TaiwaneseMainjongPage() {
                 style={{ background: 'var(--walnut)' }}
               >
                 <p
-                  className="font-[family-name:var(--font-heading)] text-sm font-bold"
+                  className="font-[family-name:var(--font-heading)] text-sm font-semibold"
                   style={{ color: 'var(--td1)' }}
                 >
                   {card.title}
