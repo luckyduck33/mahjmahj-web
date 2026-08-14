@@ -47,7 +47,7 @@ export default function Footer() {
           </div>
         </div>
         <div className="footer-bottom">
-          <span className="footer-copy">&copy; {new Date().getFullYear()} Mahj Mahj. All rights reserved.</span>
+          <span className="footer-copy">&copy; {new Date().getFullYear()} Mahj Mahj. All rights reserved. <Link href="/privacy">Privacy Policy</Link></span>
           <span className="footer-btm-logo">mahj mahj</span>
         </div>
       </div>

@@ -7,8 +7,9 @@ import {
 import { persistSubscriber } from '@/lib/subscribe-store';
 
 // Newsletter-signup API. Receives an email (+ optional city) from the marketing
-// site and persists it to the active sink (MailerLite → Notion → local dev
-// file; see subscribe-store.ts). Deliberately mirrors /api/claim's hardening.
+// site and persists it to the active sink (Beehiiv primary, Notion mirror,
+// local dev file fallback; see subscribe-store.ts). Deliberately mirrors
+// /api/claim's hardening.
 
 export const runtime = 'nodejs'; // needs fs for the local dev fallback sink
 
