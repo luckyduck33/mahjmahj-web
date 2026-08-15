@@ -6,8 +6,7 @@ import { JsonLd } from '@/components/JsonLd';
 import { cities, getCityBySlug } from '@/data/cities';
 import { getRecurringGames } from '@/data/recurring-games';
 import { getOrganizerForListing } from '@/data/organizers';
-import { ClaimBadge } from '@/components/ClaimBadge';
-import { CLAIM_COPY } from '@/lib/claim';
+import { EventCard } from '@/components/EventCard';
 import EmailSignup from '@/components/EmailSignup';
 import type { Metadata } from 'next';
 
@@ -70,8 +69,8 @@ export default async function CityEventsPage({ params }: Props) {
     getEvents({ city: cityName }),
     getEvents({ status: 'Upcoming' }),
   ]);
-  // Surface every manifest city in the filter pills, plus any event-only
-  // historical cities, deduped + sorted.
+  // Surface every manifest city in the explore/related links, plus any
+  // event-only historical cities, deduped + sorted.
   const allCities = [...new Set([
     ...cities.map((c) => c.name),
     ...allData.events.map((e) => e.city),
@@ -125,15 +124,62 @@ export default async function CityEventsPage({ params }: Props) {
   });
   const ongoingEvents = data.events.filter((e) => !e.date);
 
+  // All cards in one sequence (dated first, then ongoing) so EmailSignup can
+  // land after the 4th card regardless of which bucket it falls in (P1.B).
+  const allCards = [...datedEvents, ...ongoingEvents];
+  const cardsBeforeSignup = allCards.slice(0, 4);
+  const cardsAfterSignup = allCards.slice(4);
+
+  // "Where can I play mahjong in {city}?" answer capsule — Q&A form, folded
+  // into the FAQ accordion below alongside visitFaq + entry.faqs. Not part of
+  // the FAQPage schema (unchanged from before), so it's a plain local object,
+  // not added to allFaqs/faqJsonLd above.
+  const capsuleFaq = entry?.capsule
+    ? { question: `Where can I play mahjong in ${cityName}?`, answer: entry.capsule }
+    : null;
+  // Accordion order: the compound reasoning-path answer first (opened by
+  // default — it's the primary extractable answer for this page), then the
+  // capsule Q&A, then the standard city FAQ list. `extra` carries the
+  // supplementary lines each item used to render alongside its answer
+  // (nothing deleted — same text, now inside the <details> body).
+  const accordionFaqs: Array<{ question: string; answer: string; extra?: React.ReactNode }> = [
+    ...(entry?.visitFaq
+      ? [
+          {
+            ...entry.visitFaq,
+            extra: (
+              <>
+                {data.total > 0 && (
+                  <p className="faq-fold-extra">
+                    {data.total} {cityName} game{data.total !== 1 ? 's' : ''} currently listed above.
+                  </p>
+                )}
+                <p className="faq-fold-extra" style={{ marginBottom: 0 }}>
+                  New to the styles?{' '}
+                  <Link href="/compare/mahjong-styles" style={{ color: 'var(--terra)' }}>Compare Hong Kong, Taiwanese &amp; American</Link>
+                  {' · '}
+                  <Link href="/styles/hong-kong-mahjong" style={{ color: 'var(--terra)' }}>Hong Kong rules &amp; scoring</Link>
+                </p>
+              </>
+            ),
+          },
+        ]
+      : []),
+    ...(capsuleFaq ? [capsuleFaq] : []),
+    ...(entry?.faqs ?? []),
+    // The same question can arrive from both visitFaq/capsule and entry.faqs
+    // (e.g. "Where can I play mahjong in …?"); keep the first occurrence only —
+    // a reader should never meet one question twice in the same accordion.
+  ].filter((f, i, arr) => arr.findIndex((g) => g.question === f.question) === i);
+
   return (
     <>
       <JsonLd data={[breadcrumbs, ...schemas, ...(faqJsonLd ? [faqJsonLd] : [])]} />
 
-
-      {/* Hero */}
-      <section className="content-hero">
+      {/* Compact hero — event cards begin within the first screen below this */}
+      <section className="content-hero content-hero--compact">
         <div className="content-hero-inner">
-          <Link href="/events" style={{ color: 'var(--terra)', fontSize: '0.85rem', textDecoration: 'none', marginBottom: '1rem', display: 'inline-block' }}>
+          <Link href="/events" style={{ color: 'var(--terra)', fontSize: '0.85rem', textDecoration: 'none', marginBottom: '0.75rem', display: 'inline-block' }}>
             &larr; All Events
           </Link>
           <p className="content-hero-label">Community</p>
@@ -147,156 +193,54 @@ export default async function CityEventsPage({ params }: Props) {
               {new Date(data.lastUpdated).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
             </p>
           )}
-          <div className="content-hero-divider" />
         </div>
       </section>
 
-      {/* Compound reasoning-path answer capsule (style × city × etiquette /
-          beginner). Leads the page as the primary extractable answer object;
-          cross-links to the style/compare pages the compound intent also needs.
-          The durable answer points to the live event cards below for the real
-          venue/street/region specifics (post-P0). */}
-      {entry?.visitFaq && (
-        <section style={{ background: 'var(--sand)', borderBottom: '1px solid var(--bone)', padding: '2rem 0' }}>
-          <div className="mx-auto max-w-3xl px-6">
-            <div style={{ borderLeft: '4px solid var(--terra)', paddingLeft: '1.25rem' }}>
-              <h2 style={{ fontFamily: 'var(--font-heading)', color: 'var(--espresso)', fontSize: '1.15rem' }} className="font-bold mb-3">
-                {entry.visitFaq.question}
-              </h2>
-              <p style={{ fontSize: '1rem', lineHeight: 1.7, color: 'var(--walnut)', margin: '0 0 1rem' }}>
-                {entry.visitFaq.answer}
-              </p>
-              {data.total > 0 && (
-                <p style={{ fontSize: '0.9rem', color: 'var(--walnut)', margin: '0 0 0.75rem' }}>
-                  {data.total} {cityName} game{data.total !== 1 ? 's' : ''} currently listed below.
-                </p>
-              )}
-              <p style={{ fontSize: '0.85rem', color: 'var(--stone)', margin: 0 }}>
-                New to the styles?{' '}
-                <Link href="/compare/mahjong-styles" style={{ color: 'var(--terra)' }}>Compare Hong Kong, Taiwanese &amp; American</Link>
-                {' · '}
-                <Link href="/styles/hong-kong-mahjong" style={{ color: 'var(--terra)' }}>Hong Kong rules &amp; scoring</Link>
-              </p>
-            </div>
-          </div>
-        </section>
-      )}
-
-      {/* City intro — always render when manifest entry exists, regardless of event count */}
-      {entry?.intro && (
-        <section style={{ background: 'var(--paper)', padding: '2rem 0', borderBottom: '1px solid var(--bone)' }}>
-          <div className="mx-auto max-w-3xl px-6">
-            {/* Answer capsule (GEO standard): question H2 + 120-150 char standalone answer */}
-            {entry.capsule && (
-              <>
-                <h2
-                  style={{ fontFamily: 'var(--font-heading)', color: 'var(--espresso)', fontSize: '1.1rem' }}
-                  className="font-bold mb-3"
-                >
-                  Where can I play mahjong in {cityName}?
-                </h2>
-                <p style={{ fontSize: '1rem', lineHeight: 1.7, color: 'var(--walnut)', margin: '0 0 1rem' }}>
-                  {entry.capsule}
-                </p>
-              </>
-            )}
-            <p style={{ fontSize: '1rem', lineHeight: 1.7, color: 'var(--walnut)', margin: 0 }}>
-              {entry.intro}
-            </p>
-          </div>
-        </section>
-      )}
-
-      {/* City filter pills */}
-      {allCities.length > 0 && (
-        <section style={{ background: 'var(--paper)', borderBottom: '1px solid var(--bone)', padding: '1.25rem 0' }}>
-          <div className="mx-auto max-w-6xl px-6">
-            <div className="city-filter">
-              <Link href="/events" className="city-pill">
-                All Cities
-              </Link>
-              {allCities.map((city) => (
-                <Link
-                  key={city}
-                  href={`/events/${getCitySlug(city)}`}
-                  className={`city-pill${getCitySlug(city) === slug ? ' city-pill--active' : ''}`}
-                >
-                  {city}
-                </Link>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
-
-      {/* Events */}
-      <section style={{ background: 'var(--linen)', padding: '3rem 0 2rem' }}>
+      {/* Events — cards begin immediately below the hero (first screen at 375x812) */}
+      <section style={{ background: 'var(--linen)', padding: '2rem 0 2rem' }}>
         <div className="mx-auto max-w-6xl px-6">
-          {datedEvents.length > 0 ? (
-            <div className="events-grid">
-              {datedEvents.map((evt) => {
-                const dateObj = new Date(evt.date);
-                const monthAbbr = dateObj.toLocaleDateString('en-US', { month: 'short' }).toUpperCase();
-                const dayNum = dateObj.getDate();
-                const managingOrganizer = getOrganizerForListing(evt.id);
-                return (
-                <div key={evt.id} className="event-card has-date-badge">
-                  <div className="ev-date-badge">
-                    <div className="ev-date-badge-inner">
-                      <span className="ev-date-month">{monthAbbr}</span>
-                      <span className="ev-date-day">{dayNum}</span>
-                    </div>
-                  </div>
-                  <p className="event-date-big">{monthAbbr} {dayNum}</p>
-                  {evt.time && (
-                    <p className="event-date-sub">{dateObj.toLocaleDateString('en-US', { weekday: 'long' })} · {evt.time}</p>
-                  )}
-                  <h2 className="event-title">{evt.title}</h2>
-                  {managingOrganizer && <ClaimBadge />}
-                  {evt.venue && <p className="event-location">{evt.venue}</p>}
-                  {evt.streetAddress && (
-                    <p className="event-address" style={{ fontSize: '0.8rem', color: 'var(--stone)', margin: '0.1rem 0 0' }}>
-                      {evt.streetAddress}, {evt.city}{evt.state ? `, ${evt.state}` : ''}
-                    </p>
-                  )}
-                  {evt.description && (
-                    <p style={{ fontSize: '0.85rem', color: 'var(--walnut)', marginTop: '0.5rem', lineHeight: 1.6 }}>
-                      {evt.description.length > 150 ? evt.description.slice(0, 150) + '...' : evt.description}
-                    </p>
-                  )}
-                  <div style={{ marginTop: '0.5rem', display: 'flex', gap: '0.5rem', alignItems: 'center', flexWrap: 'wrap' }}>
-                    {evt.style && (
-                      <span className="event-style" data-style={evt.style}>{evt.style}</span>
-                    )}
-                    {evt.cost && <span style={{ fontSize: '0.72rem', color: 'var(--dust)' }}>{evt.cost}</span>}
-                  </div>
-                  <div style={{ marginTop: '0.75rem', display: 'flex', gap: '0.5rem', alignItems: 'center', flexWrap: 'wrap' }}>
-                    {evt.registrationLink ? (
-                      <a href={evt.registrationLink} target="_blank" rel="noopener noreferrer" className="event-cta">
-                        View Details
-                      </a>
-                    ) : evt.instagramHandle ? (
-                      <a href={`https://instagram.com/${evt.instagramHandle.replace('@', '')}`} target="_blank" rel="noopener noreferrer" className="event-cta event-cta--secondary">
-                        Instagram
-                      </a>
-                    ) : (
-                      <span className="event-cta event-cta--muted">Check organizer</span>
-                    )}
-                  </div>
-                  {!managingOrganizer && (
-                    <Link
-                      href={`/claim?listing=${encodeURIComponent(evt.id)}&organizer=${encodeURIComponent(evt.organizer ?? evt.title)}&city=${encodeURIComponent(evt.city)}`}
-                      className="claim-cta-link"
-                    >
-                      {CLAIM_COPY.claimCta}
-                    </Link>
-                  )}
+          {allCards.length > 0 ? (
+            <>
+              <div className="events-grid">
+                {cardsBeforeSignup.map((evt) => {
+                  const managingOrganizer = getOrganizerForListing(evt.id);
+                  return (
+                    <EventCard
+                      key={evt.id}
+                      evt={evt}
+                      organizerClaimed={!!managingOrganizer}
+                      claimHref={`/claim?listing=${encodeURIComponent(evt.id)}&organizer=${encodeURIComponent(evt.organizer ?? evt.title)}&city=${encodeURIComponent(evt.city)}`}
+                    />
+                  );
+                })}
+              </div>
+
+              {/* Email capture — contextual to this city, sits right where the
+                  highest-traffic page type on the site (see EmailSignup.tsx) has
+                  actually earned attention: after the reader has seen the first
+                  4 cards (or all cards, if fewer than 4). */}
+              <section className="signup-inline" style={{ marginTop: '3rem' }}>
+                <EmailSignup variant="city" cityName={cityName} source={`city:${slug}`} />
+              </section>
+
+              {cardsAfterSignup.length > 0 && (
+                <div className="events-grid" style={{ marginTop: '3rem' }}>
+                  {cardsAfterSignup.map((evt) => {
+                    const managingOrganizer = getOrganizerForListing(evt.id);
+                    return (
+                      <EventCard
+                        key={evt.id}
+                        evt={evt}
+                        organizerClaimed={!!managingOrganizer}
+                        claimHref={`/claim?listing=${encodeURIComponent(evt.id)}&organizer=${encodeURIComponent(evt.organizer ?? evt.title)}&city=${encodeURIComponent(evt.city)}`}
+                      />
+                    );
+                  })}
                 </div>
-                );
-              })}
-            </div>
+              )}
+            </>
           ) : (
-            !ongoingEvents.length && (
+            <>
               <div style={{ background: 'var(--paper)', border: '1px solid var(--bone)', borderRadius: '8px', padding: '2rem', textAlign: 'center' }}>
                 <p style={{ color: 'var(--walnut)', fontSize: '1rem', marginBottom: '0.75rem' }}>
                   We&apos;re still building out the {cityName} events calendar.
@@ -306,19 +250,11 @@ export default async function CityEventsPage({ params }: Props) {
                 </p>
                 <Link href="/events" className="event-cta">Browse all cities</Link>
               </div>
-            )
+              <section className="signup-inline" style={{ marginTop: '1.5rem' }}>
+                <EmailSignup variant="city" cityName={cityName} source={`city:${slug}`} />
+              </section>
+            </>
           )}
-
-          {/* Email capture — contextual to this city, sits right where the
-              highest-traffic page type on the site (see EmailSignup.tsx) has
-              actually earned attention: after the reader has seen what's on,
-              before the lower-priority recurring-games/FAQ sections. */}
-          <section
-            className="signup-inline"
-            style={{ marginTop: datedEvents.length > 0 || ongoingEvents.length > 0 ? '3rem' : '1.5rem' }}
-          >
-            <EmailSignup variant="city" cityName={cityName} source={`city:${slug}`} />
-          </section>
 
           {/* Recurring club games — the clubs' OWN published schedules, not
               MAHJ MAHJ listings. Kept visually distinct from event cards
@@ -359,79 +295,54 @@ export default async function CityEventsPage({ params }: Props) {
             </section>
           )}
 
-          {/* City FAQ — bottom of page so users get the events first */}
-          {entry?.faqs?.length ? (
+          {/* City intro (general prose, not Q&A) + FAQ accordion. All text
+              kept — the compound reasoning-path answer (visitFaq), the
+              "Where can I play..." capsule, and entry.faqs each become a
+              <details class="faq-fold"> item; the first opens by default. */}
+          {(entry?.intro || accordionFaqs.length > 0) && (
             <section style={{ marginTop: '3rem', paddingTop: '2.5rem', borderTop: '1px solid var(--bone)' }}>
-              <h2 style={{ fontSize: '1.4rem', color: 'var(--walnut)', marginBottom: '1.5rem' }}>
-                Mahjong in {cityName} — FAQ
-              </h2>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
-                {entry.faqs.map((f, i) => (
-                  <div key={i}>
-                    <h3 style={{ fontSize: '1rem', color: 'var(--walnut)', fontWeight: 600, marginBottom: '0.5rem' }}>
-                      {f.question}
-                    </h3>
-                    <p style={{ fontSize: '0.95rem', color: 'var(--walnut)', lineHeight: 1.65, margin: 0 }}>
-                      {f.answer}
-                    </p>
-                  </div>
+              {entry?.intro && (
+                <p style={{ fontSize: '1rem', lineHeight: 1.7, color: 'var(--walnut)', marginBottom: accordionFaqs.length > 0 ? '2rem' : 0 }}>
+                  {entry.intro}
+                </p>
+              )}
+              {accordionFaqs.length > 0 && (
+                <>
+                  <h2 style={{ fontSize: '1.4rem', color: 'var(--walnut)', marginBottom: '1.25rem' }}>
+                    Mahjong in {cityName} — FAQ
+                  </h2>
+                  {accordionFaqs.map((f, i) => (
+                    <details key={f.question} className="faq-fold" open={i === 0}>
+                      <summary>{f.question}</summary>
+                      <p>{f.answer}</p>
+                      {f.extra}
+                    </details>
+                  ))}
+                </>
+              )}
+            </section>
+          )}
+
+          {/* Explore / related links — every city slug stays linked here for
+              crawlers, plus a link back to the full events hub. */}
+          {allCities.length > 0 && (
+            <section style={{ marginTop: '3rem', paddingTop: '2.5rem', borderTop: '1px solid var(--bone)' }}>
+              <h3 className="ongoing-section-label">Explore Other Cities</h3>
+              <div className="city-filter">
+                <Link href="/events" className="city-pill">
+                  All Cities
+                </Link>
+                {allCities.map((city) => (
+                  <Link
+                    key={city}
+                    href={`/events/${getCitySlug(city)}`}
+                    className={`city-pill${getCitySlug(city) === slug ? ' city-pill--active' : ''}`}
+                  >
+                    {city}
+                  </Link>
                 ))}
               </div>
             </section>
-          ) : null}
-
-          {/* Ongoing series */}
-          {ongoingEvents.length > 0 && (
-            <>
-              <h3 className="ongoing-section-label">Ongoing Series</h3>
-              <div className="events-grid">
-                {ongoingEvents.map((evt) => {
-                  const managingOrganizer = getOrganizerForListing(evt.id);
-                  return (
-                  <div key={evt.id} className="event-card">
-                    <p className="event-date-sub" style={{ color: 'var(--terra)' }}>{evt.recurring || 'Recurring'}</p>
-                    <h2 className="event-title">{evt.title}</h2>
-                    {managingOrganizer && <ClaimBadge />}
-                    {evt.venue && <p className="event-location">{evt.venue}</p>}
-                    {evt.streetAddress && (
-                      <p className="event-address" style={{ fontSize: '0.8rem', color: 'var(--stone)', margin: '0.1rem 0 0' }}>
-                        {evt.streetAddress}, {evt.city}{evt.state ? `, ${evt.state}` : ''}
-                      </p>
-                    )}
-                    {evt.description && (
-                      <p style={{ fontSize: '0.85rem', color: 'var(--walnut)', marginTop: '0.5rem', lineHeight: 1.6 }}>
-                        {evt.description.length > 150 ? evt.description.slice(0, 150) + '...' : evt.description}
-                      </p>
-                    )}
-                    {evt.style && (
-                      <span className="event-style" data-style={evt.style}>{evt.style}</span>
-                    )}
-                    <div style={{ marginTop: '0.75rem', display: 'flex', gap: '0.5rem', alignItems: 'center', flexWrap: 'wrap' }}>
-                      {evt.registrationLink ? (
-                        <a href={evt.registrationLink} target="_blank" rel="noopener noreferrer" className="event-cta">
-                          View Details
-                        </a>
-                      ) : evt.instagramHandle ? (
-                        <a href={`https://instagram.com/${evt.instagramHandle.replace('@', '')}`} target="_blank" rel="noopener noreferrer" className="event-cta event-cta--secondary">
-                          Instagram
-                        </a>
-                      ) : (
-                        <span className="event-cta event-cta--muted">Check organizer</span>
-                      )}
-                    </div>
-                    {!managingOrganizer && (
-                      <Link
-                        href={`/claim?listing=${encodeURIComponent(evt.id)}&organizer=${encodeURIComponent(evt.organizer ?? evt.title)}&city=${encodeURIComponent(evt.city)}`}
-                        className="claim-cta-link"
-                      >
-                        {CLAIM_COPY.claimCta}
-                      </Link>
-                    )}
-                  </div>
-                  );
-                })}
-              </div>
-            </>
           )}
         </div>
       </section>

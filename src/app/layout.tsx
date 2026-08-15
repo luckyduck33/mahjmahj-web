@@ -27,6 +27,8 @@ const inter = Inter({
 // woff2 — Fraunces is optical-size responsive, so headings at small sizes
 // stay text-weight while display sizes pick up the fuller, more decorative
 // cut automatically (font-optical-sizing: auto is the browser default).
+// axes: pulls in the non-default SOFT/WONK axes too (DS soft-cut treatment,
+// see globals.css font-variation-settings on hero/section headings).
 const fraunces = Fraunces({
   subsets: ['latin'],
   weight: 'variable',
@@ -34,6 +36,7 @@ const fraunces = Fraunces({
   display: 'swap',
   preload: false,
   variable: '--font-fraunces',
+  axes: ['opsz', 'SOFT', 'WONK'],
 });
 
 const jetbrainsMono = JetBrains_Mono({

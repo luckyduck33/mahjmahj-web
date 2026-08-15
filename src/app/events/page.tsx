@@ -3,6 +3,7 @@ import { getEvents, getCitySlug } from '@/lib/api';
 import { itemListSchema, eventSchema, breadcrumbSchema, faqSchema } from '@/lib/schema';
 import { JsonLd } from '@/components/JsonLd';
 import { cities as manifestCities } from '@/data/cities';
+import CityFinder from '@/components/CityFinder';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -19,10 +20,13 @@ export const metadata: Metadata = {
 
 export const revalidate = 3600;
 
+// Featured quick-pick chips under the city finder (P1.A spec — fixed set).
+const FEATURED_CITY_SLUGS = ['los-angeles', 'new-york', 'san-francisco', 'dallas', 'chicago', 'st-louis'];
+
 export default async function EventsPage() {
   const data = await getEvents({ status: 'Upcoming' });
 
-  // Event counts per city, used by the city tile section.
+  // Event counts per city, used by the city finder + tile section.
   const countsBySlug = new Map<string, number>();
   for (const e of data.events) {
     const s = getCitySlug(e.city);
@@ -42,7 +46,7 @@ export default async function EventsPage() {
     ...eventOnlyCities.map((name) => ({
       slug: getCitySlug(name),
       name,
-      tier: 0 as 0,
+      tier: 0 as const,
       count: countsBySlug.get(getCitySlug(name)) ?? 0,
     })),
   ].sort((a, b) => a.name.localeCompare(b.name));
@@ -61,7 +65,6 @@ export default async function EventsPage() {
     d.setHours(0, 0, 0, 0);
     return d >= today;
   });
-  const ongoingEvents = data.events.filter((e) => !e.date);
 
   /* Per-event Event schema for the hub page so Google can show event rich results
      directly off /events, not just /events/[city]. Only dated upcoming events
@@ -103,37 +106,92 @@ export default async function EventsPage() {
       'Hong Kong and Taiwanese Mahjong concentrate in US cities with large Chinese and Taiwanese communities — Los Angeles (the San Gabriel Valley), New York (Flushing and Manhattan Chinatown), and the San Francisco Bay Area have the deepest heritage-style scenes, so they are the best bets for finding a Taiwanese or Hong Kong table. American Mahjong is active nationwide in clubs and senior centers. Pick a city below to see its current games, and start with the cities showing upcoming listings.',
   };
 
+  // "This week" strip: soonest-first, at most 8, across every city — replaces
+  // the old flat nationwide grid. The Event JSON-LD above still covers every
+  // dated event (eventSchemas), not just the 8 shown here.
+  const thisWeek = [...datedEvents]
+    .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
+    .slice(0, 8);
+
   return (
     <>
       <JsonLd data={[breadcrumbs, itemListSchema(schemaItems), faqSchema([sceneFaq]), ...eventSchemas]} />
 
-
-      {/* Hero */}
-      <section className="content-hero">
+      {/* Compact hero */}
+      <section className="content-hero content-hero--compact">
         <div className="content-hero-inner">
           <p className="content-hero-label">Community</p>
           <h1>Mahjong Events</h1>
           <p className="content-hero-subtitle">
             Find upcoming mahjong events across the United States
           </p>
-          <div className="content-hero-divider" />
         </div>
       </section>
 
-      {/* Compound reasoning-path answer capsule (style × geography). Primary
-          extractable answer for the "which cities have an active scene" query;
-          cross-links to the style pages the compound intent also needs. */}
-      <section style={{ background: 'var(--sand)', borderBottom: '1px solid var(--bone)', padding: '2rem 0' }}>
+      {/* City finder — type-ahead search, featured chips, collapsed full list */}
+      <section style={{ background: 'var(--paper)', borderBottom: '1px solid var(--bone)', padding: '2rem 0' }}>
         <div className="mx-auto max-w-3xl px-6">
-          <div style={{ borderLeft: '4px solid var(--terra)', paddingLeft: '1.25rem' }}>
-            <h2 style={{ fontFamily: 'var(--font-heading)', color: 'var(--espresso)', fontSize: '1.15rem' }} className="font-bold mb-3">
-              {sceneFaq.question}
+          <CityFinder
+            cities={tileCities.map((c) => ({ slug: c.slug, name: c.name, count: c.count }))}
+            featuredSlugs={FEATURED_CITY_SLUGS}
+          />
+          {tileCities.length > 0 && (
+            <details className="all-cities-details">
+              <summary>All {tileCities.length} cities</summary>
+              <div className="all-cities-list">
+                {tileCities.map((c) => (
+                  <Link key={c.slug} href={`/events/${c.slug}`}>
+                    {c.name}
+                  </Link>
+                ))}
+              </div>
+            </details>
+          )}
+        </div>
+      </section>
+
+      {/* This week — soonest-first, max 8, across every city. Replaces the
+          old flat nationwide events grid; each card links to its city page. */}
+      {thisWeek.length > 0 && (
+        <section style={{ background: 'var(--linen)', padding: '2.5rem 0' }}>
+          <div className="mx-auto max-w-6xl px-6">
+            <h2 style={{ fontSize: '1.1rem', fontWeight: 600, color: 'var(--espresso)', marginBottom: '1.25rem' }}>
+              This Week
             </h2>
-            <p style={{ fontSize: '1rem', lineHeight: 1.7, color: 'var(--walnut)', margin: '0 0 1rem' }}>
-              {sceneFaq.answer}
-            </p>
+            <div className="week-strip">
+              {thisWeek.map((evt) => {
+                const dateObj = new Date(evt.date);
+                const monthAbbr = dateObj.toLocaleDateString('en-US', { month: 'short' }).toUpperCase();
+                const dayNum = dateObj.getDate();
+                return (
+                  <Link key={evt.id} href={`/events/${getCitySlug(evt.city)}`} className="week-strip-card">
+                    <p className="week-strip-date">
+                      {monthAbbr} {dayNum}
+                      {evt.time ? ` · ${evt.time}` : ''}
+                    </p>
+                    <p className="week-strip-title">{evt.title}</p>
+                    <p className="week-strip-city">
+                      {evt.city}
+                      {evt.state ? `, ${evt.state}` : ''}
+                    </p>
+                  </Link>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* FAQ / answer capsule — compound reasoning-path answer (style x
+          geography), kept as a <details> accordion; text below is
+          byte-identical to the FAQPage schema entry above. */}
+      <section style={{ background: 'var(--sand)', padding: '2rem 0' }}>
+        <div className="mx-auto max-w-3xl px-6">
+          <details className="faq-fold" open>
+            <summary>{sceneFaq.question}</summary>
+            <p>{sceneFaq.answer}</p>
             {activeNow.length > 0 && (
-              <p style={{ fontSize: '0.9rem', color: 'var(--walnut)', margin: '0 0 0.75rem' }}>
+              <p className="faq-fold-extra">
                 Most games listed right now:{' '}
                 {activeNow.map((c, i) => (
                   <span key={c.slug}>
@@ -143,131 +201,13 @@ export default async function EventsPage() {
                 ))}
               </p>
             )}
-            <p style={{ fontSize: '0.85rem', color: 'var(--stone)', margin: 0 }}>
+            <p className="faq-fold-extra" style={{ marginBottom: 0 }}>
               Choosing a style?{' '}
               <Link href="/styles/taiwanese-mahjong" style={{ color: 'var(--terra)' }}>Taiwanese Mahjong</Link>
               {' · '}
               <Link href="/compare/mahjong-styles" style={{ color: 'var(--terra)' }}>Compare all three styles</Link>
             </p>
-          </div>
-        </div>
-      </section>
-
-      {/* City filter pills — every manifest city + any event-only historical city */}
-      {tileCities.length > 0 && (
-        <section style={{ background: 'var(--paper)', borderBottom: '1px solid var(--bone)', padding: '1.25rem 0' }}>
-          <div className="mx-auto max-w-6xl px-6">
-            <div className="city-filter">
-              {tileCities.map((c) => (
-                <Link
-                  key={c.slug}
-                  href={`/events/${c.slug}`}
-                  className="city-pill"
-                  title={c.count === 0 ? `${c.name} — no events scraped yet` : `${c.count} event${c.count !== 1 ? 's' : ''} in ${c.name}`}
-                >
-                  {c.name}
-                  {c.count > 0 && (
-                    <span style={{ marginLeft: '0.4rem', opacity: 0.7, fontSize: '0.75rem' }}>
-                      {c.count}
-                    </span>
-                  )}
-                </Link>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
-
-      {/* Dated events */}
-      <section style={{ background: 'var(--linen)', padding: '3rem 0 2rem' }}>
-        <div className="mx-auto max-w-6xl px-6">
-          {datedEvents.length > 0 ? (
-            <div className="events-grid">
-              {datedEvents.map((evt) => {
-                const dateObj = new Date(evt.date);
-                const monthAbbr = dateObj.toLocaleDateString('en-US', { month: 'short' }).toUpperCase();
-                const dayNum = dateObj.getDate();
-                return (
-                <div key={evt.id} className="event-card has-date-badge">
-                  <div className="ev-date-badge">
-                    <div className="ev-date-badge-inner">
-                      <span className="ev-date-month">{monthAbbr}</span>
-                      <span className="ev-date-day">{dayNum}</span>
-                    </div>
-                  </div>
-                  <p className="event-date-big">{monthAbbr} {dayNum}</p>
-                  {evt.time && (
-                    <p className="event-date-sub">{dateObj.toLocaleDateString('en-US', { weekday: 'long' })} · {evt.time}</p>
-                  )}
-                  <p className="event-city">{evt.city}{evt.state ? `, ${evt.state}` : ''}</p>
-                  <h2 className="event-title">{evt.title}</h2>
-                  {evt.venue && <p className="event-location">{evt.venue}</p>}
-                  {evt.streetAddress && (
-                    <p className="event-address" style={{ fontSize: '0.8rem', color: 'var(--stone)', margin: '0.1rem 0 0' }}>
-                      {evt.streetAddress}
-                    </p>
-                  )}
-                  {evt.style && (
-                    <span className="event-style" data-style={evt.style}>{evt.style}</span>
-                  )}
-                  <div style={{ marginTop: '0.75rem', display: 'flex', gap: '0.5rem', alignItems: 'center', flexWrap: 'wrap' }}>
-                    {evt.registrationLink ? (
-                      <a href={evt.registrationLink} target="_blank" rel="noopener noreferrer" className="event-cta">
-                        View Details
-                      </a>
-                    ) : evt.instagramHandle ? (
-                      <a href={`https://instagram.com/${evt.instagramHandle.replace('@', '')}`} target="_blank" rel="noopener noreferrer" className="event-cta event-cta--secondary">
-                        Instagram
-                      </a>
-                    ) : (
-                      <span className="event-cta event-cta--muted">Check organizer</span>
-                    )}
-                  </div>
-                </div>
-                );
-              })}
-            </div>
-          ) : (
-            <p style={{ color: 'var(--stone)' }}>No upcoming dated events right now.</p>
-          )}
-
-          {/* Ongoing series */}
-          {ongoingEvents.length > 0 && (
-            <>
-              <h3 className="ongoing-section-label">Ongoing Series</h3>
-              <div className="events-grid">
-                {ongoingEvents.map((evt) => (
-                  <div key={evt.id} className="event-card">
-                    <p className="event-date-sub" style={{ color: 'var(--terra)' }}>{evt.recurring || 'Recurring'}</p>
-                    <p className="event-city">{evt.city}{evt.state ? `, ${evt.state}` : ''}</p>
-                    <h2 className="event-title">{evt.title}</h2>
-                    {evt.venue && <p className="event-location">{evt.venue}</p>}
-                    {evt.streetAddress && (
-                      <p className="event-address" style={{ fontSize: '0.8rem', color: 'var(--stone)', margin: '0.1rem 0 0' }}>
-                        {evt.streetAddress}
-                      </p>
-                    )}
-                    {evt.style && (
-                      <span className="event-style" data-style={evt.style}>{evt.style}</span>
-                    )}
-                    <div style={{ marginTop: '0.75rem', display: 'flex', gap: '0.5rem', alignItems: 'center', flexWrap: 'wrap' }}>
-                      {evt.registrationLink ? (
-                        <a href={evt.registrationLink} target="_blank" rel="noopener noreferrer" className="event-cta">
-                          View Details
-                        </a>
-                      ) : evt.instagramHandle ? (
-                        <a href={`https://instagram.com/${evt.instagramHandle.replace('@', '')}`} target="_blank" rel="noopener noreferrer" className="event-cta event-cta--secondary">
-                          Instagram
-                        </a>
-                      ) : (
-                        <span className="event-cta event-cta--muted">Check organizer</span>
-                      )}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </>
-          )}
+          </details>
         </div>
       </section>
     </>

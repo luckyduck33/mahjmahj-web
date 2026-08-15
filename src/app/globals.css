@@ -103,6 +103,9 @@ h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
   color: var(--espresso);
   line-height: 1.2;
+  /* DS soft cut — section-level default. Hero/display headlines override
+     with the fuller 'opsz' 144 cut below (.hero-headline, .census-h1). */
+  font-variation-settings: 'opsz' 96, 'SOFT' 20;
 }
 
 /* ════════════════════════════════════════
@@ -308,6 +311,8 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1.03;
   color: var(--td1);
   margin: 0 0 1.5rem;
+  /* DS soft cut — hero/display tier gets the fuller optical size. */
+  font-variation-settings: 'opsz' 144, 'SOFT' 20;
 }
 .hero-headline em {
   font-style: italic;
@@ -642,15 +647,108 @@ h1, h2, h3, h4, h5, h6 {
 
 .event-title {
   font-family: var(--font-heading);
-  font-size: 0.88rem;
+  font-size: 1.5rem;
   font-weight: 600;
   color: var(--espresso);
-  line-height: 1.4;
+  line-height: 1.15;
+  margin: 0 0 0.3rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 .event-location {
   font-size: 0.75rem;
   color: var(--stone);
   margin-top: 0.25rem;
+}
+
+/* ── Card anatomy v2 (P3 density pass): mono date-time line → title →
+   venue/address one Inter line → chips row → truncated description.
+   Card markup lives in src/components/EventCard.tsx (city page) and the
+   this-week strip in events/page.tsx; these classes are new/scoped to that
+   markup, so they don't disturb the legacy corner-badge card still used on
+   the homepage (.event-date-big/.event-date-sub/.event-city/.event-location). */
+.event-datetime {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 500;
+  line-height: 1.3;
+  color: var(--terra);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin: 0 0 0.35rem;
+}
+.event-meta {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  line-height: 1.35;
+  color: var(--stone);
+  margin: 0 0 0.35rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.event-chips {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem;
+  margin: 0 0 0.35rem;
+}
+.event-chip-cost {
+  display: inline-block;
+  padding: 0.2rem 0.65rem;
+  border-radius: 6px;
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: 1.3;
+  color: var(--walnut);
+  background: var(--clay);
+}
+.event-desc {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  line-height: 1.4;
+  color: var(--walnut);
+  margin: 0 0 0.35rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.event-cta-label {
+  display: inline-flex;
+  align-items: center;
+  line-height: 1.1;
+  margin-top: 0.15rem;
+  padding: 0.4rem 0.85rem;
+  border-radius: 6px;
+  font-family: var(--font-body);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  background: var(--terra);
+  color: #fff;
+}
+.event-cta-label--muted {
+  background: transparent;
+  color: var(--stone);
+  border: 1px solid var(--bone);
+}
+/* Whole-card tap target — wraps every card's content in one block link
+   (>=44px rows via card padding); the low-emphasis claim-cta-link sits
+   outside it as its own small link so no <a> is nested inside another. */
+.event-card-link {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+  min-height: 44px;
+}
+a.event-card-link:hover .event-cta-label:not(.event-cta-label--muted) {
+  background: var(--terra-mid);
 }
 
 /* ── Style badge pills ── */
@@ -659,10 +757,12 @@ h1, h2, h3, h4, h5, h6 {
   margin-top: 0.5rem;
   padding: 0.2rem 0.65rem;
   border-radius: 6px;
-  font-size: 0.65rem;
+  font-size: 0.75rem;
   font-weight: 500;
   letter-spacing: 0.03em;
 }
+/* Inside the new card's .event-chips row, the chip sits inline — no stacking margin. */
+.event-chips .event-style { margin-top: 0; line-height: 1.3; }
 /* Default style colors */
 .event-style { background: var(--teal-light); color: var(--teal-deep); }
 .event-style[data-style="Hong Kong"] { background: var(--terra-pale2); color: var(--terra-deep); }
@@ -819,6 +919,209 @@ h1, h2, h3, h4, h5, h6 {
   color: #fff;
 }
 
+/* ════════════════════════════════════════
+   CITY FINDER (P1.A) — type-ahead over the city manifest, src/components/CityFinder.tsx
+════════════════════════════════════════ */
+.city-finder {
+  max-width: 32rem;
+  margin: 0 auto;
+}
+.city-finder-search { position: relative; }
+.city-finder-input {
+  width: 100%;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--espresso);
+  background: var(--paper-lift);
+  border: 1px solid var(--bone);
+  border-radius: 10px;
+  padding: 0.85rem 1.1rem;
+  min-height: 48px;
+}
+.city-finder-input::placeholder { color: var(--dust); }
+.city-finder-input:focus {
+  outline: none;
+  border-color: var(--terra);
+  box-shadow: 0 0 0 3px var(--terra-pale2);
+}
+.city-finder-dropdown {
+  /* radius snapped to system scale (matches the 10px input) */
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  left: 0;
+  right: 0;
+  background: var(--paper-lift);
+  border: 1px solid var(--bone);
+  border-radius: 10px;
+  box-shadow: 0 12px 32px rgba(0,0,0,0.14);
+  list-style: none;
+  margin: 0;
+  padding: 0.4rem;
+  z-index: 50;
+  max-height: 20rem;
+  overflow-y: auto;
+}
+.city-finder-option {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.65rem 0.75rem;
+  border-radius: 6px;
+  text-decoration: none;
+  color: var(--walnut);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  min-height: 44px;
+}
+.city-finder-option--active,
+.city-finder-option:hover {
+  background: var(--sand);
+  color: var(--espresso);
+}
+.city-finder-count {
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  color: var(--stone);
+  white-space: nowrap;
+}
+.city-finder-empty {
+  padding: 0.75rem;
+  font-size: 0.85rem;
+  color: var(--stone);
+}
+.city-finder-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+  margin-top: 1.1rem;
+}
+
+/* Collapsed full alphabetical city list — kept for crawlability, not deleted. */
+.all-cities-details {
+  margin-top: 1.1rem;
+  text-align: center;
+}
+.all-cities-details summary {
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--terra);
+  list-style: none;
+}
+.all-cities-details summary::-webkit-details-marker { display: none; }
+.all-cities-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 0.9rem;
+  justify-content: center;
+  margin-top: 1.1rem;
+  padding-top: 1.1rem;
+  border-top: 1px solid var(--bone);
+  text-align: left;
+}
+.all-cities-list a {
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  color: var(--walnut);
+  text-decoration: none;
+}
+.all-cities-list a:hover { color: var(--terra); text-decoration: underline; }
+
+/* ════════════════════════════════════════
+   THIS WEEK STRIP (P1.A) — soonest-first compact cards, link to city pages
+════════════════════════════════════════ */
+.week-strip {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 0.85rem;
+}
+.week-strip-card {
+  display: block;
+  background: var(--paper);
+  border: 1px solid var(--bone);
+  border-radius: 16px;
+  padding: 1rem 1.1rem;
+  text-decoration: none;
+  transition: box-shadow 0.2s, transform 0.2s;
+  min-height: 44px;
+}
+.week-strip-card:hover {
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+  transform: translateY(-2px);
+}
+.week-strip-date {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: var(--terra);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin: 0 0 0.35rem;
+}
+.week-strip-title {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--espresso);
+  line-height: 1.25;
+  margin: 0 0 0.25rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.week-strip-city {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  color: var(--stone);
+  margin: 0;
+}
+
+/* ════════════════════════════════════════
+   FAQ FOLD (P1) — <details>/<summary> accordion for FAQ + answer-capsule
+   text. All text stays server-rendered in the DOM regardless of [open]
+   state — only the visual disclosure is client-side (native <details>).
+════════════════════════════════════════ */
+.faq-fold {
+  background: var(--paper-lift);
+  border: 1px solid var(--bone);
+  border-left: 4px solid var(--terra);
+  border-radius: 0 16px 16px 0;
+  padding: 0.2rem 1.25rem;
+  margin-bottom: 1rem;
+}
+.faq-fold summary {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 1.05rem;
+  color: var(--espresso);
+  cursor: pointer;
+  padding: 1rem 0;
+  list-style: none;
+}
+.faq-fold summary::-webkit-details-marker { display: none; }
+.faq-fold summary::before {
+  content: '+';
+  color: var(--terra);
+  font-weight: 700;
+  margin-right: 0.6rem;
+}
+.faq-fold[open] summary::before { content: '\2013'; }
+.faq-fold p {
+  margin: 0 0 1rem;
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: var(--walnut);
+}
+.faq-fold .faq-fold-extra {
+  font-size: 0.85rem;
+  color: var(--stone);
+}
+.faq-fold .faq-fold-extra a { color: var(--terra); }
+
 @media (max-width: 768px) {
   .ev-date-badge { width: 4.4rem; height: 4.4rem; }
   .ev-date-badge::before { border-width: 4.4rem 4.4rem 0 0; }
@@ -832,6 +1135,21 @@ h1, h2, h3, h4, h5, h6 {
 @media (max-width: 768px) {
   .events-grid { grid-template-columns: 1fr; }
   .events-hdr { flex-direction: column; align-items: flex-start; gap: 1rem; }
+  .event-title { font-size: 1.375rem; }
+}
+
+/* ── Mobile type scale (P2.3) ── */
+@media (max-width: 480px) {
+  .content-hero h1 { font-size: 2.1rem; }
+  .event-title { font-size: 1.25rem; line-height: 1.12; }
+  .event-card { padding: 0.85rem 1.1rem; }
+  .event-datetime, .event-meta, .event-chips, .event-desc { margin-bottom: 0.3rem; }
+  .event-cta-label { padding: 0.32rem 0.75rem; }
+  .event-card .claim-cta-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0.5rem 0; margin-top: 0.25rem; }
 }
 
 /* ════════════════════════════════════════
@@ -1121,7 +1439,7 @@ h1, h2, h3, h4, h5, h6 {
 /* --- Responsive content pages --- */
 @media (max-width: 640px) {
   .content-hero { padding: 7rem 1.25rem 2.5rem; }
-  .content-hero h1 { font-size: 1.8rem; }
+  .content-hero h1 { font-size: clamp(2.1rem, 7vw, 2.4rem); }
   .content-hero .content-hero-subtitle { font-size: 1rem; }
   .content-article h2 { font-size: 1.3rem; }
   .content-article h3 { font-size: 1.05rem; }
@@ -1132,6 +1450,17 @@ h1, h2, h3, h4, h5, h6 {
   .content-hero h1 { font-size: 3rem; }
   .content-hero { padding: 9rem 2rem 4rem; }
   .content-body { padding: 4rem 2rem 5rem; }
+}
+
+/* Compact hero variant — /events and /events/[city] (P1): trims the top
+   padding so the finder / event cards land within the first screen at
+   375x812, while keeping the same H1 text and content-hero-* structure. */
+.content-hero--compact { padding: 6.5rem 1.5rem 2rem; }
+@media (max-width: 640px) {
+  .content-hero--compact { padding: 5.5rem 1.25rem 1.5rem; }
+}
+@media (min-width: 768px) {
+  .content-hero--compact { padding: 7rem 2rem 2.5rem; }
 }
 
 /* ════════════════════════════════════════
@@ -1303,6 +1632,7 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--td1);
   margin: 0.9rem 0 1.2rem;
   max-width: 16ch;
+  font-variation-settings: 'opsz' 144, 'SOFT' 20;
 }
 .census-lede {
   font-family: var(--font-body);
@@ -1794,6 +2124,7 @@ h1, h2, h3, h4, h5, h6 {
   margin-top: 0.6rem;
   font-family: var(--font-body);
   font-size: 0.68rem;
+  line-height: 1.2;
   font-weight: 500;
   letter-spacing: 0.02em;
   color: var(--stone);
@@ -1802,6 +2133,9 @@ h1, h2, h3, h4, h5, h6 {
   padding-bottom: 1px;
   transition: color 0.15s, border-color 0.15s;
 }
+/* Inside the event card, sits right under the CTA label — tighter gap than
+   the standalone usage needs. */
+.event-card .claim-cta-link { margin-top: 0.35rem; }
 .claim-cta-link:hover { color: var(--teal-deep); border-color: var(--teal-soft); }
 
 /* "How claiming works" panel above the form. */
