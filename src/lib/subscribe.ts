@@ -26,6 +26,7 @@ export const SUBSCRIBE_SOURCES = [
   'compare',
   'kit-preview',
   'kit-waitlist',
+  'app_onboarding',
   'unknown',
 ] as const;
 export type SubscribeSource = (typeof SUBSCRIBE_SOURCES)[number];
