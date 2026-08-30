@@ -6,10 +6,11 @@ import {
   LEARN_SIGNUP_COPY,
   KIT_PREVIEW_SIGNUP_COPY,
   KIT_WAITLIST_SIGNUP_COPY,
+  EVENTS_HUB_SIGNUP_COPY,
   citySignupCopy,
 } from '@/lib/subscribe';
 
-type Variant = 'homepage' | 'footer' | 'city' | 'learn' | 'kit-preview' | 'kit-waitlist';
+type Variant = 'homepage' | 'footer' | 'city' | 'learn' | 'kit-preview' | 'kit-waitlist' | 'events';
 type Status = 'idle' | 'submitting' | 'done' | 'error';
 
 interface Props {
@@ -37,7 +38,7 @@ interface Props {
 const slugify = (s: string) =>
   s.toLowerCase().trim().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
 
-// Newsletter capture form. Six presentations share one submit path:
+// Newsletter capture form. Seven presentations share one submit path:
 //  - 'homepage':     a full band (eyebrow + heading + email + optional city).
 //  - 'footer':       a compact inline row that ships on every page via <Footer>.
 //  - 'city':         contextual capture on /events/[city] — city-specific copy.
@@ -50,9 +51,13 @@ const slugify = (s: string) =>
 //  - 'kit-waitlist': "launching soon" capture on /guides/mahjong-night,
 //                    shown in place of the buy button while
 //                    NEXT_PUBLIC_KIT_PAYMENT_LINK is unset.
-// All four "card" variants ('city', 'learn', 'kit-preview', 'kit-waitlist')
-// render their own eyebrow/heading/body (there's no page-level SUBSCRIBE_COPY
-// usage for them) so the copy lives in one place instead of being duplicated
+//  - 'events':       contextual capture on the /events hub — unlike 'city',
+//                    this spans every tracked city, so the copy stays
+//                    scope-honest instead of naming one city.
+// All five "card" variants ('city', 'learn', 'kit-preview', 'kit-waitlist',
+// 'events') render their own eyebrow/heading/body (there's no page-level
+// SUBSCRIBE_COPY usage for them) so the copy lives in one place instead of
+// being duplicated
 // across every page that uses it; the page still supplies the surrounding
 // <section> chrome (background, border, spacing) to match its own local design.
 // Posts to /api/subscribe, which fans out to the active sink (subscribe-store).
@@ -67,7 +72,11 @@ export default function EmailSignup({
   const [error, setError] = useState<string | null>(null);
   const isFooter = variant === 'footer';
   const isCard =
-    variant === 'city' || variant === 'learn' || variant === 'kit-preview' || variant === 'kit-waitlist';
+    variant === 'city' ||
+    variant === 'learn' ||
+    variant === 'kit-preview' ||
+    variant === 'kit-waitlist' ||
+    variant === 'events';
   const showCityField = variant === 'homepage';
 
   const resolvedSource =
@@ -195,7 +204,9 @@ export default function EmailSignup({
         ? KIT_PREVIEW_SIGNUP_COPY
         : variant === 'kit-waitlist'
           ? KIT_WAITLIST_SIGNUP_COPY
-          : LEARN_SIGNUP_COPY;
+          : variant === 'events'
+            ? EVENTS_HUB_SIGNUP_COPY
+            : LEARN_SIGNUP_COPY;
 
   return (
     <div className="signup-card">

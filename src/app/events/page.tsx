@@ -4,6 +4,7 @@ import { itemListSchema, eventSchema, breadcrumbSchema, faqSchema } from '@/lib/
 import { JsonLd } from '@/components/JsonLd';
 import { cities as manifestCities } from '@/data/cities';
 import CityFinder from '@/components/CityFinder';
+import EmailSignup from '@/components/EmailSignup';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -181,6 +182,19 @@ export default async function EventsPage() {
           </div>
         </section>
       )}
+
+      {/* Email capture — sits after the events list (This Week strip + city
+          finder), not before content, same placement convention and same
+          `.signup-inline` card treatment as /events/[city]. Hub-wide copy
+          (EVENTS_HUB_SIGNUP_COPY) since this page spans every tracked city
+          rather than one. */}
+      <section style={{ background: 'var(--linen)', padding: '0.5rem 0 2.5rem' }}>
+        <div className="mx-auto max-w-3xl px-6">
+          <section className="signup-inline">
+            <EmailSignup variant="events" source="events" />
+          </section>
+        </div>
+      </section>
 
       {/* FAQ / answer capsule — compound reasoning-path answer (style x
           geography), kept as a <details> accordion; text below is

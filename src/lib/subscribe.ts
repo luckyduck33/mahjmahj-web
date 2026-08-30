@@ -27,6 +27,7 @@ export const SUBSCRIBE_SOURCES = [
   'kit-preview',
   'kit-waitlist',
   'app_onboarding',
+  'events',
   'unknown',
 ] as const;
 export type SubscribeSource = (typeof SUBSCRIBE_SOURCES)[number];
@@ -135,4 +136,15 @@ export const KIT_WAITLIST_SIGNUP_COPY = {
   eyebrow: 'Launching Soon',
   heading: 'Be first when it launches',
   body: 'The Mahjong Night Kit isn’t live yet. Leave your email and we’ll let you know the moment it is — no spam, unsubscribe anytime.',
+} as const;
+
+// Copy for the /events hub capture (EmailSignup variant="events"). The hub
+// spans every city in the manifest, not just one, so — unlike
+// citySignupCopy's single-city framing — this stays scope-honest about
+// covering every tracked city while keeping the "weekly" cadence language
+// already established by LEARN_SIGNUP_COPY above.
+export const EVENTS_HUB_SIGNUP_COPY = {
+  eyebrow: 'Join the Club',
+  heading: 'New mahjong events, weekly',
+  body: 'New games from every city we track (LA, the Bay, NYC, and beyond) land in your inbox weekly. No spam. Unsubscribe anytime.',
 } as const;
