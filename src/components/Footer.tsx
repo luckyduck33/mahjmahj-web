@@ -43,6 +43,11 @@ export default function Footer() {
               <li><Link href="/events">Events</Link></li>
               <li><Link href="/about">About</Link></li>
               <li><a href="https://app.mahjmahj.co">Get the App</a></li>
+              {/* Owner-verified 2026-08-27: @mahjmahj_la, LA-scoped, active.
+                  target/rel matches the site's existing convention for
+                  outbound Instagram links (see page.tsx event CTAs,
+                  EventCard.tsx). */}
+              <li><a href="https://www.instagram.com/mahjmahj_la" target="_blank" rel="noopener noreferrer">Instagram</a></li>
             </ul>
           </div>
         </div>

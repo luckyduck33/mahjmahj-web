@@ -7,10 +7,19 @@ import {
   KIT_PREVIEW_SIGNUP_COPY,
   KIT_WAITLIST_SIGNUP_COPY,
   EVENTS_HUB_SIGNUP_COPY,
+  RESEARCH_SIGNUP_COPY,
   citySignupCopy,
 } from '@/lib/subscribe';
 
-type Variant = 'homepage' | 'footer' | 'city' | 'learn' | 'kit-preview' | 'kit-waitlist' | 'events';
+type Variant =
+  | 'homepage'
+  | 'footer'
+  | 'city'
+  | 'learn'
+  | 'kit-preview'
+  | 'kit-waitlist'
+  | 'events'
+  | 'research';
 type Status = 'idle' | 'submitting' | 'done' | 'error';
 
 interface Props {
@@ -54,8 +63,12 @@ const slugify = (s: string) =>
 //  - 'events':       contextual capture on the /events hub — unlike 'city',
 //                    this spans every tracked city, so the copy stays
 //                    scope-honest instead of naming one city.
-// All five "card" variants ('city', 'learn', 'kit-preview', 'kit-waitlist',
-// 'events') render their own eyebrow/heading/body (there's no page-level
+//  - 'research':     contextual capture on the /research census page —
+//                    pitches the next data snapshot, not a generic
+//                    newsletter angle, matching that page's "snapshot, not
+//                    a live feed" framing.
+// All six "card" variants ('city', 'learn', 'kit-preview', 'kit-waitlist',
+// 'events', 'research') render their own eyebrow/heading/body (there's no page-level
 // SUBSCRIBE_COPY usage for them) so the copy lives in one place instead of
 // being duplicated
 // across every page that uses it; the page still supplies the surrounding
@@ -76,7 +89,8 @@ export default function EmailSignup({
     variant === 'learn' ||
     variant === 'kit-preview' ||
     variant === 'kit-waitlist' ||
-    variant === 'events';
+    variant === 'events' ||
+    variant === 'research';
   const showCityField = variant === 'homepage';
 
   const resolvedSource =
@@ -206,7 +220,9 @@ export default function EmailSignup({
           ? KIT_WAITLIST_SIGNUP_COPY
           : variant === 'events'
             ? EVENTS_HUB_SIGNUP_COPY
-            : LEARN_SIGNUP_COPY;
+            : variant === 'research'
+              ? RESEARCH_SIGNUP_COPY
+              : LEARN_SIGNUP_COPY;
 
   return (
     <div className="signup-card">

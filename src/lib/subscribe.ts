@@ -28,6 +28,7 @@ export const SUBSCRIBE_SOURCES = [
   'kit-waitlist',
   'app_onboarding',
   'events',
+  'research_page',
   'unknown',
 ] as const;
 export type SubscribeSource = (typeof SUBSCRIBE_SOURCES)[number];
@@ -147,4 +148,15 @@ export const EVENTS_HUB_SIGNUP_COPY = {
   eyebrow: 'Join the Club',
   heading: 'New mahjong events, weekly',
   body: 'New games from every city we track (LA, the Bay, NYC, and beyond) land in your inbox weekly. No spam. Unsubscribe anytime.',
+} as const;
+
+// Copy for the research/census page capture (EmailSignup variant="research",
+// source="research_page"). The census is a snapshot, not a live feed (see the
+// page's own "Snapshot, not a live feed" methodology note), so the signup
+// pitch is honestly about the next snapshot and any repeat data work, not a
+// generic newsletter angle.
+export const RESEARCH_SIGNUP_COPY = {
+  eyebrow: 'Open Data',
+  heading: 'Get the next snapshot first',
+  body: 'When we publish a new census, refresh the dataset, or take a repeat snapshot, you will hear about it here first. No spam. Unsubscribe anytime.',
 } as const;
