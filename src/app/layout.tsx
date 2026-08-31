@@ -3,6 +3,7 @@ import Script from 'next/script';
 import { Fraunces, Inter, JetBrains_Mono } from 'next/font/google';
 import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
+import AttributionInit from '@/components/AttributionInit';
 import { JsonLd } from '@/components/JsonLd';
 import { organizationSchema, webSiteSchema } from '@/lib/schema';
 import './globals.css';
@@ -95,6 +96,9 @@ export default function RootLayout({
       </head>
       <body className="flex min-h-full flex-col">
         <JsonLd data={[organizationSchema(), webSiteSchema()]} />
+        {/* First-party UTM/referrer capture (first-touch wins, 90-day
+            expiry: lib/attribution.ts). Renders nothing; side-effect only. */}
+        <AttributionInit />
         <Nav />
         <main className="flex-1">{children}</main>
         <Footer />

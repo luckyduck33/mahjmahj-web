@@ -9,6 +9,8 @@ import {
   EVENTS_HUB_SIGNUP_COPY,
   citySignupCopy,
 } from '@/lib/subscribe';
+import { getAttributionSubscribeFields } from '@/lib/attribution';
+import { trackSignUp } from '@/lib/gtag';
 
 type Variant = 'homepage' | 'footer' | 'city' | 'learn' | 'kit-preview' | 'kit-waitlist' | 'events';
 type Status = 'idle' | 'submitting' | 'done' | 'error';
@@ -88,9 +90,13 @@ export default function EmailSignup({
     setError(null);
 
     const fd = new FormData(e.currentTarget);
+    // First-touch UTM attribution (lib/attribution.ts), if any, so it can
+    // flow through to the Notion backup record (subscribe-store.ts). Same
+    // fields GA4's sign_up event below carries.
     const payload = {
       ...Object.fromEntries(fd.entries()),
       source: resolvedSource,
+      ...getAttributionSubscribeFields(),
     };
 
     try {
@@ -105,6 +111,10 @@ export default function EmailSignup({
         setStatus('error');
         return;
       }
+      // GA4 top-of-funnel event (Mission 002 M3), tagged with the same
+      // `source` recorded server-side. Fire-and-forget: never blocks the
+      // success UI below.
+      trackSignUp(resolvedSource);
       setStatus('done');
     } catch {
       setError('Network error. Please try again.');
