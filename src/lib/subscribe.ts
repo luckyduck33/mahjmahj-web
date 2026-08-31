@@ -6,11 +6,19 @@
 // optional hint we use to point new subscribers at their local /events/[city]
 // page in the welcome flow. `source` records which surface converted them
 // (homepage band vs. site footer) for funnel analytics — it is not user input.
+//
+// utm_* fields (added for Mission 002 M3, "signup measurement"): the
+// visitor's first-touch UTM attribution (src/lib/attribution.ts), forwarded
+// by the client from localStorage — not read from the request itself. Like
+// `source`, these are first-party provenance, not freeform user input.
+
+import { UTM_KEYS, type UtmKey } from '@/lib/attribution';
 
 export interface SubscribeInput {
   email: string;
   city?: string;
   source?: string;
+  utm?: Partial<Record<UtmKey, string>>;
 }
 
 // Flat, fixed sources (one surface, no per-page split needed) plus a small set
@@ -48,6 +56,22 @@ const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
 const MAX_EMAIL = 254; // RFC 5321 max length for an email address
 const MAX_CITY = 80;
+const MAX_UTM_FIELD = 200; // matches the cap applied when captured client-side (lib/attribution.ts)
+
+// Same allowlist-or-drop posture as normalizeSource: only known utm_* keys
+// are accepted, values are trimmed and length-capped, and anything else
+// (extra keys, non-string values) is silently dropped rather than passed
+// through as arbitrary freeform text.
+function normalizeUtm(body: Record<string, unknown>): Partial<Record<UtmKey, string>> | undefined {
+  const utm: Partial<Record<UtmKey, string>> = {};
+  for (const key of UTM_KEYS) {
+    const value = body[key];
+    if (typeof value === 'string' && value.trim()) {
+      utm[key] = value.trim().slice(0, MAX_UTM_FIELD);
+    }
+  }
+  return Object.keys(utm).length > 0 ? utm : undefined;
+}
 
 export function normalizeSubscribeInput(body: Record<string, unknown>): SubscribeInput {
   const str = (v: unknown) => (typeof v === 'string' ? v.trim() : '');
@@ -57,6 +81,7 @@ export function normalizeSubscribeInput(body: Record<string, unknown>): Subscrib
     email: str(body.email).toLowerCase(),
     city: str(body.city) || undefined,
     source,
+    utm: normalizeUtm(body),
   };
 }
 

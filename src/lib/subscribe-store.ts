@@ -1,6 +1,7 @@
 import { promises as fs } from 'fs';
 import path from 'path';
 import type { SubscribeRecord } from '@/lib/subscribe';
+import { UTM_KEYS, type UtmKey } from '@/lib/attribution';
 
 // Persistence for newsletter signups. Sinks tried in priority order so the same
 // code works today and upgrades to a real ESP by only setting env vars:
@@ -128,18 +129,44 @@ const NOTION_VERSION = '2022-06-28';
 // integration behind it must be shared with this DB (see SUBSCRIBE_SETUP.md).
 const DEFAULT_SIGNUPS_DB_ID = 'a5ef6eaa-6e1d-4b5c-8e04-ddced6b0608c';
 
+// Mission 002 M3: the Notion DB gets first-touch UTM attribution
+// (src/lib/attribution.ts) as a backup record alongside the existing
+// Email/City/Source/Status/Submitted columns — but ONLY when
+// NOTION_UTM_COLUMNS_READY=true. Notion's API rejects a page-create call
+// that references a property name absent from the parent database's schema,
+// and this repo has no way to confirm from code whether the live
+// "MAHJ MAHJ — Email Signups" DB already has UTM columns. Defaulting this
+// off means the existing Email/City/Source/Status/Submitted write keeps
+// working unchanged until the owner adds the five columns below (all
+// rich_text: "UTM Source", "UTM Medium", "UTM Campaign", "UTM Content",
+// "UTM Term") and flips the env var — see mahj-packages/M3-measurement/APPLY.md.
+const NOTION_UTM_COLUMN_NAMES: Record<UtmKey, string> = {
+  utm_source: 'UTM Source',
+  utm_medium: 'UTM Medium',
+  utm_campaign: 'UTM Campaign',
+  utm_content: 'UTM Content',
+  utm_term: 'UTM Term',
+};
+
 function buildNotionProperties(record: SubscribeRecord): Record<string, unknown> {
   const text = (value: string | undefined) =>
     value && value.trim()
       ? { rich_text: [{ type: 'text', text: { content: value.slice(0, 2000) } }] }
       : { rich_text: [] };
-  return {
+  const properties: Record<string, unknown> = {
     Email: { title: [{ type: 'text', text: { content: record.email.slice(0, 2000) } }] },
     City: text(record.city),
     Source: { select: { name: record.source || 'unknown' } },
     Status: { select: { name: 'Subscribed' } },
     Submitted: { date: { start: record.createdAt } },
   };
+  if (process.env.NOTION_UTM_COLUMNS_READY === 'true' && record.utm) {
+    for (const key of UTM_KEYS) {
+      const value = record.utm[key];
+      if (value) properties[NOTION_UTM_COLUMN_NAMES[key]] = text(value);
+    }
+  }
+  return properties;
 }
 
 async function writeToNotion(
