@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { JsonLd } from '@/components/JsonLd';
+import EmailSignup from '@/components/EmailSignup';
 import {
   datasetSchema,
   faqSchema,
@@ -278,6 +279,16 @@ export default function CensusPage() {
                 </details>
               ))}
             </div>
+          </section>
+
+          {/* Email capture — sits after the FAQ, before the provenance
+              footer: same "after primary content" placement convention and
+              `.signup-inline` card treatment as /events and /events/[city].
+              Census-specific copy (RESEARCH_SIGNUP_COPY) pitches the next
+              snapshot rather than a generic newsletter angle, since this
+              page is a point-in-time dataset, not a live feed. */}
+          <section className="signup-inline">
+            <EmailSignup variant="research" source="research_page" />
           </section>
 
           {/* Provenance footer */}
