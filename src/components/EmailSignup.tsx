@@ -30,11 +30,12 @@ interface Props {
    *  the heading/body copy. Ignored by other variants. */
   cityName?: string;
   /** Funnel-tracking tag sent to /api/subscribe (see src/lib/subscribe.ts for
-   *  the accepted shapes: flat values like "compare", or "<surface>:<slug>"
-   *  like "city:los-angeles" / "styles:taiwanese-mahjong" / "learn:<slug>").
-   *  Defaults to the variant name, or "city:<slugified cityName>" for the city
-   *  variant, so passing it is optional but recommended wherever a page type
-   *  has more than one instance (styles/*, learn/*). */
+   *  the accepted shapes: flat values like "compare", "<surface>:<slug>" like
+   *  "styles:taiwanese-mahjong" / "learn:<slug>", or "events_<slug>" for the
+   *  city geo-capture family, e.g. "events_los-angeles").
+   *  Defaults to the variant name, or "events_<slugified cityName>" for the
+   *  city variant, so passing it is optional but recommended wherever a page
+   *  type has more than one instance (styles/*, learn/*). */
   source?: string;
   /** When set, a successful subscribe reveals a download link to this URL
    *  instead of the generic "You're on the list" success copy — used by the
@@ -96,7 +97,7 @@ export default function EmailSignup({
   const showCityField = variant === 'homepage';
 
   const resolvedSource =
-    source ?? (variant === 'city' && cityName ? `city:${slugify(cityName)}` : variant);
+    source ?? (variant === 'city' && cityName ? `events_${slugify(cityName)}` : variant);
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -107,9 +108,16 @@ export default function EmailSignup({
     // First-touch UTM attribution (lib/attribution.ts), if any, so it can
     // flow through to the Notion backup record (subscribe-store.ts). Same
     // fields GA4's sign_up event below carries.
+    //
+    // variant="city" never asks for a city (per the M6 geo-capture spec:
+    // "one field, city known from the page") so there's no `city` form
+    // field to pick up from fd.entries(). The known cityName prop is
+    // submitted directly instead, so Beehiiv's City custom field and the
+    // Notion backup's City column both get filled from the page context.
     const payload = {
       ...Object.fromEntries(fd.entries()),
       source: resolvedSource,
+      ...(variant === 'city' && cityName ? { city: slugify(cityName) } : {}),
       ...getAttributionSubscribeFields(),
     };
 

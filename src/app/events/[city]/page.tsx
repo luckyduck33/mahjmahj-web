@@ -220,7 +220,7 @@ export default async function CityEventsPage({ params }: Props) {
                   actually earned attention: after the reader has seen the first
                   4 cards (or all cards, if fewer than 4). */}
               <section className="signup-inline" style={{ marginTop: '3rem' }}>
-                <EmailSignup variant="city" cityName={cityName} source={`city:${slug}`} />
+                <EmailSignup variant="city" cityName={cityName} source={`events_${slug}`} />
               </section>
 
               {cardsAfterSignup.length > 0 && (
@@ -251,7 +251,7 @@ export default async function CityEventsPage({ params }: Props) {
                 <Link href="/events" className="event-cta">Browse all cities</Link>
               </div>
               <section className="signup-inline" style={{ marginTop: '1.5rem' }}>
-                <EmailSignup variant="city" cityName={cityName} source={`city:${slug}`} />
+                <EmailSignup variant="city" cityName={cityName} source={`events_${slug}`} />
               </section>
             </>
           )}
