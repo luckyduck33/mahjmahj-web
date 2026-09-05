@@ -41,6 +41,7 @@ export default function Footer() {
             <h5>Community</h5>
             <ul>
               <li><Link href="/events">Events</Link></li>
+              <li><Link href="/data">Open Data</Link></li>
               <li><Link href="/about">About</Link></li>
               <li><a href="https://app.mahjmahj.co">Get the App</a></li>
               {/* Owner-verified 2026-08-27: @mahjmahj_la, LA-scoped, active.
