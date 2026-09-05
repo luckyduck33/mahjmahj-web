@@ -66,6 +66,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: 'https://mahjmahj.co/guides/mahjong-night', lastModified: STATIC_LASTMOD['/guides/mahjong-night'], changeFrequency: 'monthly', priority: 0.8 },
     { url: 'https://mahjmahj.co/research/state-of-american-mahjong-2026', lastModified: STATIC_LASTMOD['/research/state-of-american-mahjong-2026'], changeFrequency: 'monthly', priority: 0.8 },
     { url: 'https://mahjmahj.co/about', lastModified: STATIC_LASTMOD['/about'], changeFrequency: 'monthly', priority: 0.5 },
+    // /data (VisibleOS dataset-packaging pass, 2026-09-05): the Event & City
+    // Index download page. lastmod is the dataset version date — the same
+    // live events `lastUpdated` signal already computed above for the event
+    // pages, since the dataset download reads from that same live feed.
+    { url: 'https://mahjmahj.co/data', lastModified: eventsLastMod, changeFrequency: 'daily', priority: 0.6 },
   ];
 
   // Manifest cities — every listed city gets a sitemap entry, even before
