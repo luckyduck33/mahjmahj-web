@@ -23,11 +23,19 @@ export interface SubscribeInput {
 
 // Flat, fixed sources (one surface, no per-page split needed) plus a small set
 // of "<surface>:<slug>" prefixes for surfaces where we want to see which exact
-// page converts (e.g. `city:los-angeles`, `styles:taiwanese-mahjong`,
-// `learn:how-to-play-mahjong`). Slugs already come from route params / the
-// city manifest, so this just mirrors existing routing — no new slug list to
-// maintain here. Anything that doesn't match either form collapses to
-// 'unknown' rather than being passed through as arbitrary freeform text.
+// page converts (e.g. `styles:taiwanese-mahjong`, `learn:how-to-play-mahjong`).
+// Slugs already come from route params / the city manifest, so this just
+// mirrors existing routing (no new slug list to maintain here). Anything that
+// doesn't match any known form collapses to 'unknown' rather than being passed
+// through as arbitrary freeform text.
+//
+// `events_<city-slug>` (underscore, not colon) is a separate family, added for
+// the geo-capture funnel spec (M6, 2026-09-03, Operations/handoffs/funnel-specs/
+// mahj-mahj-geo-capture-2026-09-03.md): the operator's spec names this exact
+// verbatim tag so GA4/Beehiiv reads can slice by city without a rename. It
+// replaces the old `city:<slug>` prefix on /events/[city] (see EmailSignup.tsx);
+// `city` stays in SUBSCRIBE_SOURCE_PREFIXES below only so any historical
+// `city:*` records already written keep validating, not because new ones ship.
 export const SUBSCRIBE_SOURCES = [
   'homepage',
   'footer',
@@ -42,10 +50,14 @@ export const SUBSCRIBE_SOURCES = [
 export type SubscribeSource = (typeof SUBSCRIBE_SOURCES)[number];
 const SUBSCRIBE_SOURCE_PREFIXES = ['city', 'styles', 'learn'] as const;
 const SOURCE_PREFIX_RE = new RegExp(`^(${SUBSCRIBE_SOURCE_PREFIXES.join('|')}):[a-z0-9-]{1,60}$`);
+// events_<slug>: underscore-joined per the M6 spec, distinct from the colon
+// family above. Slug charset matches the city manifest's slugify() output.
+const EVENTS_SOURCE_RE = /^events_[a-z0-9-]{1,60}$/;
 
 function normalizeSource(raw: string): string {
   if ((SUBSCRIBE_SOURCES as readonly string[]).includes(raw)) return raw;
   if (SOURCE_PREFIX_RE.test(raw)) return raw;
+  if (EVENTS_SOURCE_RE.test(raw)) return raw;
   return 'unknown';
 }
 
