@@ -608,6 +608,65 @@ export default function HongKongMahjongPage() {
         </div>
       </section>
 
+      {/* Head-to-head comparisons */}
+      <section
+        style={{ backgroundColor: 'var(--linen)' }}
+        className="px-6 py-14"
+      >
+        <div className="mx-auto max-w-3xl">
+          <h2
+            className="mb-8 text-2xl font-black"
+
+          >
+            Hong Kong Mahjong head to head
+          </h2>
+          <div className="grid gap-4 sm:grid-cols-2">
+            <Link
+              href="/compare/american-vs-hong-kong-mahjong"
+              className="block rounded-xl p-6 transition-shadow hover:shadow-md"
+              style={{ backgroundColor: 'var(--paper)', border: '1px solid var(--bone)' }}
+            >
+              <p
+                className="mb-1 text-xs font-semibold uppercase tracking-wider"
+                style={{ color: 'var(--terra)', fontFamily: 'var(--font-heading)' }}
+              >
+                Head-to-Head
+              </p>
+              <h3
+                className="text-lg font-black"
+
+              >
+                American vs. Hong Kong Mahjong
+              </h3>
+              <p className="mt-2 text-sm" style={{ color: 'var(--walnut)' }}>
+                Jokers and an annual card, or faan scoring and none. See the full breakdown.
+              </p>
+            </Link>
+            <Link
+              href="/compare/hong-kong-vs-taiwanese-mahjong"
+              className="block rounded-xl p-6 transition-shadow hover:shadow-md"
+              style={{ backgroundColor: 'var(--paper)', border: '1px solid var(--bone)' }}
+            >
+              <p
+                className="mb-1 text-xs font-semibold uppercase tracking-wider"
+                style={{ color: 'var(--terra)', fontFamily: 'var(--font-heading)' }}
+              >
+                Head-to-Head
+              </p>
+              <h3
+                className="text-lg font-black"
+
+              >
+                Hong Kong vs. Taiwanese Mahjong
+              </h3>
+              <p className="mt-2 text-sm" style={{ color: 'var(--walnut)' }}>
+                13 tiles versus 16, and how faan and tai scoring actually differ.
+              </p>
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* Bottom CTA */}
       <section
         style={{ backgroundColor: 'var(--espresso)' }}

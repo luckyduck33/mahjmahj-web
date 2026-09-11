@@ -549,6 +549,16 @@ export default function TaiwaneseMainjongPage() {
                 href: '/styles/hong-kong-mahjong',
               },
               {
+                title: 'Hong Kong vs. Taiwanese',
+                desc: '13 tiles vs. 16, faan vs. tai, head to head.',
+                href: '/compare/hong-kong-vs-taiwanese-mahjong',
+              },
+              {
+                title: 'American vs. Taiwanese',
+                desc: 'Jokers and a card, or none at all.',
+                href: '/compare/american-vs-taiwanese-mahjong',
+              },
+              {
                 title: 'How to Play Mahjong',
                 desc: 'Start from the very beginning.',
                 href: '/learn/how-to-play-mahjong',

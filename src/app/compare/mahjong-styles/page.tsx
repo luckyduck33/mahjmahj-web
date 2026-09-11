@@ -409,6 +409,61 @@ export default function MahjongStylesComparePage() {
             </Link>
           </section>
 
+          {/* Head-to-head comparisons */}
+          <section className="mb-16">
+            <h2
+              style={{ fontFamily: 'var(--font-heading)', color: 'var(--espresso)' }}
+              className="text-2xl md:text-3xl font-semibold mb-4"
+            >
+              Head-to-head comparisons
+            </h2>
+            <p style={{ color: 'var(--walnut)' }} className="text-lg leading-relaxed mb-8">
+              Want a closer look at just two styles at a time? Each pairing gets its own full breakdown.
+            </p>
+            <div className="grid md:grid-cols-3 gap-6">
+              {[
+                {
+                  title: 'American vs. Hong Kong',
+                  href: '/compare/american-vs-hong-kong-mahjong',
+                  desc: 'Jokers and an annual NMJL card, versus faan scoring and none.',
+                  color: 'var(--mustard)',
+                },
+                {
+                  title: 'American vs. Taiwanese',
+                  href: '/compare/american-vs-taiwanese-mahjong',
+                  desc: 'A 13-tile card game against a 16-tile hand with no card at all.',
+                  color: 'var(--mustard)',
+                },
+                {
+                  title: 'Hong Kong vs. Taiwanese',
+                  href: '/compare/hong-kong-vs-taiwanese-mahjong',
+                  desc: 'Same tile set, no jokers in either, but 13 tiles versus 16.',
+                  color: 'var(--terra)',
+                },
+              ].map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  style={{ background: 'var(--paper)', border: '1px solid var(--bone)', borderTop: `3px solid ${item.color}` }}
+                  className="rounded-lg p-6 block hover:opacity-90 transition-opacity"
+                >
+                  <h3
+                    style={{ fontFamily: 'var(--font-heading)', color: 'var(--espresso)', fontSize: '0.9rem' }}
+                    className="font-semibold mb-3"
+                  >
+                    {item.title}
+                  </h3>
+                  <p style={{ color: 'var(--walnut)', fontSize: '0.9rem' }} className="leading-relaxed mb-3">
+                    {item.desc}
+                  </p>
+                  <span style={{ color: item.color, fontSize: '0.85rem', fontWeight: 600 }}>
+                    Full comparison &#8594;
+                  </span>
+                </Link>
+              ))}
+            </div>
+          </section>
+
           {/* Best for beginners */}
           <section className="mb-16">
             <h2
@@ -493,6 +548,9 @@ export default function MahjongStylesComparePage() {
                 { label: 'Hong Kong Mahjong — full guide', href: '/styles/hong-kong-mahjong' },
                 { label: 'Taiwanese Mahjong — full guide', href: '/styles/taiwanese-mahjong' },
                 { label: 'American Mahjong — full guide', href: '/styles/american-mahjong' },
+                { label: 'American vs. Hong Kong Mahjong', href: '/compare/american-vs-hong-kong-mahjong' },
+                { label: 'American vs. Taiwanese Mahjong', href: '/compare/american-vs-taiwanese-mahjong' },
+                { label: 'Hong Kong vs. Taiwanese Mahjong', href: '/compare/hong-kong-vs-taiwanese-mahjong' },
                 { label: 'Find mahjong events near you', href: '/events' },
               ].map((link) => (
                 <Link

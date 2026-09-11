@@ -681,6 +681,14 @@ export default function AmericanMahjongPage() {
               hands, zimo bonuses, and a different strategic flavor.
             </li>
             <li>
+              <Link href="/compare/american-vs-hong-kong-mahjong">American vs. Hong Kong Mahjong</Link>:{' '}
+              a full head-to-head on jokers, the card, and faan scoring.
+            </li>
+            <li>
+              <Link href="/compare/american-vs-taiwanese-mahjong">American vs. Taiwanese Mahjong</Link>:{' '}
+              a full head-to-head on hand size, jokers, and tai scoring.
+            </li>
+            <li>
               <Link href="/learn/how-to-play-mahjong">How to Play Mahjong</Link> — start
               here if you are brand new to the game.
             </li>
